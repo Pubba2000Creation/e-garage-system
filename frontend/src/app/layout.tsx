@@ -11,7 +11,7 @@ const archivo = Archivo({
 
 export const metadata: Metadata = {
   title: "Garage",
-  description: "",
+  description: "A user-friendly garage system",
 };
 
 export default function RootLayout({
@@ -24,7 +24,10 @@ export default function RootLayout({
       <body
         className={archivo.className}
       >
-        {children}
+        <div className="container px-4 md:px-10 lg:px-20 mx-auto">
+          {children}
+        </div>
+        
       </body>
     </html>
   );

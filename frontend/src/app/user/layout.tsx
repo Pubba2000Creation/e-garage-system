@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import { Archivo } from 'next/font/google';
-
 import UserNavbar from "@/app/components/user/userNavbar";
 import UserFooter from "@/app/components/user/userFooter";
 
@@ -14,7 +13,7 @@ const archivo = Archivo({
 
 export const metadata: Metadata = {
   title: "Garage",
-  description: "",
+  description: "A user-friendly garage system",
 };
 
 export default function RootLayout({
@@ -24,14 +23,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
-      <body className={archivo.className}>
-
-        <UserNavbar />
-        {children}
-        <UserFooter />
-
+      <body
+        className={archivo.className}
+      >
+        <div className="container px-4 md:px-10 lg:px-20 mx-auto">
+          <UserNavbar />
+          {children}
+          <UserFooter />
+        </div>
+        
       </body>
-  </html>
+    </html>
   );
 }
