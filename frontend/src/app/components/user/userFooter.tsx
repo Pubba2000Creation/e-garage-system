@@ -30,11 +30,11 @@ export default function UserFooter() {
               <div>
                 <h4 className="font-bold mb-4">Useful Links</h4>
                 <ul className="  space-y-2">
-                  <li><a href="/" className="text-gray  ">Home</a></li>
-                  <li><a href="/" className="text-gray ">Find Services</a></li>
-                  <li><a href="/" className="text-gray ">News</a></li>
-                  <li><a href="/" className="text-gray ">About Us</a></li>
-                  <li><a href="/" className="text-gray ">Contact Us</a></li>
+                  <li><Link href="/user/home" className="text-gray ">Home</Link></li>
+                  <li><Link href="/user/home" className="text-gray ">Find Services</Link></li>
+                  <li><Link href="/user/news" className="text-gray ">News</Link></li>
+                  <li><Link href="/user/about_us" className="text-gray ">About Us</Link></li>
+                  <li><Link href="/user/contact_us" className="text-gray ">Contact Us</Link></li>
                 </ul>
               </div>
 
@@ -42,10 +42,10 @@ export default function UserFooter() {
               <div>
                 <h4 className="font-bold mb-4">Top Searches</h4>
                 <ul className="space-y-2">
-                  <li><a href="/" className="text-gray">Repair Shops</a></li>
-                  <li><a href="/" className="text-gray">Spare Parts</a></li>
-                  <li><a href="/" className="text-gray">Service Centers</a></li>
-                  <li><a href="/" className="text-gray">Oil Changes</a></li>
+                  <li><Link href="/" className="text-gray">Repair Shops</Link></li>
+                  <li><Link href="/" className="text-gray">Spare Parts</Link></li>
+                  <li><Link href="/" className="text-gray">Service Centers</Link></li>
+                  <li><Link href="/" className="text-gray">Oil Changes</Link></li>
                 </ul>
               </div>
 
