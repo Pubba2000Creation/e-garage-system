@@ -5,7 +5,6 @@ export default function UserHomePage() {
     <>
       <p>User Home</p>
     </>
-    
-    
+      
   )
 }
