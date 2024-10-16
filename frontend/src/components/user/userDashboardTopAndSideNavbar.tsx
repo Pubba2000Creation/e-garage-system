@@ -4,6 +4,7 @@ import Logo from './logo';
 import Btn from './btn';
 import UserProfile from './userProfile';
 import NotificationsDrawer from './notificationsDrawer';
+import Tooltips from './tooltips';
 import Link from 'next/link';
 
 import { FaRegStar } from "react-icons/fa";
@@ -23,6 +24,7 @@ interface DashboardProps {
 
 export default function UserDashboardTopAndSideNavbar({ children }: DashboardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [title, setTitle] = useState("Previous Reviews");
 
   // Prevent background scrolling when the sidebar is open
   useEffect(() => {
@@ -49,7 +51,11 @@ export default function UserDashboardTopAndSideNavbar({ children }: DashboardPro
             </div>
             {/* Buttons (hidden on small screens) */}
             <div className="flex items-center space-x-4">
-              <Btn name="+ Add a Service" fun={add_services} />
+
+              <Tooltips placement="bottom" title="Become a Service Provider" >
+                  <Btn name="+ Add a Service" fun={add_services} />
+              </Tooltips>
+
               <div className="flex items-center space-x-4 my-1">
                 <NotificationsDrawer count={8} />
                 <UserProfile profile_pic={user_profile} />
@@ -74,29 +80,39 @@ export default function UserDashboardTopAndSideNavbar({ children }: DashboardPro
           <div className="p-6">
             <nav className="space-y-6">
 
+              <p className='text-2xl font-extrabold text-left pb-3'>{title}</p>
+
               <Link href="/user/dashboard/reviews" className="flex items-center space-x-3 ">
-                <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary '>                  
+                <span 
+                onClick={() => setTitle("Previous Reviews")}
+                className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary '>                  
                   <FaRegStar/>
                   <span className='font-semibold'>Reviews </span>                               
                 </span>
               </Link>
 
               <Link href="/user/dashboard/profile" className="flex items-center space-x-3">
-              <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
+              <span 
+              onClick={() => setTitle("Profile")}
+              className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
                   <CgProfile />
                   <span className='font-semibold'>Profile</span>                               
               </span>                            
               </Link>
 
               <Link href="/user/dashboard/notifications" className="flex items-center space-x-3">                
-                <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
+                <span
+                onClick={() => setTitle("Notifications")} 
+                className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
                   <IoNotificationsOutline />
                   <span className='font-semibold'>Notifications</span>                               
                 </span> 
               </Link>
 
               <Link href="/user/dashboard/account" className="flex items-center space-x-3 ">
-                <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
+                <span
+                onClick={() => setTitle("Account Settings")} 
+                className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
                   <IoSettingsOutline />
                   <span className='font-semibold'>Account</span>                               
                 </span>                

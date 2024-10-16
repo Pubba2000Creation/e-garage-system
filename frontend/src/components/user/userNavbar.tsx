@@ -11,6 +11,7 @@ import UserProfile from './userProfile';
 import NotificationsDrawer from './notificationsDrawer';
 
 import user_profile from '@/public/users/pic.jpg';
+import Tooltips from './tooltips';
 
 export default function UserNavbar() {
 
@@ -47,7 +48,10 @@ export default function UserNavbar() {
 
             {/* Buttons (hidden on small screens) */}
             <div className="hidden md:flex items-center space-x-4">
-              <Btn name="+ Add a Service" fun={add_services} />
+              <Tooltips placement="bottom" title="Become a Service Provider" >
+                  <Btn name="+ Add a Service" fun={add_services} />
+              </Tooltips>
+              
               {isloging && (
                 <div className='flex items-center space-x-4 my-1'>
                   <NotificationsDrawer count={8} />

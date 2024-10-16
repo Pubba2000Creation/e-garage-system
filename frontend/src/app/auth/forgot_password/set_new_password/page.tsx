@@ -1,17 +1,17 @@
-"use client"
+'use client';
 /* eslint-disable react/no-unescaped-entities */
 
 import { useState } from 'react';
 import loging_cover from '@/public/images/loging_cover.svg';
 import { useRouter } from 'next/navigation';
-import Logo from '@/app/components/user/logo';
-import FromsCoverImage from '@/app/components/user/fromsCoverImage';
+import Logo from '@/components/user/logo';
+import FromsCoverImage from '@/components/user/fromsCoverImage';
 
 export default function SetNewPassword() {
   const [password, setPassword] = useState('');
   const [conform_password, setConform_password] = useState('');
   const [error, setError] = useState('');
-  
+
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,9 +24,7 @@ export default function SetNewPassword() {
 
     if (conform_password === password) {
       router.push('/auth/login');
-      
-    }
-    else{
+    } else {
       setError('Passwords do not match.');
       return;
     }
@@ -41,10 +39,10 @@ export default function SetNewPassword() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
           <div className="relative h-screen hidden md:block">
             {/* left side with background image */}
-              <FromsCoverImage coverImage={loging_cover} alt="Car in garage"/>
+            <FromsCoverImage coverImage={loging_cover} alt="Car in garage" />
             <div className="absolute top-4 left-4 text-white text-xl font-bold">
               <div className="flex items-center space-x-2">
-                <Logo/>
+                <Logo />
               </div>
             </div>
           </div>
@@ -93,8 +91,6 @@ export default function SetNewPassword() {
                 <div className="mb-4 text-red-500 text-center">{error}</div>
               )}
 
-              
-
               {/* Reset Password Button */}
               <button
                 type="submit"
@@ -102,8 +98,6 @@ export default function SetNewPassword() {
               >
                 Reset Password
               </button>
-
-              
             </form>
           </div>
         </div>

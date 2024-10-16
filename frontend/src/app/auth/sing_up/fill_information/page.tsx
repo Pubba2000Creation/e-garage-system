@@ -1,34 +1,59 @@
-"use client";
+'use client';
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
 import loging_cover from '@/public/images/loging_cover.svg';
 import Link from 'next/link';
-import Logo from '@/app/components/user/logo';
-import FromsCoverImage from '@/app/components/user/fromsCoverImage';
+import Logo from '@/components/user/logo';
+import FromsCoverImage from '@/components/user/fromsCoverImage';
 import { useRouter } from 'next/navigation';
-
+import VehicleTypeSelector from '@/components/user/vehicleTypeSelector';
+import DobPicker from '@/components/user/dobPicker';
 
 export default function FillInformation() {
   const router = useRouter();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [vehicalType, setVehicalType] = useState('');
+  const [vehicalType, setVehicalType] = useState<string[]>([]);
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [dob, setDob] = useState('');
+  const [selectedDate, setSelectedDate] = useState<string | null>(null); // Ensure it's a string or null
   const [error, setError] = useState('');
+  const [companyName, setCompanyName] = useState('');
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [userRole, setUserRole] = useState('user');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Form validation (example, adjust as needed)
-    if (!firstName || !lastName || !vehicalType || !phoneNumber || !dob) {
+    // Form validation
+    if (!firstName && !lastName && (!vehicalType || !companyName) && !phoneNumber && !selectedDate) 
+      {
       setError('Please fill out all fields');
+      console.log('Error:', error);
+      console.log(
+        firstName,
+        lastName,
+        vehicalType,
+        companyName,
+        phoneNumber,
+        selectedDate
+      );
       return;
     }
+
     // Clear error and navigate
     setError('');
     router.push('/auth/sing_up/set_address');
+  };
+
+  const handleVehicleSelection = (vehicalType: string[]) => {
+    setVehicalType(vehicalType);
+    console.log("Selected vehicles:", vehicalType);
+  }
+
+  const handleDateChange = (date: string) => { // Expect string now
+    setSelectedDate(date); // Store the selected date in state
   };
 
   return (
@@ -48,16 +73,20 @@ export default function FillInformation() {
 
           <div className="md:px-20 py-8 bg-white rounded-lg">
             {/* Right side with form */}
-            <h2 className="text-3xl font-bold mb-4 text-center">Now fill out your information.</h2>
+            <h2 className="text-3xl font-bold mb-4 text-center">
+              Now fill out your information.
+            </h2>
             <p className="text-gray mb-6 text-center">
-                Hey, Enter your details to get registered into your account
+              Hey, Enter your details to get registered into your account
             </p>
 
             {/* Form Fields */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="firstName" className=''>First Name</label>
+                  <label htmlFor="firstName" className="">
+                    First Name
+                  </label>
                   <input
                     type="text"
                     name="firstName"
@@ -70,7 +99,9 @@ export default function FillInformation() {
                 </div>
 
                 <div>
-                  <label htmlFor="lastName" className=''>Last Name</label>
+                  <label htmlFor="lastName" className="">
+                    Last Name
+                  </label>
                   <input
                     type="text"
                     name="lastName"
@@ -85,34 +116,32 @@ export default function FillInformation() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="vehicalType">Select Vehicle Type</label>
-                  <select
-                    name="vehicalType"
-                    className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
-                    value={vehicalType}
-                    onChange={(e) => setVehicalType(e.target.value)}
-                    required
-                  >
-                    <option value="">Select Vehicle Type</option>
-                    <option value="Car">Car</option>
-                    <option value="Van">Van</option>
-                    <option value="Truck">Truck</option>
-                    <option value="Bus">Bus</option>
-                  </select>
+                  {/* if user add vehical type (cheek  box) if service provider add company name */}
+                  {userRole === 'user' ? (
+                    <>
+                      <label htmlFor="vehicalType">Select Vehicle Type</label>
+                      <VehicleTypeSelector onSelectionChange={handleVehicleSelection} />
+                    </>
+                  ) : (
+                    <>
+                      <label htmlFor="companyName" className="">
+                        Company Name (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        name="companyName"
+                        placeholder="Ravindu Tyre Works"
+                        className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
+                        value={companyName}
+                        onChange={(e) => setCompanyName(e.target.value)}
+                      />
+                    </>
+                  )}
                 </div>
 
-                <div className=''>
-                  <label htmlFor="date">Date Of Birthday</label><br />
-                     <input
-                    type="date"
-                    name="date"
-                    className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
-                    value={dob}
-                    onChange={(e) => setDob(e.target.value)}
-                    required
-                  /> 
-
-                  {/* <DobPicker /> */}
+                <div className="">
+                  <label htmlFor="date">Date Of Birthday</label>
+                  <DobPicker onDateChange={handleDateChange} />
                 </div>
               </div>
 
@@ -127,7 +156,7 @@ export default function FillInformation() {
                   onInput={(e) => {
                     const input = e.target as HTMLInputElement;
                     input.value = input.value.replace(/\D/g, ''); // Removes non-numeric characters
-                    setPhoneNumber(input.value);  // Correctly update phone number state
+                    setPhoneNumber(input.value); // Correctly update phone number state
                   }}
                   maxLength={10}
                   required

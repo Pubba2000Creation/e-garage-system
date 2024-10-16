@@ -1,12 +1,12 @@
-"use client"
+'use client';
 /* eslint-disable react/no-unescaped-entities */
 
 import { useState } from 'react';
 import loging_cover from '@/public/images/loging_cover.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Logo from '@/app/components/user/logo';
-import FromsCoverImage from '@/app/components/user/fromsCoverImage';
+import Logo from '@/components/user/logo';
+import FromsCoverImage from '@/components/user/fromsCoverImage';
 
 export default function SetEmail() {
   const [email, setEmail] = useState('');
@@ -14,15 +14,15 @@ export default function SetEmail() {
   const router = useRouter();
 
   const handleEmailChange = (e: React.FormEvent) => {
-    e.preventDefault();   
+    e.preventDefault();
     // Form validation logic
     if (!email) {
       setError('Please enter email.');
       return;
-    }   
-    setError('');  
+    }
+    setError('');
     // Proceed with email handling or API call here
-    console.log({ email }); 
+    console.log({ email });
     // Redirect after successful submission
     router.push('/auth/forgot_password/set_otp');
   };
@@ -33,10 +33,10 @@ export default function SetEmail() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
           <div className="relative h-screen hidden md:block">
             {/* left side with background image */}
-               <FromsCoverImage coverImage={loging_cover} alt="Car in garage"/>
+            <FromsCoverImage coverImage={loging_cover} alt="Car in garage" />
             <div className="absolute top-4 left-4 text-white text-xl font-bold">
               <div className="flex items-center space-x-2">
-                <Logo/>
+                <Logo />
               </div>
             </div>
           </div>
@@ -81,7 +81,10 @@ export default function SetEmail() {
 
               {/* Back to Log In */}
               <div className="mt-6 text-center">
-                <Link href="/auth/login" className="text-gray cursor-pointer hover:underline">
+                <Link
+                  href="/auth/login"
+                  className="text-gray cursor-pointer hover:underline"
+                >
                   Back to Log In
                 </Link>
               </div>

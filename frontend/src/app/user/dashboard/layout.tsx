@@ -1,24 +1,24 @@
-import type { Metadata } from "next";
-import "@/app/globals.css";
+import type { Metadata } from 'next';
+import '@/app/globals.css';
 import { Archivo } from 'next/font/google';
-import UserDashboardTopAndSideNavbar from "@/app/components/user/userDashboardTopAndSideNavbar";
-import UserDashboardFooter from "@/app/components/user/userDashboardFooter";
+import UserDashboardTopAndSideNavbar from '@/components/user/userDashboardTopAndSideNavbar';
+import UserDashboardFooter from '@/components/user/userDashboardFooter';
 
 // Specify font variants (weights, styles, etc.)
 const archivo = Archivo({
-  subsets: ['latin'],   // You can specify the subset if needed
-  weight: ['400', '700'],  // Define the font weights you plan to use
+  subsets: ['latin'], // You can specify the subset if needed
+  weight: ['400', '700'], // Define the font weights you plan to use
 });
 
 export const metadata: Metadata = {
-  title: "Garage",
-  description: "A user-friendly garage system",
+  title: 'Garage',
+  description: 'A user-friendly garage system',
 };
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;  // Declare children prop
+  children: React.ReactNode; // Declare children prop
 }) {
   return (
     <html lang="en">
@@ -32,7 +32,7 @@ export default function RootLayout({
 
           {/* Footer Component */}
           <UserDashboardFooter />
-        </div>        
+        </div>
       </body>
     </html>
   );

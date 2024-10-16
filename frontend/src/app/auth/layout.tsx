@@ -25,6 +25,7 @@ export default function RootLayout({
         className={archivo.className}
       >
         <div className="px-2 md:px-10 lg:px-20 mx-auto">
+          
           {children}
         </div>
         

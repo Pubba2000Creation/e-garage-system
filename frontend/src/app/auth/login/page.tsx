@@ -1,10 +1,10 @@
-"use client"
+'use client';
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
 import loging_cover from '@/public/images/loging_cover.svg';
-import Link from 'next/link'
-import Logo from '@/app/components/user/logo';
-import FromsCoverImage from '@/app/components/user/fromsCoverImage';
+import Link from 'next/link';
+import Logo from '@/components/user/logo';
+import FromsCoverImage from '@/components/user/fromsCoverImage';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -29,12 +29,12 @@ export default function Login() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
           <div className="relative h-screen hidden md:block">
             {/* left side with background image */}
-            
-             <FromsCoverImage coverImage={loging_cover} alt="Car in garage"/>
+
+            <FromsCoverImage coverImage={loging_cover} alt="Car in garage" />
 
             <div className="absolute top-4 left-4 text-white text-xl font-bold">
               <div className="flex items-center space-x-2">
-                 <Logo/>
+                <Logo />
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function Login() {
               Login to your account
             </h2>
             <p className="text-gray text-center mb-6">
-            Hey, Enter your details to get sign in to your account
+              Hey, Enter your details to get sign in to your account
             </p>
 
             <form onSubmit={handleSubmit}>
@@ -85,11 +85,19 @@ export default function Login() {
 
               {/* Remember Me and Forgot Password */}
               <div className="flex justify-between items-center mb-6">
-                <div className='flex gap-x-2'>
-                  <input type="checkbox" name="remember" id="remember"  className='h-5 w-5 text-primary border-primary focus:ring-primary'/>
+                <div className="flex gap-x-2">
+                  <input
+                    type="checkbox"
+                    name="remember"
+                    id="remember"
+                    className="h-5 w-5 text-primary border-primary focus:ring-primary"
+                  />
                   <p>Remember Me</p>
                 </div>
-                <Link href="/auth/forgot_password/set_email" className="text-sm text-primary hover:underline">
+                <Link
+                  href="/auth/forgot_password/set_email"
+                  className="text-sm text-primary hover:underline"
+                >
                   Forgot Password?
                 </Link>
               </div>
@@ -104,10 +112,11 @@ export default function Login() {
 
               {/* Register Link */}
               <div className="mt-6 text-center">
-                <span className="text-gray">
-                  Don't have an account?
-                </span>
-                <Link href="/auth/sing_up/choose_account" className="text-primary ml-1 hover:underline">
+                <span className="text-gray">Don't have an account?</span>
+                <Link
+                  href="/auth/sing_up/choose_account"
+                  className="text-primary ml-1 hover:underline"
+                >
                   Register
                 </Link>
               </div>

@@ -23,6 +23,7 @@ interface DashboardProps {
 
 export default function ServiceProviderDashboardTopAndSideNavbar({ children }: DashboardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [title, setTitle] = useState("Analytics Dashboard");
 
   // Prevent background scrolling when the sidebar is open
   useEffect(() => {
@@ -74,43 +75,57 @@ export default function ServiceProviderDashboardTopAndSideNavbar({ children }: D
           <div className="p-6">
             <nav className="space-y-6">
 
+              <p className='text-2xl font-extrabold text-left pb-3'>{title}</p>
+
               <Link href="/" className="flex items-center space-x-3 ">
-                <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary '>                  
+                <span 
+                onClick={() => setTitle("Analytics Dashboard")}
+                className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary '>                  
                   <FaRegStar/>
                   <span className='font-semibold'>Analytics</span>                               
                 </span>
               </Link>
 
               <Link href="/" className="flex items-center space-x-3">
-              <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
+              <span 
+              onClick={() => setTitle("Manage Your Services")}
+              className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
                   <CgProfile />
                   <span className='font-semibold'>Manage Services</span>                               
               </span>                            
               </Link>
 
               <Link href="/" className="flex items-center space-x-3">                
-                <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
+                <span 
+                onClick={() => setTitle("Manage Your Reviews")}
+                className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
                   <IoNotificationsOutline />
                   <span className='font-semibold'>Reviews</span>                               
                 </span> 
               </Link>
 
               <Link href="/" className="flex items-center space-x-3 ">
-                <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
+                <span 
+                onClick={() => setTitle("Profile")}
+                className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
                   <IoSettingsOutline />
                   <span className='font-semibold'>Profile</span>                               
                 </span>                
               </Link>
 
               <Link href="/" className="flex items-center space-x-3 ">
-                <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
+                <span 
+                onClick={() => setTitle("Notification Settings")}
+                className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
                     <LiaHomeSolid />
                     <span className='font-semibold'>Notifications</span>                             
                 </span>              
               </Link>
 
               <Link href="/" className="flex items-center space-x-3 ">
-                <span className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
+                <span 
+                onClick={() => setTitle("Account Settings")}
+                className='flex items-center space-x-2 text-black transition duration-300 ease-in-out transform hover:scale-105 hover:text-primary hover:font-medium'>                  
                     <LiaHomeSolid />
                     <span className='font-semibold'>Account</span>                             
                 </span>              

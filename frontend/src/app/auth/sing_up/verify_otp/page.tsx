@@ -1,18 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
-"use client";
+'use client';
 import { useState } from 'react';
 import loging_cover from '@/public/images/loging_cover.svg'; // Your background image
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Logo from '@/app/components/user/logo';
-import FromsCoverImage from '@/app/components/user/fromsCoverImage';
+import Logo from '@/components/user/logo';
+import FromsCoverImage from '@/components/user/fromsCoverImage';
 
 export default function VerifyOtp() {
   // State to hold the OTP input
   const [otp, setOtp] = useState(Array(6).fill(''));
   const [error, setError] = useState('');
   const router = useRouter();
-
 
   // Handle input changes for each OTP input field
   const handleOtpChange = (value: string, index: number) => {
@@ -23,12 +22,10 @@ export default function VerifyOtp() {
 
   // Handle form submission for OTP verification
   const handleVerifyOtp = (e: React.FormEvent) => {
-
     e.preventDefault();
     const enteredOtp = otp.join('');
     setError('Invalid OTP. Please try again.');
     console.log('OTP Verified:', enteredOtp);
-      
   };
 
   // Resend OTP logic
@@ -44,20 +41,23 @@ export default function VerifyOtp() {
           <div className="relative h-screen hidden md:block">
             {/* Left side with background image */}
 
-              <FromsCoverImage coverImage={loging_cover} alt="Car in garage"/>
+            <FromsCoverImage coverImage={loging_cover} alt="Car in garage" />
 
             <div className="absolute top-4 left-4 text-white text-xl font-bold">
               <div className="flex items-center space-x-2">
-                 <Logo/>
+                <Logo />
               </div>
             </div>
           </div>
 
           <div className="md:px-20 py-8 bg-white rounded-lg">
             {/* Right side with form */}
-            <h2 className="text-4xl font-bold mb-4 text-center">Enter the OTP</h2>
+            <h2 className="text-4xl font-bold mb-4 text-center">
+              Enter the OTP
+            </h2>
             <p className="text-gray-600 text-center mb-8">
-              Enter the OTP code that we sent to your email. Be careful not to share the code with anyone.
+              Enter the OTP code that we sent to your email. Be careful not to
+              share the code with anyone.
             </p>
 
             <form onSubmit={handleVerifyOtp}>
@@ -82,7 +82,10 @@ export default function VerifyOtp() {
               )}
 
               {/* Verify Button */}
-              <button  onClick={() => router.push('/auth/sing_up/fill_information')} className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300">
+              <button
+                onClick={() => router.push('/auth/sing_up/fill_information')}
+                className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300"
+              >
                 Verify Email
               </button>
             </form>
@@ -90,10 +93,18 @@ export default function VerifyOtp() {
             {/* Resend OTP */}
             <div className="mt-4 text-center">
               <p className="text-gray-600">
-                Didn't receive code? 
-                <span onClick={handleResendOtp} className="text-primary ml-2 cursor-pointer">Resend</span>
+                Didn't receive code?
+                <span
+                  onClick={handleResendOtp}
+                  className="text-primary ml-2 cursor-pointer"
+                >
+                  Resend
+                </span>
               </p>
-              <Link href='/auth/sing_up/create_account' className='text-gray cursor-pointer mt-8 hover:underline '>
+              <Link
+                href="/auth/sing_up/create_account"
+                className="text-gray cursor-pointer mt-8 hover:underline "
+              >
                 Change Email
               </Link>
             </div>
@@ -103,4 +114,3 @@ export default function VerifyOtp() {
     </>
   );
 }
-

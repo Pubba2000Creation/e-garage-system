@@ -1,12 +1,12 @@
-"use client"
+'use client';
 /* eslint-disable react/no-unescaped-entities */
 
 import { useState } from 'react';
 import loging_cover from '@/public/images/loging_cover.svg';
-import Link from 'next/link'
-import Logo from '@/app/components/user/logo';
-import { useRouter } from 'next/navigation'
-import FromsCoverImage from '@/app/components/user/fromsCoverImage';
+import Link from 'next/link';
+import Logo from '@/components/user/logo';
+import { useRouter } from 'next/navigation';
+import FromsCoverImage from '@/components/user/fromsCoverImage';
 
 export default function CreateAccount() {
   const [email, setEmail] = useState('');
@@ -15,23 +15,22 @@ export default function CreateAccount() {
   const [error, setError] = useState('');
   const router = useRouter();
 
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     // Add form validation and submission logic here
-    if (!email ) {
+    if (!email) {
       setError('Please enter email .');
       return;
     }
-    if (!password || !conform_Password)  {
+    if (!password || !conform_Password) {
       setError('Please enter both email and password.');
       return;
     }
-    if (password !== conform_Password)  {
+    if (password !== conform_Password) {
       setError('Passwords do not match.');
-    }       
-    return;    
+    }
+    return;
     setError('');
     // Proceed with login submission
     console.log({ email, password });
@@ -45,10 +44,10 @@ export default function CreateAccount() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
           <div className="relative h-screen hidden md:block">
             {/* left side with background image */}
-               <FromsCoverImage coverImage={loging_cover} alt="Car in garage" />
+            <FromsCoverImage coverImage={loging_cover} alt="Car in garage" />
             <div className="absolute top-4 left-4 text-white text-xl font-bold">
               <div className="flex items-center space-x-2">
-                  <Logo/>
+                <Logo />
               </div>
             </div>
           </div>
@@ -59,7 +58,7 @@ export default function CreateAccount() {
               Create an account
             </h2>
             <p className="text-gray text-center mb-6">
-            Hey, Enter your details to get register in to your account
+              Hey, Enter your details to get register in to your account
             </p>
 
             <form onSubmit={handleSubmit}>
@@ -90,7 +89,10 @@ export default function CreateAccount() {
                   className="w-full px-4 py-2 border border-light_gray rounded-lg focus:outline-none focus:ring-1 focus:ring-primary_hover"
                   required
                 />
-                <label htmlFor="password" className="block text-gray-700 mb-2 mt-3">
+                <label
+                  htmlFor="password"
+                  className="block text-gray-700 mb-2 mt-3"
+                >
                   Conform Password
                 </label>
                 <input
@@ -109,8 +111,6 @@ export default function CreateAccount() {
                 <div className="mb-4 text-red-500 text-center">{error}</div>
               )}
 
-              
-
               {/* Login Button */}
               <button
                 onClick={() => router.push('/auth/sing_up/verify_otp')}
@@ -122,10 +122,11 @@ export default function CreateAccount() {
 
               {/* Register Link */}
               <div className="mt-6 text-center">
-                <span className="text-gray">
-                   
-                </span>
-                <Link href="/auth/sing_up/choose_account" className="text-gray ml-1 hover:underline">
+                <span className="text-gray"></span>
+                <Link
+                  href="/auth/sing_up/choose_account"
+                  className="text-gray ml-1 hover:underline"
+                >
                   Back
                 </Link>
               </div>
@@ -135,4 +136,4 @@ export default function CreateAccount() {
       </div>
     </>
   );
-};
+}
