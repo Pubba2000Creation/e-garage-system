@@ -1,49 +1,54 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import Image from 'next/image';
-import FromsCoverImage from "@/components/user/froms-cover-image"
-import cover_image from "@/public/images/loging_cover.svg"
-import Logo from "@/components/user/logo"
-import { useState } from "react"
+import FromsCoverImage from '@/components/user/from-cover-image';
+import cover_image from '@/public/images/loging_cover.svg';
+import Logo from '@/components/user/logo';
+import { useState } from 'react';
 import user from '@/public/images/user.svg';
 import service_owner from '@/public/images/service_owner.svg';
-
 
 export default function ChooseAccount() {
   const [selectedAccount, setSelectedAccount] = useState<
     'user' | 'serviceOwner'
   >('user');
-  
 
   function handleChooseAccount() {
-    console.log(selectedAccount);    
+    console.log(selectedAccount);
   }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-
-      <div className="hidden lg:block lg:w-1/2 relative ">        
-          <FromsCoverImage coverImage={cover_image} alt="login cover image" />
-          <div className="absolute top-4 left-4 text-white text-xl font-bold">
-              <div className="flex items-center space-x-2">
-                <Logo />
-              </div>
-          </div>               
+      <div className="hidden lg:block lg:w-1/2 relative ">
+        <FromsCoverImage coverImage={cover_image} alt="login cover image" />
+        <div className="absolute top-4 left-4 text-white text-xl font-bold">
+          <div className="flex items-center space-x-2">
+            <Logo />
+          </div>
+        </div>
       </div>
 
       <Card className="m-auto w-full max-w-md rounded-2xl overflow-hidden shadow-xl border-gray">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Choose account type</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">
+            Choose account type
+          </CardTitle>
           <CardDescription className="text-center">
-              Please select your account type to continue. You can either register
-              as a user or a service provider.
+            Please select your account type to continue. You can either register
+            as a user or a service provider.
           </CardDescription>
         </CardHeader>
         <CardContent>
-        <div className="flex justify-center space-x-6 mb-8">
+          <div className="flex justify-center space-x-6 mb-8">
             {/* User Card */}
             <div
               onClick={() => setSelectedAccount('user')}
@@ -106,9 +111,8 @@ export default function ChooseAccount() {
               Back to Login
             </Link>
           </div>
-
         </CardContent>
-      </Card>     
+      </Card>
     </div>
-  )
+  );
 }

@@ -8,7 +8,6 @@ const archivo = Archivo({
   weight: ['400', '700'],  // Define the font weights you plan to use
 });
 
-
 export const metadata: Metadata = {
   title: "Garage",
   description: "A user-friendly garage system",
@@ -21,14 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={archivo.className}
-      >
+      <body className={archivo.className}>
         <div className="px-2 md:px-10 lg:px-20 mx-auto">
-          
           {children}
         </div>
-        
       </body>
     </html>
   );

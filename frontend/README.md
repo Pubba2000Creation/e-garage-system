@@ -14,6 +14,8 @@ npm run build
 Start the Production Server
 npm start
 
+Install open-cli:
+npm install open-cli --save-dev
 
 # or
 yarn dev

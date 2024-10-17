@@ -4,13 +4,18 @@ import { useState } from 'react';
 import cover_image from '@/public/images/loging_cover.svg'; // Your background image
 import Link from 'next/link';
 import Logo from '@/components/user/logo'; // Your logo component
-import FromsCoverImage from '@/components/user/froms-cover-image'; // Image component
+import FromsCoverImage from '@/components/user/from-cover-image'; // Image component
 import { SelectProvinceCombobox } from '@/components/user/select-province';
 import { SelectDistrictCombobox } from '@/components/user/select-district';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 export default function AddressForm() {
-  
   const [address, setAddress] = useState('');
   const [province, setProvince] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('');
@@ -24,31 +29,31 @@ export default function AddressForm() {
       return;
     }
     setError('');
-    // Proceed with form submission    
+    // Proceed with form submission
   };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-
-      <div className="hidden lg:block lg:w-1/2 relative ">        
-          <FromsCoverImage coverImage={cover_image} alt="login cover image" />
-          <div className="absolute top-4 left-4 text-white text-xl font-bold">
-              <div className="flex items-center space-x-2">
-                <Logo />
-              </div>
-          </div>               
+      <div className="hidden lg:block lg:w-1/2 relative ">
+        <FromsCoverImage coverImage={cover_image} alt="login cover image" />
+        <div className="absolute top-4 left-4 text-white text-xl font-bold">
+          <div className="flex items-center space-x-2">
+            <Logo />
+          </div>
+        </div>
       </div>
 
       <Card className="m-auto w-full max-w-md rounded-2xl overflow-hidden shadow-xl border-gray">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Enter Your Physical Address</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">
+            Enter Your Physical Address
+          </CardTitle>
           <CardDescription className="text-center">
-              Hey, Enter your details to get registered into your account
+            Hey, Enter your details to get registered into your account
           </CardDescription>
         </CardHeader>
         <CardContent>
-
-        <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="space-y-4">
               {/* Address */}
               <div>
@@ -71,7 +76,7 @@ export default function AddressForm() {
                   <SelectProvinceCombobox
                     value={province}
                     onChange={setProvince}
-                  />                  
+                  />
                 </div>
 
                 <div>
@@ -79,7 +84,7 @@ export default function AddressForm() {
                   <SelectDistrictCombobox
                     value={selectedDistrict}
                     onChange={setSelectedDistrict}
-                  />                 
+                  />
                 </div>
               </div>
 
@@ -105,12 +110,9 @@ export default function AddressForm() {
             </div>
           </form>
 
-          <div className="mt-4 text-center text-sm">
-            
-          </div>
+          <div className="mt-4 text-center text-sm"></div>
         </CardContent>
       </Card>
-      
     </div>
-  )
+  );
 }
