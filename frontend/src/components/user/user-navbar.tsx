@@ -1,19 +1,26 @@
-'use client';
-import { useState } from 'react';
-import Link from 'next/link';
-import React from 'react';
-import Logo from './logo';
-import Border_btn from './border-btn';
-import { IoMdMenu } from 'react-icons/io';
-import { IoMdClose } from 'react-icons/io';
-import Btn from './btn';
-import UserProfile from './user-profile';
-import NotificationsDrawer from './notifications-drawer';
+"use client"
 
+import { useState } from "react"
+import Link from "next/link"
+import {  Menu  } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import Logo from "@/components/user/logo"
+
+import Btn from '@/components/user/btn';
+import Border_btn from '@/components/user/border-btn';
+import UserProfile from '@/components/user/user-profile';
+import NotificationsDrawer from '@/components/user/notifications-drawer';
 import user_profile from '@/public/users/pic.jpg';
-import Tooltips from './tooltips';
+import Tooltips from '@/components/user/tooltips';
 
-export default function UserNavbar() {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isloging, setIsloging] = useState(false);
 
@@ -27,128 +34,75 @@ export default function UserNavbar() {
   }
 
   return (
-    <>
-      <nav className="bg-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-2">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <div className="flex items-center">
-              <Logo />
-            </div>
-
-            {/* Links (hidden on small screens) */}
-            <div className="hidden md:flex space-x-8">
-              <Link
-                href="/user/home"
-                className="cursor-pointer font-semibold hover:scale-105 transition duration-100 hover:text-primary"
-              >
+    <nav className="flex items-center justify-between px-4 py-4 bg-white shadow-sm">
+      <div className="lg:hidden">
+        <Sheet  open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger className="bg-white" asChild>
+            <Button variant="ghost" size="icon">
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent className="bg-white" side="left">
+            <SheetHeader>
+              <SheetTitle className="text-center">Menu</SheetTitle>
+            </SheetHeader>
+            <div className="flex flex-col space-y-4 mt-4">
+              <Link className="text-sm font-semibold text-black focus:text-primary" href="/user/home" onClick={() => setIsOpen(false)}>
                 Home
               </Link>
-              <Link
-                href="/user/home"
-                className="cursor-pointer font-semibold hover:scale-105 transition duration-100 hover:text-primary"
-              >
+              <Link className="text-sm font-semibold text-black focus:text-primary" href="/user/home" onClick={() => setIsOpen(false)}>
                 Find Services
               </Link>
-              <Link
-                href="/user/news"
-                className="cursor-pointer font-semibold hover:scale-105 transition duration-100 hover:text-primary"
-              >
+              <Link className="text-sm font-semibold text-black focus:text-primary" href="/user/news" onClick={() => setIsOpen(false)}>
                 News
               </Link>
-              <Link
-                href="/user/about_us"
-                className="cursor-pointer font-semibold hover:scale-105 transition duration-100 hover:text-primary"
-              >
+              <Link className="text-sm font-semibold text-black focus:text-primary" href="/user/aboutus" onClick={() => setIsOpen(false)}>
                 About Us
               </Link>
-              <Link
-                href="/user/contact_us"
-                className="cursor-pointer font-semibold hover:scale-105 transition duration-100 hover:text-primary"
-              >
+              <Link className="text-sm font-semibold text-black focus:text-primary" href="/user/contactus" onClick={() => setIsOpen(false)}>
                 Contact Us
               </Link>
             </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+      
+      <div className="hidden lg:flex lg:items-center lg:space-x-6">
+        <Link className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary" href="/user/home">
+          Home
+        </Link>
+        <Link className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary" href="/user/home">
+          Find Services
+        </Link>
+        <Link className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary" href="/user/news">
+          News
+        </Link>
+        <Link className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary" href="/user/aboutus">
+          About Us
+        </Link>
+        <Link className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary" href="/user/contactus">
+          Contact Us
+        </Link>
+      </div>
+      <div className="flex-1 flex justify-center">
+        <Logo />
+      </div>
+      <div className="flex items-center space-x-4">
 
-            {/* Buttons (hidden on small screens) */}
-            <div className="hidden md:flex items-center space-x-4">
-              <Tooltips placement="bottom" title="Become a Service Provider">
-                <Btn name="+ Add a Service" fun={add_services} />
-              </Tooltips>
+        <Tooltips placement="bottom" title="Become a Service Provider">
+          <Btn name="+ Add a Service" fun={add_services} />
+          </Tooltips>
 
-              {isloging && (
-                <div className="flex items-center space-x-4 my-1">
-                  <NotificationsDrawer count={8} />
-                  <UserProfile profile_pic={user_profile} />
-                </div>
-              )}
-              {!isloging && <Border_btn name="Login" fun={login} />}
+        {isloging && (
+            <div className="flex items-center space-x-4 my-1">
+              <NotificationsDrawer count={8} />
+              <UserProfile profile_pic={user_profile} />
             </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center">
-              {isloging && (
-                <div className="flex items-center space-x-4 my-1 mr-3">
-                  <NotificationsDrawer count={8} />
-                  <UserProfile profile_pic={user_profile} />
-                </div>
-              )}
-              <button onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? (
-                  <IoMdClose className="h-6 w-6" />
-                ) : (
-                  <IoMdMenu className="h-6 w-6" />
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu Links */}
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="flex flex-col justify-items-start space-y-4 py-2">
-              <Link
-                href="/"
-                className="cursor-pointer"
-                onClick={() => setIsOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
-                href="/"
-                className="cursor-pointer"
-                onClick={() => setIsOpen(false)}
-              >
-                Find Services
-              </Link>
-              <Link
-                href="/user/news"
-                className="cursor-pointer"
-                onClick={() => setIsOpen(false)}
-              >
-                News
-              </Link>
-              <Link
-                href="/user/about_us"
-                className="cursor-pointer"
-                onClick={() => setIsOpen(false)}
-              >
-                About Us
-              </Link>
-              <Link
-                href="/user/contact_us"
-                className="cursor-pointer"
-                onClick={() => setIsOpen(false)}
-              >
-                Contact Us
-              </Link>
-              <Btn name="+ Add a Service" fun={add_services} />
-              {!isloging && <Border_btn name="Login" fun={login} />}
-            </div>
-          </div>
         )}
-      </nav>
-    </>
-  );
+        {!isloging && <Border_btn name="Login" fun={login} />}        
+              
+      </div>
+    </nav>
+  )
 }

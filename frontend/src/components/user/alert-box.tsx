@@ -15,7 +15,7 @@ export default function AlertBox(props: { title: string; description: string; ti
   return (
     <div 
       onClick={handleClick} 
-      className={` border-2 rounded-md p-4 text-black my-1 cursor-pointer 
+      className={` border rounded p-4 text-black my-1 cursor-pointer 
         ${props.type === 'default' ? 'border-orange-300 bg-orange-100' : ''} 
         ${props.type === 'error' ? 'border-red-300 bg-red-100' : ''}
         ${props.type === 'success' ? 'border-green-300 bg-green-100' : ''}
