@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import '@/app/globals.css';
 import { Archivo } from 'next/font/google';
-import UserNavbar from '@/components/user/userNavbar';
-import UserFooter from '@/components/user/userFooter';
+import UserNavbar from '@/components/user/user-navbar';
+import UserFooter from '@/components/user/user-footer';
 
 // Specify font variants (weights, styles, etc.)
 const archivo = Archivo({

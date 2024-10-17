@@ -1,6 +1,5 @@
 "use client"
-
-import Link from "next/link"
+// import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -11,23 +10,22 @@ import cover_image from "@/public/images/loging_cover.svg"
 import Logo from "@/components/user/logo"
 import { useState } from "react"
 
-export default function LoginForm() {
-
-  const [email, setEmail] = useState('');
+export default function SetNewPassword() {
   const [password, setPassword] = useState('');
+  const [conform_password, setConform_password] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
+
     e.preventDefault();
     // Add form validation and submission logic here
-    
-    console.log({ email, password });
-    if (!email || !password) {
-      setError('Please enter both email and password.');
+    if (!conform_password || !password) {
+      setError('Please enter both passwords.');
       return;
-    }
+    }   
     setError('');
-    // Proceed with login submission  
+    // Proceed with login submission
+    console.log({ conform_password, password });
   };
 
   return (
@@ -44,21 +42,21 @@ export default function LoginForm() {
 
       <Card className="m-auto w-full max-w-md rounded-2xl overflow-hidden shadow-xl border-gray">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Login</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Set A New Password</CardTitle>
           <CardDescription className="text-center">
-              Hey, Enter your details to get sign in to your account
+              New password must be different from your previous used passwords
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">New password</Label>
               <Input 
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)} 
-              placeholder="user@example.com" 
-              type="email" 
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="********" 
+              type="password" 
               required 
               className="border-gray focus:border-primary focus:ring-white"
               />
@@ -66,19 +64,19 @@ export default function LoginForm() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <Link href="/auth/forgot-password/set-email" className="text-sm text-gray hover:text-primary hover:underline">
+                {/* <Link href="/auth/forgot-password/set-email" className="text-sm text-gray hover:text-primary hover:underline">
                   Forgot your password?
-                </Link>
+                </Link> */}
               </div>
               <Input 
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} 
+                id="conform_password"
+                value={conform_password}
+                onChange={(e) => setConform_password(e.target.value)} 
                 placeholder="********" 
                 type="password" 
                 required
                 className="border-gray focus:border-primary focus:ring-white"
-                />
+              />
               
             </div>
 
@@ -88,15 +86,15 @@ export default function LoginForm() {
             )}
 
             <Button type="submit" className="w-full text-white">
-              Login
+              Reset Password
             </Button>
             
           </form>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link href="/auth/sign-up/choose-account" className="text-gray hover:text-primary hover:underline">
-              Sign up
-            </Link>
+            {/* Don&apos;t have an account?{" "}
+            <Link href="#" className="text-gray hover:text-primary hover:underline">
+              Reset Password
+            </Link> */}
           </div>
         </CardContent>
       </Card>

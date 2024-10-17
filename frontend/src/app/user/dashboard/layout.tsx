@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import '@/app/globals.css';
 import { Archivo } from 'next/font/google';
-import UserDashboardTopAndSideNavbar from '@/components/user/userDashboardTopAndSideNavbar';
-import UserDashboardFooter from '@/components/user/userDashboardFooter';
+import UserDashboardTopAndSideNavbar from '@/components/user/user-dashboard-top-and-side-navbar';
+import UserDashboardFooter from '@/components/user/user-dashboard-footer';
 
 // Specify font variants (weights, styles, etc.)
 const archivo = Archivo({

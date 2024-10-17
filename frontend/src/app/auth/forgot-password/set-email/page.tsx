@@ -11,23 +11,20 @@ import cover_image from "@/public/images/loging_cover.svg"
 import Logo from "@/components/user/logo"
 import { useState } from "react"
 
-export default function LoginForm() {
-
+export default function SetEmail() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleEmailChange = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add form validation and submission logic here
-    
-    console.log({ email, password });
-    if (!email || !password) {
-      setError('Please enter both email and password.');
+    // Form validation logic
+    console.log({ email });
+    if (!email) {
+      setError('Please enter email.');
       return;
     }
-    setError('');
-    // Proceed with login submission  
+    setError('');       
   };
 
   return (
@@ -44,13 +41,13 @@ export default function LoginForm() {
 
       <Card className="m-auto w-full max-w-md rounded-2xl overflow-hidden shadow-xl border-gray">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Login</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Forgot Password</CardTitle>
           <CardDescription className="text-center">
-              Hey, Enter your details to get sign in to your account
+              No worries, we will send you instructions to reset.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleEmailChange} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input 
@@ -63,10 +60,11 @@ export default function LoginForm() {
               className="border-gray focus:border-primary focus:ring-white"
               />
             </div>
-            <div className="space-y-2">
+
+            {/* <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <Link href="/auth/forgot-password/set-email" className="text-sm text-gray hover:text-primary hover:underline">
+                <Link href="#" className="text-sm text-gray hover:text-primary hover:underline">
                   Forgot your password?
                 </Link>
               </div>
@@ -80,7 +78,7 @@ export default function LoginForm() {
                 className="border-gray focus:border-primary focus:ring-white"
                 />
               
-            </div>
+            </div> */}
 
             {/* Error Message */}
             {error && (
@@ -88,14 +86,14 @@ export default function LoginForm() {
             )}
 
             <Button type="submit" className="w-full text-white">
-              Login
+              Reset Password
             </Button>
             
           </form>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link href="/auth/sign-up/choose-account" className="text-gray hover:text-primary hover:underline">
-              Sign up
+            
+            <Link href="/auth/login" className="text-gray hover:text-primary hover:underline">
+              Back to Log In
             </Link>
           </div>
         </CardContent>
