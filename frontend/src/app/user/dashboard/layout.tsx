@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import '@/app/globals.css';
 import { Archivo } from 'next/font/google';
-import UserDashboardTopAndSideNavbar from '@/components/user/user-dashboard-top-and-side-navbar';
-import UserDashboardFooter from '@/components/user/user-dashboard-footer';
 
 // Specify font variants (weights, styles, etc.)
 const archivo = Archivo({
@@ -15,24 +13,17 @@ export const metadata: Metadata = {
   description: 'A user-friendly garage system',
 };
 
-export default function RootLayout({
+export default function DashbardLayout({
   children,
-}: {
-  children: React.ReactNode; // Declare children prop
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body className={archivo.className}>
-        <div className=" px-2 md:px-10 lg:px-20 mx-auto">
-          {/* Include the Navbar and pass children between the Navbar and Footer */}
-          <UserDashboardTopAndSideNavbar>
-            {/* Render the passed children here */}
-            {children}
-          </UserDashboardTopAndSideNavbar>
-
-          {/* Footer Component */}
-          <UserDashboardFooter />
-        </div>
+      <body className={`${archivo.className} px-2 md:px-10 lg:px-20 mx-auto`}> 
+                     
+          {children}         
+          
       </body>
     </html>
   );
