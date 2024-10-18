@@ -15,19 +15,19 @@ export const metadata: Metadata = {
   description: 'A user-friendly garage system',
 };
 
-export default function RootLayout({
+export default function UserLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={archivo.className}>
-        <div className=" px-2 md:px-10 lg:px-20 mx-auto">
+      <body className={`${archivo.className} px-2 md:px-10 lg:px-20 mx-auto`}>
+        
           <UserNavbar />
           {children}
           <UserFooter />
-        </div>
+        
       </body>
     </html>
   );

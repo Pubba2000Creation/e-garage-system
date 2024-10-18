@@ -14,20 +14,17 @@ export const metadata: Metadata = {
   description: "A user-friendly garage system",
 };
 
-export default function RootLayout({
+export default function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body
-        className={archivo.className}
-      >
-        <div className="px-2 md:px-10 lg:px-20 mx-auto">
-          {children}
-        </div>
+      <body  className={`${archivo.className} px-2 md:px-10 lg:px-20 mx-auto`}>
         
+          {children}
+               
       </body>
     </html>
   );
