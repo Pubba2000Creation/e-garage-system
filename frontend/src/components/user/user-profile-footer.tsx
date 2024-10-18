@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react'
 const year = new Date().getFullYear();
 
-export default function UserDashboardFooter() {
+export default function UserProfileFooter() {
   return (
     <>
       <div className="mt-8 border-t pt-4 flex flex-col md:flex-row justify-between items-center text-gray text-sm">

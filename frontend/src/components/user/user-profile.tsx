@@ -8,16 +8,13 @@ import Image, { StaticImageData } from 'next/image'; // Import StaticImageData f
 import default_profile_pic from '@/public/users/default_profile_pic.svg'; // Ensure it's a valid imported image
 
 const items: MenuProps['items'] = [
+  
   {
     key: '1',
-    label: <Link href="/user/dashboard/reviews">Dashboard</Link>,
+    label: <Link href="/user-profile">Profile</Link>,
   },
   {
     key: '2',
-    label: <Link href="/user/dashboard/profile">Profile</Link>,
-  },
-  {
-    key: '3',
     danger: true,
     label: <Link href="/">Logout</Link>,
   },
@@ -30,7 +27,7 @@ interface UserProfileProps {
 export default function UserProfile({ profile_pic }: UserProfileProps) {
   return (
     <Dropdown menu={{ items }}>
-      <Link href={'#'} onClick={(e) => e.preventDefault()}>
+      <Link href='/user-profile' onClick={(e) => e.preventDefault()}>
         <div className="w-10 h-10 relative"> {/* Wrapper div with fixed size */}
           <Image
             src={profile_pic || default_profile_pic} // Use imported default image if no profile_pic is provided
