@@ -29,7 +29,6 @@ import user_profile from '@/public/users/pic.jpg';
 import user_icon from '@/public/icons/profile.svg';
 import star_icon from '@/public/icons/star.svg';
 import bell_icon from '@/public/icons/bell.svg';
-import home_icon from '@/public/icons/home.svg';
 import logout_icon from '@/public/icons/logout.svg';
 import gear_icon from '@/public/icons/gear.svg';
 
@@ -83,14 +82,7 @@ export default function UserProfileNavbar(props:{
                   Account
                 </Link>                       
               </SidebarMenuButton>
-
-              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user/home">
-                  <Image src={home_icon} alt="logo" width={15} height={15} />
-                  Back to Home
-                </Link>         
-              </SidebarMenuButton>
-
+              
               <SidebarMenuButton className=" mt-10 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
                 <Link className="flex gap-2 hover:text-red-500" href="/">
                   <Image  src={logout_icon} alt="logo" width={15} height={15} />
