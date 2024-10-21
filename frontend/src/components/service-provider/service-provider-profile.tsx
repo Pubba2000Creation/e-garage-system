@@ -11,20 +11,24 @@ const items: MenuProps['items'] = [
   
   {
     key: '1',
-    label: <Link href="/user-profile/profile">Profile</Link>,
+    label: <Link href="/service-provider/analytics">Dashboard</Link>,
   },
   {
     key: '2',
+    label: <Link href="/service-provider/profile">Profile</Link>,
+  },
+  {
+    key: '3',
     danger: true,
     label: <Link href="/">Logout</Link>,
   },
 ];
 
-interface UserProfileProps {
+interface ServiceProviderProps {
   profile_pic?: string | StaticImageData; // Allow both string and StaticImageData types
 }
 
-export default function UserProfile({ profile_pic }: UserProfileProps) {
+export default function ServiceProviderProfile({ profile_pic }: ServiceProviderProps) {
   return (
     <Dropdown menu={{ items }}>
       <Link href='' onClick={(e) => e.preventDefault()}>

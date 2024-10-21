@@ -24,11 +24,11 @@ export default function DashbardLayout({
   return (
     <html lang="en">
       <body className={`${archivo.className} px-2 md:px-5 lg:px-5 mx-auto`}>
-
-          <UserProfileNavbar>
-            {children}
-          </UserProfileNavbar>         
-                            
+          
+            <UserProfileNavbar>                        
+            {children} 
+            </UserProfileNavbar>          
+           
       </body>
     </html>
   );

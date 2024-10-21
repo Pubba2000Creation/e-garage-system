@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import { Archivo } from 'next/font/google';
+import ServiceProviderNavbar from "@/components/service-provider/dashboard-navbar";
 
 // Specify font variants (weights, styles, etc.)
 const archivo = Archivo({
@@ -21,10 +22,12 @@ export default function ServiceProviderLayout({
 }>) {
   return (
     <html lang="en">
-      <body  className={`${archivo.className} px-2 md:px-10 lg:px-20 mx-auto`}>
+      <body  className={`${archivo.className} px-2 md:px-5 lg:px-5 mx-auto`}>
         
+        <ServiceProviderNavbar>
           {children}
-               
+        </ServiceProviderNavbar>
+                  
       </body>
     </html>
   );
