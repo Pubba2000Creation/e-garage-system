@@ -126,7 +126,7 @@ const district = [
     onChange: (value: string) => void;
   }
   
-  export function SelectDistrictCombobox({
+  export default function SelectDistrictCombobox({
     value,
     onChange,
   }: SelectDistrictComboboxProps) {

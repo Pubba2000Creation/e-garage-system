@@ -1,7 +1,6 @@
 "use client"
 import * as React from "react"
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -19,32 +18,28 @@ import {
 } from "@/components/ui/popover"
 
 const province = [
-    { value: "Western Province", label: "Western Province" },
-    { value: "Central Province", label: "Central Province" },
-    { value: "Southern Province", label: "Southern Province" },
-    { value: "Northern Province", label: "Northern Province" },
-    { value: "Eastern Province", label: "Eastern Province" },
-    { value: "North Western Province", label: "North Western Province" },
-    { value: "North Central Province", label: "North Central Province" },
-    { value: "Uva Province Province", label: "Uva Province Province" },
-    { value: "Sabaragamuwa Province", label: "Sabaragamuwa Province" },
+    { value: "Repair Shops", label: "Repair Shops" },
+    { value: "Spare Parts", label: "Spare Parts" },
+    { value: "Oil Changes", label: "Oil Changes" },
+    { value: "Vehicle Inspections", label: "Vehicle Inspections" },
+    { value: "Tire Services", label: "Tire Services" },
+    { value: "Service Centers", label: "Service Centers" },   
 ]
 
-interface SelectProvinceComboboxProps {
+interface SelectsServicesComboboxProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-export default function SelectProvinceCombobox({
+export default function SelectServicesCombobox({
   value,
   onChange,
-}: SelectProvinceComboboxProps) {
+}: SelectsServicesComboboxProps) {
 
   const [open, setOpen] = React.useState(false)
   
-
   return (
-    <Popover  open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -54,15 +49,15 @@ export default function SelectProvinceCombobox({
         >
           {value
             ? province.find((province) => province.value === value)?.label
-            : "Select province..."}
+            :  "Select Services..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0 bg-white border border-primary">
+      <PopoverContent className="w-[200px] p-0 bg-white border border-primary text-black">
         <Command>
-          <CommandInput placeholder="Search province..." className="h-9" />
+          <CommandInput placeholder="Search Services..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No Province found.</CommandEmpty>
+            <CommandEmpty>No Service found..</CommandEmpty>
             <CommandGroup>
               {province.map((province) => (
                 <CommandItem

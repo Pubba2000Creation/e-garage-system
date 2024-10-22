@@ -5,8 +5,8 @@ import cover_image from '@/public/images/loging_cover.svg'; // Your background i
 import Link from 'next/link';
 import Logo from '@/components/user/logo'; // Your logo component
 import FromsCoverImage from '@/components/user/from-cover-image'; // Image component
-import { SelectProvinceCombobox } from '@/components/user/select-province';
-import { SelectDistrictCombobox } from '@/components/user/select-district';
+import  SelectProvinceCombobox  from '@/components/user/select-province';
+import  SelectDistrictCombobox  from '@/components/user/select-district';
 import {
   Card,
   CardContent,
