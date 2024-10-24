@@ -22,6 +22,7 @@ const config: Config = {
   			warning: '#F59E0B',
   			success: '#009005',
   			error: '#FF2525',
+			whatapp: '#25D366',
   			sidebar: {
   				DEFAULT: 'hsl(var(--sidebar-background))',
   				foreground: 'hsl(var(--sidebar-foreground))',
