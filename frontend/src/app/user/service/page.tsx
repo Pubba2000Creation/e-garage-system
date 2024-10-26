@@ -1,7 +1,7 @@
 // src/app/user/service/[id]/page.tsx
 import { Metadata } from 'next';
 import ShowServicePage from '@/components/user/showServicePage';
-import { ServicePageParams, ServicePageProps } from '@/app/types/type.d';
+import { ServicePageParams, ServicePageProps } from '@/app/types/global';
 
 // Define the component
 export default async function ServicePage({

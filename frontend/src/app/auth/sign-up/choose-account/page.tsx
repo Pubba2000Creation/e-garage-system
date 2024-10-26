@@ -18,9 +18,7 @@ import user from '@/public/images/user.svg';
 import service_owner from '@/public/images/service_owner.svg';
 
 export default function ChooseAccount() {
-  const [selectedAccount, setSelectedAccount] = useState<
-    'user' | 'serviceOwner'
-  >('user');
+  const [selectedAccount, setSelectedAccount] = useState<'user' | 'serviceOwner'>('user');
 
   function handleChooseAccount() {
     console.log(selectedAccount);

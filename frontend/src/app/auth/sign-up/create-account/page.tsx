@@ -19,17 +19,17 @@ import Link from 'next/link';
 export default function CreateAccount() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [conform_Password, setconform_Password] = useState('');
+  const [conformPassword, setconformPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ email, password });
-    if (!email || !password || !conform_Password) {
+    if (!email || !password || !conformPassword) {
       setError('Please enter both email and password.');
       return;
     }
-    if (password !== conform_Password) {
+    if (password !== conformPassword) {
       setError('Passwords do not match.');
     }
     setError('');
@@ -92,8 +92,8 @@ export default function CreateAccount() {
               </div>
               <Input
                 id="password"
-                value={conform_Password}
-                onChange={(e) => setconform_Password(e.target.value)}
+                value={conformPassword}
+                onChange={(e) => setconformPassword(e.target.value)}
                 placeholder="********"
                 type="password"
                 required
