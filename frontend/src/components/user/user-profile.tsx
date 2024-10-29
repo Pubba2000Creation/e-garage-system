@@ -1,14 +1,11 @@
 import React from 'react';
-import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
 import Link from 'next/link';
-import Image, { StaticImageData } from 'next/image'; // Import StaticImageData for type checking
+import Image from 'next/image';
+import default_profile_pic from '@/public/users/default_profile_pic.svg';
+import { UserProfileProps, UserProfileMenuItems } from '@/app/types/user-components';
 
-// Import a default image if necessary
-import default_profile_pic from '@/public/users/default_profile_pic.svg'; // Ensure it's a valid imported image
-
-const items: MenuProps['items'] = [
-  
+const items: UserProfileMenuItems = [
   {
     key: '1',
     label: <Link href="/user-profile/profile">Profile</Link>,
@@ -20,20 +17,16 @@ const items: MenuProps['items'] = [
   },
 ];
 
-interface UserProfileProps {
-  profile_pic?: string | StaticImageData; // Allow both string and StaticImageData types
-}
-
 export default function UserProfile({ profile_pic }: UserProfileProps) {
   return (
     <Dropdown menu={{ items }}>
       <Link href='' onClick={(e) => e.preventDefault()}>
-        <div className="w-10 h-10 relative"> {/* Wrapper div with fixed size */}
+        <div className="w-10 h-10 relative">
           <Image
-            src={profile_pic || default_profile_pic} // Use imported default image if no profile_pic is provided
+            src={profile_pic || default_profile_pic}
             alt="User profile"
             fill
-            className="border-2 rounded-full hover:border-primary cursor-pointer object-cover transition duration-300 ease-in-out transform hover:scale-105" 
+            className="border-2 rounded-full hover:border-primary cursor-pointer object-cover transition duration-300 ease-in-out transform hover:scale-105"
           />
         </div>
       </Link>

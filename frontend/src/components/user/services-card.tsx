@@ -4,16 +4,9 @@ import Image from 'next/image';
 import { Star } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Tag from '@/components/user/tag';
+import { ServicesCardProps } from '@/app/types/user-components';
 
-export function ServicesCard(props: {
-  imageUrl: string;
-  rating: number;
-  reviewCount: number;
-  title: string;
-  address: string;
-  onClick: () => void;
-  setDiscount?: true | false;
-}) {
+export function ServicesCard(props: ServicesCardProps) {
   return (
     <Card
       className="w-full max-w-md cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"

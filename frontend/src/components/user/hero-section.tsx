@@ -10,9 +10,9 @@ import SelectServicesCombobox from "@/components/user/select-service"
 
 export function HeroSectionComponent() {
 
-  const [services, setServices] = useState('');
-  const [selectedDistrict, setSelectedDistrict] = useState('');
-  const [error, setError] = useState('');
+  const [services, setServices] = useState<string>('');
+  const [selectedDistrict, setSelectedDistrict] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   function Search() {
     console.log('click search')
@@ -40,14 +40,14 @@ export function HeroSectionComponent() {
   };
 
   return (
-    <section id="hero-section" className="relative h-[600px] w-full overflow-hidden">
+    <section id="hero-section" className="relative h-[600px] w-full overflow-hidden my-6">
            
       <Image
         src={hero_pic}
         width={1200}
         height={600}
         alt="Auto service background"
-        className="absolute inset-0 object-cover w-full h-full brightness-50 rounded-md "
+        className="absolute inset-0 object-cover w-full h-full brightness-50 rounded-md  "
       />
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center ">

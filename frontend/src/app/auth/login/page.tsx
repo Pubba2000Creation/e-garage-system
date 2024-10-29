@@ -1,3 +1,4 @@
+// src/components/user/LoginForm.tsx
 'use client';
 
 import Link from 'next/link';
@@ -17,27 +18,34 @@ import cover_image from '@/public/images/loging_cover.svg';
 import Logo from '@/components/user/logo';
 import { useState } from 'react';
 
+// Import types from auth.d.ts
+import { LoginFormEvent, LoginFormState } from '@/app/types/auth';
+
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [formState, setFormState] = useState<LoginFormState>({
+    email: '',
+    password: '',
+    error: '',
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: LoginFormEvent) => {
     e.preventDefault();
-    // Add form validation and submission logic here
 
+    const { email, password } = formState;
     console.log({ email, password });
+
     if (!email || !password) {
-      setError('Please enter both email and password.');
+      setFormState((prev) => ({ ...prev, error: 'Please enter both email and password.' }));
       return;
     }
-    setError('');
+
+    setFormState((prev) => ({ ...prev, error: '' }));
     // Proceed with login submission
   };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <div className="hidden lg:block lg:w-1/2 relative ">
+      <div className="hidden lg:block lg:w-1/2 relative">
         <FromsCoverImage coverImage={cover_image} alt="login cover image" />
         <div className="absolute top-4 left-4 text-white text-xl font-bold">
           <div className="flex items-center space-x-2">
@@ -48,9 +56,7 @@ export default function LoginForm() {
 
       <Card className="m-auto w-full max-w-md rounded-2xl overflow-hidden shadow-xl border-gray">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">
-            Login
-          </CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Login</CardTitle>
           <CardDescription className="text-center">
             Hey, Enter your details to get sign in to your account
           </CardDescription>
@@ -61,8 +67,8 @@ export default function LoginForm() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formState.email}
+                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                 placeholder="user@example.com"
                 type="email"
                 required
@@ -81,8 +87,8 @@ export default function LoginForm() {
               </div>
               <Input
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formState.password}
+                onChange={(e) => setFormState({ ...formState, password: e.target.value })}
                 placeholder="********"
                 type="password"
                 required
@@ -91,8 +97,8 @@ export default function LoginForm() {
             </div>
 
             {/* Error Message */}
-            {error && (
-              <div className="mb-4 text-error text-center">{error}</div>
+            {formState.error && (
+              <div className="mb-4 text-error text-center">{formState.error}</div>
             )}
 
             <Button type="submit" className="w-full text-white">

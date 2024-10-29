@@ -1,18 +1,12 @@
+// NewsCard.tsx
 'use client';
 
 import Image from 'next/image';
-// import { Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import TimeBadge from '@/components/user/time-badge';
+import { NewsCardProps } from '@/app/types/user-components'; // Import the type
 
-export function NewsCard(props: {
-  imageUrl: string;
-  title: string;
-  desctription: string;
-  onClick: () => void;
-  setHoteNews?: true | false;
-  time: string;
-}) {
+export function NewsCard(props: NewsCardProps) {
   return (
     <Card
       className="w-full max-w-md cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
@@ -28,13 +22,13 @@ export function NewsCard(props: {
         />
       </CardHeader>
       <CardContent className="p-4">
-        {props.setHoteNews && (
+        {props.setHotNews && (
           <p className="text-sm text-white bg-primary rounded-md px-2 py-1 w-fit my-2">
-            HOTE NEWS
+            HOT NEWS
           </p>
         )}
         <CardTitle className="text-xl font-bold mb-2">{props.title}</CardTitle>
-        <p className="text-sm text-gray-600">{props.desctription}</p>
+        <p className="text-sm text-gray-600">{props.description}</p>
         <div className="flex justify-end">
           <TimeBadge time={props.time} />
         </div>

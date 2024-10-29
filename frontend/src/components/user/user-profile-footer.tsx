@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
-const year = new Date().getFullYear();
+const year: number = new Date().getFullYear();
 
 export default function UserProfileFooter() {
   return (

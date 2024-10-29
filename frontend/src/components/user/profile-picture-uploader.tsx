@@ -74,7 +74,7 @@ export default function ProfilePictureUploader({ onImageSelect }: ProfilePicture
           <button 
             type="button" 
             onClick={handleButtonClick}
-            className="border-2 font-normal cursor-pointer border-primary text-primary hover:bg-primary hover:text-white px-3 py-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+            className="border font-normal cursor-pointer border-primary text-primary hover:bg-primary hover:text-white px-3 py-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
             >Upload Picture  
           </button>
           

@@ -24,7 +24,7 @@ export default function NewsAlertSection() {
             <NewsCard  
               imageUrl={card_image_1.src}
               title="New Liyanage Motors"
-              desctription="27MW+J69, Mahvila road, Yatiyanthota 71700"
+              description="27MW+J69, Mahvila road, Yatiyanthota 71700"
               onClick={() => handleClickNewsCard("123")} 
               time={'2 hours '}           
             />
@@ -32,7 +32,7 @@ export default function NewsAlertSection() {
             <NewsCard  
                 imageUrl={card_image_2.src}                
                 title="New Liyanage Motors" 
-                desctription="27MW+J69, Mahvila road, Yatiyanthota 71700" 
+                description="27MW+J69, Mahvila road, Yatiyanthota 71700" 
                 onClick={() => handleClickNewsCard ("123")}
                 time={'2 hours '}
             />
@@ -40,7 +40,7 @@ export default function NewsAlertSection() {
             <NewsCard  
                 imageUrl={card_image_3.src}                
                 title="New Liyanage Motors" 
-                desctription="27MW+J69, Mahvila road, Yatiyanthota 71700" 
+                description="27MW+J69, Mahvila road, Yatiyanthota 71700" 
                 onClick={() => handleClickNewsCard ("123")}
                 time={'2 hours '}
             />

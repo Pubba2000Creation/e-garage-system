@@ -13,9 +13,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { CheckboxProps } from '@/app/types/auth'; // Import types
 
 export default function TermsAndConditions() {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState<CheckboxProps['isChecked']>(false);
   const router = useRouter();
 
   function handleCheckboxChange() {
@@ -47,34 +48,16 @@ export default function TermsAndConditions() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {/* Terms Text */}
-          <div className="overflow-y-auto h-64 border-gray border-2 p-4 rounded-lg mb-6">
+          <div className="overflow-y-auto h-64 border-gray border p-4 rounded-lg mb-6">
             <p className="text-dark text-sm">
+              {/* Terms content */}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-              commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident. quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-              occaecat cupidatat non proident.
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...
             </p>
-            {/* You can add more terms text here */}
           </div>
 
-          {/* Checkbox */}
           <div className="flex items-center mb-6">
             <input
               type="checkbox"
@@ -88,7 +71,6 @@ export default function TermsAndConditions() {
             </label>
           </div>
 
-          {/* Buttons */}
           <div className="flex justify-between">
             <Link
               href="/auth/sign-up/choose-account"

@@ -1,14 +1,18 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import Logo from '@/components/user/logo'
-import google_play from '@/public/images/Mobile App Store Badges.svg'
-import app_store from '@/public/images/Mobile App Store Badges_2.svg'
-const year = new Date().getFullYear();
+// app/user/service/Footer.tsx
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import Logo from '@/components/user/logo';
+import google_play from '@/public/images/Mobile App Store Badges.svg';
+import app_store from '@/public/images/Mobile App Store Badges_2.svg';
+
+
+const year: number = new Date().getFullYear();
 
 export default function Footer() {
   return (
     <footer className="bg-white pt-16 pb-4">
-      <div className=" mx-auto px-4">
+      <div className="mx-auto px-4">
         <div className="flex flex-wrap justify-between">
           {/* Logo and description */}
           <div className="w-full md:w-1/3 mb-8 md:mb-0">
@@ -22,11 +26,11 @@ export default function Footer() {
           <div className="w-full md:w-1/6 mb-8 md:mb-0">
             <h3 className="font-semibold text-lg mb-4">Useful Links</h3>
             <ul className="space-y-2 text-gray text-sm">
-                  <li><Link href="/user/home" className=" ">Home</Link></li>
-                  <li><Link href="/user/home" className=" ">Find Services</Link></li>
-                  <li><Link href="/user/news" className=" ">News</Link></li>
-                  <li><Link href="/user/aboutus" className=" ">About Us</Link></li>
-                  <li><Link href="/user/contactus" className=" ">Contact Us</Link></li>
+              <li><Link href="/user/home">Home</Link></li>
+              <li><Link href="/user/home">Find Services</Link></li>
+              <li><Link href="/user/news">News</Link></li>
+              <li><Link href="/user/aboutus">About Us</Link></li>
+              <li><Link href="/user/contactus">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -34,10 +38,10 @@ export default function Footer() {
           <div className="w-full md:w-1/6 mb-8 md:mb-0">
             <h3 className="font-semibold text-lg mb-4">Top Searches</h3>
             <ul className="space-y-2 text-gray text-sm">
-                  <li><Link href="/" className="">Repair Shops</Link></li>
-                  <li><Link href="/" className="">Spare Parts</Link></li>
-                  <li><Link href="/" className="">Service Centers</Link></li>
-                  <li><Link href="/" className="">Oil Changes</Link></li>
+              <li><Link href="/">Repair Shops</Link></li>
+              <li><Link href="/">Spare Parts</Link></li>
+              <li><Link href="/">Service Centers</Link></li>
+              <li><Link href="/">Oil Changes</Link></li>
             </ul>
           </div>
 
@@ -45,10 +49,10 @@ export default function Footer() {
           <div className="w-full md:w-1/4">
             <h3 className="font-semibold text-lg mb-4">Download the App</h3>
             <div className="space-y-2">
-              <Link href="#" className="inline-block">
+              <Link href="#">
                 <Image src={google_play} alt="Get it on Google Play" width={180} height={53} />
               </Link>
-              <Link href="#" className="inline-block">
+              <Link href="#">
                 <Image src={app_store} alt="Download on the App Store" width={180} height={53} />
               </Link>
             </div>
@@ -56,16 +60,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-4  ">
+        <div className="mt-10 pt-4">
           <div className="flex flex-wrap justify-between items-center">
             <p className="text-sm text-gray">&copy; {year} E-Garage All rights reserved.</p>
-            <div className="space-x-4">
-              <Link href="#" className="text-sm text-gray hover:text-gray-900">Terms of Service</Link>
-              <Link href="#" className="text-sm text-gray hover:text-gray-900">Privacy Policy</Link>
+            <div className="space-x-4 text-gray">
+              <Link href="#">Terms of Service</Link>
+              <Link href="#">Privacy Policy</Link>
             </div>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

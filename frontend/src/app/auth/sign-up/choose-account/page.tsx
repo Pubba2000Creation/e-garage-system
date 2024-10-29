@@ -7,7 +7,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle, 
 } from '@/components/ui/card';
 import Image from 'next/image';
 import FromsCoverImage from '@/components/user/from-cover-image';
@@ -16,17 +16,21 @@ import Logo from '@/components/user/logo';
 import { useState } from 'react';
 import user from '@/public/images/user.svg';
 import service_owner from '@/public/images/service_owner.svg';
+import {
+  SelectedAccountState,
+  HandleChooseAccount,
+} from '@/app/types/auth.d';
 
 export default function ChooseAccount() {
-  const [selectedAccount, setSelectedAccount] = useState<'user' | 'serviceOwner'>('user');
+  const [selectedAccount, setSelectedAccount] = useState<SelectedAccountState>('user');
 
-  function handleChooseAccount() {
+  const handleChooseAccount: HandleChooseAccount = () => {
     console.log(selectedAccount);
-  }
+  };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <div className="hidden lg:block lg:w-1/2 relative ">
+      <div className="hidden lg:block lg:w-1/2 relative">
         <FromsCoverImage coverImage={cover_image} alt="login cover image" />
         <div className="absolute top-4 left-4 text-white text-xl font-bold">
           <div className="flex items-center space-x-2">
@@ -41,8 +45,7 @@ export default function ChooseAccount() {
             Choose account type
           </CardTitle>
           <CardDescription className="text-center">
-            Please select your account type to continue. You can either register
-            as a user or a service provider.
+            Please select your account type to continue. You can either register as a user or a service provider.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -51,9 +54,7 @@ export default function ChooseAccount() {
             <div
               onClick={() => setSelectedAccount('user')}
               className={`cursor-pointer border-2 rounded-lg p-6 w-40 text-center ${
-                selectedAccount === 'user'
-                  ? 'border-primary'
-                  : 'border-light_gray'
+                selectedAccount === 'user' ? 'border-primary' : 'border-light_gray'
               }`}
             >
               <Image
@@ -64,18 +65,14 @@ export default function ChooseAccount() {
                 height={100}
               />
               <h3 className="font-semibold text-lg mt-5">User</h3>
-              <p className="text-gray-500 text-sm">
-                Sign up as a regular user.
-              </p>
+              <p className="text-gray-500 text-sm">Sign up as a regular user.</p>
             </div>
 
             {/* Service Owner Card */}
             <div
-              onClick={() => setSelectedAccount('serviceOwner')}
+              onClick={() => setSelectedAccount('serviceProvider')}
               className={`cursor-pointer border-2 rounded-lg p-6 w-40 text-center ${
-                selectedAccount === 'serviceOwner'
-                  ? 'border-primary'
-                  : 'border-light_gray'
+                selectedAccount === 'serviceProvider' ? 'border-primary' : 'border-light_gray'
               }`}
             >
               <Image
@@ -86,15 +83,13 @@ export default function ChooseAccount() {
                 height={80}
               />
               <h3 className="font-semibold text-lg mt-2">Service Owner</h3>
-              <p className="text-gray-500 text-sm">
-                Sign up as a service provider.
-              </p>
+              <p className="text-gray-500 text-sm">Sign up as a service provider.</p>
             </div>
           </div>
 
           {/* Continue Button */}
           <Button
-            onClick={() => handleChooseAccount()}
+            onClick={handleChooseAccount}
             className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300"
           >
             Continue as {selectedAccount === 'user' ? 'User' : 'Service Owner'}

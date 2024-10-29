@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,47 +9,42 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { VehicleTypeSelectorProps, VehicleType } from "@/app/types/user-components";
 
-const vehicleTypes = [
+const vehicleTypes: VehicleType[] = [
   { id: "car", label: "Car" },
   { id: "van", label: "Van" },
   { id: "bus", label: "Bus" },
   { id: "truck", label: "Truck" },
   { id: "motorbike", label: "Motorbike" },
-]
-
-interface VehicleTypeSelectorProps {
-  onSelectionChange: (selectedVehicles: string[]) => void;
-}
+];
 
 export default function VehicleTypeSelector({ onSelectionChange }: VehicleTypeSelectorProps) {
-  const [selectedVehicles, setSelectedVehicles] = useState<string[]>([])
-  const [isOpen, setIsOpen] = useState(false)
+  const [selectedVehicles, setSelectedVehicles] = useState<string[]>([]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleVehicleToggle = (vehicleId: string) => {
     setSelectedVehicles((prev) =>
-      prev.includes(vehicleId)
-        ? prev.filter((id) => id !== vehicleId)
-        : [...prev, vehicleId]
-    )
-  }
+      prev.includes(vehicleId) ? prev.filter((id) => id !== vehicleId) : [...prev, vehicleId]
+    );
+  };
 
   const handleConfirm = () => {
     if (selectedVehicles.length > 0) {
       // Pass the selected vehicles to the parent component
-      onSelectionChange(selectedVehicles)
-      setIsOpen(false)
+      onSelectionChange(selectedVehicles);
+      setIsOpen(false);
     }
-  }
+  };
 
   return (
-    <AlertDialog  open={isOpen} onOpenChange={setIsOpen}>
+    <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>
-        <Button className="w-full h-11  text-gray" variant="outline"> Vehicle Types</Button>
+        <Button className="w-full h-11 text-gray" variant="outline">Vehicle Types</Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="sm:max-w-[425px] bg-white">
         <AlertDialogHeader>
@@ -86,5 +81,5 @@ export default function VehicleTypeSelector({ onSelectionChange }: VehicleTypeSe
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 }

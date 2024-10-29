@@ -1,21 +1,14 @@
-'use client'
-import Image from 'next/image'
-
-interface ServiceBannerProps {
-  title: string;
-  description: string;
-  buttonText: string;
-  imageUrl: string;
-  onButtonClick?: () => void;
-}
+"use client";
+import Image from 'next/image';
+// Import the ServiceBannerProps type from the types file
+import { ServiceBannerProps } from "@/app/types/user-components";
 
 export function ServiceBanner({
-  title ,
-  description ,
-  buttonText ,
-  imageUrl ,
+  title,
+  description,
+  buttonText,
+  imageUrl,
   onButtonClick = () => {}
-
 }: ServiceBannerProps) {
   return (
     <div className="relative h-[600px] overflow-hidden rounded-xl">
@@ -44,7 +37,7 @@ export function ServiceBanner({
               {description}
             </p>
             <button 
-              className="bg-white text-orange-400 font-semibold py-2 px-6 rounded-full  cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+              className="bg-white text-orange-400 font-semibold py-2 px-6 rounded-full cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
               onClick={onButtonClick}
             >
               {buttonText}
@@ -53,5 +46,5 @@ export function ServiceBanner({
         </div>
       </div>
     </div>
-  )
+  );
 }

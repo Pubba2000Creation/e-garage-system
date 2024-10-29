@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import cover_image from '@/public/images/loging_cover.svg'; // Your background image
+import cover_image from '@/public/images/loging_cover.svg';
 import Link from 'next/link';
-import Logo from '@/components/user/logo'; // Your logo component
-import FromsCoverImage from '@/components/user/from-cover-image'; // Image component
-import  SelectProvinceCombobox  from '@/components/user/select-province';
-import  SelectDistrictCombobox  from '@/components/user/select-district';
+import Logo from '@/components/user/logo';
+import FromsCoverImage from '@/components/user/from-cover-image';
+import SelectProvinceCombobox from '@/components/user/select-province';
+import SelectDistrictCombobox from '@/components/user/select-district';
 import {
   Card,
   CardContent,
@@ -14,18 +14,24 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { AddressHandler, ErrorHandler, ProvinceHandler, DistrictHandler } from '@/app/types/auth.d';
 
 export default function AddressForm() {
-  const [address, setAddress] = useState('');
-  const [province, setProvince] = useState('');
-  const [selectedDistrict, setSelectedDistrict] = useState('');
-  const [error, setError] = useState('');
+  const [address, setAddress] = useState<string>('');
+  const [province, setProvince] = useState<string>('');
+  const [selectedDistrict, setSelectedDistrict] = useState<string>('');
+  const [error, setError] = useState<string>('');
+
+  const handleAddressChange: AddressHandler = (value) => setAddress(value);
+  const handleProvinceChange: ProvinceHandler = (value) => setProvince(value);
+  const handleDistrictChange: DistrictHandler = (value) => setSelectedDistrict(value);
+  const handleError: ErrorHandler = (message) => setError(message);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(address, province, selectedDistrict);
     if (!address || !province || !selectedDistrict) {
-      setError('Please enter all required fields');
+      handleError('Please enter all required fields');
       return;
     }
     setError('');
@@ -64,7 +70,7 @@ export default function AddressForm() {
                   placeholder="441/7, Cotta Road, 2nd Lane, Rajagiriya"
                   className="px-4 py-2 w-full border border-light_gray rounded-lg focus:outline-none focus:ring-1 focus:ring-primary_hover"
                   value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  onChange={(e) => handleAddressChange(e.target.value)}
                   required
                 />
               </div>
@@ -75,7 +81,7 @@ export default function AddressForm() {
                   <label htmlFor="state">Province</label>
                   <SelectProvinceCombobox
                     value={province}
-                    onChange={setProvince}
+                    onChange={handleProvinceChange}
                   />
                 </div>
 
@@ -83,7 +89,7 @@ export default function AddressForm() {
                   <label htmlFor="city">District</label>
                   <SelectDistrictCombobox
                     value={selectedDistrict}
-                    onChange={setSelectedDistrict}
+                    onChange={handleDistrictChange}
                   />
                 </div>
               </div>
@@ -109,8 +115,6 @@ export default function AddressForm() {
               </button>
             </div>
           </form>
-
-          <div className="mt-4 text-center text-sm"></div>
         </CardContent>
       </Card>
     </div>

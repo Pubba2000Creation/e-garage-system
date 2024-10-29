@@ -1,3 +1,4 @@
+// CustomDropdown.tsx
 'use client'
 
 import { useState } from 'react'
@@ -9,11 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown } from "lucide-react"
-
-interface CustomDropdownProps {
-  options: string[]; // Array of options passed as prop
-  onSelect: (selectedOption: string) => void; // Callback function to handle selected option
-}
+import { CustomDropdownProps } from '@/app/types/user-components'
 
 export default function CustomDropdown({ options, onSelect }: CustomDropdownProps) {
   const [selected, setSelected] = useState(options[0]) // Default to the first option

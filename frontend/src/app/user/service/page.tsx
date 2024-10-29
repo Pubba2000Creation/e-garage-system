@@ -1,54 +1,37 @@
-// src/app/user/service/[id]/page.tsx
-import { Metadata } from 'next';
-import ShowServicePage from '@/components/user/showServicePage';
-import { ServicePageParams, ServicePageProps } from '@/app/types/global';
 
-// Define the component
-export default async function ServicePage({
-  params,
-}: ServicePageProps) {
-  const { id } = params;
-  
-  async function getServiceData(serviceId: string) {
-    const servicePageData = {
-      id: serviceId,
-      shopName: `Example Shop ${serviceId}`,
-      starCount: 4.5,
-      reviewCount: 123,
-      description: "A detailed description of the service",
-      address: "123 Example Street",
-      phoneNumber: "+1 234 567 8900",
-      whatsappNumber: "+1 234 567 8900",
-      mapLink: "https://www.google.com/maps/embed?...",
-      allReviewsCount: 123,
-      servicesTagNames: ["Service 1", "Service 2"],
-      SpecialServices: ["Special 1", "Special 2"],
-      filterOptions: ["new", "old", "this week", "this month", "this year"],
-    };
-    
-    return servicePageData;
-  }
+// interface servicePageProps {
+//   params: Promise<{ id: string }>;
+//   searchParams: Promise<{ foo: string }>;
+//   // Other custom props
+// }
 
-  const serviceData = await getServiceData(id);
+// export default async function Page({ params, searchParams }: servicePageProps) {
+//   const { id } = await params;
+//   const { foo } = await searchParams;
+//   return <div>User ID: {id}, Foo: {foo}</div>;
+// }
 
-  return <ShowServicePage {...serviceData} />;
-}
+import ShowServicePage from '@/components/user/showServicePage'
+import React from 'react'
 
-// Generate metadata
-export async function generateMetadata({
-  params,
-}: ServicePageProps): Promise<Metadata> {
-  return {
-    title: `Service ${params.id}`,
-    description: `Details for service ${params.id}`,
-  };
-}
+export default function Service() {
+  return (
+    <>
+      <ShowServicePage 
+        shopName={'jkhakjgh'} 
+        starCount={5} 
+        reviewCount={10} 
+        description={'giughaeiguhr;gauhg;ireaugha;iughiu'} 
+        address={';iuhgaeiguhr;aiguhrgiuahg;iaurhg'} 
+        phoneNumber={'1234567890'} 
+        whatsappNumber={'1234567809'} 
+        mapLink={'yfyrdyrdrdkyrdkyrdrdkt'} 
+        allReviewsCount={10} 
+        servicesTagNames={['fhaihrig','argrgrg','etertae']} 
+        SpecialServices={['fhaihrig','argrgrg','etertae']} 
+        filterOptions={['fhaihrig','argrgrg','etertae']}  
+      />
 
-// Generate static params
-export async function generateStaticParams(): Promise<ServicePageParams[]> {
-  const services = ["1", "2", "3"]; // Example service IDs
-  
-  return services.map((id) => ({
-    id,
-  }));
+    </>
+  )
 }

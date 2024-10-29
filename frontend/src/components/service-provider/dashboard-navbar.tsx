@@ -33,12 +33,10 @@ import logout_icon from '@/public/icons/logout.svg';
 import gear_icon from '@/public/icons/gear.svg';
 import analytics_icon from '@/public/icons/analytics.svg';
 import mangement_icon from '@/public/icons/mange-services.svg';
+import { ServiceProviderNavbarProps } from "@/app/types/service-provider-components";
 
 
-
-
-export default function ServiceProviderNavbar(props:{
-  children: React.ReactNode}) {
+export default function ServiceProviderNavbar({ children }: ServiceProviderNavbarProps) {
   return (
     <SidebarProvider>
       <Sidebar>
@@ -135,7 +133,7 @@ export default function ServiceProviderNavbar(props:{
         </header>
 
         <div className="flex flex-1 flex-col gap-4 p-4">
-          {props.children}
+          {children}
         
         </div>
 

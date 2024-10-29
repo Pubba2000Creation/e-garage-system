@@ -1,5 +1,5 @@
 'use client';
-// import Link from "next/link"
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -10,32 +10,34 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-
 import FromsCoverImage from '@/components/user/from-cover-image';
 import cover_image from '@/public/images/loging_cover.svg';
 import Logo from '@/components/user/logo';
 import { useState } from 'react';
+import {
+  PasswordState,
+  ErrorState,
+  HandleSubmit,
+} from '@/app/types/auth.d';
 
 export default function SetNewPassword() {
-  const [password, setPassword] = useState('');
-  const [conform_password, setConform_password] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState<PasswordState>('');
+  const [conform_password, setConform_password] = useState<PasswordState>('');
+  const [error, setError] = useState<ErrorState>('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit: HandleSubmit = (e) => {
     e.preventDefault();
-    // Add form validation and submission logic here
     if (!conform_password || !password) {
       setError('Please enter both passwords.');
       return;
     }
     setError('');
-    // Proceed with login submission
     console.log({ conform_password, password });
   };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <div className="hidden lg:block lg:w-1/2 relative ">
+      <div className="hidden lg:block lg:w-1/2 relative">
         <FromsCoverImage coverImage={cover_image} alt="login cover image" />
         <div className="absolute top-4 left-4 text-white text-xl font-bold">
           <div className="flex items-center space-x-2">
@@ -70,9 +72,6 @@ export default function SetNewPassword() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                {/* <Link href="/auth/forgot-password/set-email" className="text-sm text-gray hover:text-primary hover:underline">
-                  Forgot your password?
-                </Link> */}
               </div>
               <Input
                 id="conform_password"
@@ -85,21 +84,13 @@ export default function SetNewPassword() {
               />
             </div>
 
-            {/* Error Message */}
-            {error && (
-              <div className="mb-4 text-error text-center">{error}</div>
-            )}
+            {error && <div className="mb-4 text-error text-center">{error}</div>}
 
             <Button type="submit" className="w-full text-white">
               Reset Password
             </Button>
           </form>
-          <div className="mt-4 text-center text-sm">
-            {/* Don&apos;t have an account?{" "}
-            <Link href="#" className="text-gray hover:text-primary hover:underline">
-              Reset Password
-            </Link> */}
-          </div>
+          <div className="mt-4 text-center text-sm"></div>
         </CardContent>
       </Card>
     </div>

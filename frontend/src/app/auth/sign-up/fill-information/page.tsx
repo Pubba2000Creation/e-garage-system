@@ -17,17 +17,18 @@ import Logo from '@/components/user/logo';
 import { useState } from 'react';
 import DobPicker from '@/components/user/dob-picker';
 import VehicleTypeSelector from '@/components/user/vehicle-type-selector';
+import { VehicleSelectionType, DateChangeType } from '@/app/types/auth.d';
 
 export default function FillInformation() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
   const [vehicalType, setVehicalType] = useState<string[]>([]);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [selectedDate, setSelectedDate] = useState<string | null>(null); // Ensure it's a string or null
-  const [error, setError] = useState('');
-  const [companyName, setCompanyName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [error, setError] = useState<string>('');
+  const [companyName, setCompanyName] = useState<string>('');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [userRole, setUserRole] = useState('admin');
+  const [userRole, setUserRole] = useState<'user' | 'serviceProvider'>('user');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,14 +57,13 @@ export default function FillInformation() {
     setError('');
   };
 
-  const handleVehicleSelection = (vehicalType: string[]) => {
+  const handleVehicleSelection: VehicleSelectionType = (vehicalType) => {
     setVehicalType(vehicalType);
     console.log('Selected vehicles:', vehicalType);
   };
 
-  const handleDateChange = (date: string) => {
-    // Expect string now
-    setSelectedDate(date); // Store the selected date in state
+  const handleDateChange: DateChangeType = (date) => {
+    setSelectedDate(date);
   };
 
   return (
@@ -87,8 +87,6 @@ export default function FillInformation() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {/* Form Fields */}
-
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -124,13 +122,11 @@ export default function FillInformation() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                {/* if user add vehical type (cheek  box) if service provider add company name */}
                 {userRole === 'user' ? (
                   <>
                     <label htmlFor="vehicalType">Select Vehicle Type</label>
                     <VehicleTypeSelector
-                      onSelectionChange={handleVehicleSelection}
-                    />
+                      onSelectionChange={handleVehicleSelection} selectedVehicles={[]} isOpen={false}                    />
                   </>
                 ) : (
                   <>
@@ -165,18 +161,16 @@ export default function FillInformation() {
                 value={phoneNumber}
                 onInput={(e) => {
                   const input = e.target as HTMLInputElement;
-                  input.value = input.value.replace(/\D/g, ''); // Removes non-numeric characters
-                  setPhoneNumber(input.value); // Correctly update phone number state
+                  input.value = input.value.replace(/\D/g, '');
+                  setPhoneNumber(input.value);
                 }}
                 maxLength={10}
                 required
               />
             </div>
 
-            {/* Error Message */}
             {error && <div className="mb-4 text-red-500">{error}</div>}
 
-            {/* Buttons */}
             <div className="flex justify-between items-center">
               <Link
                 href="/auth/sing-up/verify-otp"

@@ -15,16 +15,22 @@ import cover_image from '@/public/images/loging_cover.svg';
 import Logo from '@/components/user/logo';
 import { useState } from 'react';
 import Link from 'next/link';
+import {
+  EmailState,
+  PasswordState,
+  ErrorState,
+  HandleSubmit,
+} from '@/app/types/auth.d';
 
 export default function CreateAccount() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [conformPassword, setconformPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState<EmailState>('');
+  const [password, setPassword] = useState<PasswordState>('');
+  const [conformPassword, setconformPassword] = useState<PasswordState>('');
+  const [error, setError] = useState<ErrorState>('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit: HandleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password });
+    console.log({ email, password, conformPassword });
     if (!email || !password || !conformPassword) {
       setError('Please enter both email and password.');
       return;
@@ -33,12 +39,11 @@ export default function CreateAccount() {
       setError('Passwords do not match.');
     }
     setError('');
-    return;
   };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <div className="hidden lg:block lg:w-1/2 relative ">
+      <div className="hidden lg:block lg:w-1/2 relative">
         <FromsCoverImage coverImage={cover_image} alt="login cover image" />
         <div className="absolute top-4 left-4 text-white text-xl font-bold">
           <div className="flex items-center space-x-2">
@@ -53,7 +58,7 @@ export default function CreateAccount() {
             Create an account
           </CardTitle>
           <CardDescription className="text-center">
-            Hey, Enter your details to get register in to your account
+            Hey, Enter your details to get registered in to your account
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -88,10 +93,10 @@ export default function CreateAccount() {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Conform Password</Label>
+                <Label htmlFor="password">Confirm Password</Label>
               </div>
               <Input
-                id="password"
+                id="conformPassword"
                 value={conformPassword}
                 onChange={(e) => setconformPassword(e.target.value)}
                 placeholder="********"

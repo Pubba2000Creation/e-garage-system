@@ -1,9 +1,9 @@
-"use client"
-import * as React from "react"
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons"
+"use client";
+import * as React from "react";
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -11,40 +11,53 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
-const province = [
-    { value: "Western Province", label: "Western Province" },
-    { value: "Central Province", label: "Central Province" },
-    { value: "Southern Province", label: "Southern Province" },
-    { value: "Northern Province", label: "Northern Province" },
-    { value: "Eastern Province", label: "Eastern Province" },
-    { value: "North Western Province", label: "North Western Province" },
-    { value: "North Central Province", label: "North Central Province" },
-    { value: "Uva Province Province", label: "Uva Province Province" },
-    { value: "Sabaragamuwa Province", label: "Sabaragamuwa Province" },
-]
+// Import types
+import { SelectDistrictComboboxProps, Province } from "@/app/types/user-components";
 
-interface SelectProvinceComboboxProps {
-  value: string;
-  onChange: (value: string) => void;
-}
+// Define your district and province data
+const district: Province[] = [
+  { value: "Colombo", label: "Colombo District" },
+  { value: "Gampaha", label: "Gampaha District" },
+  { value: "Kalutara", label: "Kalutara District" },
+  { value: "Kandy", label: "Kandy District" },
+  { value: "Matale", label: "Matale District" },
+  { value: "Nuwara Eliya", label: "Nuwara Eliya District" },
+  { value: "Galle", label: "Galle District" },
+  { value: "Hambantota", label: "Hambantota District" },
+  { value: "Matara", label: "Matara District" },
+  { value: "Jaffna", label: "Jaffna District" },
+  { value: "Kilinochchi", label: "Kilinochchi District" },
+  { value: "Mannar", label: "Mannar District" },
+  { value: "Mullaitivu", label: "Mullaitivu District" },
+  { value: "Vavuniya", label: "Vavuniya District" },
+  { value: "Ampara", label: "Ampara District" },
+  { value: "Batticaloa", label: "Batticaloa District" },
+  { value: "Trincomalee", label: "Trincomalee District" },
+  { value: "Anuradhapura", label: "Anuradhapura District" },
+  { value: "Polonnaruwa", label: "Polonnaruwa District" },
+  { value: "Kurunegala", label: "Kurunegala District" },
+  { value: "Puttalam", label: "Puttalam District" },
+  { value: "Kegalle", label: "Kegalle District" },
+  { value: "Ratnapura", label: "Ratnapura District" },
+  { value: "Badulla", label: "Badulla District" },
+  { value: "Monaragala", label: "Monaragala District" },
+];
 
-export default function SelectProvinceCombobox({
+export default function SelectDistrictCombobox({
   value,
   onChange,
-}: SelectProvinceComboboxProps) {
-
-  const [open, setOpen] = React.useState(false)
-  
+}: SelectDistrictComboboxProps) {
+  const [open, setOpen] = React.useState(false);
 
   return (
-    <Popover  open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -53,31 +66,31 @@ export default function SelectProvinceCombobox({
           className="w-full justify-between border focus:border-primary border-light_gray"
         >
           {value
-            ? province.find((province) => province.value === value)?.label
-            : "Select province..."}
+            ? district.find((d) => d.value === value)?.label
+            : "Select District..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0 bg-white border border-primary">
+      <PopoverContent className="w-[200px] p-0 bg-white">
         <Command>
-          <CommandInput placeholder="Search province..." className="h-9" />
+          <CommandInput placeholder="Search district..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No Province found.</CommandEmpty>
+            <CommandEmpty>No district found.</CommandEmpty>
             <CommandGroup>
-              {province.map((province) => (
+              {district.map((d) => (
                 <CommandItem
-                  key={province.value}
-                  value={province.value}
+                  key={d.value}
+                  value={d.value}
                   onSelect={(currentValue: string) => {
-                    onChange(currentValue === value ? "" : currentValue)
-                    setOpen(false)
+                    onChange(currentValue === value ? "" : currentValue);
+                    setOpen(false);
                   }}
                 >
-                  {province.label}
+                  {d.label}
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      value === province.value ? "opacity-100" : "opacity-0"
+                      value === d.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
@@ -87,5 +100,5 @@ export default function SelectProvinceCombobox({
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }

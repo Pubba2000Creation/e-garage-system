@@ -19,10 +19,12 @@ import UserProfile from '@/components/user/user-profile';
 import NotificationsDrawer from '@/components/user/notifications-drawer';
 import user_profile from '@/public/users/pic.jpg';
 import Tooltips from '@/components/user/tooltips';
+import { NavbarProps } from "@/app/types/user-components"
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isloging, setIsloging] = useState(false);
+  
+  const [isOpen, setIsOpen] = useState<NavbarProps['isOpen']>(false)
+  const [isloging, setIsloging] = useState<NavbarProps['isloging']>(false)
 
   function login() {
     console.log('click login');
