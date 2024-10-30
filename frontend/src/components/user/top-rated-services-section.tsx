@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { ServicesCard } from '@/components/user/services-card'
+import  ServicesCard  from '@/components/user/services-card'
 
 import card_image_1  from '@/public/images/services-card-1.svg'
 import card_image_2  from '@/public/images/services-card-2.svg'

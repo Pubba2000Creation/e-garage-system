@@ -29,7 +29,7 @@ export default function Service() {
         allReviewsCount={10} 
         servicesTagNames={['fhaihrig','argrgrg','etertae']} 
         SpecialServices={['fhaihrig','argrgrg','etertae']} 
-        filterOptions={['fhaihrig','argrgrg','etertae']}  
+         
       />
 
     </>

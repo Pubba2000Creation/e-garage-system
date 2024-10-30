@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Tag from '@/components/user/tag';
 import { ServicesCardProps } from '@/app/types/user-components';
 
-export function ServicesCard(props: ServicesCardProps) {
+export default function ServicesCard(props: ServicesCardProps) {
   return (
     <Card
       className="w-full max-w-md cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"

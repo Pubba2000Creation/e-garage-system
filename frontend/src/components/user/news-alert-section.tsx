@@ -4,7 +4,7 @@ import React from 'react'
 import card_image_1  from '@/public/images/services-card-1.svg'
 import card_image_2  from '@/public/images/services-card-2.svg'
 import card_image_3  from '@/public/images/services-card-3.svg'
-import { NewsCard } from '@/components/user/news-card'
+import  NewsCard  from '@/components/user/news-card'
 
 export default function NewsAlertSection() {
 

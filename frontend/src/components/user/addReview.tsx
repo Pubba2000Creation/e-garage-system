@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { IoMdCloseCircle } from "react-icons/io"
 import { HandleSubmitEvent, TextareaChangeEvent } from "@/app/types/user-components.d"
 
-export function AddReview() {
+export default function AddReview() {
 const [rating, setRating] = useState<number>(0)
 const [review, setReview] = useState<string>("")
 const [error, setError] = useState<string>("")

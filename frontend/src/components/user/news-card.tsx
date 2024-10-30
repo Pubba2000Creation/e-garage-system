@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import TimeBadge from '@/components/user/time-badge';
 import { NewsCardProps } from '@/app/types/user-components'; // Import the type
 
-export function NewsCard(props: NewsCardProps) {
+export default function NewsCard(props: NewsCardProps) {
   return (
     <Card
       className="w-full max-w-md cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"

@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { ServiceBanner } from '@/components/user/service-banner'
+import  ServiceBanner  from '@/components/user/service-banner'
 import baner_image from '@/public/images/baner_image.svg'
 
 export default function BanerSection() {

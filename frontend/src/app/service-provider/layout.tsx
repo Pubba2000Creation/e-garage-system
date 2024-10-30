@@ -25,7 +25,7 @@ export default function ServiceProviderLayout({
       <body  className={`${archivo.className} px-2 md:px-5 lg:px-5 mx-auto`}>
         
         <ServiceProviderNavbar>
-          {children}
+        {children}
         </ServiceProviderNavbar>
                   
       </body>

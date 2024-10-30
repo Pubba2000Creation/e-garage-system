@@ -183,8 +183,6 @@ export interface ServicesCardProps {
 
 ///////////////////////////////////// ServiceProps
 
-type FilterOptions = "new" | "old" | "this week" | "this month" | "this year";
-
 export interface ServiceProps {   
     shopName: string;
     starCount: number;
@@ -197,7 +195,7 @@ export interface ServiceProps {
     allReviewsCount: number;
     servicesTagNames: string[];
     SpecialServices: string[];
-    filterOptions: string[];
+    filterOptions?: string[];
   }
 
 //////////////////////////////////// TagProps

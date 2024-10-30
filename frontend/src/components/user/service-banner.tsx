@@ -3,7 +3,7 @@ import Image from 'next/image';
 // Import the ServiceBannerProps type from the types file
 import { ServiceBannerProps } from "@/app/types/user-components";
 
-export function ServiceBanner({
+export default function ServiceBanner({
   title,
   description,
   buttonText,
@@ -17,6 +17,8 @@ export function ServiceBanner({
         alt="Service Professional"
         layout="fill"
         objectFit="cover"
+        // width={1200}
+        // height={600}
         className="z-0"
       />
       <div className="absolute inset-0 bg-orange-400 bg-opacity-70 z-10" />

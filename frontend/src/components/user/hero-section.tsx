@@ -8,7 +8,7 @@ import  SelectDistrictCombobox  from "@/components/user/select-district"
 import { useEffect, useState } from "react"
 import SelectServicesCombobox from "@/components/user/select-service"
 
-export function HeroSectionComponent() {
+export default function HeroSectionComponent() {
 
   const [services, setServices] = useState<string>('');
   const [selectedDistrict, setSelectedDistrict] = useState<string>('');
@@ -44,10 +44,12 @@ export function HeroSectionComponent() {
            
       <Image
         src={hero_pic}
-        width={1200}
-        height={600}
         alt="Auto service background"
-        className="absolute inset-0 object-cover w-full h-full brightness-50 rounded-md  "
+        // width={1200}
+        // height={600}
+        layout="fill"
+        objectFit="cover"        
+        className=" absolute inset-0 object-cover  w-auto h-auto brightness-50 rounded-md "
       />
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center ">

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { Star } from 'lucide-react';
-import { ImageCarousel } from '@/components/user/image-carousel';
+import  ImageCarousel  from '@/components/user/image-carousel';
 import { CiLocationOn, CiPhone } from "react-icons/ci";
 import { IoLogoWhatsapp } from "react-icons/io";
 
@@ -16,13 +16,13 @@ import carousel_3 from "@/public/images/carousel_3.jpg";
 import Tag from '@/components/user/tag';
 import Border_btn from '@/components/user/border-btn';
 import Btn from '@/components/user/btn';
-import { AddReview } from '@/components/user/addReview';
+import  AddReview  from '@/components/user/addReview';
 import CustomDropdown from '@/components/user/custom-dropdown-menu';
 import ReviewCard from '@/components/user/review-card';
 import SimilarServicesSection from '@/components/user/similar-services-section';
 import { ServiceProps } from "@/app/types/user-components"; // Import the type
 
-// const filterOptions = props.filterOptions || ["new", "old", "this week", "this month", "this year"];
+ const filterOptions: string[] =  ["new", "old", "this week", "this month", "this year"];
 
 export default function ShowServicePage(props: ServiceProps) {
   const handleFilterChange = (selectedOption: string) => {
@@ -78,7 +78,7 @@ export default function ShowServicePage(props: ServiceProps) {
               </div>
               <div className='flex justify-between'>
                 <h3 className="font-semibold text-lg my-1">{props.allReviewsCount} Reviews</h3>
-                <CustomDropdown options={props.filterOptions} onSelect={handleFilterChange} />
+                <CustomDropdown options={filterOptions} onSelect={handleFilterChange} />
               </div>
 
               <div className='flex flex-col'>

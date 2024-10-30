@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/carousel';
 import { ImageCarouselProps } from '@/app/types/user-components'; // Import the type
 
-export function ImageCarousel({ images }: ImageCarouselProps) {
+export default function ImageCarousel({ images }: ImageCarouselProps) {
   return (
     <Carousel
       opts={{
