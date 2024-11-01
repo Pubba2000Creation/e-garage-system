@@ -271,3 +271,12 @@ export interface VehicleType {
     onSelectionChange: (selectedVehicles: string[]) => void;
   }
   
+//////////////////////////////////// show news
+
+export interface showNewsProps {
+  news_image: string.src;
+  image_alt: string ;
+  news_title: string;
+  news_description: string;
+}
+

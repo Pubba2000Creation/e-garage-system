@@ -1,4 +1,4 @@
-"use client"
+"use client" 
 
 import React from 'react'
 import  ServicesCard  from '@/components/user/services-card'

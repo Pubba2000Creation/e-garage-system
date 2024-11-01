@@ -20,6 +20,9 @@ export default function NewsCard(props: NewsCardProps) {
           height={200}
           className="w-full h-48 object-cover rounded-t-lg"
         />
+        <div className=" absolute  top-1 right-4">
+          <TimeBadge time={props.time} />
+        </div>
       </CardHeader>
       <CardContent className="p-4">
         {props.setHotNews && (
@@ -29,10 +32,12 @@ export default function NewsCard(props: NewsCardProps) {
         )}
         <CardTitle className="text-xl font-bold mb-2">{props.title}</CardTitle>
         <p className="text-sm text-gray-600">{props.description}</p>
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <TimeBadge time={props.time} />
-        </div>
+        </div> */}
       </CardContent>
     </Card>
   );
 }
+
+

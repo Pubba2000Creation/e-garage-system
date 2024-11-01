@@ -48,7 +48,7 @@ export default function Footer() {
           {/* Download the App */}
           <div className="w-full md:w-1/4">
             <h3 className="font-semibold text-lg mb-4">Download the App</h3>
-            <div className="space-y-2">
+            <div className="  ">
               <Link href="#">
                 <Image src={google_play} alt="Get it on Google Play" width={180} height={53} />
               </Link>
@@ -63,7 +63,7 @@ export default function Footer() {
         <div className="mt-10 pt-4">
           <div className="flex flex-wrap justify-between items-center">
             <p className="text-sm text-gray">&copy; {year} E-Garage All rights reserved.</p>
-            <div className="space-x-4 text-gray">
+            <div className="space-x-4 text-sm text-gray">
               <Link href="#">Terms of Service</Link>
               <Link href="#">Privacy Policy</Link>
             </div>

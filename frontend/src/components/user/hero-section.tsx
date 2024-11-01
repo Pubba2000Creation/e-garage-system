@@ -56,8 +56,8 @@ export default function HeroSectionComponent() {
         <h1 className="max-w-4xl mb-4 text-4xl font-bold sm:text-5xl md:text-6xl text-white">
           Enter keywords to find relevant services
         </h1>
-        <p className="max-w-xl mb-8 text-lg text-gray-200 text-white">
-          Lorem ipsum dolor sit amet consectetur. Tellus donec pellentesque donec convallis id massa sagittis.
+        <p className="max-w-xl mb-8 text-lg  text-white">
+          Find the best service providers for your needs
         </p>
         <form onSubmit={handleSubmit} className="w-full max-w-3xl flex flex-col sm:flex-row gap-4">
           <div className="flex-grow flex rounded-md overflow-hidden gap-x-2 bg-white">
