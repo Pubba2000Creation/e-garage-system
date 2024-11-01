@@ -20,6 +20,7 @@ import {
 import { SelectDistrictComboboxProps } from "@/app/types/user-components"; // Import the type
 
 const district = [
+  { value: "All of SriLanka", label: "All of SriLanka" },
   { value: "Colombo", label: "Colombo District" },
   { value: "Gampaha", label: "Gampaha District" },
   { value: "Kalutara", label: "Kalutara District" },
