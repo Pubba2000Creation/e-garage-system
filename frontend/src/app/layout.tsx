@@ -21,13 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={archivo.className}
-      >
-        <div className="">
-          {children}
-        </div>
+      <body  className={`${archivo.className} px-2 md:px-10 lg:px-20 mx-auto`}>
         
+          {children}
+               
       </body>
     </html>
   );
