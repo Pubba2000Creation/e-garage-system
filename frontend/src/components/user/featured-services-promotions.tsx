@@ -14,7 +14,7 @@ export default function FeaturedServicesPromotions() {
   }
 
   return (
-    <section id="top-rated-section" className='my-20'>
+    <section id="top-rated-section" className='my-16'>
 
         <h2 className=" text-2xl font-bold text-left my-5 ">
             Featured Services & Promotions

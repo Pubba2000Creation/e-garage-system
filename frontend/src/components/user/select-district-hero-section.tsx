@@ -1,3 +1,4 @@
+// SelectDistrictCombobox.tsx
 "use client";
 import * as React from "react";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
@@ -16,25 +17,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { SelectDistrictComboboxProps } from "@/app/types/user-components"; // Import the type
+import { district } from "@/data/districtOptions"; // Adjust the path as needed
 
-// Import types
-import { SelectServicesComboboxProps, } from "@/app/types/user-components";
-import { services } from "@/data/serviceOptions"; // Adjust the path as needed
 
-// Define the options for services
-// const services: ServiceOption[] = [
-//   { value: "Repair Shops", label: "Repair Shops" },
-//   { value: "Spare Parts", label: "Spare Parts" },
-//   { value: "Oil Changes", label: "Oil Changes" },
-//   { value: "Vehicle Inspections", label: "Vehicle Inspections" },
-//   { value: "Tire Services", label: "Tire Services" },
-//   { value: "Service Centers", label: "Service Centers" },
-// ];
 
-export default function SelectServicesCombobox({
+export default function SelectDistrictHeroSectionCombobox({
   value,
   onChange,
-}: SelectServicesComboboxProps) {
+}: SelectDistrictComboboxProps) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -47,31 +38,31 @@ export default function SelectServicesCombobox({
           className="w-full justify-between border focus:border-white border-white"
         >
           {value
-            ? services.find((service) => service.value === value)?.label
-            : "Select Services..."}
+            ? district.find((district) => district.value === value)?.label
+            : "Select District..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0 bg-white border border-primary text-black">
+      <PopoverContent className="w-[200px] p-0 bg-white">
         <Command>
-          <CommandInput placeholder="Search Services..." className="h-9" />
+          <CommandInput placeholder="Search district..." className="h-9 " />
           <CommandList>
-            <CommandEmpty>No Service found..</CommandEmpty>
+            <CommandEmpty>No district found.</CommandEmpty>
             <CommandGroup>
-              {services.map((service) => (
+              {district.map((district) => (
                 <CommandItem
-                  key={service.value}
-                  value={service.value}
+                  key={district.value}
+                  value={district.value}
                   onSelect={(currentValue: string) => {
                     onChange(currentValue === value ? "" : currentValue);
                     setOpen(false);
                   }}
                 >
-                  {service.label}
+                  {district.label}
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      value === service.value ? "opacity-100" : "opacity-0"
+                      value === district.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>

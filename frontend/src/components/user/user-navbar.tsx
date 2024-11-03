@@ -18,8 +18,14 @@ import Border_btn from '@/components/user/border-btn';
 import UserProfile from '@/components/user/user-profile';
 import NotificationsDrawer from '@/components/user/notifications-drawer';
 import user_profile from '@/public/users/pic.jpg';
-import Tooltips from '@/components/user/tooltips';
 import { NavbarProps } from "@/app/types/user-components"
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export default function Navbar() {
   
@@ -56,6 +62,9 @@ export default function Navbar() {
               <Link className="text-sm font-semibold text-black focus:text-primary" href="/user/home" onClick={() => setIsOpen(false)}>
                 Find Services
               </Link>
+              <Link className="text-sm font-semibold text-black focus:text-primary" href="/user/services" onClick={() => setIsOpen(false)}>
+                Services
+              </Link>
               <Link className="text-sm font-semibold text-black focus:text-primary" href="/user/news" onClick={() => setIsOpen(false)}>
                 News
               </Link>
@@ -77,9 +86,14 @@ export default function Navbar() {
         <Link className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary" href="/user/home">
           Find Services
         </Link>
+        <Link className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary" href="/user/services">
+          Services
+        </Link>
+
         <Link className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary" href="/user/news">
           News
         </Link>
+        
         <Link className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary" href="/user/aboutus">
           About Us
         </Link>
@@ -92,10 +106,17 @@ export default function Navbar() {
       </div>
       <div className="flex items-center space-x-4">
 
-        <Tooltips placement="bottom" title="Become a Service Provider">
-          <Btn name="+ Add a Service" fun={add_services} />
-          </Tooltips>
-
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+                <Btn name="+ Add a Service" fun={add_services} />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Add to library</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+                 
         {isloging && (
             <div className="flex items-center space-x-4 my-1">
               <NotificationsDrawer count={8} />

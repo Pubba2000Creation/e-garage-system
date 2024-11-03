@@ -18,35 +18,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { SelectDistrictComboboxProps } from "@/app/types/user-components"; // Import the type
+import { all_district } from "@/data/districtOptions"; // Adjust the path as needed
 
-const district = [
-  { value: "All of SriLanka", label: "All of SriLanka" },
-  { value: "Colombo", label: "Colombo District" },
-  { value: "Gampaha", label: "Gampaha District" },
-  { value: "Kalutara", label: "Kalutara District" },
-  { value: "Kandy", label: "Kandy District" },
-  { value: "Matale", label: "Matale District" },
-  { value: "Nuwara Eliya", label: "Nuwara Eliya District" },
-  { value: "Galle", label: "Galle District" },
-  { value: "Hambantota", label: "Hambantota District" },
-  { value: "Matara", label: "Matara District" },
-  { value: "Jaffna", label: "Jaffna District" },
-  { value: "Kilinochchi", label: "Kilinochchi District" },
-  { value: "Mannar", label: "Mannar District" },
-  { value: "Mullaitivu", label: "Mullaitivu District" },
-  { value: "Vavuniya", label: "Vavuniya District" },
-  { value: "Ampara", label: "Ampara District" },
-  { value: "Batticaloa", label: "Batticaloa District" },
-  { value: "Trincomalee", label: "Trincomalee District" },
-  { value: "Anuradhapura", label: "Anuradhapura District" },
-  { value: "Polonnaruwa", label: "Polonnaruwa District" },
-  { value: "Kurunegala", label: "Kurunegala District" },
-  { value: "Puttalam", label: "Puttalam District" },
-  { value: "Kegalle", label: "Kegalle District" },
-  { value: "Ratnapura", label: "Ratnapura District" },
-  { value: "Badulla", label: "Badulla District" },
-  { value: "Monaragala", label: "Monaragala District" },
-];
+
 
 export default function SelectDistrictCombobox({
   value,
@@ -64,18 +38,18 @@ export default function SelectDistrictCombobox({
           className="w-full justify-between border focus:border-primary border-light_gray"
         >
           {value
-            ? district.find((district) => district.value === value)?.label
+            ? all_district.find((district) => district.value === value)?.label
             : "Select District..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0 bg-white">
         <Command>
-          <CommandInput placeholder="Search district..." className="h-9" />
+          <CommandInput placeholder="Search district..." className="h-9 " />
           <CommandList>
             <CommandEmpty>No district found.</CommandEmpty>
             <CommandGroup>
-              {district.map((district) => (
+              {all_district.map((district) => (
                 <CommandItem
                   key={district.value}
                   value={district.value}

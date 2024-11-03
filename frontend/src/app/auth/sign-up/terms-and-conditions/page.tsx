@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/card';
 import { CheckboxProps } from '@/app/types/auth'; // Import types
 
+
 export default function TermsAndConditions() {
   const [isChecked, setIsChecked] = useState<CheckboxProps['isChecked']>(false);
   const router = useRouter();
@@ -55,14 +56,23 @@ export default function TermsAndConditions() {
               eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. ...
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...
             </p>
           </div>
 
           <div className="flex items-center mb-6">
+            
             <input
               type="checkbox"
               id="agree"
-              className="mr-2"
+              className="mr-2 accent-primary h-4 w-4"
               checked={isChecked}
               onChange={handleCheckboxChange}
             />

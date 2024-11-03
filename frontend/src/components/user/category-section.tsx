@@ -16,7 +16,7 @@ export default function CategorySection() {
     }
 
   return (
-    <section id='category_section' className='my-20'>
+    <section id='category_section' className='my-16'>
 
         <h2 className=" text-2xl font-bold text-center mb-10 ">
             Choose a category to browse.
