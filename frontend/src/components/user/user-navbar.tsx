@@ -103,7 +103,7 @@ export default function Navbar() {
 
       <div className="hidden lg:flex flex-1 justify-center items-center space-x-6">
         <Link
-          className="text-lg  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
+          className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
           href="/user/home"
         >
           Home
