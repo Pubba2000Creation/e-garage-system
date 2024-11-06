@@ -5,6 +5,5 @@ export default function Notifications() {
     <>
       <p>Notifications</p>
     </>
-    
   )
 }

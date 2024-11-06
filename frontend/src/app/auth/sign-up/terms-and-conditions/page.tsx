@@ -1,30 +1,29 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import Link from 'next/link';
-import cover_image from '@/public/images/loging_cover.svg';
-import { useRouter } from 'next/navigation';
-import Logo from '@/components/user/logo';
-import FromsCoverImage from '@/components/user/from-cover-image';
+import { useState } from 'react'
+import Link from 'next/link'
+import cover_image from '@/public/images/loging_cover.svg'
+import { useRouter } from 'next/navigation'
+import Logo from '@/components/user/logo'
+import FromsCoverImage from '@/components/user/from-cover-image'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { CheckboxProps } from '@/app/types/auth'; // Import types
-
+} from '@/components/ui/card'
+import { CheckboxProps } from '@/app/types/auth' // Import types
 
 export default function TermsAndConditions() {
-  const [isChecked, setIsChecked] = useState<CheckboxProps['isChecked']>(false);
-  const router = useRouter();
+  const [isChecked, setIsChecked] = useState<CheckboxProps['isChecked']>(false)
+  const router = useRouter()
 
   function handleCheckboxChange() {
-    setIsChecked(!isChecked);
+    setIsChecked(!isChecked)
 
     if (isChecked) {
-      router.push('/auth/sign-up/create-account');
+      router.push('/auth/sign-up/create-account')
     }
   }
 
@@ -53,22 +52,27 @@ export default function TermsAndConditions() {
             <p className="text-dark text-sm">
               {/* Terms content */}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. ...
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. ...
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              ...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. ...
             </p>
           </div>
 
           <div className="flex items-center mb-6">
-            
             <input
               type="checkbox"
               id="agree"
@@ -104,5 +108,5 @@ export default function TermsAndConditions() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

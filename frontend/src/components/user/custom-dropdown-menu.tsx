@@ -1,38 +1,44 @@
 // CustomDropdown.tsx
 
-import React, { useState, useEffect, useRef } from 'react';
-import {CustomDropdownProps} from '@/app/types/user-components.d';
-import { RiArrowDropDownLine } from "react-icons/ri";
+import React, { useState, useEffect, useRef } from 'react'
+import { CustomDropdownProps } from '@/app/types/user-components.d'
+import { RiArrowDropDownLine } from 'react-icons/ri'
 
-export default function CustomDropdown ({ options, onSelect }:CustomDropdownProps)  {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+export default function CustomDropdown({
+  options,
+  onSelect,
+}: CustomDropdownProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [selected, setSelected] = useState<string | null>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   const handleSelect = (option: string) => {
-    setSelected(option);
-    onSelect(option); // Notify parent component
-    setIsOpen(false); // Close dropdown after selecting an option
-  };
+    setSelected(option)
+    onSelect(option) // Notify parent component
+    setIsOpen(false) // Close dropdown after selecting an option
+  }
 
   // Close dropdown when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return (
     <div ref={dropdownRef} className="relative inline-block text-left">
@@ -41,7 +47,7 @@ export default function CustomDropdown ({ options, onSelect }:CustomDropdownProp
         onClick={toggleDropdown}
         className="inline-flex justify-center w-full rounded-md border border-light_gray shadow-sm px-2 py-2 bg-white text-sm font-extralight text-black hover:border-primary hover:text-primary focus:outline-none"
       >
-        {selected || options[0] }
+        {selected || options[0]}
         <RiArrowDropDownLine size={19} />
       </button>
 
@@ -62,7 +68,5 @@ export default function CustomDropdown ({ options, onSelect }:CustomDropdownProp
         </div>
       )}
     </div>
-  );
-};
-
-
+  )
+}

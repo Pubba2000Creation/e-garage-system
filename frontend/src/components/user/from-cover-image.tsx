@@ -1,11 +1,13 @@
 // FormsCoverImage.tsx
-import React from 'react';
-import Image from 'next/image';
-import { FormsCoverImageProps } from '@/app/types/user-components'; // Import the type
+import React from 'react'
+import Image from 'next/image'
+import { FormsCoverImageProps } from '@/app/types/user-components' // Import the type
 
 export default function FormsCoverImage(props: FormsCoverImageProps) {
   return (
-    <div className="relative w-full h-full"> {/* Ensure the parent div has a defined height and width */}
+    <div className="relative w-full h-full">
+      {' '}
+      {/* Ensure the parent div has a defined height and width */}
       <Image
         src={props.coverImage}
         alt={props.alt}
@@ -14,5 +16,5 @@ export default function FormsCoverImage(props: FormsCoverImageProps) {
         priority // Optional: load image early if it's critical
       />
     </div>
-  );
+  )
 }

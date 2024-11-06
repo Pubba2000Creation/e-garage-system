@@ -1,13 +1,13 @@
-import { useRouter } from 'next/navigation';
-import { AlertBoxProps } from '@/app/types/user-components';
+import { useRouter } from 'next/navigation'
+import { AlertBoxProps } from '@/app/types/user-components'
 
 export default function AlertBox(props: AlertBoxProps) {
-  const router = useRouter();
+  const router = useRouter()
 
   function handleClick() {
-    console.log('clicked alert box');
+    console.log('clicked alert box')
     if (props.href) {
-      router.push(props.href);
+      router.push(props.href)
     }
   }
 
@@ -27,5 +27,5 @@ export default function AlertBox(props: AlertBoxProps) {
         <span className="text-xs text-gray">{props.time} ago</span>
       </div>
     </div>
-  );
+  )
 }

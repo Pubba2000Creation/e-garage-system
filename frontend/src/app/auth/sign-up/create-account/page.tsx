@@ -1,45 +1,45 @@
-'use client';
+'use client'
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import FromsCoverImage from '@/components/user/from-cover-image';
-import cover_image from '@/public/images/loging_cover.svg';
-import Logo from '@/components/user/logo';
-import { useState } from 'react';
-import Link from 'next/link';
+} from '@/components/ui/card'
+import FromsCoverImage from '@/components/user/from-cover-image'
+import cover_image from '@/public/images/loging_cover.svg'
+import Logo from '@/components/user/logo'
+import { useState } from 'react'
+import Link from 'next/link'
 import {
   EmailState,
   PasswordState,
   ErrorState,
   HandleSubmit,
-} from '@/app/types/auth.d';
+} from '@/app/types/auth.d'
 
 export default function CreateAccount() {
-  const [email, setEmail] = useState<EmailState>('');
-  const [password, setPassword] = useState<PasswordState>('');
-  const [conformPassword, setconformPassword] = useState<PasswordState>('');
-  const [error, setError] = useState<ErrorState>('');
+  const [email, setEmail] = useState<EmailState>('')
+  const [password, setPassword] = useState<PasswordState>('')
+  const [conformPassword, setconformPassword] = useState<PasswordState>('')
+  const [error, setError] = useState<ErrorState>('')
 
   const handleSubmit: HandleSubmit = (e) => {
-    e.preventDefault();
-    console.log({ email, password, conformPassword });
+    e.preventDefault()
+    console.log({ email, password, conformPassword })
     if (!email || !password || !conformPassword) {
-      setError('Please enter both email and password.');
-      return;
+      setError('Please enter both email and password.')
+      return
     }
     if (password !== conformPassword) {
-      setError('Passwords do not match.');
+      setError('Passwords do not match.')
     }
-    setError('');
-  };
+    setError('')
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -127,5 +127,5 @@ export default function CreateAccount() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

@@ -1,8 +1,8 @@
 // Border_btn.tsx
-"use client";
+'use client'
 
-import React from 'react';
-import { BorderBtnProps } from '@/app/types/user-components';
+import React from 'react'
+import { BorderBtnProps } from '@/app/types/user-components'
 
 export default function Border_btn(props: BorderBtnProps) {
   return (
@@ -13,5 +13,5 @@ export default function Border_btn(props: BorderBtnProps) {
     >
       {props.name}
     </button>
-  );
+  )
 }

@@ -1,42 +1,48 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import cover_image from '@/public/images/loging_cover.svg';
-import Link from 'next/link';
-import Logo from '@/components/user/logo';
-import FromsCoverImage from '@/components/user/from-cover-image';
-import SelectProvinceCombobox from '@/components/user/select-province';
-import SelectDistrictCombobox from '@/components/user/select-district';
+import { useState } from 'react'
+import cover_image from '@/public/images/loging_cover.svg'
+import Link from 'next/link'
+import Logo from '@/components/user/logo'
+import FromsCoverImage from '@/components/user/from-cover-image'
+import SelectProvinceCombobox from '@/components/user/select-province'
+import SelectDistrictCombobox from '@/components/user/select-district'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { AddressHandler, ErrorHandler, ProvinceHandler, DistrictHandler } from '@/app/types/auth.d';
+} from '@/components/ui/card'
+import {
+  AddressHandler,
+  ErrorHandler,
+  ProvinceHandler,
+  DistrictHandler,
+} from '@/app/types/auth.d'
 
 export default function AddressForm() {
-  const [address, setAddress] = useState<string>('');
-  const [province, setProvince] = useState<string>('');
-  const [selectedDistrict, setSelectedDistrict] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [address, setAddress] = useState<string>('')
+  const [province, setProvince] = useState<string>('')
+  const [selectedDistrict, setSelectedDistrict] = useState<string>('')
+  const [error, setError] = useState<string>('')
 
-  const handleAddressChange: AddressHandler = (value) => setAddress(value);
-  const handleProvinceChange: ProvinceHandler = (value) => setProvince(value);
-  const handleDistrictChange: DistrictHandler = (value) => setSelectedDistrict(value);
-  const handleError: ErrorHandler = (message) => setError(message);
+  const handleAddressChange: AddressHandler = (value) => setAddress(value)
+  const handleProvinceChange: ProvinceHandler = (value) => setProvince(value)
+  const handleDistrictChange: DistrictHandler = (value) =>
+    setSelectedDistrict(value)
+  const handleError: ErrorHandler = (message) => setError(message)
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(address, province, selectedDistrict);
+    e.preventDefault()
+    console.log(address, province, selectedDistrict)
     if (!address || !province || !selectedDistrict) {
-      handleError('Please enter all required fields');
-      return;
+      handleError('Please enter all required fields')
+      return
     }
-    setError('');
+    setError('')
     // Proceed with form submission
-  };
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -118,5 +124,5 @@ export default function AddressForm() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }
