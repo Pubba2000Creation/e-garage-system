@@ -20,8 +20,8 @@ export default function OurTeam() {
           
           <TeamCard 
             image={team_01.src} 
-            position={'CEO'} 
-            name={'Sandaruwan'} 
+            position={'Founder'} 
+            name={'Sandaruwan Kathri Arachchi'} 
           />
 
           <TeamCard
