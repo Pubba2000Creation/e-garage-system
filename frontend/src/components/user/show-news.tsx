@@ -13,11 +13,11 @@ export default function ShowNews(props: showNewsProps) {
           objectFit="cover"
           className="absolute inset-0 object-cover w-auto h-auto brightness-100 rounded-md"
         />
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <h3 className="text-white text-2xl font-bold">{props.news_title}</h3>
-        </div>
+        
       </section>
-
+      
+      <h3 className="text-black my-8 text-2xl font-bold">{props.news_title}</h3>
+       
       <section>
         <p className="text-lg my-5">{props.news_description}</p>
       </section>

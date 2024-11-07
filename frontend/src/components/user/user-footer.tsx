@@ -17,12 +17,10 @@ export default function Footer() {
           <div className="w-full md:w-1/3 mb-8 md:mb-0">
             <Logo />
             <p className="pt-5 text-gray text-sm">
-              Lorem ipsum dolor sit amet consectetur. Bibendum consequat laoreet
-              turpis in pellentesque sem id ut. Feugiat quam porttitor in augue
-              sed quis pellentesque quam purus. Ac euismod ac proin vitae
-              vulputate. Urna facilisis varius vestibulum at gravida turpis.
-              Viverra imperdiet convallis elementum sed mauris. Ultricies in
-              morbi eu felis nibh tellus.
+              E Garage empowers garage owners with tools to streamline
+              scheduling, boost customer engagement, and improve efficiency.
+              Join us and experience the future of garage management where
+              efficiency meets customer satisfaction.
             </p>
           </div>
 
@@ -42,9 +40,9 @@ export default function Footer() {
               <li>
                 <Link href="/user/aboutus">About Us</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/user/contactus">Contact Us</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 

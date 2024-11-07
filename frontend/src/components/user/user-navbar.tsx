@@ -64,13 +64,13 @@ export default function Navbar() {
               >
                 Find Services
               </Link>
-              <Link
+              {/* <Link
                 className="text-sm font-semibold text-black focus:text-primary"
                 href="/user/services"
                 onClick={() => setIsOpen(false)}
               >
                 Services
-              </Link>
+              </Link> */}
               <Link
                 className="text-sm font-semibold text-black focus:text-primary"
                 href="/user/news"
@@ -85,13 +85,13 @@ export default function Navbar() {
               >
                 About Us
               </Link>
-              <Link
+              {/* <Link
                 className="text-sm font-semibold text-black focus:text-primary"
                 href="/user/contactus"
                 onClick={() => setIsOpen(false)}
               >
                 Contact Us
-              </Link>
+              </Link> */}
             </div>
           </SheetContent>
         </Sheet>
@@ -114,12 +114,12 @@ export default function Navbar() {
         >
           Find Services
         </Link>
-        <Link
+        {/* <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
           href="/user/services"
         >
           Services
-        </Link>
+        </Link> */}
 
         <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
@@ -134,12 +134,12 @@ export default function Navbar() {
         >
           About Us
         </Link>
-        <Link
+        {/* <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
           href="/user/contactus"
         >
           Contact Us
-        </Link>
+        </Link> */}
       </div>
 
       
