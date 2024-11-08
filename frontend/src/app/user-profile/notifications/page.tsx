@@ -3,7 +3,7 @@ import React from 'react'
 export default function Notifications() {
   return (
     <>
-      <p>Notifications</p>
+      <h2 className=" text-2xl font-bold text-left my-5 ">Notifications</h2>
     </>
   )
 }

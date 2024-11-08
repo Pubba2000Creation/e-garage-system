@@ -10,15 +10,15 @@ const themeConfig = {
     colorPrimary: 'black', // Change the primary color
     colorPrimaryHover: 'black', // Change the hover color for primary elements
     todayColor: 'black', // Color of today's date
-    controlOutline: '#FF991F', // Focus border color (outline color)
+    controlOutline: '#99A3A3', // Focus border color (outline color)
     controlOutlineWidth: 1, // Outline width when focused
   },
-  components: {
+  components: { 
     DatePicker: {
       colorPrimary: '', // Primary color for the DatePicker
       colorPrimaryHover: '', // Hover color of the input
-      controlOutline: '#FF991F', // Border color when focused
-      controlOutlineWidth: 2, // Focus outline thickness
+      controlOutline: '#99A3A3', // Border color when focused
+      controlOutlineWidth: 0.5, // Focus outline thickness
       todayColorHover: '#FF991F', // Hover color for today's date
       boxShadow: '', // Optional focus box-shadow effect
     },

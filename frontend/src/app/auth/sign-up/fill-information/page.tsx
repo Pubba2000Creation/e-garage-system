@@ -96,7 +96,7 @@ export default function FillInformation() {
                   type="text"
                   name="firstName"
                   placeholder="Jone"
-                  className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
+                  className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   required
@@ -107,11 +107,11 @@ export default function FillInformation() {
                 <Label htmlFor="lastName" className="">
                   Last Name
                 </Label>
-                <input
+                <Input
                   type="text"
                   name="lastName"
                   placeholder="Doe"
-                  className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
+                  className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   required
@@ -135,11 +135,11 @@ export default function FillInformation() {
                     <label htmlFor="companyName" className="">
                       Company Name
                     </label>
-                    <input
+                    <Input
                       type="text"
                       name="companyName"
                       placeholder="Ravindu Tyre Works"
-                      className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
+                      className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                     />
@@ -155,11 +155,11 @@ export default function FillInformation() {
 
             <div>
               <label htmlFor="phoneNumber">Phone Number</label>
-              <input
+              <Input
                 type="text"
                 name="phoneNumber"
                 placeholder="0761234567"
-                className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
+                className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
                 value={phoneNumber}
                 onInput={(e) => {
                   const input = e.target as HTMLInputElement
