@@ -18,7 +18,7 @@ import {
   HandleOtpChange,
   HandleVerifyOtp,
   HandleResendOtp,
-} from '@/app/types/auth.d'
+} from '@/types/auth'
 
 export default function OtpPage() {
   const [otp, setOtp] = useState<OtpInputState>(Array(6).fill(''))

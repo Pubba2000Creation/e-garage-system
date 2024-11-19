@@ -20,7 +20,7 @@ import {
   PasswordState,
   ErrorState,
   HandleSubmit,
-} from '@/app/types/auth.d'
+} from '@/types/auth'
 
 export default function CreateAccount() {
   const [email, setEmail] = useState<EmailState>('')

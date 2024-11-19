@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { CheckboxProps } from '@/app/types/auth' // Import types
+import { CheckboxProps } from '@/types/auth' // Import types
 
 export default function TermsAndConditions() {
   const [isChecked, setIsChecked] = useState<CheckboxProps['isChecked']>(false)

@@ -10,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import { ImageCarouselProps } from '@/app/types/user-components' // Import the type
+import { ImageCarouselProps } from '@/types/user-components' // Import the type
 
 export default function ImageCarousel({ images }: ImageCarouselProps) {
   return (

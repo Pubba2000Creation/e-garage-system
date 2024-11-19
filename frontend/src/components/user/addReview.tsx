@@ -13,10 +13,7 @@ import StarRating from '@/components/ui/star-rating'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { IoMdCloseCircle } from 'react-icons/io'
-import {
-  HandleSubmitEvent,
-  TextareaChangeEvent,
-} from '@/app/types/user-components.d'
+import { HandleSubmitEvent, TextareaChangeEvent } from '@/types/user-components'
 
 export default function AddReview() {
   const [rating, setRating] = useState<number>(0)

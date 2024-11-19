@@ -17,7 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { SelectDistrictComboboxProps } from '@/app/types/user-components' // Import the type
+import { SelectDistrictComboboxProps } from '@/types/user-components' // Import the type
 import { all_district } from '@/data/districtOptions' // Adjust the path as needed
 
 export default function SelectDistrictCombobox({

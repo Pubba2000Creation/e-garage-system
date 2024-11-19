@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { FaStar } from 'react-icons/fa'
 import user from '@/public/users/default_profile_pic.svg'
-import { ReviewCardProps } from '@/app/types/user-components' // Import the type
+import { ReviewCardProps } from '@/types/user-components' // Import the type
 
 export default function ReviewCard(props: ReviewCardProps) {
   return (
@@ -26,7 +26,7 @@ export default function ReviewCard(props: ReviewCardProps) {
           <span className="text-yellow-400 my-1">
             <FaStar />
           </span>
-          <p className='text-sm  pt-0.5'>({props.rating})</p>
+          <p className="text-sm  pt-0.5">({props.rating})</p>
         </span>
         <p className="text-sm text-gray">{props.review}</p>
       </div>

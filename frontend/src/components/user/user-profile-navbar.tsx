@@ -25,7 +25,7 @@ import star_icon from '@/public/icons/star.svg'
 import bell_icon from '@/public/icons/bell.svg'
 import logout_icon from '@/public/icons/logout.svg'
 import gear_icon from '@/public/icons/gear.svg'
-import { UserProfileNavbarProps } from '@/app/types/user-components'
+import { UserProfileNavbarProps } from '@/types/user-components'
 
 export default function UserProfileNavbar({
   children,
@@ -49,7 +49,7 @@ export default function UserProfileNavbar({
           <SidebarGroup>
             <SidebarMenu>
               <Link className="flex gap-2 " href="/user-profile/profile">
-                <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground focus:bg-primary">
+                <SidebarMenuButton className="">
                   <Image
                     className=""
                     src={user_icon}
@@ -62,33 +62,32 @@ export default function UserProfileNavbar({
               </Link>
 
               <Link className="flex gap-2" href="/user-profile/reviews">
-                <SidebarMenuButton className=" focus:bg-primary data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+                <SidebarMenuButton className="">
                   <Image src={star_icon} alt="logo" width={15} height={15} />
                   Reviews
                 </SidebarMenuButton>
               </Link>
 
               <Link className="flex gap-2" href="/user-profile/notifications">
-                <SidebarMenuButton className="focus:bg-primary data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+                <SidebarMenuButton className="">
                   <Image src={bell_icon} alt="logo" width={15} height={15} />
                   Notifications
                 </SidebarMenuButton>
               </Link>
 
               <Link className="flex gap-2" href="/user-profile/account">
-                <SidebarMenuButton className="focus:bg-primary data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+                <SidebarMenuButton className="">
                   <Image src={gear_icon} alt="logo" width={15} height={15} />
                   Account
                 </SidebarMenuButton>
               </Link>
 
               <Link className="flex gap-2 " href="/">
-                <SidebarMenuButton className="focus:bg-error mt-10 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+                <SidebarMenuButton className="focus:bg-error mt-10 ">
                   <Image src={logout_icon} alt="logo" width={15} height={15} />
                   Logout
                 </SidebarMenuButton>
               </Link>
-
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>

@@ -2,7 +2,7 @@
 'use client'
 
 import React from 'react'
-import { BtnProps } from '@/app/types/user-components'
+import { BtnProps } from '@/types/user-components'
 
 export default function Btn(props: BtnProps) {
   return (

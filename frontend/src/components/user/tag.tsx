@@ -1,6 +1,6 @@
 // app/user/service/tag.tsx
 import React from 'react'
-import { TagProps } from '@/app/types/user-components.d'
+import { TagProps } from '@/types/user-components'
 
 export default function Tag(props: TagProps) {
   const { tag = 'SPECIAL DISCOUNTS' } = props // Set default value

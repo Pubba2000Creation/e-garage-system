@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/popover'
 
 // Import types
-import { SelectDistrictComboboxProps } from '@/app/types/user-components'
+import { SelectDistrictComboboxProps } from '@/types/user-components'
 // Define your district and province data
 import { province } from '@/data/provinceOptions'
 

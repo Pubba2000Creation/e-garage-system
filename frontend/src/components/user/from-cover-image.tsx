@@ -1,7 +1,7 @@
 // FormsCoverImage.tsx
 import React from 'react'
 import Image from 'next/image'
-import { FormsCoverImageProps } from '@/app/types/user-components' // Import the type
+import { FormsCoverImageProps } from '@/types/user-components' // Import the type
 
 export default function FormsCoverImage(props: FormsCoverImageProps) {
   return (

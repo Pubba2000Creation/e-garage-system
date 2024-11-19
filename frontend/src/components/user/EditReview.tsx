@@ -14,10 +14,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { IoMdCloseCircle } from 'react-icons/io'
 import { MdModeEdit } from 'react-icons/md'
-import {
-  HandleSubmitEvent,
-  TextareaChangeEvent,
-} from '@/app/types/user-components.d'
+import { HandleSubmitEvent, TextareaChangeEvent } from '@/types/user-components'
 
 export default function EditReview() {
   const [rating, setRating] = useState<number>(0)
@@ -50,10 +47,10 @@ export default function EditReview() {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <button
-                aria-label="Edit Review"
-                className="text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-200  p-1 rounded-full"
-              >
-                <MdModeEdit size={15} />
+          aria-label="Edit Review"
+          className="text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-200  p-1 rounded-full"
+        >
+          <MdModeEdit size={15} />
         </button>
       </AlertDialogTrigger>
       <AlertDialogContent>

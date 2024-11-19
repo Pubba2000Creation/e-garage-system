@@ -2,7 +2,7 @@
 'use client'
 
 import React from 'react'
-import { BorderBtnProps } from '@/app/types/user-components'
+import { BorderBtnProps } from '@/types/user-components'
 
 export default function Border_btn(props: BorderBtnProps) {
   return (

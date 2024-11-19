@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import default_profile_pic from '@/public/users/default_profile_pic.svg'
-import { ServiceProviderProps } from '@/app/types/service-provider-components'
+import { ServiceProviderProps } from '@/types/service-provider-components'
 
 const items: MenuProps['items'] = [
   {

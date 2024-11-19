@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ImageHandler } from '@/app/types/auth' // Import type from types file
+import { ImageHandler } from '@/types/auth' // Import type from types file
 
 export default function ProfilePictureForm() {
   const [profileImage, setProfileImage] = useState<string | null>(null)

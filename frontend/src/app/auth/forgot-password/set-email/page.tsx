@@ -15,7 +15,7 @@ import FromsCoverImage from '@/components/user/from-cover-image'
 import cover_image from '@/public/images/loging_cover.svg'
 import Logo from '@/components/user/logo'
 import { useState } from 'react'
-import { HandleEmailChange, SetEmailState } from '@/app/types/auth.d'
+import { HandleEmailChange, SetEmailState } from '@/types/auth'
 
 export default function SetEmail() {
   const [email, setEmail] = useState<SetEmailState['email']>('')

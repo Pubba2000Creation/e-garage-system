@@ -18,8 +18,7 @@ import Border_btn from '@/components/user/border-btn'
 import UserProfile from '@/components/user/user-profile'
 import NotificationsDrawer from '@/components/user/notifications-drawer'
 import user_profile from '@/public/users/pic.jpg'
-import { NavbarProps } from '@/app/types/user-components'
-
+import { NavbarProps } from '@/types/user-components'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<NavbarProps['isOpen']>(false)
@@ -36,7 +35,6 @@ export default function Navbar() {
 
   return (
     <nav className="flex items-center justify-between px-2 md:px-10 lg:px-20 mx-auto py-4  bg-white shadow-sm">
-      
       <div className="lg:hidden">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="bg-white" asChild>
@@ -142,9 +140,8 @@ export default function Navbar() {
         </Link> */}
       </div>
 
-      
-      <div className="flex items-center space-x-4">       
-        <Btn name="+ Add a Service" fun={add_services} />            
+      <div className="flex items-center space-x-4">
+        <Btn name="+ Add a Service" fun={add_services} />
         {isloging && (
           <div className="flex items-center space-x-4 my-1">
             <NotificationsDrawer count={8} />
@@ -153,7 +150,6 @@ export default function Navbar() {
         )}
         {!isloging && <Border_btn name="Login" fun={login} />}
       </div>
-
     </nav>
   )
 }

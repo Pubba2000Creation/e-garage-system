@@ -16,7 +16,7 @@ import Logo from '@/components/user/logo'
 import { useState } from 'react'
 import user from '@/public/images/user.svg'
 import service_owner from '@/public/images/service_owner.svg'
-import { SelectedAccountState, HandleChooseAccount } from '@/app/types/auth.d'
+import { SelectedAccountState, HandleChooseAccount } from '@/types/auth'
 
 export default function ChooseAccount() {
   const [selectedAccount, setSelectedAccount] =

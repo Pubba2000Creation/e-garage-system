@@ -66,7 +66,7 @@ export default function Account() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)} 
           />
-          {error && <p className="text-red-500 mt-2">{error}</p>}
+          {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
 
           <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary_hover">Change Password</button>
           

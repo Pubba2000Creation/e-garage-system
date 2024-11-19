@@ -20,7 +20,7 @@ import AddReview from '@/components/user/addReview'
 import CustomDropdown from '@/components/user/custom-dropdown-menu'
 import ReviewCard from '@/components/user/review-card'
 import SimilarServicesSection from '@/components/user/similar-services-section'
-import { ServiceProps } from '@/app/types/user-components' // Import the type
+import { ServiceProps } from '@/types/user-components' // Import the type
 
 const filterOptions: string[] = [
   'New',

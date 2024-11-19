@@ -19,7 +19,7 @@ import Logo from '@/components/user/logo'
 import { useState } from 'react'
 
 // Import types from auth.d.ts
-import { LoginFormEvent, LoginFormState } from '@/app/types/auth'
+import { LoginFormEvent, LoginFormState } from '@/types/auth'
 
 export default function LoginForm() {
   const [formState, setFormState] = useState<LoginFormState>({
