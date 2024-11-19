@@ -23,11 +23,11 @@ import SimilarServicesSection from '@/components/user/similar-services-section'
 import { ServiceProps } from '@/app/types/user-components' // Import the type
 
 const filterOptions: string[] = [
-  'new',
-  'old',
-  'this week',
-  'this month',
-  'this year',
+  'New',
+  'Old',
+  'This week',
+  'This month',
+  'This year',
 ]
 
 export default function ShowServicePage(props: ServiceProps) {

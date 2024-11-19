@@ -1,9 +1,49 @@
+'use client'
 import React from 'react'
+import { Switch } from "@/components/ui/switch"
 
 export default function Notifications() {
+  const [onAllUpdates, setOnAllUpdates] = React.useState(true)
+  const [onAllAlerts, setOnAllAlerts] = React.useState(true)
+
+  // Handle form submission (you can process the data here)
+  function handleSubmit(event: React.FormEvent) {
+    event.preventDefault()
+    console.log("Updates Notifications:", onAllUpdates)
+    console.log("Alerts Notifications:", onAllAlerts)
+  }
+
   return (
     <>
-      <h2 className=" text-2xl font-bold text-left my-5 ">Notifications</h2>
+      <form 
+        onSubmit={handleSubmit} 
+        className='max-w-4xl p-6 bg-white rounded-lg shadow-md'
+      >
+        
+        <h2 className=" text-3xl font-bold mb-8 ">Notification Settings</h2>
+
+        <div className='mb-5 w-2/5'>
+          <div className='flex justify-between'>
+            <p>Turn on all update notifications</p>
+            <Switch
+              checked={onAllUpdates} // Bind the state
+              onCheckedChange={setOnAllUpdates} // Update the state
+            />
+          </div>
+          <p className='mt-2 text-sm text-gray'>Lorem ipsum dolor sit amet consectetur. Ullamcorper pretium phasellus.</p>
+        </div>
+
+        <div className='mb-5 w-2/5'>
+          <div className='flex justify-between'>
+            <p>Turn on all alerts notifications</p>
+            <Switch  
+              checked={onAllAlerts} // Bind the state
+              onCheckedChange={setOnAllAlerts} // Update the state
+            />
+          </div>
+          <p className='mt-2 text-sm text-gray' >Lorem ipsum dolor sit amet consectetur. Ullamcorper pretium phasellus.</p>
+        </div>
+      </form>    
     </>
   )
 }

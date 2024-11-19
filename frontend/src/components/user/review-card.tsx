@@ -20,13 +20,13 @@ export default function ReviewCard(props: ReviewCardProps) {
       <div className="my-3">
         <div className="flex justify-between">
           <h3>{props.Name}</h3>
-          <p className="text-sm text-gray">{props.time} ago</p>
+          <p className="text-xs text-gray">{props.time} ago</p>
         </div>
-        <span className="flex gap-2">
+        <span className="flex gap-0.5">
           <span className="text-yellow-400 my-1">
             <FaStar />
           </span>
-          <p>({props.rating})</p>
+          <p className='text-sm  pt-0.5'>({props.rating})</p>
         </span>
         <p className="text-sm text-gray">{props.review}</p>
       </div>

@@ -11,8 +11,7 @@ import SelectDistrictHeroSectionCombobox from '@/components/user/select-district
 
 export default function HeroSectionComponent() {
   const [services, setServices] = useState<string>('')
-  const [selectedDistrict, setSelectedDistrict] =
-    useState<string>('All of SriLanka')
+  const [selectedDistrict, setSelectedDistrict] = useState<string>('All of SriLanka')
   const [error, setError] = useState<string>('')
   const [isSeraching, setSerach] = useState<boolean>(false)
   const [searchingError, setSearchingError] = useState<boolean>(false)
