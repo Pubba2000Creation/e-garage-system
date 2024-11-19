@@ -19,7 +19,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
         align: 'start',
         loop: true,
       }}
-      className="w-full mx-auto"
+      className="w-full mx-auto cursor-grab "
     >
       <CarouselContent className="-ml-1">
         {images.map((src, index) => (
