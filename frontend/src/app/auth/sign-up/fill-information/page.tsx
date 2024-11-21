@@ -1,37 +1,36 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import FromsCoverImage from '@/components/user/from-cover-image';
-import cover_image from '@/public/images/loging_cover.svg';
-import Logo from '@/components/user/logo';
-import { useState } from 'react';
-import DobPicker from '@/components/user/dob-picker';
-import VehicleTypeSelector from '@/components/user/vehicle-type-selector';
-import { VehicleSelectionType, DateChangeType } from '@/app/types/auth.d';
+} from '@/components/ui/card'
+import FromsCoverImage from '@/components/user/from-cover-image'
+import cover_image from '@/public/images/loging_cover.svg'
+import Logo from '@/components/user/logo'
+import { useState } from 'react'
+import DobPicker from '@/components/user/dob-picker'
+import VehicleTypeSelector from '@/components/user/vehicle-type-selector'
+import { VehicleSelectionType, DateChangeType } from '@/types/auth'
 
 export default function FillInformation() {
-  const [firstName, setFirstName] = useState<string>('');
-  const [lastName, setLastName] = useState<string>('');
-  const [vehicalType, setVehicalType] = useState<string[]>([]);
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [error, setError] = useState<string>('');
-  const [companyName, setCompanyName] = useState<string>('');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [userRole, setUserRole] = useState<'user' | 'serviceProvider'>('user');
+  const [firstName, setFirstName] = useState<string>('')
+  const [lastName, setLastName] = useState<string>('')
+  const [vehicalType, setVehicalType] = useState<string[]>([])
+  const [phoneNumber, setPhoneNumber] = useState<string>('')
+  const [selectedDate, setSelectedDate] = useState<string | null>(null)
+  const [error, setError] = useState<string>('')
+  const [companyName, setCompanyName] = useState<string>('')
+  const [userRole] = useState<'user' | 'serviceProvider'>('user')
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     console.log(
       firstName,
       lastName,
@@ -39,7 +38,7 @@ export default function FillInformation() {
       companyName,
       selectedDate,
       phoneNumber
-    );
+    )
 
     // Form validation
     if (
@@ -49,22 +48,22 @@ export default function FillInformation() {
       !phoneNumber &&
       !selectedDate
     ) {
-      setError('Please fill out all fields');
-      console.log('Error:', error);
-      return;
+      setError('Please fill out all fields')
+      console.log('Error:', error)
+      return
     }
     // Clear error and navigate
-    setError('');
-  };
+    setError('')
+  }
 
   const handleVehicleSelection: VehicleSelectionType = (vehicalType) => {
-    setVehicalType(vehicalType);
-    console.log('Selected vehicles:', vehicalType);
-  };
+    setVehicalType(vehicalType)
+    console.log('Selected vehicles:', vehicalType)
+  }
 
   const handleDateChange: DateChangeType = (date) => {
-    setSelectedDate(date);
-  };
+    setSelectedDate(date)
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -97,7 +96,7 @@ export default function FillInformation() {
                   type="text"
                   name="firstName"
                   placeholder="Jone"
-                  className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
+                  className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   required
@@ -108,11 +107,11 @@ export default function FillInformation() {
                 <Label htmlFor="lastName" className="">
                   Last Name
                 </Label>
-                <input
+                <Input
                   type="text"
                   name="lastName"
                   placeholder="Doe"
-                  className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
+                  className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   required
@@ -126,18 +125,21 @@ export default function FillInformation() {
                   <>
                     <label htmlFor="vehicalType">Select Vehicle Type</label>
                     <VehicleTypeSelector
-                      onSelectionChange={handleVehicleSelection} selectedVehicles={[]} isOpen={false}                    />
+                      onSelectionChange={handleVehicleSelection}
+                      selectedVehicles={[]}
+                      isOpen={false}
+                    />
                   </>
                 ) : (
                   <>
                     <label htmlFor="companyName" className="">
                       Company Name
                     </label>
-                    <input
+                    <Input
                       type="text"
                       name="companyName"
                       placeholder="Ravindu Tyre Works"
-                      className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
+                      className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                     />
@@ -153,16 +155,16 @@ export default function FillInformation() {
 
             <div>
               <label htmlFor="phoneNumber">Phone Number</label>
-              <input
+              <Input
                 type="text"
                 name="phoneNumber"
                 placeholder="0761234567"
-                className="block w-full px-4 py-2 border-2 border-light_gray rounded-lg focus:outline-none focus:ring-2 focus:ring-primary_hover"
+                className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
                 value={phoneNumber}
                 onInput={(e) => {
-                  const input = e.target as HTMLInputElement;
-                  input.value = input.value.replace(/\D/g, '');
-                  setPhoneNumber(input.value);
+                  const input = e.target as HTMLInputElement
+                  input.value = input.value.replace(/\D/g, '')
+                  setPhoneNumber(input.value)
                 }}
                 maxLength={10}
                 required
@@ -189,5 +191,5 @@ export default function FillInformation() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

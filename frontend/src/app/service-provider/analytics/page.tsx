@@ -1,19 +1,99 @@
-import React from 'react'
+"use client"
+
+import { IoAnalytics } from "react-icons/io5";
+import StatisticCard from "@/components/service-provider/statistic-card";
+import CustomDropdown from '@/components/user/custom-dropdown-menu'
+import  LineChartCard  from '@/components/service-provider/line-chart';
+
+const filterOptions: string[] = [
+  'This week',
+  'This month',
+  'This year',
+]
+
+const serviceOptions: string[] = [
+  'test01',
+  'test02', 
+]
+
+const chartData = [    
+  { month: "January", views: 18 },
+  { month: "February", views: 5 },
+  { month: "March", views: 23 },
+  { month: "April", views: 73 },
+  { month: "May", views: 20 },
+  { month: "June", views: 214 },
+  { month: "Jul", views: 186 },
+  { month: "Aug", views: 305 },
+  { month: "Sep", views: 30 },
+  { month: "Oct", views: 34 },
+  { month: "Nov", views: 70 },
+  { month: "Dec", views: 29 },
+]
 
 export default function Analytics() {
+  
+  const handleFilterChange = (selectedOption: string) => {
+    console.log('Selected filter:', selectedOption)
+  }
+  const handleServiceOptionsChange = (selectedOption: string) => {
+    console.log('Selected Options:', selectedOption)
+  }
   return (
     <>
-      <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+      <section className="flex flex-1 flex-col gap-4 p-0 lg:gap-6 lg:p-0">     
+        <h1 className="text-lg font-semibold md:text-2xl">Analytics Dashboard</h1>
+             
+        <div className="grid sm:grid-cols-3 gap-3   ">
+          {/* Statistic Card with IoAnalytics Icon */}
+          <StatisticCard
+            title="1700"
+            subtitle="Monthly Views"
+            icon={<IoAnalytics />}
+            iconSize={50}
+          />
 
-        <div className="flex items-center">
-          <h1 className="text-lg font-semibold md:text-2xl">Analytics</h1>
+          <StatisticCard
+            title="04"
+            subtitle="Published Services"
+            icon={<IoAnalytics />}
+            iconSize={50}
+          />
+
+          <StatisticCard
+            title="02"
+            subtitle="Pending Services"
+            icon={<IoAnalytics />}
+            iconSize={50}
+          />
+              
         </div>
 
-        <div className="flex flex-1 flex-col ">
-          <p>Analytics </p>
+        <div>
+          <p className='text-lg font-medium text-black text-left'>Total Views </p>
+          <div className='flex justify-between'>
+            <p className='text-lg font-semibold text-black'>1500</p>
+            <div className='flex gap-2 '>
+              <div className=''>
+                <CustomDropdown
+                  options={serviceOptions}
+                  onSelect={handleServiceOptionsChange}
+                />
+              </div>
+              <div>
+                <CustomDropdown
+                  options={filterOptions}
+                  onSelect={handleFilterChange}
+                />
+              </div>
+            </div>
+          </div>         
         </div>
-
-      </main>
+        
+          <LineChartCard data={chartData } />
+        
+      </section>
     </>
   )
 }
+

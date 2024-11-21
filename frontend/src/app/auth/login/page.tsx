@@ -1,47 +1,50 @@
 // src/components/user/LoginForm.tsx
-'use client';
+'use client'
 
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from '@/components/ui/card'
 
-import FromsCoverImage from '@/components/user/from-cover-image';
-import cover_image from '@/public/images/loging_cover.svg';
-import Logo from '@/components/user/logo';
-import { useState } from 'react';
+import FromsCoverImage from '@/components/user/from-cover-image'
+import cover_image from '@/public/images/loging_cover.svg'
+import Logo from '@/components/user/logo'
+import { useState } from 'react'
 
 // Import types from auth.d.ts
-import { LoginFormEvent, LoginFormState } from '@/app/types/auth';
+import { LoginFormEvent, LoginFormState } from '@/types/auth'
 
 export default function LoginForm() {
   const [formState, setFormState] = useState<LoginFormState>({
     email: '',
     password: '',
     error: '',
-  });
+  })
 
   const handleSubmit = (e: LoginFormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const { email, password } = formState;
-    console.log({ email, password });
+    const { email, password } = formState
+    console.log({ email, password })
 
     if (!email || !password) {
-      setFormState((prev) => ({ ...prev, error: 'Please enter both email and password.' }));
-      return;
+      setFormState((prev) => ({
+        ...prev,
+        error: 'Please enter both email and password.',
+      }))
+      return
     }
 
-    setFormState((prev) => ({ ...prev, error: '' }));
+    setFormState((prev) => ({ ...prev, error: '' }))
     // Proceed with login submission
-  };
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -56,7 +59,9 @@ export default function LoginForm() {
 
       <Card className="m-auto w-full max-w-md rounded-2xl overflow-hidden shadow-xl border-gray">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Login</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">
+            Login
+          </CardTitle>
           <CardDescription className="text-center">
             Hey, Enter your details to get sign in to your account
           </CardDescription>
@@ -68,7 +73,9 @@ export default function LoginForm() {
               <Input
                 id="email"
                 value={formState.email}
-                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                onChange={(e) =>
+                  setFormState({ ...formState, email: e.target.value })
+                }
                 placeholder="user@example.com"
                 type="email"
                 required
@@ -88,7 +95,9 @@ export default function LoginForm() {
               <Input
                 id="password"
                 value={formState.password}
-                onChange={(e) => setFormState({ ...formState, password: e.target.value })}
+                onChange={(e) =>
+                  setFormState({ ...formState, password: e.target.value })
+                }
                 placeholder="********"
                 type="password"
                 required
@@ -98,7 +107,9 @@ export default function LoginForm() {
 
             {/* Error Message */}
             {formState.error && (
-              <div className="mb-4 text-error text-center">{formState.error}</div>
+              <div className="mb-4 text-error text-center">
+                {formState.error}
+              </div>
             )}
 
             <Button type="submit" className="w-full text-white">
@@ -117,5 +128,5 @@ export default function LoginForm() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

@@ -1,39 +1,35 @@
-'use client';
+'use client'
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import FromsCoverImage from '@/components/user/from-cover-image';
-import cover_image from '@/public/images/loging_cover.svg';
-import Logo from '@/components/user/logo';
-import { useState } from 'react';
-import {
-  PasswordState,
-  ErrorState,
-  HandleSubmit,
-} from '@/app/types/auth.d';
+} from '@/components/ui/card'
+import FromsCoverImage from '@/components/user/from-cover-image'
+import cover_image from '@/public/images/loging_cover.svg'
+import Logo from '@/components/user/logo'
+import { useState } from 'react'
+import { PasswordState, ErrorState, HandleSubmit } from '@/types/auth'
 
 export default function SetNewPassword() {
-  const [password, setPassword] = useState<PasswordState>('');
-  const [conform_password, setConform_password] = useState<PasswordState>('');
-  const [error, setError] = useState<ErrorState>('');
+  const [password, setPassword] = useState<PasswordState>('')
+  const [conform_password, setConform_password] = useState<PasswordState>('')
+  const [error, setError] = useState<ErrorState>('')
 
   const handleSubmit: HandleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!conform_password || !password) {
-      setError('Please enter both passwords.');
-      return;
+      setError('Please enter both passwords.')
+      return
     }
-    setError('');
-    console.log({ conform_password, password });
-  };
+    setError('')
+    console.log({ conform_password, password })
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -84,7 +80,9 @@ export default function SetNewPassword() {
               />
             </div>
 
-            {error && <div className="mb-4 text-error text-center">{error}</div>}
+            {error && (
+              <div className="mb-4 text-error text-center">{error}</div>
+            )}
 
             <Button type="submit" className="w-full text-white">
               Reset Password
@@ -94,5 +92,5 @@ export default function SetNewPassword() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

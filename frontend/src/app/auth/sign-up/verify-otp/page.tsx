@@ -1,42 +1,42 @@
-'use client';
-
-import Link from 'next/link';
+'use client'
+import { Input } from '@/components/ui/input'
+import Link from 'next/link'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import FromsCoverImage from '@/components/user/from-cover-image';
-import cover_image from '@/public/images/loging_cover.svg';
-import Logo from '@/components/user/logo';
-import { useState } from 'react';
-import { OtpState, ErrorState, FormSubmitEvent } from '@/app/types/auth.d';
+} from '@/components/ui/card'
+import FromsCoverImage from '@/components/user/from-cover-image'
+import cover_image from '@/public/images/loging_cover.svg'
+import Logo from '@/components/user/logo'
+import { useState } from 'react'
+import { OtpState, ErrorState, FormSubmitEvent } from '@/types/auth'
 
 export default function OtpPage() {
-  const [otp, setOtp] = useState<OtpState>(Array(6).fill(''));
-  const [error, setError] = useState<ErrorState>('');
+  const [otp, setOtp] = useState<OtpState>(Array(6).fill(''))
+  const [error, setError] = useState<ErrorState>('')
 
   const handleOtpChange = (value: string, index: number) => {
-    const updatedOtp = [...otp];
-    updatedOtp[index] = value.slice(0, 1); // Ensure only one character
-    setOtp(updatedOtp);
-  };
+    const updatedOtp = [...otp]
+    updatedOtp[index] = value.slice(0, 1) // Ensure only one character
+    setOtp(updatedOtp)
+  }
 
   const handleVerifyOtp = (e: FormSubmitEvent) => {
-    e.preventDefault();
-    const enteredOtp = otp.join('');
+    e.preventDefault()
+    const enteredOtp = otp.join('')
     if (enteredOtp) {
-      console.log('OTP Verified:', enteredOtp);
+      console.log('OTP Verified:', enteredOtp)
     } else {
-      setError('Invalid OTP. Please try again.');
+      setError('Invalid OTP. Please try again.')
     }
-  };
+  }
 
   const handleResendOtp = () => {
-    alert('OTP has been resent!');
-  };
+    alert('OTP has been resent!')
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -63,13 +63,13 @@ export default function OtpPage() {
           <form onSubmit={handleVerifyOtp}>
             <div className="flex justify-center space-x-4 mb-6">
               {otp.map((digit, index) => (
-                <input
+                <Input
                   key={index}
                   type="text"
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleOtpChange(e.target.value, index)}
-                  className="w-12 h-12 text-center border border-gray rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-12 h-12 text-center border border-gray focus:border-primary focus:ring-white"
                 />
               ))}
             </div>
@@ -107,5 +107,5 @@ export default function OtpPage() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

@@ -1,20 +1,35 @@
-"use client"
+'use client'
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarRail, SidebarTrigger } from "@/components/ui/sidebar";
-import Image from 'next/image';
-import Link from 'next/link';
-import Logo from "@/components/user/logo";
-import NotificationsDrawer from "./notifications-drawer";
-import UserProfile from "./user-profile";
-import user_profile from '@/public/users/pic.jpg';
-import user_icon from '@/public/icons/profile.svg';
-import star_icon from '@/public/icons/star.svg';
-import bell_icon from '@/public/icons/bell.svg';
-import logout_icon from '@/public/icons/logout.svg';
-import gear_icon from '@/public/icons/gear.svg';
-import { UserProfileNavbarProps } from "@/app/types/user-components";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarTrigger,
+} from '@/components/ui/sidebar'
+import Image from 'next/image'
+import Link from 'next/link'
+import Logo from '@/components/user/logo'
+import NotificationsDrawer from './notifications-drawer'
+import UserProfile from './user-profile'
+import user_profile from '@/public/users/pic.jpg'
+import user_icon from '@/public/icons/profile.svg'
+import star_icon from '@/public/icons/star.svg'
+import bell_icon from '@/public/icons/bell.svg'
+import logout_icon from '@/public/icons/logout.svg'
+import gear_icon from '@/public/icons/gear.svg'
+import { UserProfileNavbarProps } from '@/types/user-components'
 
-export default function UserProfileNavbar({ children }: UserProfileNavbarProps) {
+export default function UserProfileNavbar({
+  children,
+}: UserProfileNavbarProps) {
   return (
     <SidebarProvider>
       <Sidebar>
@@ -33,40 +48,46 @@ export default function UserProfileNavbar({ children }: UserProfileNavbarProps) 
         <SidebarContent>
           <SidebarGroup>
             <SidebarMenu>
-              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/profile">
-                  <Image src={user_icon} alt="logo" width={15} height={15} />
+              <Link className="flex gap-2 " href="/user-profile/profile">
+                <SidebarMenuButton className="">
+                  <Image
+                    className=""
+                    src={user_icon}
+                    alt="logo"
+                    width={15}
+                    height={15}
+                  />
                   Profile
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
 
-              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/reviews">
+              <Link className="flex gap-2" href="/user-profile/reviews">
+                <SidebarMenuButton className="">
                   <Image src={star_icon} alt="logo" width={15} height={15} />
                   Reviews
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
 
-              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/notifications">
+              <Link className="flex gap-2" href="/user-profile/notifications">
+                <SidebarMenuButton className="">
                   <Image src={bell_icon} alt="logo" width={15} height={15} />
                   Notifications
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
 
-              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/account">
+              <Link className="flex gap-2" href="/user-profile/account">
+                <SidebarMenuButton className="">
                   <Image src={gear_icon} alt="logo" width={15} height={15} />
                   Account
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
 
-              <SidebarMenuButton className="mt-10 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2 hover:text-red-500" href="/">
+              <Link className="flex gap-2 " href="/">
+                <SidebarMenuButton className="focus:bg-error mt-10 ">
                   <Image src={logout_icon} alt="logo" width={15} height={15} />
                   Logout
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>
@@ -87,10 +108,8 @@ export default function UserProfileNavbar({ children }: UserProfileNavbarProps) 
           </div>
         </header>
 
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          {children}
-        </div>
+        <div className="flex flex-1 flex-col gap-4 pt-3">{children}</div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

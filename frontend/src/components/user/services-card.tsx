@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import { Star } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import Tag from '@/components/user/tag';
-import { ServicesCardProps } from '@/app/types/user-components';
+import Image from 'next/image'
+import { Star } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import Tag from '@/components/user/tag'
+import { ServicesCardProps } from '@/types/user-components'
 
 export default function ServicesCard(props: ServicesCardProps) {
   return (
@@ -34,5 +34,5 @@ export default function ServicesCard(props: ServicesCardProps) {
         <p className="text-sm text-gray-600">{props.address}</p>
       </CardContent>
     </Card>
-  );
+  )
 }

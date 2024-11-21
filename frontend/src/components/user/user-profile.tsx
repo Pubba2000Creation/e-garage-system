@@ -1,9 +1,9 @@
-import React from 'react';
-import { Dropdown } from 'antd';
-import Link from 'next/link';
-import Image from 'next/image';
-import default_profile_pic from '@/public/users/default_profile_pic.svg';
-import { UserProfileProps, UserProfileMenuItems } from '@/app/types/user-components';
+import React from 'react'
+import { Dropdown } from 'antd'
+import Link from 'next/link'
+import Image from 'next/image'
+import default_profile_pic from '@/public/users/default_profile_pic.svg'
+import { UserProfileProps, UserProfileMenuItems } from '@/types/user-components'
 
 const items: UserProfileMenuItems = [
   {
@@ -15,12 +15,12 @@ const items: UserProfileMenuItems = [
     danger: true,
     label: <Link href="/">Logout</Link>,
   },
-];
+]
 
 export default function UserProfile({ profile_pic }: UserProfileProps) {
   return (
     <Dropdown menu={{ items }}>
-      <Link href='' onClick={(e) => e.preventDefault()}>
+      <Link href="" onClick={(e) => e.preventDefault()}>
         <div className="w-10 h-10 relative">
           <Image
             src={profile_pic || default_profile_pic}
@@ -31,5 +31,5 @@ export default function UserProfile({ profile_pic }: UserProfileProps) {
         </div>
       </Link>
     </Dropdown>
-  );
+  )
 }

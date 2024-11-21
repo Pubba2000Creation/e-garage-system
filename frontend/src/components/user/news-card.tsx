@@ -1,10 +1,10 @@
 // NewsCard.tsx
-'use client';
+'use client'
 
-import Image from 'next/image';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import TimeBadge from '@/components/user/time-badge';
-import { NewsCardProps } from '@/app/types/user-components'; // Import the type
+import Image from 'next/image'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import TimeBadge from '@/components/user/time-badge'
+import { NewsCardProps } from '@/types/user-components' // Import the type
 
 export default function NewsCard(props: NewsCardProps) {
   return (
@@ -37,7 +37,5 @@ export default function NewsCard(props: NewsCardProps) {
         </div> */}
       </CardContent>
     </Card>
-  );
+  )
 }
-
-
