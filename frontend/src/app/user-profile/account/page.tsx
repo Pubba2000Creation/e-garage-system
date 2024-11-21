@@ -35,7 +35,7 @@ export default function Account() {
       onSubmit={handleSubmit}
       className='max-w-4xl p-6 bg-white rounded-lg shadow-md'    
     >
-      <h2 className=" text-3xl font-bold mb-8 ">Account</h2>
+      <h1 className=" text-lg font-semibold md:text-2xl mb-8 ">Account</h1>
 
       <div className='flex '>
         <div className='w-2/5'>

@@ -80,7 +80,7 @@ export default function Profile() {
       onSubmit={handleSubmit}
       className="max-w-4xl p-6 bg-white rounded-lg shadow-md "
     >
-      <h2 className="text-3xl font-bold mb-8">Profile</h2>
+      <h1 className="text-lg font-semibold md:text-2xl mb-8">Profile</h1>
       {/* Vehicle Type Section */}
       <div className="mb-6 flex">
         <div className="my-auto">
