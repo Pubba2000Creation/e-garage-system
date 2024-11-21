@@ -5,15 +5,30 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
-run Your Application
+run Your Application:
 npm run dev
 
-Build Your Application
+Build Your Application:
 npm run build
 
-Start the Production Server
+Start the Production Server:
 npm start
 
+Install open-cli:
+npm install open-cli --save-dev
+
+Then update them if necessary:
+npm update
+
+Update Dependencies: Ensure that you have the latest versions of your packages:
+npm outdated
+
+Clear npm Cache:
+npm cache clean --force
+
+Run `npm audit` for details.
+npm audit fix
+npm audit fix --force
 
 # or
 yarn dev
