@@ -19,7 +19,7 @@ import {
   ErrorHandler,
   ProvinceHandler,
   DistrictHandler,
-} from '@/app/types/auth.d'
+} from '@/types/auth'
 import { Textarea } from '@/components/ui/textarea'
 
 export default function AddressForm() {
@@ -30,7 +30,8 @@ export default function AddressForm() {
 
   const handleAddressChange: AddressHandler = (value) => setAddress(value)
   const handleProvinceChange: ProvinceHandler = (value) => setProvince(value)
-  const handleDistrictChange: DistrictHandler = (value) =>setSelectedDistrict(value)
+  const handleDistrictChange: DistrictHandler = (value) =>
+    setSelectedDistrict(value)
   const handleError: ErrorHandler = (message) => setError(message)
 
   const handleSubmit = (e: React.FormEvent) => {

@@ -3,10 +3,7 @@ import { Dropdown } from 'antd'
 import Link from 'next/link'
 import Image from 'next/image'
 import default_profile_pic from '@/public/users/default_profile_pic.svg'
-import {
-  UserProfileProps,
-  UserProfileMenuItems,
-} from '@/app/types/user-components'
+import { UserProfileProps, UserProfileMenuItems } from '@/types/user-components'
 
 const items: UserProfileMenuItems = [
   {

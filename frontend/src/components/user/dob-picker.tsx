@@ -2,7 +2,7 @@
 import React from 'react'
 import { ConfigProvider, DatePicker, DatePickerProps } from 'antd'
 import { theme } from 'antd' // Import the theme object
-import { DobPickerProps } from '@/app/types/user-components' // Import the type
+import { DobPickerProps } from '@/types/user-components' // Import the type
 
 const themeConfig = {
   algorithm: theme.defaultAlgorithm, // Use the default algorithm
@@ -13,7 +13,7 @@ const themeConfig = {
     controlOutline: '#99A3A3', // Focus border color (outline color)
     controlOutlineWidth: 1, // Outline width when focused
   },
-  components: { 
+  components: {
     DatePicker: {
       colorPrimary: '', // Primary color for the DatePicker
       colorPrimaryHover: '', // Hover color of the input

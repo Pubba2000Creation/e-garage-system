@@ -13,9 +13,10 @@ import StarRating from '@/components/ui/star-rating'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { IoMdCloseCircle } from 'react-icons/io'
+import { MdModeEdit } from 'react-icons/md'
 import { HandleSubmitEvent, TextareaChangeEvent } from '@/types/user-components'
 
-export default function AddReview() {
+export default function EditReview() {
   const [rating, setRating] = useState<number>(0)
   const [review, setReview] = useState<string>('')
   const [error, setError] = useState<string>('')
@@ -46,10 +47,10 @@ export default function AddReview() {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <button
-          type="button"
-          className="border font-normal text-sm cursor-pointer border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none"
+          aria-label="Edit Review"
+          className="text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-200  p-1 rounded-full"
         >
-          + Add Reviews
+          <MdModeEdit size={15} />
         </button>
       </AlertDialogTrigger>
       <AlertDialogContent>

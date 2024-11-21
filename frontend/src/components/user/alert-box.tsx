@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation'
-import { AlertBoxProps } from '@/app/types/user-components'
+import { AlertBoxProps } from '@/types/user-components'
 
 export default function AlertBox(props: AlertBoxProps) {
   const router = useRouter()

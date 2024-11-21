@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Drawer } from 'antd'
 import NotificationBtn from './notification-btn'
 import AlertBox from './alert-box'
-import { NotificationsDrawerProps } from '@/app/types/user-components' // Import the type
+import { NotificationsDrawerProps } from '@/types/user-components' // Import the type
 
 export default function NotificationsDrawer(props: NotificationsDrawerProps) {
   const [open, setOpen] = useState(false)

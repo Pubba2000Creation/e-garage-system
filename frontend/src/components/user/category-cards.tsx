@@ -1,7 +1,7 @@
 // CategoryCards.tsx
 import React from 'react'
 import Image from 'next/image'
-import { CategoryCardsProps } from '@/app/types/user-components'
+import { CategoryCardsProps } from '@/types/user-components'
 
 export default function CategoryCards(props: CategoryCardsProps) {
   return (

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Star } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Tag from '@/components/user/tag'
-import { ServicesCardProps } from '@/app/types/user-components'
+import { ServicesCardProps } from '@/types/user-components'
 
 export default function ServicesCard(props: ServicesCardProps) {
   return (

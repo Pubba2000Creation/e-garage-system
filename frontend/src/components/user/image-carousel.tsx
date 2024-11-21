@@ -10,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import { ImageCarouselProps } from '@/app/types/user-components' // Import the type
+import { ImageCarouselProps } from '@/types/user-components' // Import the type
 
 export default function ImageCarousel({ images }: ImageCarouselProps) {
   return (
@@ -19,7 +19,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
         align: 'start',
         loop: true,
       }}
-      className="w-full mx-auto"
+      className="w-full mx-auto cursor-grab "
     >
       <CarouselContent className="-ml-1">
         {images.map((src, index) => (

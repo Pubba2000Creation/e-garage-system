@@ -1,4 +1,4 @@
-import { TimeBagerProps } from '@/app/types/user-components'
+import { TimeBagerProps } from '@/types/user-components'
 import React from 'react'
 
 export default function TimeBadge(props: TimeBagerProps) {

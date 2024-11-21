@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/popover'
 
 // Import types
-import { SelectServicesComboboxProps } from '@/app/types/user-components'
+import { SelectServicesComboboxProps } from '@/types/user-components'
 import { services } from '@/data/serviceOptions' // Adjust the path as needed
 
 // Define the options for services

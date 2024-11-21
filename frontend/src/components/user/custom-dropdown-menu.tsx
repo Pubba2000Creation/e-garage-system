@@ -1,7 +1,7 @@
 // CustomDropdown.tsx
 
 import React, { useState, useEffect, useRef } from 'react'
-import { CustomDropdownProps } from '@/app/types/user-components.d'
+import { CustomDropdownProps } from '@/types/user-components'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 
 export default function CustomDropdown({
@@ -47,8 +47,10 @@ export default function CustomDropdown({
         onClick={toggleDropdown}
         className="inline-flex justify-center w-full rounded-md border border-light_gray shadow-sm px-2 py-2 bg-white text-sm font-extralight text-black hover:border-primary hover:text-primary focus:outline-none"
       >
-        {selected || options[0]}
-        <RiArrowDropDownLine size={19} />
+        <span className="flex">
+          <p className="text-xs">{selected || options[0]}</p>
+          <RiArrowDropDownLine className="-mt-0.5" size={19} />
+        </span>
       </button>
 
       {/* Options List */}

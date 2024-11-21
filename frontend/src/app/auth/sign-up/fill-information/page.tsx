@@ -17,7 +17,7 @@ import Logo from '@/components/user/logo'
 import { useState } from 'react'
 import DobPicker from '@/components/user/dob-picker'
 import VehicleTypeSelector from '@/components/user/vehicle-type-selector'
-import { VehicleSelectionType, DateChangeType } from '@/app/types/auth.d'
+import { VehicleSelectionType, DateChangeType } from '@/types/auth'
 
 export default function FillInformation() {
   const [firstName, setFirstName] = useState<string>('')

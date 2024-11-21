@@ -13,10 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
-import {
-  VehicleTypeSelectorProps,
-  VehicleType,
-} from '@/app/types/user-components'
+import { VehicleTypeSelectorProps, VehicleType } from '@/types/user-components'
 
 const vehicleTypes: VehicleType[] = [
   { id: 'car', label: 'Car' },

@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 // Import the ServiceBannerProps type from the types file
-import { ServiceBannerProps } from '@/app/types/user-components'
+import { ServiceBannerProps } from '@/types/user-components'
 
 export default function ServiceBanner({
   title,

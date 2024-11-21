@@ -32,7 +32,7 @@ import logout_icon from '@/public/icons/logout.svg'
 import gear_icon from '@/public/icons/gear.svg'
 import analytics_icon from '@/public/icons/analytics.svg'
 import mangement_icon from '@/public/icons/mange-services.svg'
-import { ServiceProviderNavbarProps } from '@/app/types/service-provider-components'
+import { ServiceProviderNavbarProps } from '@/types/service-provider-components'
 
 export default function ServiceProviderNavbar({
   children,
@@ -56,7 +56,7 @@ export default function ServiceProviderNavbar({
           <SidebarGroup>
             <SidebarMenu>
               <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/profile">
+                <Link className="flex gap-2" href="/service-provider/analytics">
                   <Image
                     src={analytics_icon}
                     alt="logo"
@@ -68,7 +68,7 @@ export default function ServiceProviderNavbar({
               </SidebarMenuButton>
 
               <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/reviews">
+                <Link className="flex gap-2" href="/service-provider/manage-service">
                   <Image
                     src={mangement_icon}
                     alt="logo"
@@ -80,28 +80,28 @@ export default function ServiceProviderNavbar({
               </SidebarMenuButton>
 
               <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/notifications">
+                <Link className="flex gap-2" href="/service-provider/reviews">
                   <Image src={star_icon} alt="logo" width={15} height={15} />
                   Reviews
                 </Link>
               </SidebarMenuButton>
 
               <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/account">
+                <Link className="flex gap-2" href="/service-provider/profile">
                   <Image src={user_icon} alt="logo" width={15} height={15} />
                   Profile
                 </Link>
               </SidebarMenuButton>
 
               <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/account">
+                <Link className="flex gap-2" href="/service-provider/notifications">
                   <Image src={bell_icon} alt="logo" width={15} height={15} />
                   Notifications
                 </Link>
               </SidebarMenuButton>
 
               <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/account">
+                <Link className="flex gap-2" href="/service-provider/account">
                   <Image src={gear_icon} alt="logo" width={15} height={15} />
                   Account
                 </Link>
