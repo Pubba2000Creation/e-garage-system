@@ -1,48 +1,48 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
+import Link from 'next/link'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import FromsCoverImage from '@/components/user/from-cover-image';
-import cover_image from '@/public/images/loging_cover.svg';
-import Logo from '@/components/user/logo';
-import { useState } from 'react';
+} from '@/components/ui/card'
+import FromsCoverImage from '@/components/user/from-cover-image'
+import cover_image from '@/public/images/loging_cover.svg'
+import Logo from '@/components/user/logo'
+import { useState } from 'react'
 import {
   OtpInputState,
   ErrorState,
   HandleOtpChange,
   HandleVerifyOtp,
   HandleResendOtp,
-} from '@/app/types/auth.d';
+} from '@/app/types/auth.d'
 
 export default function OtpPage() {
-  const [otp, setOtp] = useState<OtpInputState>(Array(6).fill(''));
-  const [error, setError] = useState<ErrorState>('');
+  const [otp, setOtp] = useState<OtpInputState>(Array(6).fill(''))
+  const [error, setError] = useState<ErrorState>('')
 
   const handleOtpChange: HandleOtpChange = (value, index) => {
-    const updatedOtp = [...otp];
-    updatedOtp[index] = value.slice(0, 1);
-    setOtp(updatedOtp);
-  };
+    const updatedOtp = [...otp]
+    updatedOtp[index] = value.slice(0, 1)
+    setOtp(updatedOtp)
+  }
 
   const handleVerifyOtp: HandleVerifyOtp = (e) => {
-    e.preventDefault();
-    const enteredOtp = otp.join('');
+    e.preventDefault()
+    const enteredOtp = otp.join('')
     if (enteredOtp) {
-      console.log('OTP Verified:', enteredOtp);
+      console.log('OTP Verified:', enteredOtp)
     } else {
-      setError('Invalid OTP. Please try again.');
+      setError('Invalid OTP. Please try again.')
     }
-  };
+  }
 
   const handleResendOtp: HandleResendOtp = () => {
-    alert('OTP has been resent!');
-  };
+    alert('OTP has been resent!')
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -57,9 +57,12 @@ export default function OtpPage() {
 
       <Card className="m-auto w-full max-w-md rounded-2xl overflow-hidden shadow-xl border-gray">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Enter the OTP</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">
+            Enter the OTP
+          </CardTitle>
           <CardDescription className="text-center">
-            Enter the OTP code that we sent to your email. Be careful not to share the code with anyone.
+            Enter the OTP code that we sent to your email. Be careful not to
+            share the code with anyone.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -77,7 +80,9 @@ export default function OtpPage() {
               ))}
             </div>
 
-            {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
+            {error && (
+              <div className="mb-4 text-red-500 text-center">{error}</div>
+            )}
 
             <button
               type="submit"
@@ -108,5 +113,5 @@ export default function OtpPage() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

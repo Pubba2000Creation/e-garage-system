@@ -1,8 +1,8 @@
 // Btn.tsx
-"use client";
+'use client'
 
 import React from 'react'
-import { BtnProps } from '@/app/types/user-components';
+import { BtnProps } from '@/app/types/user-components'
 
 export default function Btn(props: BtnProps) {
   return (

@@ -1,8 +1,8 @@
-"use client";
-import * as React from "react";
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+'use client'
+import * as React from 'react'
+import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 import {
   Command,
   CommandEmpty,
@@ -10,31 +10,32 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from '@/components/ui/command'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from '@/components/ui/popover'
 
 // Import types
-import { SelectServicesComboboxProps, ServiceOption } from "@/app/types/user-components";
+import { SelectServicesComboboxProps } from '@/app/types/user-components'
+import { services } from '@/data/serviceOptions' // Adjust the path as needed
 
 // Define the options for services
-const services: ServiceOption[] = [
-  { value: "Repair Shops", label: "Repair Shops" },
-  { value: "Spare Parts", label: "Spare Parts" },
-  { value: "Oil Changes", label: "Oil Changes" },
-  { value: "Vehicle Inspections", label: "Vehicle Inspections" },
-  { value: "Tire Services", label: "Tire Services" },
-  { value: "Service Centers", label: "Service Centers" },
-];
+// const services: ServiceOption[] = [
+//   { value: "Repair Shops", label: "Repair Shops" },
+//   { value: "Spare Parts", label: "Spare Parts" },
+//   { value: "Oil Changes", label: "Oil Changes" },
+//   { value: "Vehicle Inspections", label: "Vehicle Inspections" },
+//   { value: "Tire Services", label: "Tire Services" },
+//   { value: "Service Centers", label: "Service Centers" },
+// ];
 
 export default function SelectServicesCombobox({
   value,
   onChange,
 }: SelectServicesComboboxProps) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -43,11 +44,11 @@ export default function SelectServicesCombobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between border focus:border-primary border-light_gray"
+          className="w-full justify-between border focus:border-white border-white"
         >
           {value
             ? services.find((service) => service.value === value)?.label
-            : "Select Services..."}
+            : 'Select Services...'}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -62,15 +63,15 @@ export default function SelectServicesCombobox({
                   key={service.value}
                   value={service.value}
                   onSelect={(currentValue: string) => {
-                    onChange(currentValue === value ? "" : currentValue);
-                    setOpen(false);
+                    onChange(currentValue === value ? '' : currentValue)
+                    setOpen(false)
                   }}
                 >
                   {service.label}
                   <CheckIcon
                     className={cn(
-                      "ml-auto h-4 w-4",
-                      value === service.value ? "opacity-100" : "opacity-0"
+                      'ml-auto h-4 w-4',
+                      value === service.value ? 'opacity-100' : 'opacity-0'
                     )}
                   />
                 </CommandItem>
@@ -80,5 +81,5 @@ export default function SelectServicesCombobox({
         </Command>
       </PopoverContent>
     </Popover>
-  );
+  )
 }

@@ -1,16 +1,16 @@
 // ImageCarousel.tsx
-'use client';
+'use client'
 
-import * as React from 'react';
-import Image from 'next/image';
+import * as React from 'react'
+import Image from 'next/image'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
-import { ImageCarouselProps } from '@/app/types/user-components'; // Import the type
+} from '@/components/ui/carousel'
+import { ImageCarouselProps } from '@/app/types/user-components' // Import the type
 
 export default function ImageCarousel({ images }: ImageCarouselProps) {
   return (
@@ -39,5 +39,5 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
-  );
+  )
 }

@@ -1,32 +1,32 @@
-'use client';
+'use client'
 
-import FromsCoverImage from '@/components/user/from-cover-image';
-import cover_image from '@/public/images/loging_cover.svg';
-import Logo from '@/components/user/logo';
-import { useState } from 'react';
-import Link from 'next/link';
-import ProfilePictureUploader from '@/components/user/profile-picture-uploader';
+import FromsCoverImage from '@/components/user/from-cover-image'
+import cover_image from '@/public/images/loging_cover.svg'
+import Logo from '@/components/user/logo'
+import { useState } from 'react'
+import Link from 'next/link'
+import ProfilePictureUploader from '@/components/user/profile-picture-uploader'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { ImageHandler } from '@/app/types/auth'; // Import type from types file
+} from '@/components/ui/card'
+import { ImageHandler } from '@/app/types/auth' // Import type from types file
 
 export default function ProfilePictureForm() {
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [profileImage, setProfileImage] = useState<string | null>(null)
 
   const handleImageSelect: ImageHandler = (image) => {
-    setProfileImage(image); // Update the state when a new image is selected
-  };
+    setProfileImage(image) // Update the state when a new image is selected
+  }
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
     // Handle the form submission here, including the profile image
-    console.log('Form submitted with profile image:', profileImage);
-  };
+    console.log('Form submitted with profile image:', profileImage)
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -76,5 +76,5 @@ export default function ProfilePictureForm() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

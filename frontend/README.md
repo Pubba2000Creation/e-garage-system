@@ -5,17 +5,30 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
-run Your Application
+run Your Application:
 npm run dev
 
-Build Your Application
+Build Your Application:
 npm run build
 
-Start the Production Server
+Start the Production Server:
 npm start
 
 Install open-cli:
 npm install open-cli --save-dev
+
+Then update them if necessary:
+npm update
+
+Update Dependencies: Ensure that you have the latest versions of your packages:
+npm outdated
+
+Clear npm Cache:
+npm cache clean --force
+
+Run `npm audit` for details.
+npm audit fix
+npm audit fix --force
 
 # or
 yarn dev
@@ -45,6 +58,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-
-http://localhost:3000/auth/sign-up/verify-otp

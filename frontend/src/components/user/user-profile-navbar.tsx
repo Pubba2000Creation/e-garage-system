@@ -1,20 +1,35 @@
-"use client"
+'use client'
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarRail, SidebarTrigger } from "@/components/ui/sidebar";
-import Image from 'next/image';
-import Link from 'next/link';
-import Logo from "@/components/user/logo";
-import NotificationsDrawer from "./notifications-drawer";
-import UserProfile from "./user-profile";
-import user_profile from '@/public/users/pic.jpg';
-import user_icon from '@/public/icons/profile.svg';
-import star_icon from '@/public/icons/star.svg';
-import bell_icon from '@/public/icons/bell.svg';
-import logout_icon from '@/public/icons/logout.svg';
-import gear_icon from '@/public/icons/gear.svg';
-import { UserProfileNavbarProps } from "@/app/types/user-components";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarTrigger,
+} from '@/components/ui/sidebar'
+import Image from 'next/image'
+import Link from 'next/link'
+import Logo from '@/components/user/logo'
+import NotificationsDrawer from './notifications-drawer'
+import UserProfile from './user-profile'
+import user_profile from '@/public/users/pic.jpg'
+import user_icon from '@/public/icons/profile.svg'
+import star_icon from '@/public/icons/star.svg'
+import bell_icon from '@/public/icons/bell.svg'
+import logout_icon from '@/public/icons/logout.svg'
+import gear_icon from '@/public/icons/gear.svg'
+import { UserProfileNavbarProps } from '@/app/types/user-components'
 
-export default function UserProfileNavbar({ children }: UserProfileNavbarProps) {
+export default function UserProfileNavbar({
+  children,
+}: UserProfileNavbarProps) {
   return (
     <SidebarProvider>
       <Sidebar>
@@ -87,10 +102,8 @@ export default function UserProfileNavbar({ children }: UserProfileNavbarProps) 
           </div>
         </header>
 
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          {children}
-        </div>
+        <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

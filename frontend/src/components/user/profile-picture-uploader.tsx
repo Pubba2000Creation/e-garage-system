@@ -1,17 +1,18 @@
 'use client'
 
 import { useState, ChangeEvent } from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Upload } from "lucide-react"
-
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Upload } from 'lucide-react'
 
 interface ProfilePictureUploaderProps {
-  onImageSelect: (image: string | null) => void; // Prop to pass selected image to parent
+  onImageSelect: (image: string | null) => void // Prop to pass selected image to parent
 }
 
-export default function ProfilePictureUploader({ onImageSelect }: ProfilePictureUploaderProps) {
+export default function ProfilePictureUploader({
+  onImageSelect,
+}: ProfilePictureUploaderProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -22,13 +23,13 @@ export default function ProfilePictureUploader({ onImageSelect }: ProfilePicture
     if (file) {
       // Check for file size
       if (file.size > 5 * 1024 * 1024) {
-        setError("File size should be less than 5MB")
+        setError('File size should be less than 5MB')
         return
       }
 
       // Check if the file is an image
       if (!file.type.startsWith('image/')) {
-        setError("Please upload an image file")
+        setError('Please upload an image file')
         return
       }
 
@@ -47,7 +48,7 @@ export default function ProfilePictureUploader({ onImageSelect }: ProfilePicture
   }
 
   const handleButtonClick = () => {
-    const input = document.getElementById("picture") as HTMLInputElement
+    const input = document.getElementById('picture') as HTMLInputElement
     if (input) {
       input.click()
     }
@@ -56,7 +57,11 @@ export default function ProfilePictureUploader({ onImageSelect }: ProfilePicture
   return (
     <div className="flex flex-col items-center space-y-4">
       <Avatar className="w-28 h-28 ">
-        <AvatarImage className='border border-gray rounded-full' src={selectedImage || '/placeholder.svg?height=128&width=128'} alt="Profile picture" />
+        <AvatarImage
+          className="border border-gray rounded-full"
+          src={selectedImage || '/placeholder.svg?height=128&width=128'}
+          alt="Profile picture"
+        />
         <AvatarFallback>
           <Upload className="w-8 h-8 text-muted-foreground" />
         </AvatarFallback>
@@ -71,13 +76,13 @@ export default function ProfilePictureUploader({ onImageSelect }: ProfilePicture
           onChange={handleImageChange}
         />
         <Label htmlFor="picture" className="cursor-pointer">
-          <button 
-            type="button" 
+          <button
+            type="button"
             onClick={handleButtonClick}
             className="border font-normal cursor-pointer border-primary text-primary hover:bg-primary hover:text-white px-3 py-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-            >Upload Picture  
+          >
+            Upload Picture
           </button>
-          
         </Label>
         {error && <p className="text-sm text-destructive">{error}</p>}
       </div>
