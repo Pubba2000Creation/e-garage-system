@@ -20,7 +20,7 @@ export default function Notifications() {
         className='max-w-4xl p-6 bg-white rounded-lg shadow-md'
       >
         
-        <h2 className=" text-3xl font-bold mb-8 ">Notification Settings</h2>
+        <h1 className=" text-lg font-semibold md:text-2xl mb-8 ">Notification Settings</h1>
 
         <div className='mb-5 w-2/5'>
           <div className='flex justify-between'>

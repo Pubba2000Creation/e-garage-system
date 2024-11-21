@@ -9,7 +9,7 @@ export default function Reviews() {
     <>
       <section className='max-w-4xl p-6  rounded-lg shadow-md'>
       {/* add prps  */}
-        <h2 className=" text-3xl font-bold mb-8 ">Reviews ({reviewscount}) </h2>  
+        <h1 className=" text-lg font-semibold md:text-2xl mb-8 ">Reviews ({reviewscount}) </h1>  
         <div className=''>
          
           <ReviewServiceCard 
