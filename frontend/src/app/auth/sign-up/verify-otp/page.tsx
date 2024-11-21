@@ -1,5 +1,5 @@
 'use client'
-
+import {Input} from '@/components/ui/input'
 import Link from 'next/link'
 import {
   Card,
@@ -63,13 +63,13 @@ export default function OtpPage() {
           <form onSubmit={handleVerifyOtp}>
             <div className="flex justify-center space-x-4 mb-6">
               {otp.map((digit, index) => (
-                <input
+                <Input
                   key={index}
                   type="text"
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleOtpChange(e.target.value, index)}
-                  className="w-12 h-12 text-center border border-gray rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-12 h-12 text-center border border-gray focus:border-primary focus:ring-white"
                 />
               ))}
             </div>

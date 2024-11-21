@@ -36,7 +36,7 @@ export default function SelectDistrictCombobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between border focus:border-primary border-light_gray"
+          className="w-full justify-between border focus:border-primary border-gray"
         >
           {value
             ? province.find((d) => d.value === value)?.label
@@ -46,7 +46,7 @@ export default function SelectDistrictCombobox({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0 bg-white">
         <Command>
-          <CommandInput placeholder="Search district..." className="h-9" />
+          <CommandInput placeholder="Search Province..." className="h-9" />
           <CommandList>
             <CommandEmpty>No province found.</CommandEmpty>
             <CommandGroup>

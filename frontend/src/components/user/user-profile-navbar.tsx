@@ -48,40 +48,47 @@ export default function UserProfileNavbar({
         <SidebarContent>
           <SidebarGroup>
             <SidebarMenu>
-              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/profile">
-                  <Image src={user_icon} alt="logo" width={15} height={15} />
+              <Link className="flex gap-2 " href="/user-profile/profile">
+                <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground focus:bg-primary">
+                  <Image
+                    className=""
+                    src={user_icon}
+                    alt="logo"
+                    width={15}
+                    height={15}
+                  />
                   Profile
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
 
-              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/reviews">
+              <Link className="flex gap-2" href="/user-profile/reviews">
+                <SidebarMenuButton className=" focus:bg-primary data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
                   <Image src={star_icon} alt="logo" width={15} height={15} />
                   Reviews
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
 
-              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/notifications">
+              <Link className="flex gap-2" href="/user-profile/notifications">
+                <SidebarMenuButton className="focus:bg-primary data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
                   <Image src={bell_icon} alt="logo" width={15} height={15} />
                   Notifications
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
 
-              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2" href="/user-profile/account">
+              <Link className="flex gap-2" href="/user-profile/account">
+                <SidebarMenuButton className="focus:bg-primary data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
                   <Image src={gear_icon} alt="logo" width={15} height={15} />
                   Account
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
 
-              <SidebarMenuButton className="mt-10 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                <Link className="flex gap-2 hover:text-red-500" href="/">
+              <Link className="flex gap-2 " href="/">
+                <SidebarMenuButton className="focus:bg-error mt-10 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
                   <Image src={logout_icon} alt="logo" width={15} height={15} />
                   Logout
-                </Link>
-              </SidebarMenuButton>
+                </SidebarMenuButton>
+              </Link>
+
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>
