@@ -72,7 +72,7 @@ export default function CreateAccount() {
                 placeholder="user@example.com"
                 type="email"
                 required
-                className="border-gray focus:border-primary focus:ring-white"
+                className="border-light-gray focus:border-primary focus:ring-white"
               />
             </div>
 
@@ -87,7 +87,7 @@ export default function CreateAccount() {
                 placeholder="********"
                 type="password"
                 required
-                className="border-gray focus:border-primary focus:ring-white"
+                className="border-light-gray focus:border-primary focus:ring-white"
               />
             </div>
 
@@ -102,7 +102,7 @@ export default function CreateAccount() {
                 placeholder="********"
                 type="password"
                 required
-                className="border-gray focus:border-primary focus:ring-white"
+                className="border-light-gray focus:border-primary focus:ring-white"
               />
             </div>
 

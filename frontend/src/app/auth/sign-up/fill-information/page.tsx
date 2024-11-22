@@ -96,7 +96,7 @@ export default function FillInformation() {
                   type="text"
                   name="firstName"
                   placeholder="Jone"
-                  className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
+                  className="block w-full px-4 py-2 border-light-gray focus:border-primary focus:ring-white"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   required
@@ -111,7 +111,7 @@ export default function FillInformation() {
                   type="text"
                   name="lastName"
                   placeholder="Doe"
-                  className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
+                  className="block w-full px-4 py-2 border-light-gray focus:border-primary focus:ring-white"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   required
@@ -159,7 +159,7 @@ export default function FillInformation() {
                 type="text"
                 name="phoneNumber"
                 placeholder="0761234567"
-                className="block w-full px-4 py-2 border-gray focus:border-primary focus:ring-white"
+                className="block w-full px-4 py-2 border-light-gray focus:border-primary focus:ring-white"
                 value={phoneNumber}
                 onInput={(e) => {
                   const input = e.target as HTMLInputElement

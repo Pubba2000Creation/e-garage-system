@@ -79,7 +79,7 @@ export default function LoginForm() {
                 placeholder="user@example.com"
                 type="email"
                 required
-                className="border-gray focus:border-primary focus:ring-white"
+                className="border-light-gray focus:border-primary focus:ring-white"
               />
             </div>
             <div className="space-y-2">
@@ -101,7 +101,7 @@ export default function LoginForm() {
                 placeholder="********"
                 type="password"
                 required
-                className="border-gray focus:border-primary focus:ring-white"
+                className="border-light-gray focus:border-primary focus:ring-white"
               />
             </div>
 
