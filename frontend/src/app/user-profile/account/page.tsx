@@ -27,7 +27,7 @@ export default function Account() {
       setError('Please enter all required fields')
       return
     }
-  }
+  } 
 
   return( 
   <>  
