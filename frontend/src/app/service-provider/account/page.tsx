@@ -73,16 +73,17 @@ export default function Account() {
         </div>
       </div>
 
-      <div className='mt-8 flex space-x-5 '>
+      {/* <div className='mt-8 flex space-x-5 '>
         <div>
           <p>Become a Service Owner</p>
           <p className='mt-1 text-sm text-gray'>Lorem ipsum dolor sit amet consectetur. Ullamcorper pretium phasellus.</p>
         </div>
         <Border_btn name={'Become a Service Owner'} fun={() => { }} />
-      </div>  
+      </div>   */}
 
-      <div className='mt-8 flex '>    
-      </div>
+      {/* <div className='mt-8 flex '>    
+      </div> */}
+      
     </form>
     
   </>
