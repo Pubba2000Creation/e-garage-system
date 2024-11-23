@@ -55,7 +55,7 @@ export default function CustomDropdown({
 
       {/* Options List */}
       {isOpen && (
-        <div className="absolute mt-2 w-28 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="absolute mt-2 w-28 rounded-md shadow-lg  bg-white ring-1 ring-black ring-opacity-5">
           <ul className="py-1">
             {options.map((option, index) => (
               <li

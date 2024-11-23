@@ -32,6 +32,7 @@ const chartData = [
 ]
 
 export default function Analytics() {
+  const viewCount = 1700
   
   const handleFilterChange = (selectedOption: string) => {
     console.log('Selected filter:', selectedOption)
@@ -41,8 +42,25 @@ export default function Analytics() {
   }
   return (
     <>
-      <section className="flex flex-1 flex-col gap-4 p-0 lg:gap-6 lg:p-0">     
-        <h1 className="text-lg font-semibold md:text-2xl">Analytics Dashboard</h1>
+      <section className="flex flex-1 flex-col gap-4 p-0 lg:gap-6 lg:p-0">
+        <div className="flex justify-between">
+          <h1 className="text-lg font-semibold md:text-2xl">Analytics Dashboard</h1>
+          <div className='flex gap-2 '>
+              <div className=''>
+                <CustomDropdown
+                  options={serviceOptions}
+                  onSelect={handleServiceOptionsChange}
+                />
+              </div>
+              <div>
+                <CustomDropdown
+                  options={filterOptions}
+                  onSelect={handleFilterChange}
+                />
+              </div>
+          </div>
+        </div>     
+        
              
         <div className="grid sm:grid-cols-3 gap-3   ">
           {/* Statistic Card with IoAnalytics Icon */}
@@ -69,11 +87,11 @@ export default function Analytics() {
               
         </div>
 
-        <div>
-          <p className='text-lg font-medium text-black text-left'>Total Views </p>
+        <div>        
           <div className='flex justify-between'>
-            <p className='text-lg font-semibold text-black'>1500</p>
-            <div className='flex gap-2 '>
+            <p className='text-lg font-medium text-black text-left'>Total Views <span className='text-lg font-semibold text-black' >{viewCount}</span> </p>
+
+            {/* <div className='flex gap-2 '>
               <div className=''>
                 <CustomDropdown
                   options={serviceOptions}
@@ -86,12 +104,15 @@ export default function Analytics() {
                   onSelect={handleFilterChange}
                 />
               </div>
-            </div>
+            </div> */}
+
           </div>         
         </div>
-        
+
+        <div className="">
           <LineChartCard data={chartData } />
-        
+        </div>
+
       </section>
     </>
   )
