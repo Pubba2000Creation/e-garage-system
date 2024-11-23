@@ -78,7 +78,7 @@ export default function Profile() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-4xl p-6 bg-white rounded-lg shadow-md "
+      className="max-w-4xl p-6  "
     >
       <h1 className="text-lg font-semibold md:text-2xl mb-8">Profile</h1>
       {/* Vehicle Type Section */}

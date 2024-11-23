@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
 import { Input } from "@/components/ui/input"
-import Border_btn from '@/components/user/border-btn'
 import { useEffect, useState } from 'react'
 
 export default function Account() {
@@ -47,21 +46,21 @@ export default function Account() {
           
           <Input 
             type="password" 
-            className="border-gray focus:border-primary focus:ring-white" 
+            className="border-light_gray focus:border-primary focus:ring-white" 
             placeholder="Enter Current Password"
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)} 
           />
           <Input 
             type="password" 
-            className="border-gray focus:border-primary focus:ring-white" 
+            className="border-light_gray focus:border-primary focus:ring-white" 
             placeholder="Enter New Password" 
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)} 
           />
           <Input 
             type="password" 
-            className="border-gray focus:border-primary focus:ring-white" 
+            className="border-light_gray focus:border-primary focus:ring-white" 
             placeholder="Confirm New Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)} 

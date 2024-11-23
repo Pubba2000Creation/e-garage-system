@@ -7,7 +7,7 @@ const reviewscount = 3
 export default function Reviews() {
   return (
     <>
-      <section className='max-w-4xl p-6  rounded-lg shadow-md'>
+      <section className='max-w-4xl p-6  '>
       {/* add prps  */}
         <h1 className=" text-lg font-semibold md:text-2xl mb-8 ">Reviews ({reviewscount}) </h1>  
         <div className=''>

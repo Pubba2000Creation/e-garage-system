@@ -17,7 +17,7 @@ export default function Notifications() {
     <>
       <form 
         onSubmit={handleSubmit} 
-        className='max-w-4xl p-6 bg-white rounded-lg shadow-md'
+        className='max-w-4xl p-6 '
       >
         
         <h1 className=" text-lg font-semibold md:text-2xl mb-8 ">Notification Settings</h1>

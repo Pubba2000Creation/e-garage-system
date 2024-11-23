@@ -29,3 +29,4 @@ export default function AlertBox(props: AlertBoxProps) {
     </div>
   )
 }
+
