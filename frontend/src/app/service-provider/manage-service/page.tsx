@@ -12,7 +12,7 @@ export default function ManageServices() {
       <h1 className="text-lg font-semibold md:text-2xl mb-1">Manage Services</h1>
       <div className='flex justify-between'>
         <div>
-            <p className='block font-bold my-1'>{publish_service_count} Services Published </p>
+            <h3 className='block font-bold my-1'><span className=''>{publish_service_count}</span> Services Published </h3>
         </div>
         <div>
             <button 
