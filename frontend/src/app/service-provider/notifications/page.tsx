@@ -17,32 +17,40 @@ export default function Notifications() {
     <>
       <form 
         onSubmit={handleSubmit} 
-        className='max-w-4xl  '
+        className='max-w-4xl p-6 '
       >
         
         <h1 className=" text-lg font-semibold md:text-2xl mb-8 ">Notification Settings</h1>
 
-        <div className='mb-5 w-2/5'>
+        <div className='mb-5 w-full md:w-1/2'>
           <div className='flex justify-between'>
-            <p>Turn on all update notifications</p>
+            <div>
+              <p>Turn on all update notifications</p>
+              <p className='mt-0 text-sm text-gray'>You will receive notifications for all updates</p>
+            </div>
+            
             <Switch
+              className='my-auto' 
               checked={onAllUpdates} // Bind the state
               onCheckedChange={setOnAllUpdates} // Update the state
             />
-          </div>
-          <p className='mt-2 text-sm text-gray'>Lorem ipsum dolor sit amet consectetur. Ullamcorper pretium phasellus.</p>
+          </div>         
         </div>
 
-        <div className='mb-5 w-2/5'>
+        <div className='mb-5 w-full md:w-1/2'>
           <div className='flex justify-between'>
-            <p>Turn on all alerts notifications</p>
-            <Switch  
+            <div>
+              <p>Turn on all alerts notifications</p>
+              <p className='mt-0 text-sm text-gray' >You will receive alerts for all updates</p>
+            </div>      
+            <Switch 
+              className='my-auto' 
               checked={onAllAlerts} // Bind the state
               onCheckedChange={setOnAllAlerts} // Update the state
             />
-          </div>
-          <p className='mt-2 text-sm text-gray' >Lorem ipsum dolor sit amet consectetur. Ullamcorper pretium phasellus.</p>
+          </div>         
         </div>
+
       </form>    
     </>
   )

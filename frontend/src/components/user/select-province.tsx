@@ -22,6 +22,8 @@ import {
 import { SelectDistrictComboboxProps } from '@/types/user-components'
 // Define your district and province data
 import { province } from '@/data/provinceOptions'
+import { space } from 'postcss/lib/list'
+import { Span } from 'next/dist/trace'
 
 export default function SelectDistrictCombobox({
   value,
@@ -38,9 +40,11 @@ export default function SelectDistrictCombobox({
           aria-expanded={open}
           className="w-full justify-between border focus:border-primary border-light-gray"
         >
-          {value
+          
+            {value
             ? province.find((d) => d.value === value)?.label
             : 'Select Province...'}
+          
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

@@ -15,22 +15,22 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { VehicleTypeSelectorProps, VehicleType } from '@/types/user-components'
 
-const vehicleTypes: VehicleType[] = [
-  { id: 'car', label: 'Car' },
-  { id: 'van', label: 'Van' },
-  { id: 'bus', label: 'Bus' },
-  { id: 'truck', label: 'Truck' },
-  { id: 'motorbike', label: 'Motorbike' },
+const serviceCategories: VehicleType[] = [
+  { id: 'Repair Shops', label: 'Repair Shops' },
+  { id: 'Spare Parts', label: 'Spare Parts' },
+  { id: 'Oil Changes', label: 'Oil Changes' },
+  { id: 'Vehicle Inspections', label: 'Tire Services' },
+  { id: 'Service Centers', label: 'Service Centers' },
 ] 
 
-export default function VehicleTypeSelector({
+export default function ServiceCategoriesSelector({
   onSelectionChange,
 }: VehicleTypeSelectorProps) {
-  const [selectedVehicles, setSelectedVehicles] = useState<string[]>([])
+  const [selectedCategories, setselectedCategories] = useState<string[]>([])
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const handleVehicleToggle = (vehicleId: string) => {
-    setSelectedVehicles((prev) =>
+    setselectedCategories((prev) =>
       prev.includes(vehicleId)
         ? prev.filter((id) => id !== vehicleId)
         : [...prev, vehicleId]
@@ -38,9 +38,9 @@ export default function VehicleTypeSelector({
   }
 
   const handleConfirm = () => {
-    if (selectedVehicles.length > 0) {
+    if (selectedCategories.length > 0) {
       // Pass the selected vehicles to the parent component
-      onSelectionChange(selectedVehicles)
+      onSelectionChange(selectedCategories)
       setIsOpen(false)
     }
   }
@@ -49,23 +49,23 @@ export default function VehicleTypeSelector({
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>
         <Button className="w-full h-11 text-gray" variant="outline">
-          Vehicle Types
+          Select Service Categories
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="sm:max-w-[425px] bg-white">
         <AlertDialogHeader>
-          <AlertDialogTitle>Select Vehicle Types</AlertDialogTitle>
+          <AlertDialogTitle>Select Service Categories</AlertDialogTitle>
           <AlertDialogDescription>
-            Choose the main types of vehicles you want to select. You can select
+            Choose the Service Categories that you want to select. You can select
             multiple options.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="grid gap-4 py-4">
-          {vehicleTypes.map((vehicle) => (
+          {serviceCategories.map((vehicle) => (
             <div key={vehicle.id} className="flex items-center space-x-2">
               <Checkbox
                 id={vehicle.id}
-                checked={selectedVehicles.includes(vehicle.id)}
+                checked={selectedCategories.includes(vehicle.id)}
                 onCheckedChange={() => handleVehicleToggle(vehicle.id)}
                 className="border-gray-300"
               />
@@ -79,12 +79,12 @@ export default function VehicleTypeSelector({
           ))}
         </div>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => setSelectedVehicles([])}>
+          <AlertDialogCancel onClick={() => setselectedCategories([])}>
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleConfirm}
-            disabled={selectedVehicles.length === 0}
+            disabled={selectedCategories.length === 0}
           >
             Confirm
           </AlertDialogAction>

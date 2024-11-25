@@ -37,14 +37,13 @@ export default function Account() {
     >
       <h1 className=" text-lg font-semibold md:text-2xl mb-8 ">Account</h1>
 
-      <div className='flex '>
-        <div className='w-2/5'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 '>
+        <div className=''>
           <p>Change Password</p>
-          <p className='mt-1 text-sm text-gray'>Lorem ipsum dolor sit amet consectetur. Ullamcorper pretium phasellus.</p>
+          <p className='mt-1 text-sm text-gray'>Your password must be at least 8 characters long</p>
         </div>
 
-        <div className=' space-y-2 w-3/5'>
-          
+        <div className='grid gap-2 '>          
           <Input 
             type="password" 
             className="border-gray focus:border-primary focus:ring-white" 
@@ -68,21 +67,24 @@ export default function Account() {
           />
           {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
 
-          <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary_hover">Change Password</button>
-          
+          <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary_hover">Change Password</button>         
         </div>
       </div>
 
-      <div className='mt-8 flex space-x-5 '>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 '>
         <div>
           <p>Become a Service Owner</p>
-          <p className='mt-1 text-sm text-gray'>Lorem ipsum dolor sit amet consectetur. Ullamcorper pretium phasellus.</p>
+          <p className='mt-1 text-sm text-gray'>Your can become service Owner</p>
         </div>
-        <Border_btn name={'Become a Service Owner'} fun={() => { }} />
+        <div className='my-auto '>
+          <button 
+            className='w-full border font-normal text-sm cursor-pointer border-primary text-primary hover:bg-primary hover:text-white  py-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none' 
+            type="button">
+            Become a Service Owner
+          </button>          
+        </div>
       </div>  
 
-      <div className='mt-8 flex '>    
-      </div>
       
     </form>
     
