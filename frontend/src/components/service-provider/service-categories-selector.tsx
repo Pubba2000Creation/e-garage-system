@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
+import { Input } from "@/components/ui/input"
 import { VehicleTypeSelectorProps, VehicleType } from '@/types/user-components'
 
 const serviceCategories: VehicleType[] = [
@@ -27,6 +28,7 @@ export default function ServiceCategoriesSelector({
   onSelectionChange,
 }: VehicleTypeSelectorProps) {
   const [selectedCategories, setselectedCategories] = useState<string[]>([])
+  const [addNewCategory, setaddNewCategory] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const handleVehicleToggle = (vehicleId: string) => {
@@ -41,6 +43,7 @@ export default function ServiceCategoriesSelector({
     if (selectedCategories.length > 0) {
       // Pass the selected vehicles to the parent component
       onSelectionChange(selectedCategories)
+      console.log({addNewCategory, selectedCategories})
       setIsOpen(false)
     }
   }
@@ -78,13 +81,25 @@ export default function ServiceCategoriesSelector({
             </div>
           ))}
         </div>
+
+        <div>
+          <label className='text-sm  mb-2' htmlFor="">Add New Category</label>
+          <Input 
+            id="name" 
+            type="text" 
+            placeholder="New Category"
+            value={addNewCategory}
+            onChange={(e) => setaddNewCategory(e.target.value)} 
+          />
+        </div>
+
         <AlertDialogFooter>
           <AlertDialogCancel onClick={() => setselectedCategories([])}>
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleConfirm}
-            disabled={selectedCategories.length === 0}
+            disabled={selectedCategories.length === 0 && addNewCategory === ''}
           >
             Confirm
           </AlertDialogAction>
