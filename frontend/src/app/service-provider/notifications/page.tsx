@@ -1,10 +1,10 @@
 'use client'
-import React from 'react'
+import {useState } from 'react'
 import { Switch } from "@/components/ui/switch"
 
 export default function Notifications() {
-  const [onAllUpdates, setOnAllUpdates] = React.useState(true)
-  const [onAllAlerts, setOnAllAlerts] = React.useState(true)
+  const [onAllUpdates, setOnAllUpdates] = useState<boolean>(true)
+  const [onAllAlerts, setOnAllAlerts] = useState<boolean>(true)
 
   // Handle form submission (you can process the data here)
   function handleSubmit(event: React.FormEvent) {

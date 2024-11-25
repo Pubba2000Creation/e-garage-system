@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
 import { Input } from "@/components/ui/input"
-import Border_btn from '@/components/user/border-btn'
 import { useEffect, useState } from 'react'
 
 export default function Account() {

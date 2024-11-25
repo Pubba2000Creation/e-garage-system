@@ -93,21 +93,6 @@ export default function Analytics() {
           <div className='flex justify-between'>
             <h3 className='block font-bold text-gray text-left'>Total Views <span className=' text-black' >{viewCount}</span> </h3>
 
-            {/* <div className='flex gap-2 '>
-              <div className=''>
-                <CustomDropdown
-                  options={serviceOptions}
-                  onSelect={handleServiceOptionsChange}
-                />
-              </div>
-              <div>
-                <CustomDropdown
-                  options={filterOptions}
-                  onSelect={handleFilterChange}
-                />
-              </div>
-            </div> */}
-
           </div>         
         </div>
 
@@ -119,4 +104,5 @@ export default function Analytics() {
     </>
   )
 }
+
 

@@ -9,8 +9,8 @@ export default function Notifications() {
   // Handle form submission (you can process the data here)
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
-    console.log("Updates Notifications:", onAllUpdates)
-    console.log("Alerts Notifications:", onAllAlerts)
+    console.log( onAllUpdates, onAllAlerts)
+    
   }
 
   return (

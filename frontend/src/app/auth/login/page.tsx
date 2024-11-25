@@ -1,4 +1,3 @@
-// src/components/user/LoginForm.tsx
 'use client'
 
 import Link from 'next/link'
@@ -18,33 +17,29 @@ import cover_image from '@/public/images/loging_cover.svg'
 import Logo from '@/components/user/logo'
 import { useState } from 'react'
 
-// Import types from auth.d.ts
-import { LoginFormEvent, LoginFormState } from '@/types/auth'
-
 export default function LoginForm() {
-  const [formState, setFormState] = useState<LoginFormState>({
-    email: '',
-    password: '',
-    error: '',
-  })
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
-  const handleSubmit = (e: LoginFormEvent) => {
-    e.preventDefault()
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
 
-    const { email, password } = formState
-    console.log({ email, password })
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log({ email, password });
     if (!email || !password) {
-      setFormState((prev) => ({
-        ...prev,
-        error: 'Please enter both email and password.',
-      }))
-      return
+      setError('Please enter both email and password.');
+      return;
     }
-
-    setFormState((prev) => ({ ...prev, error: '' }))
-    // Proceed with login submission
-  }
+    // Clear the error if inputs are valid
+    setError('');
+  };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -72,10 +67,8 @@ export default function LoginForm() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
-                value={formState.email}
-                onChange={(e) =>
-                  setFormState({ ...formState, email: e.target.value })
-                }
+                value={email}
+                onChange={handleEmailChange}
                 placeholder="user@example.com"
                 type="email"
                 required
@@ -94,10 +87,8 @@ export default function LoginForm() {
               </div>
               <Input
                 id="password"
-                value={formState.password}
-                onChange={(e) =>
-                  setFormState({ ...formState, password: e.target.value })
-                }
+                value={password}
+                onChange={handlePasswordChange}
                 placeholder="********"
                 type="password"
                 required
@@ -106,9 +97,9 @@ export default function LoginForm() {
             </div>
 
             {/* Error Message */}
-            {formState.error && (
+            {error && (
               <div className="mb-4 text-error text-center">
-                {formState.error}
+                {error}
               </div>
             )}
 
