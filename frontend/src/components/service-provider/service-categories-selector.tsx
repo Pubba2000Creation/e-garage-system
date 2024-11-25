@@ -37,6 +37,7 @@ export default function ServiceCategoriesSelector({
         ? prev.filter((id) => id !== vehicleId)
         : [...prev, vehicleId]
     )
+    
   }
 
   const handleConfirm = () => {
