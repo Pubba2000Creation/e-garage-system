@@ -46,7 +46,7 @@ export default function Reviews() {
             Img={user_profile} 
             Name={'Hasitha'} 
             rating={3} 
-            review={'eowhfweu rgoirjg rgregr rgreg regreherh rhrheah erh hrgruy rguierhgreiuh reigurhegiurgh rgirughriugha ergiruh r iruhg eariguhr aigrhiuhg eargihr erigurhg regiurhgr rgirhaih eaigheriugh  eriguheaigh jijh'} 
+            review={'eowhfweu  regiurhgr rgirhaih eaigheriugh  eriguheai jijh'} 
             time={'1 week'} 
           />
 
@@ -54,7 +54,7 @@ export default function Reviews() {
             Img={user_profile} 
             Name={'Hasitha'} 
             rating={3} 
-            review={'eowhfweu rgoirjg rgregr rgreg regreherh rhrheah erh hrgruy rguierhgreiuh reigurhegiurgh rgirughriugha ergiruh r iruhg eariguhr aigrhiuhg eargihr erigurhg regiurhgr rgirhaih eaigheriugh  eriguheaigh jijh'} 
+            review={'eowhfweu rgoirjg rgregr rg regiurhgr rgirhaih eaigheriugh  eriguheaigh jijh'} 
             time={'1 week'} 
           />
 

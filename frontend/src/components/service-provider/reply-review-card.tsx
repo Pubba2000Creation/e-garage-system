@@ -3,12 +3,11 @@ import Image from 'next/image'
 import { FaStar } from 'react-icons/fa'
 import { ReviewCardProps } from '@/types/user-components' // Import the type
 import { Textarea } from '../ui/textarea'
-import { IoSendSharp } from "react-icons/io5";
-export default function ReplyReviewCard(props: ReviewCardProps) {
+import { IoSendSharp } from 'react-icons/io5'
 
-  const replyDate = '1 day'
-  const reply = 'thank you sir.'
-  const [replyMsage, setreplyMsage] = useState('')
+export default function ReplyReviewCard(props: ReviewCardProps) {
+  const replyDate = '1 day'   
+  const [replyMsage, setreplyMsage] = useState<string>('')
 
   const handleSubmit: React.FormEventHandler = (e) => {
     e.preventDefault()
@@ -22,15 +21,26 @@ export default function ReplyReviewCard(props: ReviewCardProps) {
       stars.push(
         <FaStar
           key={i}
-          className={`${
-            i < props.rating ? 'text-yellow-400' : 'text-light_gray'
-          }`}
+          className={`${i < props.rating ? 'text-yellow-400' : 'text-light_gray'}`}
           size={14}
         />
       )
     }
     return stars
   }
+
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    //const seconds = now.getSeconds().toString().padStart(2, '0');
+    
+    return `${hours}:${minutes}`;
+  };
+  
+  console.log(getCurrentTime());
+  
+  
 
   return (
     <>
@@ -62,11 +72,12 @@ export default function ReplyReviewCard(props: ReviewCardProps) {
 
           {/* Review Bubble */}
           <div className="w-full grid mt-3">
-            <div className="bg-light_gray px-3.5 py-2 bg-gray-100 rounded-3xl rounded-tl-none justify-start items-center gap-3 flex-grow max-w-full min-w-[200px]">
-              <p className="text-gray text-sm font-normal leading-snug text-justify">
+            <div className="mr-auto">
+              <p className="text-gray text-sm bg-light_gray w-fit px-2 py-1 border border-light_gray rounded-md text-start">
                 {props.review}
               </p>
             </div>
+
             <div className="justify-end items-center inline-flex mb-0">
               <h6 className="text-gray text-xs font-normal leading-4 py-1">
                 {props.time} ago
@@ -74,48 +85,48 @@ export default function ReplyReviewCard(props: ReviewCardProps) {
             </div>
           </div>
 
-
+          <div>
+            <p className='text-primary text-sm font-semibold'>Reply</p>
+          </div>
 
           {/* Updated Reply Bubble */}
-          <div className="w-full grid mt-3 ml-0 md:ml-auto">
-            <div className="bg-light_gray px-3.5 py-2 bg-gray-100 rounded-3xl rounded-tr-none justify-end items-center gap-3 flex-grow max-w-full min-w-[200px]">
-              <p className="text-gray  text-sm font-normal leading-snug text-justify">
-                {reply}
+          {replyMsage && (
+                
+          <div className="w-full grid mt-3">
+            <div className="ml-auto">
+              <p className="text-gray bg-light_gray w-fit px-2 py-1 border border-light_gray rounded-md text-sm text-start">
+                {replyMsage}
               </p>
             </div>
-            <div className="justify-end items-center inline-flex mb-2.5">
+            <div className="ml-auto items-center inline-flex mb-2.5">
               <h6 className="text-gray text-xs font-normal leading-4 py-1">
-                {replyDate} ago
+                {getCurrentTime()} ago
               </h6>
             </div>
           </div>
+          )}
 
-          <form action="" onSubmit={handleSubmit} className='flex'>
-           <div className='w-full'>
-                {/* <label className="text-black text-sm font-semibold text-left mb-2">
-                  Reply
-                </label> */}
-                
-                <Textarea
-                  rows={1}
-                  name="address"
-                  placeholder="Reply"
-                  className="px-4 py-2 w-full border border-light-gray focus:border-primary focus:ring-white"
-                  value={replyMsage}
-                  onChange={(e) => setreplyMsage(e.target.value)}
-                  required
-                />
+          <form onSubmit={handleSubmit} className="flex mt-3">
+            <div className="w-full">
+              <Textarea
+                rows={1}
+                name="reply"
+                placeholder="Reply"
+                className="px-4 py-2 w-full border border-light-gray focus:border-primary focus:ring-white"
+                value={replyMsage}
+                onChange={(e) => setreplyMsage(e.target.value)}
+                required
+              />
             </div>
-            <div className='my-auto'>
+            <div className="mt-auto">
               <button
                 type="submit"
-                className="bg-primary text-white px-4 py-2 rounded-md  ml-2"
-              >                                                
-                  <IoSendSharp size={18} />               
+                className="bg-primary text-white px-4 py-2 rounded-md ml-2"
+              >
+                <IoSendSharp size={18} />
               </button>
             </div>
           </form>
-
         </div>
       </div>
     </>
