@@ -62,7 +62,7 @@ export default function SetNewPassword() {
                 placeholder="********"
                 type="password"
                 required
-                className="border-gray focus:border-primary focus:ring-white"
+                className="border-light-gray focus:border-primary focus:ring-white"
               />
             </div>
             <div className="space-y-2">
@@ -76,7 +76,7 @@ export default function SetNewPassword() {
                 placeholder="********"
                 type="password"
                 required
-                className="border-gray focus:border-primary focus:ring-white"
+                className="border-light-gray focus:border-primary focus:ring-white"
               />
             </div>
 

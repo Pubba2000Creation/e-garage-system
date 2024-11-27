@@ -17,7 +17,7 @@ import Btn from '@/components/user/btn'
 import Border_btn from '@/components/user/border-btn'
 import UserProfile from '@/components/user/user-profile'
 import NotificationsDrawer from '@/components/user/notifications-drawer'
-import user_profile from '@/public/users/pic.jpg'
+import user_profile from '@/public/users/pic.png'
 import { NavbarProps } from '@/types/user-components'
 
 export default function Navbar() {

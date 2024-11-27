@@ -69,7 +69,7 @@ export default function OtpPage() {
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleOtpChange(e.target.value, index)}
-                  className="w-12 h-12 text-center border border-gray focus:border-primary focus:ring-white"
+                  className="w-12 h-12 text-center border border-light-gray focus:border-primary focus:ring-white"
                 />
               ))}
             </div>

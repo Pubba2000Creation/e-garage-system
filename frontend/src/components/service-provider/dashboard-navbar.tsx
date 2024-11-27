@@ -23,7 +23,7 @@ import Link from 'next/link'
 import Logo from '@/components/user/logo'
 import NotificationsDrawer from '@/components/user/notifications-drawer'
 import UserProfile from '@/components/service-provider/service-provider-profile'
-import user_profile from '@/public/users/pic.jpg'
+import user_profile from '@/public/users/pic.png'
 
 import user_icon from '@/public/icons/profile.svg'
 import star_icon from '@/public/icons/star.svg'

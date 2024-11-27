@@ -48,7 +48,7 @@ export default function TermsAndConditions() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="overflow-y-auto h-64 border-gray border p-4 rounded-lg mb-6">
+          <div className="overflow-y-auto h-64 border-light-gray border p-4 rounded-lg mb-6">
             <p className="text-dark text-sm">
               {/* Terms content */}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

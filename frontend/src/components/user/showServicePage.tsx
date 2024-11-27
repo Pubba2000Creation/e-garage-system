@@ -7,7 +7,7 @@ import ImageCarousel from '@/components/user/image-carousel'
 import { CiLocationOn, CiPhone } from 'react-icons/ci'
 import { IoLogoWhatsapp } from 'react-icons/io'
 
-import user from '@/public/users/pic.jpg'
+import user from '@/public/team/1.jpg'
 
 import carousel_1 from '@/public/images/carousel_1.jpg'
 import carousel_2 from '@/public/images/carousel_2.jpg'
@@ -106,7 +106,7 @@ export default function ShowServicePage(props: ServiceProps) {
                   Name={'John Doe'}
                   Img={user}
                   rating={5}
-                  review={'This is a great service. I highly recommend it!'}
+                  review={'This is a great  I highly recommend it!'}
                   time={'2 days'}
                 />
                 <ReviewCard

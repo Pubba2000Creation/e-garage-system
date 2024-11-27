@@ -7,9 +7,9 @@ const reviewscount = 3
 export default function Reviews() {
   return (
     <>
-      <section className='max-w-4xl p-6  rounded-lg shadow-md'>
+      <section className='max-w-4xl md:p-4 sm:p-0  '>
       {/* add prps  */}
-        <h1 className=" text-lg font-semibold md:text-2xl mb-8 ">Reviews ({reviewscount}) </h1>  
+        <h1 className=" text-lg font-semibold md:text-2xl mb-8 ">Reviews {reviewscount} </h1>  
         <div className=''>
          
           <ReviewServiceCard 
@@ -17,7 +17,7 @@ export default function Reviews() {
             alt={'Wardhana Service Station'} 
             title={'Wardhana Service Station'} 
             address={'No.329/4 B High Level Rd, Maharagama'} 
-            review={'Lorem ipsum dolor sit amet consectetur smod  nec nisi ultrices, ac luctus sem molestie. Fusce sit amet rutrum nibh. Suspendisse potenti. Aliquam erat volutpat'} 
+            review={'Lorem ipsum dolor sit amet consectetur smod eroigjrso;gijao;gijeraogijr nec nisi ultrices, ac luctus sem molestie. Fusce sit amet rutrum nibh. Suspendisse potenti. Aliquam erat volutpat'} 
             star_count={4}              
             fun={() => { }} 
             time={'2 days'} 

@@ -28,7 +28,7 @@ export default function LineChartCard({ data }: LineChartCardProps) {
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[300px] w-full"
+          className="aspect-auto h-[350px]  w-full"
         >
           <LineChart
             accessibilityLayer
