@@ -16,8 +16,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nestjs/swagger": "^6.0.0",
-    "swagger-ui-express": "^4.5.0"
+    "@nestjs/swagger": "^6.3.0",
+    "swagger-ui-express": "^4.6.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
