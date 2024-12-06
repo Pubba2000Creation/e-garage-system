@@ -26,33 +26,95 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     }
   }
 
-  async findOne(filterQuery: FilterQuery<TDocument>): Promise<{ document: TDocument; message: string }> {
-    const document = await this.model.findOne(filterQuery).lean(true) as TDocument;
-    let message = document ? 'Successfully found in the system' : 'Not found in the system';
+  async findOne(
+    filterQuery: FilterQuery<TDocument>,
+  ): Promise<{ document: TDocument; message: string }> {
+    let successMessage = '';
+    const document = (await this.model
+      .findOne(filterQuery)
+      .lean(true)) as TDocument;
     if (!document) {
-      this.logger.warn(`Document not found with filter query: ${JSON.stringify(filterQuery)}`);
+      this.logger.warn(
+        `Document not found with filter query: ${JSON.stringify(filterQuery)}`,
+      );
+      // throw new NotFoundException('The document was not found in database');
+      successMessage = 'Not found in the system';
+    } else {
+      successMessage = 'Successfully found in the system';
     }
-    return { document, message };
+    return { document, message: successMessage };
   }
 
-  async find(filterQuery: FilterQuery<TDocument>): Promise<{ documents: TDocument[]; message: string }> {
-    const documents = await this.model.find(filterQuery).lean(true) as TDocument[];
-    const message = documents.length ? 'Successfully found in the system' : 'Not found in the system';
-    return { documents, message };
+  async findByUser(
+    userId: string,
+  ): Promise<{ document: TDocument; message: string }> {
+    const document = (await this.model.find().lean(true)) as TDocument;
+    let successMessage = '';
+    if (!document) {
+      this.logger.warn(
+        `Document not found with filter query: ${JSON.stringify(userId)}`,
+      );
+      // throw new NotFoundException('The documents not found in database');
+      successMessage = 'Not found in the system';
+    } else {
+      successMessage = 'Successfully found in the system';
+    }
+    return { document, message: successMessage };
   }
 
-  async updateOne(
+
+  async findOneAndUpdate(
     filterQuery: FilterQuery<TDocument>,
     update: UpdateQuery<TDocument>,
   ): Promise<{ document: TDocument; message: string }> {
-    const document = await this.model.findOneAndUpdate(filterQuery, update, { new: true }).lean(true) as TDocument;
-    const message = document ? 'Update successful' : 'Not found in the system';
-    return { document, message };
+    const document = (await this.model
+      .findOneAndUpdate(filterQuery, update, { new: true })
+      .lean(true)) as TDocument;
+    let successMessage = '';
+    if (!document) {
+      this.logger.warn(
+        `Document not found with filter query: ${JSON.stringify(filterQuery)}`,
+      );
+      // throw new NotFoundException('The document was not found');
+      successMessage = 'Not found in the system';
+    } else {
+      successMessage = 'Update is successfully completed';
+    }
+    return { document, message: successMessage };
   }
 
-  async deleteOne(filterQuery: FilterQuery<TDocument>): Promise<{ document: TDocument; message: string }> {
-    const document = await this.model.findOneAndDelete(filterQuery).lean(true) as TDocument;
-    const message = document ? 'Delete successful' : 'Not found in the system';
-    return { document, message };
+  async find(
+    filterQuery: FilterQuery<TDocument>,
+  ): Promise<{ documents: TDocument[]; message: string }> {
+    const documents = (await this.model
+      .find(filterQuery)
+      .lean(true)) as TDocument[];
+    let successMessage = '';
+    if (documents.length === 0) {
+      this.logger.warn(
+        `Documents not found with filter query: ${JSON.stringify(filterQuery)}`,
+      );
+      // throw new NotFoundException('No documents found in the Database');
+      successMessage = 'Not found in the system';
+    } else {
+      successMessage = 'Successfully found in the system';
+    }
+    return { documents, message: successMessage };
+  }
+
+  async findOneAndDelete(
+    filterQuery: FilterQuery<TDocument>,
+  ): Promise<{ document: TDocument; message: string }> {
+    const document = (await this.model
+      .findOneAndDelete(filterQuery)
+      .lean(true)) as TDocument;
+    if (!document) {
+      this.logger.warn(
+        `Document not found with filter query: ${JSON.stringify(filterQuery)}`,
+      );
+      throw new NotFoundException('The document was not in the Databse');
+    }
+    const successMessage = 'Delete is successfully completed';
+    return { document, message: successMessage };
   }
 }
