@@ -61,7 +61,7 @@ export default function OtpPage() {
             Enter the OTP
           </CardTitle>
           <CardDescription className="text-center">
-            Enter the OTP code that we sent to your email. Be careful not to
+            Enter the OTP code that we sent to you. Be careful not to
             share the code with anyone.
           </CardDescription>
         </CardHeader>
@@ -88,7 +88,7 @@ export default function OtpPage() {
               type="submit"
               className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300"
             >
-              Verify Email
+              Verify OTP
             </button>
           </form>
           <div className="mt-4 text-center text-sm">
@@ -102,12 +102,12 @@ export default function OtpPage() {
                   Resend
                 </span>
               </p>
-              <Link
+              {/* <Link
                 href="/auth/forgot-password/set-email"
                 className="text-gray hover:text-primary hover:underline cursor-pointer"
               >
                 Change Email
-              </Link>
+              </Link> */}
             </div>
           </div>
         </CardContent>
