@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiProperty, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiProperty, ApiResponse } from '@nestjs/swagger';
 import { AuthRegisterUserDto } from './dto/register.dto';
+import { CommonResponseDto } from '@app/common';
 
 
 
@@ -9,14 +10,48 @@ import { AuthRegisterUserDto } from './dto/register.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post("register")
-  @ApiProperty({type:AuthRegisterUserDto})
+  /**
+   * 
+   * @param registerUserDto 
+   * 
+   * 
+  
+   * @returns CommonResponseDto
+   */
+  @Post('register')
+  @ApiBody({ type: AuthRegisterUserDto }) // Defines request body for Swagger
   @ApiResponse({
     status: 201,
     description: 'The user registered successfully.',
+    type: CommonResponseDto,
   })
-  async register(@Body() registerUserDto: AuthRegisterUserDto) {
-    return this.authService.register(registerUserDto);
+  @ApiResponse({
+    status: 409,
+    description: 'Conflict: User already exists.',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal server error.',
+    type: CommonResponseDto,
+  })
+  async register(
+    @Body() registerUserDto: AuthRegisterUserDto,
+  ): Promise<CommonResponseDto> {
+    try {
+      const responseData = await this.authService.register(registerUserDto); // Ensure to await the promise
+      return new CommonResponseDto(true, 'Register successful', responseData);
+    } catch (error) {
+      if (error instanceof HttpException) {
+        // Re-throw known HTTP exceptions
+        throw error;
+      }
+      // Handle unexpected errors
+      throw new HttpException(
+        new CommonResponseDto(false, 'Internal server error', null),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
 }
