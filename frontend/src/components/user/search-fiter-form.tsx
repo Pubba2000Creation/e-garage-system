@@ -79,13 +79,13 @@ export default function SearchFilterForm(props: {
         <RadioGroup value={selectedRating} onValueChange={setSelectedRating}>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="5" id="5" />
-            <label htmlFor="" className="flex items-center space-x-1">
+            <label htmlFor="" className="flex items-center space-x-1 space-y-1">
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
-              <span>({props.five_stars_count})</span>
+              <span className='text-sm'>({props.five_stars_count})</span>
             </label>
           </div>
         </RadioGroup>
@@ -93,13 +93,13 @@ export default function SearchFilterForm(props: {
         <RadioGroup value={selectedRating} onValueChange={setSelectedRating}>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="4" id="4" />
-            <label htmlFor="" className="flex items-center space-x-1">
+            <label htmlFor="" className="flex items-center space-x-1 space-y-1">
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-light_gray" size={20} />
-              <span>({props.four_stars_count})</span>
+              <span className='text-sm'>({props.four_stars_count})</span>
             </label>
           </div>
         </RadioGroup>
@@ -107,13 +107,13 @@ export default function SearchFilterForm(props: {
         <RadioGroup value={selectedRating} onValueChange={setSelectedRating}>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="3" id="3" />
-            <label htmlFor="" className="flex items-center space-x-1">
+            <label htmlFor="" className="flex items-center space-x-1 space-y-1">
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-light_gray" size={20} />
               <FaStar className="text-light_gray" size={20} />
-              <span>({props.three_stars_count})</span>
+              <span className='text-sm'>({props.three_stars_count})</span>
             </label>
           </div>
         </RadioGroup>
@@ -121,13 +121,13 @@ export default function SearchFilterForm(props: {
         <RadioGroup value={selectedRating} onValueChange={setSelectedRating}>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="2" id="2" />
-            <label htmlFor="" className="flex items-center space-x-1">
+            <label htmlFor="" className="flex items-center space-x-1 space-y-1">
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-light_gray" size={20} />
               <FaStar className="text-light_gray" size={20} />
               <FaStar className="text-light_gray" size={20} />
-              <span>({props.two_stars_count})</span>
+              <span className='text-sm'>({props.two_stars_count})</span>
             </label>
           </div>
         </RadioGroup>
@@ -135,13 +135,13 @@ export default function SearchFilterForm(props: {
         <RadioGroup value={selectedRating} onValueChange={setSelectedRating}>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="1" id="1" />
-            <label htmlFor="" className="flex items-center space-x-1">
+            <label htmlFor="" className="flex items-center space-x-1 space-y-1">
               <FaStar className="text-yellow-400" size={20} />
               <FaStar className="text-light_gray" size={20} />
               <FaStar className="text-light_gray" size={20} />
               <FaStar className="text-light_gray" size={20} />
               <FaStar className="text-light_gray" size={20} />
-              <span>({props.one_stars_count})</span>
+              <span className='text-sm'>({props.one_stars_count})</span>
             </label>
           </div>
         </RadioGroup>

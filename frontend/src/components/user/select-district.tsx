@@ -33,7 +33,7 @@ export default function SelectDistrictCombobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between border focus:border-primary border-gray"
+          className="w-full justify-between border focus:border-primary border-light-gray"
         >
           {value
             ? all_district.find((district) => district.value === value)?.label

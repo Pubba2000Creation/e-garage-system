@@ -62,7 +62,7 @@ export default function SetEmail() {
                 placeholder="user@example.com"
                 type="email"
                 required
-                className="border-gray focus:border-primary focus:ring-white"
+                className="border-light-gray focus:border-primary focus:ring-white"
               />
             </div>
 

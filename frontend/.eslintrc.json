@@ -2,10 +2,47 @@
   "extends": [
     "next",
     "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
     "prettier",
-    "next/typescript"
+    "eslint:recommended"
   ],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "tailwindcss",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
   "rules": {
-    "react/no-unescaped-entities": "off"
+    // TypeScript specific rules
+    "@typescript-eslint/explicit-module-boundary-types": "off", // You can turn this on if you want to enforce explicit return types.
+    "@typescript-eslint/no-explicit-any": "warn", // Warn on any usage
+
+    // React specific rules
+    "react/react-in-jsx-scope": "off", // Next.js automatically handles this with React 17 JSX Transform
+    "react/prop-types": "off", // Not needed in TypeScript
+
+    // Tailwind CSS rules
+    "tailwindcss/classnames-order": "warn", // Enforce a consistent class order (alphabetical or custom)
+
+    // Prettier rules to avoid conflicts between Prettier and ESLint
+    "prettier/prettier": "warn",
+
+    // Next.js specific rules
+    "next/no-img-element": "warn", // Encourage using `next/image` for optimized images
+    "next/next-script-for-ga": "warn", // Recommend using `next/script` for GA, etc.
+
+    // General good practices
+    "no-console": "warn", // Avoid `console.log` in production code
+    "no-unused-vars": "warn", // Warn on unused variables
+    "no-debugger": "warn", // Avoid `debugger` statements
+    "prefer-const": "warn" // Encourage the use of `const` for variables that are not reassigned
   }
 }

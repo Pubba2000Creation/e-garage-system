@@ -21,7 +21,7 @@ const vehicleTypes: VehicleType[] = [
   { id: 'bus', label: 'Bus' },
   { id: 'truck', label: 'Truck' },
   { id: 'motorbike', label: 'Motorbike' },
-]
+] 
 
 export default function VehicleTypeSelector({
   onSelectionChange,

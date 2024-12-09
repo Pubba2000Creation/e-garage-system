@@ -75,7 +75,7 @@ export default function AddressForm() {
                   rows={3}
                   name="address"
                   placeholder="441/7, Cotta Road, 2nd Lane, Rajagiriya"
-                  className="px-4 py-2 w-full border border-gray focus:border-primary focus:ring-white"
+                  className="px-4 py-2 w-full border border-light-gray focus:border-primary focus:ring-white"
                   value={address}
                   onChange={(e) => handleAddressChange(e.target.value)}
                   required
