@@ -161,7 +161,7 @@ export default function FillInformation() {
               />
             </div>
 
-            {error && <div className="mb-4 text-red-500">{error}</div>}
+            {error && <div className="mb-2 text-sm text-red-500">{error}</div>}
 
             <div className="flex justify-between items-center">
               <Link

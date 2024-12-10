@@ -90,7 +90,7 @@ export default function AddressForm() {
               </div>
 
               {/* Error Message */}
-              {error && <p className="text-red-500">{error}</p>}
+              {error && <p className="mb-2 text-red-500 text-sm">{error}</p>}
             </div>
 
             {/* Buttons */}

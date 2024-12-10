@@ -96,7 +96,7 @@ export default function CreateAccount() {
 
             {/* Error Message */}
             {error && (
-              <div className="mb-4 text-error text-center">{error}</div>
+              <div className="mb-2 text-sm text-error text-center">{error}</div>
             )}
 
             <Button type="submit" className="w-full text-white">

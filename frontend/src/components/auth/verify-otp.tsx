@@ -44,7 +44,7 @@ export default function OtpPage() {
             Enter the OTP
           </CardTitle>
           <CardDescription className="text-center">
-            Enter the OTP code that we sent to your email. Be careful not to
+            Enter the OTP code that we sent to you. Be careful not to
             share the code with anyone.
           </CardDescription>
         </CardHeader>
@@ -85,12 +85,12 @@ export default function OtpPage() {
                   Resend
                 </span>
               </p>
-              <Link
+              {/* <Link
                 href="/auth/sign-up/create-account"
                 className="text-gray hover:text-primary hover:underline cursor-pointer"
               >
                 Change Email
-              </Link>
+              </Link> */}
             </div>
           </div>
         </CardContent>
