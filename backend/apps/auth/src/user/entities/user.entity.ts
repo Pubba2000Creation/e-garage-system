@@ -3,6 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { UserRole } from '../enum/userRole.enum';
 import { UserType } from '../enum/userType.enum';
 import { UserStatus } from '../enum/userStatus.enum';
+import { number } from 'joi';
 
 @Schema({ versionKey: false, timestamps: true })
 export class UserDocument extends AbstractDocument {
@@ -63,6 +64,15 @@ export class UserDocument extends AbstractDocument {
     default: UserStatus.Active,
   })
   status?: UserStatus;
+
+  @Prop({ default: false })
+  isVerified?: boolean;
+
+  @Prop({ type: Number })
+  verificationToken?: number;
+
+  @Prop({ type: Date })
+  verificationExpiresAt: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserDocument);
