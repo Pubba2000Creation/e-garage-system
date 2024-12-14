@@ -24,5 +24,8 @@
 
 /auth/sign-up/
 
-url;-
+------------admin-----------------
+/admin/dashboard
+
+-------------url-----------
 https://e-garage-frontend.vercel.app/user/home

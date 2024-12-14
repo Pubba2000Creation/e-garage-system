@@ -65,8 +65,8 @@ export default function ProfilePictureUploader({
   };
 
   return (
-    <div className="flex flex-col items-center space-y-4">
-      <Avatar className="w-28 h-28">
+    <div className="flex flex-col items-center space-y-0">
+      <Avatar className="w-20 h-20">
         <AvatarImage
           className="border border-gray rounded-full"
           src={selectedImage}
@@ -78,7 +78,7 @@ export default function ProfilePictureUploader({
         </AvatarFallback>
       </Avatar>
 
-      <div className="flex flex-col items-center space-y-2">
+      <div className="flex flex-col items-center space-y-1.5">
         {/* Hidden File Input */}
         <Input
           type="file"
@@ -93,7 +93,7 @@ export default function ProfilePictureUploader({
             <button
             type="button"
             onClick={handleButtonClick}
-            className="border font-normal cursor-pointer border-primary text-primary hover:bg-primary hover:text-white px-3 py-2 text-sm rounded-md transition duration-300 ease-in-out transform hover:scale-105"
+            className="border font-normal cursor-pointer border-primary text-primary hover:bg-primary hover:text-white px-2 py-2 text-xs rounded-md transition duration-300 ease-in-out transform hover:scale-105"
           >
             Upload Picture
           </button>
@@ -104,7 +104,7 @@ export default function ProfilePictureUploader({
           <button
             type="button"
             onClick={handleRemoveButtonClick}
-            className="border font-normal cursor-pointer border-error text-error hover:bg-error hover:text-white px-3 py-2 text-sm  rounded-md transition duration-300 ease-in-out transform hover:scale-105 mt-2"
+            className="border font-normal cursor-pointer border-error text-error hover:bg-error hover:text-white px-2 py-2 text-xs  rounded-md transition duration-300 ease-in-out transform hover:scale-105 "
           >
             Remove Image
           </button>

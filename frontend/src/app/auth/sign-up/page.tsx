@@ -90,10 +90,10 @@ export default function SingUp () {
                 {pageNumber === 1 && <ChooseAccount/>  }
                 {pageNumber === 2 && <TermsAndConditions/>  }
                 {pageNumber === 3 && <CreateAccount/>  }
-                {pageNumber === 4 && <OtpPage/>  }
-                {pageNumber === 5 && <FillInformation/>  }
-                {pageNumber === 6 && <AddressForm/>  }
-                {pageNumber === 7 && <ProfilePictureForm/>  }
+                {pageNumber === 4 && <FillInformation/> }
+                {pageNumber === 5 && <AddressForm/>  }
+                {pageNumber === 6 && <ProfilePictureForm/> }
+                {pageNumber === 7 && <OtpPage/> } 
                 
                 {/* <CreateAccount/>
                 <FillInformation/>

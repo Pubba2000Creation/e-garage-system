@@ -17,29 +17,15 @@ import {
   // useSidebar,
 } from '@/components/ui/sidebar'
 
-import Image from 'next/image'
 import Link from 'next/link'
-
 import Logo from '@/components/user/logo'
 import NotificationsDrawer from '@/components/user/notifications-drawer'
 import AdminProfile from '@/components/admin/admin-profile'
-
 import user_profile from '@/public/users/pic.png'
-import user_icon from '@/public/icons/profile.svg'
-import star_icon from '@/public/icons/star.svg'
-import bell_icon from '@/public/icons/bell.svg'
-import logout_icon from '@/public/icons/logout.svg'
-import gear_icon from '@/public/icons/gear.svg'
-import analytics_icon from '@/public/icons/analytics.svg'
-import mangement_icon from '@/public/icons/mange-services.svg'
-
 import { PiGarage } from "react-icons/pi";
 import { IoNewspaperOutline } from "react-icons/io5";
-import { GrUserSettings } from "react-icons/gr";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { RxDashboard } from "react-icons/rx";
-import { SlUser } from "react-icons/sl";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import { GoGear } from "react-icons/go";
 import { IoLogInOutline } from "react-icons/io5";
 import { RiUserStarLine } from "react-icons/ri";
@@ -144,7 +130,7 @@ export default function AdminNavbar({
       </Sidebar>
 
       <SidebarInset>
-        <header className="flex h-16 shrink-0 justify-between gap-2 border px-4">
+        <header className=" sticky top-0 flex h-16 shrink-0 justify-between gap-2 border px-4">
           <SidebarTrigger size="icon" className="my-auto " />
           {/* <Separator orientation="vertical" className="mr-2 h-4" /> */}
           <div className="flex items-end space-x-4 my-auto">
@@ -152,8 +138,7 @@ export default function AdminNavbar({
             <AdminProfile profile_pic={user_profile} />
           </div>
         </header>
-
-        <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
+        <div className="flex flex-1 flex-col gap-4 pt-4">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   )
