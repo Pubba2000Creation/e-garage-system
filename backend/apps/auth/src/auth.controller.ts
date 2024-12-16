@@ -1,9 +1,10 @@
-import { Body, ConflictException, Controller, Get, HttpException, HttpStatus, Logger, NotFoundException, Param, Post, Query } from '@nestjs/common';
+import { Body, ConflictException, Controller, Get, HttpException, HttpStatus, Logger, NotFoundException, Param, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiBody, ApiParam, ApiProperty, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { AuthRegisterUserDto } from './dto/register.dto';
 import { CommonResponseDto } from '@app/common';
 import { authLoginDto } from './dto/login.dto';
+import { AuthGuard } from './guard/auth.guard';
 
 
 
@@ -170,10 +171,22 @@ export class AuthController {
    * @returns {CommonResponseDto}
    */
 
+  @Post('login')
+  @ApiBody({ type: authLoginDto }) // You can define a DTO for the login body
+  @ApiResponse({
+     status: 200, 
+     description: 'Login successful', 
+     type: CommonResponseDto 
+    })
+  @ApiResponse({ 
+    status: 401, 
+    description: 'Invalid credentials', 
+    type: CommonResponseDto 
+  })
   async login(@Body() loginUserDto: authLoginDto): Promise<CommonResponseDto> {
     try {
       const responseData = await this.authService.login(loginUserDto);
-      return new CommonResponseDto(true, 'User logged in successfully', responseData.document);
+      return new CommonResponseDto(true, 'User logged in successfully', responseData);
     } catch (error) {
       // Handle unexpected errors
       throw new HttpException(
@@ -184,6 +197,34 @@ export class AuthController {
   }
 
 
+  @Post('refresh-token')
+  @ApiResponse({ 
+    status: 200, 
+    description: 'Tokens refreshed', 
+    type: CommonResponseDto 
+  })
+  @ApiResponse({ 
+    status: 401, 
+    description: 'Invalid or expired refresh token', 
+    type: CommonResponseDto })
+  async refreshTokens(@Body('refreshToken') refreshToken: string): Promise<CommonResponseDto> {
+    const { accessToken, refreshToken: newRefreshToken } = await this.authService.refreshTokens(refreshToken);
+    
+    return new CommonResponseDto(true, 'Tokens refreshed', { accessToken, refreshToken: newRefreshToken });
+  }
+
+
+  //test auth gard
+  @Post('protected')
+  @UseGuards(AuthGuard)
+  @ApiResponse({ 
+    status: 200, 
+    description: 'Protected route accessed', 
+    type: CommonResponseDto 
+  })
+  async protectedRoute(@Req() req): Promise<CommonResponseDto> {
+    return new CommonResponseDto(true, 'You are authenticated!', req.user);
+  }
 
 
 

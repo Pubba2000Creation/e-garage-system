@@ -1,7 +1,6 @@
 export enum UserStatus {
-    Active = 'Active',
-    Disabled = 'Disabled',
-    Deleted = 'Deleted',
-    DisabledByAdmin = 'DisabledByAdmin',
-  }
-  
+  Active = 'Active',
+  Disabled = 'Disabled',
+  Deleted = 'Deleted',
+  DisabledByAdmin = 'DisabledByAdmin',
+}

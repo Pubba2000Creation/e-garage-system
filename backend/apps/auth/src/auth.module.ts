@@ -14,12 +14,11 @@ import { JwtModule } from '@nestjs/jwt';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),  // Dynamically load the JWT secret from .env
-        signOptions: { expiresIn: configService.get<string>('JWT_EXPIRATION') },  // Load the expiration time
+        secret: configService.get<string>('JWT_SECRET'), // Dynamically load the JWT secret from .env
+        signOptions: { expiresIn: configService.get<string>('JWT_EXPIRATION') }, // Load the expiration time
       }),
-      inject: [ConfigService],  // Inject ConfigService here
+      inject: [ConfigService], // Inject ConfigService here
     }),
-
   ],
   controllers: [AuthController],
   providers: [AuthService],

@@ -151,35 +151,62 @@ export class AuthService {
   
     return updatedUser;
   }
-  
-    async login(loginUserDto: authLoginDto) {
-      // Find the user by email
-    const user = await this.userRepository.findOne({ userEmail: loginUserDto.email });
-    
-    // If user is not found, throw an error
-    if (!user) {
-      throw new NotFoundException('User not found');
+
+    // Method to validate access token
+    async verifyAccessToken(token: string): Promise<boolean> {
+      try {
+        const payload = this.jwtService.verify(token);  // This will automatically use the secret defined in the JWTModule
+        return !!payload;  // Will throw an error if invalid
+      } catch (error) {
+        throw new UnauthorizedException('Invalid or expired token');
+      }
     }
-    
-    // Compare the provided password with the stored hashed password
+
+    // Generate JWT tokens (access and refresh)
+    async generateTokens(userEmail: string) {
+      const user = await this.userRepository.findOne({ userEmail });
+  
+      if (!user) {
+        throw new UnauthorizedException('User not found');
+      }
+  
+      const payload = { email: user.document.userEmail, sub: user.document._id };
+  
+      const accessToken = this.jwtService.sign(payload, { expiresIn: '1h' });
+      const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
+  
+      // Optionally, store the refresh token in the database if needed
+      return { accessToken, refreshToken };
+    }
+
+  // Method to handle login and return tokens
+  async login(loginUserDto: authLoginDto) {
+    const user = await this.userRepository.findOne({ userEmail: loginUserDto.email });
+
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
     const isPasswordValid = await compare(loginUserDto.password, user.document.userPassword);
-    
-    // If the password is invalid, throw an error
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    
-    // Return the user data if the credentials are valid
-    return user;
+
+    return this.generateTokens(loginUserDto.email);
   }
-  verifyAccessToken(token: any): any {
+
+  // Method to handle refresh token logic
+  async refreshTokens(refreshToken: string) {
     try {
-      const payload = this.jwtService.verify(token);
-      return !!payload; // Will throw an error if invalid
-    } catch (error) {
-      throw new UnauthorizedException('Invalid or expired token');
+      const payload = this.jwtService.verify(refreshToken);
+
+      // You can handle expiration and revoke logic here
+      return this.generateTokens(payload.email);
+    } catch (e) {
+      throw new UnauthorizedException('Invalid or expired refresh token');
     }
-}
+  }
+
 
 
 }

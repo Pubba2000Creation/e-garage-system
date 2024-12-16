@@ -5,10 +5,10 @@ import { JwtModuleOptions } from '@nestjs/jwt';
 @Module({
   imports: [
     NestConfigModule.forRoot({
-      isGlobal: true,  // Makes the config globally available in your app
-      envFilePath: '.env',  // Path to your environment file
+      isGlobal: true, // Makes the config globally available in your app
+      envFilePath: '.env', // Path to your environment file
     }),
   ],
-  exports: [NestConfigModule],  // Export so other modules can access the config
+  exports: [NestConfigModule], // Export so other modules can access the config
 })
 export class ConfigModule {}
