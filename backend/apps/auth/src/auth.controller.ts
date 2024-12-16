@@ -1,6 +1,6 @@
-import { Body, ConflictException, Controller, Get, HttpException, HttpStatus, Logger, NotFoundException, Param, Post, Query, Req, UseGuards } from '@nestjs/common';
+import { Body, ConflictException, Controller, Get, HttpException, HttpStatus, Logger, NotFoundException, Param, Post, Query, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiBody, ApiParam, ApiProperty, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiParam, ApiProperty, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthRegisterUserDto } from './dto/register.dto';
 import { CommonResponseDto } from '@app/common';
 import { authLoginDto } from './dto/login.dto';
@@ -8,6 +8,7 @@ import { AuthGuard } from './guard/auth.guard';
 
 
 
+@ApiTags('authentication')
 @Controller("auth")
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -226,7 +227,33 @@ export class AuthController {
     return new CommonResponseDto(true, 'You are authenticated!', req.user);
   }
 
+ /**
+   * API for user logout
+   */
+  @Post('logout')
+  @UseGuards(AuthGuard) // Protect the route
+  @ApiResponse({ 
+    status: 200, 
+    description: 'User logged out', 
+    type: CommonResponseDto 
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized',
+    type: CommonResponseDto,
+  })
+  async logout(@Req() req): Promise<CommonResponseDto> {
+    try {
+      await this.authService.logout(req.user.sub); // `sub` is typically the userId in the JWT payload
+      return new CommonResponseDto(true, 'User logged out');
+    } catch (error) {
+      throw new UnauthorizedException('Logout failed');
+    }
+  }
 
+ /**
+  * 
+  */
 
 
 

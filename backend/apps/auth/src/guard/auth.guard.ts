@@ -1,24 +1,33 @@
-import { Injectable } from '@nestjs/common';
-import { CanActivate, ExecutionContext } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../auth.service';
-import { UnauthorizedException } from '@nestjs/common';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService) {}
 
-  canActivate(
-    context: ExecutionContext,
-  ): boolean | Promise<boolean> | Observable<boolean> {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-    const token = request.headers['authorization']?.split(' ')[1];
+    const authHeader = request.headers['authorization'];
 
-    if (!token) {
-      throw new UnauthorizedException('Authorization token is missing');
+    if (!authHeader) {
+      throw new UnauthorizedException('Authorization header is missing');
     }
 
-    // Verify token using the AuthService
-    return this.authService.verifyAccessToken(token);
+    const token = authHeader.split(' ')[1];
+    if (!token) {
+      throw new UnauthorizedException('Token is missing in the Authorization header');
+    }
+
+    try {
+      // Verify the token and decode the payload
+      const decoded = await this.authService.verifyAccessToken(token);
+
+      // Attach the user info to the request object for downstream use
+      request.user = decoded;
+
+      return true;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid or expired token');
+    }
   }
 }

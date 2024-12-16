@@ -163,21 +163,26 @@ export class AuthService {
     }
 
     // Generate JWT tokens (access and refresh)
-    async generateTokens(userEmail: string) {
-      const user = await this.userRepository.findOne({ userEmail });
-  
-      if (!user) {
-        throw new UnauthorizedException('User not found');
-      }
-  
-      const payload = { email: user.document.userEmail, sub: user.document._id };
-  
-      const accessToken = this.jwtService.sign(payload, { expiresIn: '1h' });
-      const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
-  
-      // Optionally, store the refresh token in the database if needed
-      return { accessToken, refreshToken };
-    }
+   async generateTokens(userEmail: string) {
+   const user = await this.userRepository.findOne({ userEmail });
+
+   if (!user) {
+     throw new UnauthorizedException('User not found');
+   }
+
+   const payload = { email: user.document.userEmail, sub: user.document._id };
+
+   const accessToken = this.jwtService.sign(payload, { expiresIn: '1h' });
+   const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
+
+   // Store the refresh token in the database
+   await this.userRepository.findOneAndUpdate(
+     { _id: user.document._id },
+     { $set: { refreshToken } }
+   );
+
+   return { accessToken, refreshToken };
+ }
 
   // Method to handle login and return tokens
   async login(loginUserDto: authLoginDto) {
@@ -207,6 +212,19 @@ export class AuthService {
     }
   }
 
+  
+async logout(userId: string): Promise<void> {
+  const result = await this.userRepository.findOneAndUpdate(
+    { _id: userId },
+    { $set: { refreshToken: null } } // Clear the refresh token
+  );
+
+  if (!result) {
+    throw new UnauthorizedException('User not found or logout failed');
+  }
+}
+
+  
 
 
 }

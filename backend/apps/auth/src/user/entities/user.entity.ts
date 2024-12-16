@@ -73,6 +73,9 @@ export class UserDocument extends AbstractDocument {
 
   @Prop({ type: Date })
   verificationExpiresAt: Date;
+
+  @Prop({type:String,required:false})
+  refreshToken ?:string
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserDocument);
