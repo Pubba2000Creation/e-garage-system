@@ -62,6 +62,7 @@ export class AuthService {
     return Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit number
   }
 
+  //method for verify otp
   async verifyOTP(otp: number) {
     try {
       // Log the start of the OTP verification process
@@ -111,6 +112,7 @@ export class AuthService {
   }
   
   
+  //method for resend otp
   async resendOTP(userEmail: string) {
 
     //if email wos not provide
@@ -163,26 +165,26 @@ export class AuthService {
     }
 
     // Generate JWT tokens (access and refresh)
-   async generateTokens(userEmail: string) {
-   const user = await this.userRepository.findOne({ userEmail });
+      async generateTokens(userEmail: string) {
+        const user = await this.userRepository.findOne({ userEmail });
 
-   if (!user) {
-     throw new UnauthorizedException('User not found');
-   }
+        if (!user) {
+          throw new UnauthorizedException('User not found');
+        }
 
-   const payload = { email: user.document.userEmail, sub: user.document._id };
+        const payload = { email: user.document.userEmail, sub: user.document._id };
 
-   const accessToken = this.jwtService.sign(payload, { expiresIn: '1h' });
-   const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
+        const accessToken = this.jwtService.sign(payload, { expiresIn: '1h' });
+        const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
 
-   // Store the refresh token in the database
-   await this.userRepository.findOneAndUpdate(
-     { _id: user.document._id },
-     { $set: { refreshToken } }
-   );
+        // Store the refresh token in the database
+        await this.userRepository.findOneAndUpdate(
+          { _id: user.document._id },
+          { $set: { refreshToken } }
+        );
 
-   return { accessToken, refreshToken };
- }
+        return { accessToken, refreshToken };
+      }
 
   // Method to handle login and return tokens
   async login(loginUserDto: authLoginDto) {
@@ -213,18 +215,58 @@ export class AuthService {
   }
 
   
-async logout(userId: string): Promise<void> {
-  const result = await this.userRepository.findOneAndUpdate(
-    { _id: userId },
-    { $set: { refreshToken: null } } // Clear the refresh token
-  );
+  //method for logout funtion
+  async logout(userId: string): Promise<void> {
+    const result = await this.userRepository.findOneAndUpdate(
+      { _id: userId },
+      { $set: { refreshToken: null } } // Clear the refresh token
+    );
 
-  if (!result) {
-    throw new UnauthorizedException('User not found or logout failed');
+    if (!result) {
+      throw new UnauthorizedException('User not found or logout failed');
+    }
   }
-}
 
   
+
+  //method for forgot password
+  async forgotPassword(email: string) {
+
+    //find if user avalabe for given email
+    const user = await this.userRepository.findOne({ userEmail: email });
+
+    //if the user not found
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    //if the user are avalabe and not verified
+    if (!user.document.isVerified) {
+      throw new ConflictException('User not verified');
+    }
+
+    //if the user are avalabe and verified
+    if (user.document.isVerified) {
+      // Generate a new OTP
+      const otp = this.generateOTP();
+
+      // Update the user's OTP and expiration time
+      const updatedUser = await this.userRepository.findOneAndUpdate(
+        { _id: user.document._id }, 
+        {
+          $set: {
+            verificationToken: otp,
+            verificationExpiresAt: new Date(Date.now() + 19 * 60 * 1000), // 19 minutes
+          },
+        },
+        
+      )
+    }
+
+    //if the user are avalabe and verified
+    
+    
+  }
 
 
 }
