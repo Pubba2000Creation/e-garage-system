@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { ApiBody, ApiParam, ApiProperty, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { AuthRegisterUserDto } from './dto/register.dto';
 import { CommonResponseDto } from '@app/common';
+import { authLoginDto } from './dto/login.dto';
 
 
 
@@ -161,6 +162,26 @@ export class AuthController {
   }
   
 
+  /**
+   * API for user login
+   * 
+   * @param {AuthLoginUserDto} loginUserDto
+   * 
+   * @returns {CommonResponseDto}
+   */
+
+  async login(@Body() loginUserDto: authLoginDto): Promise<CommonResponseDto> {
+    try {
+      const responseData = await this.authService.login(loginUserDto);
+      return new CommonResponseDto(true, 'User logged in successfully', responseData.document);
+    } catch (error) {
+      // Handle unexpected errors
+      throw new HttpException(
+        new CommonResponseDto(false, error.message,null ),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 
 
 

@@ -1,14 +1,23 @@
-import { Injectable, ConflictException, NotFoundException, Logger } from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException, Logger, UnauthorizedException } from '@nestjs/common';
 import { UserRepository } from './user/user.repository';
 import { AuthRegisterUserDto } from './dto/register.dto';
 import { hash } from 'bcrypt';
+import { compare } from 'bcrypt';
 import { UserType } from './user/enum/userType.enum';
 import { UserRole } from './user/enum/userRole.enum';
 import { UserStatus } from './user/enum/userStatus.enum';
 import { v4 as uuidv4 } from 'uuid';
+import { authLoginDto } from './dto/login.dto';
+import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
-  constructor(private readonly userRepository: UserRepository) {}
+    
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly jwtService: JwtService
+
+
+  ) {}
   private readonly logger = new Logger(AuthService.name);
 
   async register(registerUserDto: AuthRegisterUserDto) {
@@ -143,4 +152,34 @@ export class AuthService {
     return updatedUser;
   }
   
+    async login(loginUserDto: authLoginDto) {
+      // Find the user by email
+    const user = await this.userRepository.findOne({ userEmail: loginUserDto.email });
+    
+    // If user is not found, throw an error
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    
+    // Compare the provided password with the stored hashed password
+    const isPasswordValid = await compare(loginUserDto.password, user.document.userPassword);
+    
+    // If the password is invalid, throw an error
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+    
+    // Return the user data if the credentials are valid
+    return user;
+  }
+  verifyAccessToken(token: any): any {
+    try {
+      const payload = this.jwtService.verify(token);
+      return !!payload; // Will throw an error if invalid
+    } catch (error) {
+      throw new UnauthorizedException('Invalid or expired token');
+    }
+}
+
+
 }
