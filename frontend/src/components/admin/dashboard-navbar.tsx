@@ -31,8 +31,8 @@ import { IoLogInOutline } from "react-icons/io5";
 import { RiUserStarLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { LuBellRing } from "react-icons/lu";
-
 import { ServiceProviderNavbarProps } from '@/types/service-provider-components'
+import { FaRegStar } from "react-icons/fa";
 
 export default function AdminNavbar({
   children,
@@ -73,6 +73,13 @@ export default function AdminNavbar({
                 <Link className="flex gap-2" href="/admin/services">
                   <PiGarage size={18} />
                   Services
+                </Link>
+              </SidebarMenuButton>
+
+              <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+                <Link className="flex gap-2" href="/admin/promotions">
+                <FaRegStar size={18} />
+                  Promotions
                 </Link>
               </SidebarMenuButton>
 

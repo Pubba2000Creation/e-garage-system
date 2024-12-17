@@ -12,7 +12,7 @@ import user from '@/public/users/pic.png'
 import { MdMoreHoriz } from 'react-icons/md'
 import Image from 'next/image'
 
-export default function ServiceMore() {
+export default function PromotionMore() {
 
   return (
     <Dialog>
@@ -23,7 +23,7 @@ export default function ServiceMore() {
       </DialogTrigger>
       <DialogContent className="w-auto">
         <DialogHeader>
-          <DialogTitle className=''>All details about this promotion service</DialogTitle>
+          <DialogTitle className=''>All details about this service</DialogTitle>
           <DialogDescription>
             You can see all service details in here. Click close when you're done.
           </DialogDescription>

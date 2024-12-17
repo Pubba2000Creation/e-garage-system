@@ -115,8 +115,8 @@ export default function FillInformation() {
                   <>
                     <label htmlFor="vehicalType">Select Vehicle Type</label>
                     <VehicleTypeSelector
-                      onSelectionChange={handleVehicleSelection}
-                      selectedVehicles={[]}
+                      onSelectionChange={handleVehicleSelection} // Update vehicalType state
+                      selectedVehicles={[]} // Pass the current state
                       isOpen={false}
                     />
                   </>
