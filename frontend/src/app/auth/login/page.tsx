@@ -45,7 +45,7 @@ export default function LoginForm() {
     <div className="flex min-h-screen bg-gray-100">
       <div className="hidden lg:block lg:w-1/2 relative">
         <FromsCoverImage coverImage={cover_image} alt="login cover image" />
-        <div className="absolute top-4 left-4 text-white text-xl font-bold">
+        <div className="absolute top-10 left-5 text-white text-xl font-bold">
           <div className="flex items-center space-x-2">
             <Logo />
           </div>
