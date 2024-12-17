@@ -2,9 +2,10 @@
 import React from 'react'
 import { Input } from "@/components/ui/input"
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Account() {
-
+  const router = useRouter()
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -77,14 +78,13 @@ export default function Account() {
         </div>
         <div className='my-auto '>
           <button 
+            onClick={() => router.push('/auth/sign-up')}
             className='w-full border font-normal text-sm cursor-pointer border-primary text-primary hover:bg-primary hover:text-white  py-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none' 
             type="button">
             Become a Service Owner
           </button>          
         </div>
-      </div>  
-
-      
+      </div>      
     </form>
     
   </>
