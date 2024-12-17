@@ -1,14 +1,15 @@
 import { useState } from "react";
 import  DeleteAlertBox  from "@/components/admin/delete-alert-box";
-import  EditUserForm  from "@/components/admin/edit-user-form ";
 import { Switch } from "@/components/ui/switch"
-import UserMore from "@/components/admin/user-more";
-// import  BlockAlertBox  from "@/components/admin/block-alert-box";
-// import { MdBlockFlipped } from "react-icons/md";
+import { MdOutlineEdit } from "react-icons/md";
+import { useRouter } from 'next/navigation'
+import ServiceMore from "@/components/admin/service-more";
 
-export default function UserOptions() {
+
+export default function ServiceOptions() {
 
   const [active, setActive] = useState<boolean>(true)
+  const router = useRouter()
 
   const handleOptionBtn = (btn: string) => {
     switch (btn) {
@@ -18,6 +19,9 @@ export default function UserOptions() {
       case "edit":
         console.log("Edit button clicked");
         break;
+        case "more":
+          console.log("more button clicked");
+          break;
       case "block":
         console.log("Block button clicked");
         break;
@@ -38,14 +42,18 @@ export default function UserOptions() {
             />
         </div>
 
-        <div>
-          <UserMore/>
+        <div onClick={() => handleOptionBtn("more")}>
+            <ServiceMore />
         </div>
 
-        <div
-          onClick={() => handleOptionBtn("edit")}                    
-        >
-          <EditUserForm/> 
+        <div onClick={() => handleOptionBtn("edit")}>
+          <button
+            onClick={() => router.push('/admin/edit-service')}
+            type="button"
+            className="bg-sky-500 p-1 border rounded-full hover:bg-sky-600"
+          >
+            <MdOutlineEdit />
+          </button>
         </div>
 
         <div

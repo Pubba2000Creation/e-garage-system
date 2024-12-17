@@ -100,7 +100,7 @@ export default function AddServiceProviderForm() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add User</DialogTitle>
+          <DialogTitle>Add Service Provider</DialogTitle>
           <DialogDescription>
             You can add new service provider  here. Click save when you're done.
           </DialogDescription>

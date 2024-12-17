@@ -3,7 +3,7 @@
 import React from "react";
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -19,10 +19,11 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 interface LineChartCardProps {
-  data: { month: string; views: number }[]; // Define the shape of the data
+  data: { month: string; views: number }[];
+  title : string // Define the shape of the data
 }
 
-export default function LineChartCard({ data }: LineChartCardProps) {
+export default function LineChartCard({ data,title }: LineChartCardProps) {
   return (
     <Card>
       <CardContent>
@@ -60,6 +61,11 @@ export default function LineChartCard({ data }: LineChartCardProps) {
           </LineChart>
         </ChartContainer>
       </CardContent>
+      <CardFooter className="flex-col items-start gap-2 text-sm">
+        <div className="flex gap-2 font-medium leading-none">
+          {title} 
+        </div>
+      </CardFooter>
     </Card>
   );
 }

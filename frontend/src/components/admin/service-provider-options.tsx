@@ -2,8 +2,7 @@ import { useState } from "react";
 import  DeleteAlertBox  from "@/components/admin/delete-alert-box";
 import  ServiceProviderEditForm  from "@/components/admin/service-provider-edit-form";
 import { Switch } from "@/components/ui/switch"
-// import  BlockAlertBox  from "@/components/admin/block-alert-box";
-// import { MdBlockFlipped } from "react-icons/md";
+import  ServiceProviderMore  from "@/components/admin/service-provider-more";
 
 export default function ServiceProviderOptions() {
 
@@ -19,6 +18,9 @@ export default function ServiceProviderOptions() {
         break;
       case "block":
         console.log("Block button clicked");
+        break;
+      case "more":
+        console.log("More button clicked");
         break;
       default:
         console.log("Unknown action");
@@ -37,9 +39,11 @@ export default function ServiceProviderOptions() {
             />
         </div>
 
-        <div
-          onClick={() => handleOptionBtn("edit")}                    
-        >
+        <div onClick={() => handleOptionBtn("more")}>
+          <ServiceProviderMore/>
+        </div>
+
+        <div onClick={() => handleOptionBtn("edit")}>
           <ServiceProviderEditForm/> 
         </div>
 

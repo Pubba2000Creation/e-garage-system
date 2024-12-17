@@ -1,16 +1,14 @@
 'use client'
 
-import { useState } from 'react' // Import useState  from 'react'
+import { useState } from 'react' 
 import SmBtn from '@/components/user/sm-btn'
-import Image from 'next/image'
-import user from '@/public/users/pic.png'
 import ServiceProviderOptions from '@/components/admin/service-provider-options'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { IoSearchOutline } from 'react-icons/io5'
 import AddServiceProviderForm from '@/components/admin/add-service-provide-form'
 
-export default function UserTable() {
+export default function ServiceProviders() {
   const [selectedPage, setSelectedPage] = useState('')
   const [search, setSearch] = useState('')
 
@@ -25,7 +23,7 @@ export default function UserTable() {
     console.log(search)
   }
 
-  type userData = {
+  type serviceProvidersData = {
     id: string
     profile: string
     fName: string
@@ -41,7 +39,7 @@ export default function UserTable() {
     password: string
   }
 
-  const userData: userData[] = [
+  const serviceProvidersData: serviceProvidersData[] = [
     {
       id: '1',
       profile: '',
@@ -124,8 +122,8 @@ export default function UserTable() {
       <div className="flex md:justify-between gap-10 mb-3">
         <div className="flex gap-4">
           <div>
-            <p className="text-lg font-semibold md:text-2xl">Users</p>
-            <p className="text-sm">{userData.length} results found</p>
+            <p className="text-lg font-semibold md:text-2xl">Service Providers</p>
+            <p className="text-sm">{serviceProvidersData.length} results found</p>
           </div>
           <AddServiceProviderForm />
         </div>
@@ -153,58 +151,29 @@ export default function UserTable() {
           <table className="table-auto w-full border-collapse">
             {/* Table Header */}
             <thead className="bg-white sticky top-0 z-20">
-              <tr className="text-left">
+              <tr className="text-center">
                 <th className="border px-4 py-2 max-w-fit">#</th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Profile
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">Name</th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  DOB(Age)
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  company{' '}
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">Email</th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Phone No
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Address
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Province
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  District
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Options
-                </th>
+                <th className="border px-4 py-2  max-w-fit">Name</th>
+                <th className="border px-4 py-2  max-w-fit">Age</th>
+                <th className="border px-4 py-2  max-w-fit">company</th>
+                <th className="border px-4 py-2  max-w-fit">Email</th>
+                <th className="border px-4 py-2  max-w-fit">Phone No</th>
+                <th className="border px-4 py-2  max-w-fit">Address</th>
+                <th className="border px-4 py-2  max-w-fit">Province</th>
+                <th className="border px-4 py-2  max-w-fit">District</th>
+                <th className="border px-4 py-2  max-w-fit">Options</th>
               </tr>
             </thead>
             {/* Table Body */}
             <tbody>
-              {userData.map((row) => (
-                <tr key={row.id} className="odd:bg-light_gray   even:bg-white">
+              {serviceProvidersData.map((row) => (
+                <tr key={row.id} className="odd:bg-light_gray text-center even:bg-white">
                   <td className="border px-2 py-1">{row.id}</td>
-                  <td className="border px-5 py-1">
-                    <Image
-                      //src={row.profile}
-                      src={user} // object array ekt image pass kran bari una
-                      width={40}
-                      height={40}
-                      className="border rounded-full"
-                      alt="Picture of the user"
-                    />
+                  <td className="border px-2 py-1">
+                    <span>{row.fName} {row.lName}</span>                   
                   </td>
                   <td className="border px-2 py-1">
-                    <div>{row.fName}</div>
-                    <div>{row.lName}</div>
-                  </td>
-                  <td className="border px-2 py-1">
-                    <div>{row.dob}</div>
-                    <div>Age({row.age})</div>
+                    <div>{row.age}</div>                    
                   </td>
                   <td className="border px-2 py-1">{row.company}</td>
                   <td className="border px-2 py-1">{row.email}</td>

@@ -4,13 +4,13 @@ import { useState } from 'react' // Import useState  from 'react'
 import SmBtn from '@/components/user/sm-btn'
 import Image from 'next/image'
 import user from '@/public/users/pic.png'
-import OptionsBtns from '@/components/admin/user-options'
+import UserOptions from '@/components/admin/user-options'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { IoSearchOutline } from 'react-icons/io5'
 import AddUserForm from '@/components/admin/add-user-form'
 
-export default function UserTable() {
+export default function Users() {
   const [selectedPage, setSelectedPage] = useState('')
   const [search, setSearch] = useState('')
 
@@ -152,68 +152,39 @@ export default function UserTable() {
         <div className="overflow-auto h-[73vh] ">
           <table className="table-auto w-full border-collapse">
             {/* Table Header */}
-            <thead className="bg-white sticky top-0 z-20">
-              <tr className="text-left">
+            <thead className="bg-white sticky top-0 z-20 ">
+              <tr className="text-center">
                 <th className="border px-4 py-2 max-w-fit">#</th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Profile
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">Name</th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  DOB(Age)
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Vehicle Type
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">Email</th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Phone No
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Address
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Province
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  District
-                </th>
-                <th className="border px-4 py-2 text-left max-w-fit">
-                  Options
-                </th>
+                <th className="border px-4 py-2  max-w-fit">Name</th>
+                <th className="border px-4 py-2  max-w-fit">Age</th>
+                <th className="border px-4 py-2  max-w-fit">Vehicle Type</th>
+                <th className="border px-4 py-2  max-w-fit">Email</th>
+                <th className="border px-4 py-2  max-w-fit">Phone No</th>
+                <th className="border px-4 py-2  max-w-fit">Address</th>
+                <th className="border px-4 py-2  max-w-fit">Province</th>
+                <th className="border px-4 py-2  max-w-fit">District</th>
+                <th className="border px-4 py-2  max-w-fit">Options</th>
               </tr>
             </thead>
             {/* Table Body */}
             <tbody>
               {userData.map((row) => (
-                <tr key={row.id} className="odd:bg-light_gray   even:bg-white">
+                <tr key={row.id} className="odd:bg-light_gray text-center even:bg-white">
                   <td className="border px-2 py-1">{row.id}</td>
-                  <td className="border px-5 py-1">
-                    <Image
-                      //src={row.profile}
-                      src={user} // object array ekt image pass kran bari una
-                      width={40}
-                      height={40}
-                      className="border rounded-full"
-                      alt="Picture of the user"
-                    />
+                  <td className="border px-2 py-1">
+                    <span>{row.fName} {row.lName}</span>                    
                   </td>
                   <td className="border px-2 py-1">
-                    <div>{row.fName}</div>
-                    <div>{row.lName}</div>
+                    <div>{row.age}</div>
                   </td>
-                  <td className="border px-2 py-1">
-                    <div>{row.dob}</div>
-                    <div>Age({row.age})</div>
-                  </td>
-                  <td className="border px-2 py-1">{row.vehicleType}</td>
+                  <td className="border px-2 py-1">{row.vehicleType}</td> 
                   <td className="border px-2 py-1">{row.email}</td>
                   <td className="border px-2 py-1">{row.phoneNo}</td>
                   <td className="border px-2 py-1">{row.address}</td>
                   <td className="border px-2 py-1">{row.province}</td>
                   <td className="border px-2 py-1">{row.district}</td>
                   <td className="border px-2 py-1">
-                    <OptionsBtns />
+                    <UserOptions/>
                   </td>
                 </tr>
               ))}

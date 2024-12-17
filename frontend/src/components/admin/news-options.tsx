@@ -1,12 +1,11 @@
 import { useState } from "react";
 import  DeleteAlertBox  from "@/components/admin/delete-alert-box";
-import  EditUserForm  from "@/components/admin/edit-user-form ";
 import { Switch } from "@/components/ui/switch"
-import UserMore from "@/components/admin/user-more";
-// import  BlockAlertBox  from "@/components/admin/block-alert-box";
-// import { MdBlockFlipped } from "react-icons/md";
+import EditNewsForm from "@/components/admin/edit-news-form";
+import NewsMore from "@/components/admin/news-more";
 
-export default function UserOptions() {
+
+export default function NewsOptions() {
 
   const [active, setActive] = useState<boolean>(true)
 
@@ -18,6 +17,9 @@ export default function UserOptions() {
       case "edit":
         console.log("Edit button clicked");
         break;
+        case "more":
+          console.log("more button clicked");
+        break;
       case "block":
         console.log("Block button clicked");
         break;
@@ -28,7 +30,7 @@ export default function UserOptions() {
 
   return (
     <>
-      <div className="flex gap-2 ">
+      <div className="flex gap-2 justify-center ">
         <div  onClick={() => handleOptionBtn("block")}> 
           <Switch
               className="mt-1" 
@@ -38,14 +40,14 @@ export default function UserOptions() {
             />
         </div>
 
-        <div>
-          <UserMore/>
+        <div onClick={() => handleOptionBtn("more")} >
+          <NewsMore/>
         </div>
 
         <div
           onClick={() => handleOptionBtn("edit")}                    
         >
-          <EditUserForm/> 
+          <EditNewsForm/> 
         </div>
 
         <div

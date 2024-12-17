@@ -28,7 +28,7 @@ import { ImageHandler } from '@/types/auth' // Import type from types file
 import ProfilePictureUploader from '@/components/admin/profile-picture-uploader'
 import { MdOutlineEdit } from 'react-icons/md'
 
-export default function AddUserForm() {
+export default function EditUserForm() {
   const [email, setEmail] = useState<string>('')
   const [profileImage, setProfileImage] = useState<string | null>(null)
   const [firstName, setFirstName] = useState<string>('')
@@ -98,19 +98,19 @@ export default function AddUserForm() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button
-          type="button"
-          className="bg-sky-500 p-1 border rounded-full hover:bg-sky-600"
-        >
-          <MdOutlineEdit />
-        </button>
+          <button
+              type="button"
+              className="bg-sky-500 p-1 border rounded-full hover:bg-sky-600"
+            >
+            <MdOutlineEdit />
+          </button>
         {/* <button type="button" className="bg-sky-500 p-1 border rounded-full hover:bg-sky-600"><MdOutlineEdit/></button> */}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add User</DialogTitle>
+          <DialogTitle>Edit User</DialogTitle>
           <DialogDescription>
-            You can add new usrs here. Click save when you're done.
+            You can edit usrs here. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
 

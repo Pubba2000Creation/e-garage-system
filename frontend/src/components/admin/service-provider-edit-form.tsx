@@ -105,7 +105,7 @@ export default function ServiceProviderEditForm() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit service provider</DialogTitle>
+          <DialogTitle>Edit Service Provider</DialogTitle>
           <DialogDescription>
             You can edit service provider details here. Click save when you're done.
           </DialogDescription>

@@ -3,9 +3,10 @@
 import PublishedServiceCard from '@/components/service-provider/published-service-card'
 import React from 'react'
 import service_card_1 from '@/public/images/carousel_1.jpg'
-
+import { useRouter } from 'next/navigation'
 
 export default function ManageServices() {
+  const router = useRouter()
   const publish_service_count = 5 
   return (
     <>
@@ -16,7 +17,8 @@ export default function ManageServices() {
         </div>
         <div>
             <button 
-            className='border text-sm border-primary bg-white text-primary  py-1.5 px-3  rounded-md hover:bg-primary hover:text-white transition duration-300 ease-in-out transform hover:scale-105'>
+              onClick={() => router.push('/service-provider/add-new-service')}
+              className='border text-sm border-primary bg-white text-primary  py-2 px-3  rounded-md hover:bg-primary hover:text-white transition duration-300 ease-in-out transform hover:scale-105'>
                 + Add a Service
             </button>
         </div>

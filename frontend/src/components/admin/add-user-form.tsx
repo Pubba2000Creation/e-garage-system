@@ -101,7 +101,7 @@ export default function AddUserForm() {
           type="button"
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded my-auto"
         >
-          Add User
+          Add Users
         </Button>
         {/* <button type="button" className="bg-sky-500 p-1 border rounded-full hover:bg-sky-600"><MdOutlineEdit/></button> */}
       </DialogTrigger>

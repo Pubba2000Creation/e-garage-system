@@ -11,13 +11,13 @@ const items: MenuProps['items'] = [
     label: 
       <Link href="" className='flex'>
       {/* <Eye className="mr-2 h-4 w-4 my-auto" /> */}
-      <span className='text-xs'>Preview</span>
+      <span className='text-xs'>Active</span>
       </Link>,
   },
   {
     key: '2',
     label: 
-    <Link href="" className='flex'>
+    <Link href='/service-provider/add-new-service' className='flex'>
     {/* <Edit className="mr-2 h-4 w-4 my-auto" /> */}
     <span className='text-xs'>Edit</span>     
     </Link>,
