@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { authLoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { authForgotPasswordDto } from './dto/forgotPassword.dto';
+
 @Injectable()
 export class AuthService {
     
@@ -48,6 +49,8 @@ export class AuthService {
         isVerified: false,
         verificationToken: otp,
         verificationExpiresAt: otpExpiresAt,
+        refreshToken:null,
+        conformationcode:null,
       };
 
       const userResponse = await this.userRepository.create(newUser);
@@ -86,7 +89,7 @@ export class AuthService {
       }
   
       // Verify that the OTP is still within its valid time frame
-      if (user.document.verificationExpiresAt > new Date()) {
+      if (user.document.verificationExpiresAt < new Date()) {
         // Log a warning and throw an error if the OTP is expired
         this.logger.warn(`OTP not expired for user: ${user.document._id}`);
         throw new ConflictException('OTP not expired');
@@ -241,20 +244,22 @@ export class AuthService {
       throw new NotFoundException('User not found');
     }
     //if the user are avalabe and verified need to send email
-     const conformationcode = this.generateOTP();
+     const newconformationcode = this.generateOTP();
 
     //save conformation code in database
-    await this.userRepository.findOneAndUpdate(
+     const updateUser =await this.userRepository.findOneAndUpdate(
       {_id: user.document._id,},
       {
         $set:{
-          conformationCode: conformationcode,
+          conformationcode: newconformationcode,
         }
       }
       
     )
 
     //send email
+
+    return updateUser
     
     
   }

@@ -5,7 +5,6 @@ import { AuthRegisterUserDto } from './dto/register.dto';
 import { CommonResponseDto } from '@app/common';
 import { authLoginDto } from './dto/login.dto';
 import { AuthGuard } from './guard/auth.guard';
-import { P } from 'pino';
 import { authForgotPasswordDto } from './dto/forgotPassword.dto';
 
 
@@ -279,7 +278,7 @@ export class AuthController {
  async requestForgotPassword(@Body() forgotPasswordDto: authForgotPasswordDto): Promise<CommonResponseDto> {
    try {
      const responseData = await this.authService.forgotPassword(forgotPasswordDto);
-     return new CommonResponseDto(true, 'Conformation Code sent successfully', responseData);
+     return new CommonResponseDto(true, 'Conformation Code sent successfully', responseData.document);
    } catch (error) {
      // Handle unexpected errors
      throw new HttpException(
