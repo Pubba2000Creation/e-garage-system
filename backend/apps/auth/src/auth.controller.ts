@@ -5,6 +5,8 @@ import { AuthRegisterUserDto } from './dto/register.dto';
 import { CommonResponseDto } from '@app/common';
 import { authLoginDto } from './dto/login.dto';
 import { AuthGuard } from './guard/auth.guard';
+import { P } from 'pino';
+import { authForgotPasswordDto } from './dto/forgotPassword.dto';
 
 
 
@@ -252,9 +254,40 @@ export class AuthController {
   }
 
  /**
+  * api for request forgot password
   * 
+  * @param {authForgotPasswordDto} forgotPasswordDto
   */
 
+ @Post('forgot-password')
+ @ApiBody({ type: authForgotPasswordDto })
+ @ApiResponse({
+   status: 200,
+   description: 'Conformation Code sent successfully',
+   type: CommonResponseDto,
+ })
+ @ApiResponse({
+   status: 404,
+   description: 'User not found',
+   type: CommonResponseDto,
+ })
+ @ApiResponse({
+   status: 500,
+   description: 'Internal server error.',
+   type: CommonResponseDto,
+ })
+ async requestForgotPassword(@Body() forgotPasswordDto: authForgotPasswordDto): Promise<CommonResponseDto> {
+   try {
+     const responseData = await this.authService.forgotPassword(forgotPasswordDto);
+     return new CommonResponseDto(true, 'Conformation Code sent successfully', responseData);
+   } catch (error) {
+     // Handle unexpected errors
+     throw new HttpException(
+       new CommonResponseDto(false, error.message,null ),
+       HttpStatus.INTERNAL_SERVER_ERROR,
+     );
+    }
+  }
 
 
 

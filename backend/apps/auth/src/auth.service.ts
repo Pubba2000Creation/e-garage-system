@@ -9,6 +9,7 @@ import { UserStatus } from './user/enum/userStatus.enum';
 import { v4 as uuidv4 } from 'uuid';
 import { authLoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
+import { authForgotPasswordDto } from './dto/forgotPassword.dto';
 @Injectable()
 export class AuthService {
     
@@ -230,40 +231,30 @@ export class AuthService {
   
 
   //method for forgot password
-  async forgotPassword(email: string) {
+  async forgotPassword(forgetPasswordDto: authForgotPasswordDto) {
 
     //find if user avalabe for given email
-    const user = await this.userRepository.findOne({ userEmail: email });
+    const user = await this.userRepository.findOne({ userEmail: forgetPasswordDto.email });
 
     //if the user not found
     if (!user) {
       throw new NotFoundException('User not found');
     }
+    //if the user are avalabe and verified need to send email
+     const conformationcode = this.generateOTP();
 
-    //if the user are avalabe and not verified
-    if (!user.document.isVerified) {
-      throw new ConflictException('User not verified');
-    }
+    //save conformation code in database
+    await this.userRepository.findOneAndUpdate(
+      {_id: user.document._id,},
+      {
+        $set:{
+          conformationCode: conformationcode,
+        }
+      }
+      
+    )
 
-    //if the user are avalabe and verified
-    if (user.document.isVerified) {
-      // Generate a new OTP
-      const otp = this.generateOTP();
-
-      // Update the user's OTP and expiration time
-      const updatedUser = await this.userRepository.findOneAndUpdate(
-        { _id: user.document._id }, 
-        {
-          $set: {
-            verificationToken: otp,
-            verificationExpiresAt: new Date(Date.now() + 19 * 60 * 1000), // 19 minutes
-          },
-        },
-        
-      )
-    }
-
-    //if the user are avalabe and verified
+    //send email
     
     
   }

@@ -76,6 +76,9 @@ export class UserDocument extends AbstractDocument {
 
   @Prop({type:String,required:false})
   refreshToken ?:string
+
+  @Prop({type:String,required:false})
+  conformationcode ?:string
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserDocument);
