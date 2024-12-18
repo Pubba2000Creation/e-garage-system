@@ -8,15 +8,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { useEffect, useState } from 'react'
 import StarRating from '@/components/ui/star-rating'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { IoMdCloseCircle } from 'react-icons/io'
-import { MdModeEdit } from 'react-icons/md'
 import { HandleSubmitEvent, TextareaChangeEvent } from '@/types/user-components'
+import { MdModeEdit } from 'react-icons/md'
 
-export default function EditReview() {
+export default function AddReview() {
   const [rating, setRating] = useState<number>(0)
   const [review, setReview] = useState<string>('')
   const [error, setError] = useState<string>('')
@@ -44,30 +53,30 @@ export default function EditReview() {
   }
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <button
-          aria-label="Edit Review"
-          className="text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-200  p-1 rounded-full"
+    <Dialog>
+      <DialogTrigger asChild>
+      <button
+        aria-label="Edit Review"
+        className="text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-200  p-1 rounded-full"
         >
-          <MdModeEdit size={15} />
-        </button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle></AlertDialogTitle>
+        <MdModeEdit size={15} />
+      </button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle></DialogTitle>
           <div className="flex justify-end">
-            <AlertDialogCancel>
+            {/* <AlertDialogCancel>
               <span className="hover:text-error cursor-pointer">
                 <IoMdCloseCircle />
               </span>
-            </AlertDialogCancel>
+            </AlertDialogCancel> */}
           </div>
 
           <h2 className="font-semibold text-lg mb-2 text-center">
             What are you thinking?
           </h2>
-          <AlertDialogDescription>
+          <DialogDescription>
             <form
               onSubmit={handleSubmit}
               className="space-y-4 max-w-md mx-auto"
@@ -85,7 +94,7 @@ export default function EditReview() {
                     setReview(e.target.value)
                   }
                   placeholder="Write your review here..."
-                  className="w-full border border-light_gray rounded-lg focus:outline-none focus:ring-0.5 focus:ring-primary_hover"
+                  className="w-full border border-light_gray rounded-lg focus:outline-none  focus:ring-primary_hover"
                   rows={4}
                 />
               </div>
@@ -101,10 +110,12 @@ export default function EditReview() {
                 </Button>
               </div>
             </form>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
+          </DialogDescription>
+        </DialogHeader>
         <AlertDialogFooter></AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+      </DialogContent>
+    </Dialog>
   )
 }
+
+

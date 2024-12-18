@@ -46,11 +46,6 @@ export default function NewsMore() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
-                  <span>Description:</span>
-                  <span>Description</span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                 <span>Description:</span>
                 <span>Description olregjeroigjergoier ohjrthoirthjrto ohitrjhoi j origjreoi  goerigjoige hoitj oeijr ohij eohjtrohijeoitjg eo lierjgreoi ohtr oehjrog hjhpotyrijuyoi j eyohitjhoirt jetjreoiyj oijoseihj</span>
             </div>
