@@ -61,10 +61,8 @@ export default function LineChartCard({ data,title }: LineChartCardProps) {
           </LineChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          {title} 
-        </div>
+      <CardFooter className="flex-col items-start gap-2 text-sm">      
+          {title}        
       </CardFooter>
     </Card>
   );

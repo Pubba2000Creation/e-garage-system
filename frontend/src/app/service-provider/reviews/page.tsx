@@ -1,15 +1,14 @@
-'use client'
-import ReplyReviewCard from '@/components/service-provider/reply-review-card'
+"use client"
 import CustomDropdown from '@/components/user/custom-dropdown-menu'
 import React from 'react'
 import user_profile from '@/public/users/pic.png'
+import ReviewCard from '@/components/service-provider/review-card'
 
 export default function Reviews() {
-  const reviewsCount = 3
+  const reviewsCount = 4
   const filterOptions: string[] = [
     'Newest',
-    'Oldest',
-    
+    'Oldest',   
   ]
   
   const serviceOptions: string[] = [
@@ -42,20 +41,36 @@ export default function Reviews() {
 
         <div className=''>
 
-          <ReplyReviewCard 
-            Img={user_profile} 
-            Name={'Hasitha'} 
-            rating={3} 
-            review={'eowhfweu  regiurhgr rgirhaih eaigheriugh  eriguheai jijh'} 
-            time={'1 week'} 
+          <ReviewCard
+              Name={'John Doe'}
+              Img={user_profile}
+              rating={5}
+              review={'This is a great service. I highly recommend it!'}
+              time={'2 days'}
           />
 
-        <ReplyReviewCard 
-            Img={user_profile} 
-            Name={'Hasitha'} 
-            rating={3} 
-            review={'eowhfweu rgoirjg rgregr rg regiurhgr rgirhaih eaigheriugh  eriguheaigh jijh'} 
-            time={'1 week'} 
+          <ReviewCard
+              Name={'John Doe'}
+              Img={user_profile}
+              rating={5}
+              review={'This is a great service. I highly recommend it!'}
+              time={'2 days'}
+          />
+
+          <ReviewCard
+              Name={'John Doe'}
+              Img={user_profile}
+              rating={5}
+              review={'This is a great service. I highly recommend it!'}
+              time={'2 days'}
+          />
+
+          <ReviewCard
+              Name={'John Doe'}
+              Img={user_profile}
+              rating={5}
+              review={'This is a great service. I highly recommend it!'}
+              time={'2 days'}
           />
 
         </div>

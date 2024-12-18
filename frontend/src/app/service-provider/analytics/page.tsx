@@ -46,7 +46,8 @@ export default function Analytics() {
 
   return (
     <>
-      <section className="flex flex-1 flex-col gap-4 p-0 lg:gap-6 lg:p-0">
+      <section className="flex flex-1 flex-col gap-4 ">
+
         <div className="flex justify-between">
           <h1 className="text-lg font-semibold md:text-2xl my-auto">Analytics</h1>
           <div className='flex gap-2 '>
@@ -64,8 +65,7 @@ export default function Analytics() {
               </div>
           </div>
         </div>     
-        
-             
+                     
         <div className="grid sm:grid-cols-3 gap-3   ">
           {/* Statistic Card with IoAnalytics Icon */}
           <StatisticCard
@@ -94,10 +94,8 @@ export default function Analytics() {
               
         </div>
 
-        <div>        
-          <div className='flex justify-between'>
-            <h3 className='block font-bold text-gray text-left'>Total Views <span className=' text-black' >{viewCount}</span> </h3>
-          </div>         
+        <div>                 
+            <h3 className='text-sm font-bold text-gray text-left'>Total Views <span className=' text-black' >{viewCount}</span> </h3>        
         </div>
 
         <div className="">

@@ -39,7 +39,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <section className="flex flex-1 flex-col gap-4 p-0 lg:gap-6 lg:p-0">
+      <section className="flex flex-1 flex-col gap-5 ">
         <div className="flex justify-between">
           <h1 className="text-lg font-semibold md:text-2xl my-auto">Dashboard</h1>
           <div className='flex gap-2 '>
