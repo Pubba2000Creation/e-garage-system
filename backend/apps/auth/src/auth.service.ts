@@ -10,6 +10,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { authLoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { authForgotPasswordDto } from './dto/forgotPassword.dto';
+import { authResetPasswordDto } from './dto/resetPassword.dto';
+import { authResetPasswordConformDto } from './dto/resetPasswordConform.dto';
 
 @Injectable()
 export class AuthService {
@@ -234,7 +236,7 @@ export class AuthService {
   
 
   //method for forgot password
-  async forgotPassword(forgetPasswordDto: authForgotPasswordDto) {
+  async forgotPasswordRequest(forgetPasswordDto: authForgotPasswordDto) {
 
     //find if user avalabe for given email
     const user = await this.userRepository.findOne({ userEmail: forgetPasswordDto.email });
@@ -262,6 +264,74 @@ export class AuthService {
     return updateUser
     
     
+  }
+
+  //method for verify comfirmation code
+  async varifyConformationCode(varifyConformationCodeDto: authResetPasswordConformDto) {
+    //find if user avalabe for given email
+    const user = await this.userRepository.findOne({ userEmail: varifyConformationCodeDto.userEmail });
+
+    //if the user not found
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    
+    //cehck if the given comformation code was correct with the one in database
+    if (user.document.conformationcode !== varifyConformationCodeDto.conformationcode) {
+      throw new ConflictException('Invalid conformation code');
+    }else{
+      return user
+    }
+  }
+
+  //method for reset password
+  async resetPassword(resetPasswordDto: authResetPasswordDto) {
+    
+
+    const user = await this.userRepository.findOne({ _id: resetPasswordDto.userId });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const hashedPassword = await hash(resetPasswordDto.newPassword, 10);
+
+    const updateUser = await this.userRepository.findOneAndUpdate(
+      { _id: user.document._id },
+      {
+        $set: {
+          userPassword: hashedPassword,
+          conformationcode: null,
+        },
+      }
+    )
+
+    return updateUser
+  }
+
+
+  //method for add user role
+  async addUserrole(userEmail: string, role: string) {
+    
+    //find if user avalabe for given email
+    const user = await this.userRepository.findOne({ userEmail });
+
+    if(!user){
+      throw new NotFoundException('User not found');
+    }
+
+    const updateUser = await this.userRepository.findOneAndUpdate(
+      { _id: user.document._id },
+      {
+        $set: {
+          userRole: role,
+        },
+      }
+    )
+
+    
+    return updateUser
+
   }
 
 

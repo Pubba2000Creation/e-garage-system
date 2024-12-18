@@ -6,6 +6,8 @@ import { CommonResponseDto } from '@app/common';
 import { authLoginDto } from './dto/login.dto';
 import { AuthGuard } from './guard/auth.guard';
 import { authForgotPasswordDto } from './dto/forgotPassword.dto';
+import { authResetPasswordConformDto } from './dto/resetPasswordConform.dto';
+import { authResetPasswordDto } from './dto/resetPassword.dto';
 
 
 
@@ -277,7 +279,7 @@ export class AuthController {
  })
  async requestForgotPassword(@Body() forgotPasswordDto: authForgotPasswordDto): Promise<CommonResponseDto> {
    try {
-     const responseData = await this.authService.forgotPassword(forgotPasswordDto);
+     const responseData = await this.authService.forgotPasswordRequest(forgotPasswordDto);
      return new CommonResponseDto(true, 'Conformation Code sent successfully', responseData.document);
    } catch (error) {
      // Handle unexpected errors
@@ -287,8 +289,125 @@ export class AuthController {
      );
     }
   }
+ /**
+  * api for confirmation code of the forgot password
+  * 
+  * @param {authResetPasswordConformDto} varifyConformationCodeDto
+  */
+  @Post('verify-confirmationCode')
+  @ApiBody({ type: authResetPasswordConformDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Conformation Code validated successfully',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Conformation Code invalid',
+    type: CommonResponseDto,
+  })
+  async verifyConformationCode(@Body() varifyConformationCodeDto: authResetPasswordConformDto): Promise<CommonResponseDto> {
+    try {
+      const responseData = await this.authService.varifyConformationCode(varifyConformationCodeDto);
+      return new CommonResponseDto(true, 'Conformation Code validated successfully', responseData.message);
+    } catch (error) {
+      // Handle unexpected errors
+      throw new HttpException(
+        new CommonResponseDto(false, error.message,null ),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+  /**
+   * api for reset password
+   * 
+   * @param {authResetPasswordDto} resetPasswordDto
+   */
 
+  @Post('reset-password')
+  @ApiBody({ type: authResetPasswordDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Password reset successfully',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'User not found',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal server error.',
+    type: CommonResponseDto,
+  })
+  async resetPassword(@Body() resetPasswordDto: authResetPasswordDto): Promise<CommonResponseDto> {
+    try {
+      const responseData = await this.authService.resetPassword(resetPasswordDto);
+      return new CommonResponseDto(true, 'Password reset successfully', responseData.document);
+    } catch (error) {
+      // Handle unexpected errors
+      throw new HttpException(
+        new CommonResponseDto(false, error.message,null ),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 
+  /**
+   * api for change userrole
+   */
+
+ @Post('change-userrole')
+@ApiBody({
+  schema: {
+    type: 'object',
+    properties: {
+      userEmail: { type: 'string', example: 'user@example.com' },
+      role: { type: 'string', example: 'admin' },
+    },
+  },
+})
+@ApiResponse({
+  status: 200,
+  description: 'User role changed successfully',
+  type: CommonResponseDto,
+})
+@ApiResponse({
+  status: 404,
+  description: 'User not found',
+  type: CommonResponseDto,
+})
+@ApiResponse({
+  status: 500,
+  description: 'Internal server error',
+  type: CommonResponseDto,
+})
+async changeUserRole(
+  @Body('userEmail') userEmail: string,
+  @Body('role') role: string,
+): Promise<CommonResponseDto> {
+  try {
+    const updatedUser = await this.authService.addUserrole(userEmail, role);
+    return new CommonResponseDto(
+      true,
+      'User role changed successfully',
+      updatedUser,
+    );
+  } catch (error) {
+    if (error instanceof NotFoundException) {
+      throw new HttpException(
+        new CommonResponseDto(false, 'User not found', null),
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    // Handle unexpected errors
+    throw new HttpException(
+      new CommonResponseDto(false, 'Internal server error', null),
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
+  }
+}
 
 
 
