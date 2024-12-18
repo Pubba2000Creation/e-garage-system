@@ -163,13 +163,7 @@ export default function FillInformation() {
 
             {error && <div className="mb-2 text-sm text-red-500">{error}</div>}
 
-            <div className="flex justify-between items-center">
-              <Link
-                href="/auth/sing-up/verify-otp"
-                className="px-6 py-3 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition"
-              >
-                Back
-              </Link>
+            <div className="flex justify-end ">
               <Button
                 type="submit"
                 className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary_hover transition"
