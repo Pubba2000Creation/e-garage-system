@@ -79,9 +79,9 @@ export default function FillInformation() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="firstName" className="">
+                <Label htmlFor="firstName" className="">
                   First Name
-                </label>
+                </Label>
                 <Input
                   type="text"
                   name="firstName"
@@ -113,7 +113,7 @@ export default function FillInformation() {
               <div>
                 {userRole === 'user' ? (
                   <>
-                    <label htmlFor="vehicalType">Select Vehicle Type</label>
+                    <Label htmlFor="vehicalType">Select Vehicle Type</Label>
                     <VehicleTypeSelector
                       onSelectionChange={handleVehicleSelection} // Update vehicalType state
                       selectedVehicles={[]} // Pass the current state
@@ -122,9 +122,9 @@ export default function FillInformation() {
                   </>
                 ) : (
                   <>
-                    <label htmlFor="companyName" className="">
+                    <Label htmlFor="companyName" className="">
                       Company Name
-                    </label>
+                    </Label>
                     <Input
                       type="text"
                       name="companyName"
@@ -138,13 +138,13 @@ export default function FillInformation() {
               </div>
 
               <div className="">
-                <label htmlFor="date">Date Of Birthday</label>
+                <Label htmlFor="date">Date Of Birthday</Label>
                 <DobPicker onDateChange={handleDateChange} />
               </div>
             </div>
 
             <div>
-              <label htmlFor="phoneNumber">Phone Number</label>
+              <Label htmlFor="phoneNumber">Phone Number</Label>
               <Input
                 type="text"
                 name="phoneNumber"

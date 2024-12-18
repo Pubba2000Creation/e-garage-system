@@ -141,7 +141,8 @@ export default function ShowServicePage(props: ServiceProps) {
                   src={props.mapLink}
                   className="absolute top-0 left-0 w-full h-full border-0 rounded-md"
                   allowFullScreen={true}
-                  loading="lazy"
+                  //loading="lazy"
+                  title="Interactive map of location"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>

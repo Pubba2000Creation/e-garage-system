@@ -20,7 +20,7 @@ export default function TermsAndConditions() {
     setIsChecked(!isChecked)
 
     if (isChecked) {
-      router.push('/auth/sign-up/create-account')
+      router.push('')
     }
   }
 
