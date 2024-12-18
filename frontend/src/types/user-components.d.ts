@@ -170,7 +170,7 @@ export interface ServicesCardProps {
   reviewCount: number
   title: string
   address: string
-  onClick: () => void
+  fun: () => void
   setDiscount?: boolean // Changed to boolean for clarity
 }
 
