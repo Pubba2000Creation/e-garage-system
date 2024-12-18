@@ -2,14 +2,17 @@
 
 import React from 'react'
 import ServicesCard from '@/components/user/services-card'
-
 import card_image_1 from '@/public/images/services-card-1.svg'
 import card_image_2 from '@/public/images/services-card-2.svg'
 import card_image_3 from '@/public/images/services-card-3.svg'
+import { useRouter } from 'next/navigation'
 
 export default function FeaturedServicesPromotions() {
-  function handleClickServiceCard(id: string) {
+  const router = useRouter()
+
+  function handleClickServiceCard(id: string) {   
     console.log('id: ', id)
+    router.push('/user/show-service')
   }
 
   return (
