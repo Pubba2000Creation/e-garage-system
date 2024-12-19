@@ -358,56 +358,56 @@ export class AuthController {
    * api for change userrole
    */
 
- @Post('change-userrole')
-@ApiBody({
-  schema: {
-    type: 'object',
-    properties: {
-      userEmail: { type: 'string', example: 'user@example.com' },
-      role: { type: 'string', example: 'admin' },
+  @Post('change-userrole')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        userEmail: { type: 'string', example: 'user@example.com' },
+        role: { type: 'string', example: 'USER/SERVICE OWNER' },
+      },
     },
-  },
-})
-@ApiResponse({
-  status: 200,
-  description: 'User role changed successfully',
-  type: CommonResponseDto,
-})
-@ApiResponse({
-  status: 404,
-  description: 'User not found',
-  type: CommonResponseDto,
-})
-@ApiResponse({
-  status: 500,
-  description: 'Internal server error',
-  type: CommonResponseDto,
-})
-async changeUserRole(
-  @Body('userEmail') userEmail: string,
-  @Body('role') role: string,
-): Promise<CommonResponseDto> {
-  try {
-    const updatedUser = await this.authService.addUserrole(userEmail, role);
-    return new CommonResponseDto(
-      true,
-      'User role changed successfully',
-      updatedUser,
-    );
-  } catch (error) {
-    if (error instanceof NotFoundException) {
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'User role changed successfully',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'User not found',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal server error',
+    type: CommonResponseDto,
+  })
+  async changeUserRole(
+    @Body('userEmail') userEmail: string,
+    @Body('role') role: string,
+  ): Promise<CommonResponseDto> {
+    try {
+      const updatedUser = await this.authService.addUserrole(userEmail, role);
+      return new CommonResponseDto(
+        true,
+        'User role changed successfully',
+        updatedUser.document,
+      );
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw new HttpException(
+          new CommonResponseDto(false, 'User not found', null),
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      // Handle unexpected errors
       throw new HttpException(
-        new CommonResponseDto(false, 'User not found', null),
-        HttpStatus.NOT_FOUND,
+        new CommonResponseDto(false, 'Internal server error', null),
+        HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
-    // Handle unexpected errors
-    throw new HttpException(
-      new CommonResponseDto(false, 'Internal server error', null),
-      HttpStatus.INTERNAL_SERVER_ERROR,
-    );
   }
-}
 
 
 

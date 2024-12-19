@@ -320,14 +320,13 @@ export class AuthService {
       throw new NotFoundException('User not found');
     }
 
-    const updateUser = await this.userRepository.findOneAndUpdate(
-      { _id: user.document._id },
-      {
-        $set: {
-          userRole: role,
-        },
-      }
-    )
+      const updateUser = await this.userRepository.findOneAndUpdate(
+    { _id: user.document._id },
+    {
+      $addToSet: { userRoles: role }, // Add multiple roles, avoiding duplicates
+    },
+    
+  );
 
     
     return updateUser
