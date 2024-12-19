@@ -5,7 +5,7 @@ import { FaStar } from 'react-icons/fa'
 //import { MdModeEdit } from 'react-icons/md'
 //import { FaTrash } from 'react-icons/fa'
 import { AspectRatio } from "@/components/ui/aspect-ratio"
-import EditReview from './EditReview'
+import EditReview from './edit-review'
 import { DeleteAlertBox } from './delete-alert-box'
 
 interface ReviewServiceCardProps {

@@ -1,10 +1,12 @@
 import React, { ReactElement } from "react";
+import Link from 'next/link'
 
 interface StatisticCardProps {
   title: string;
   subtitle: string;
   icon: ReactElement<{ size?: number }>; // Ensure the icon supports a `size` prop
   iconSize?: number; // Optional size for the icon
+  href : string;
 }
 
 export default function StatisticCard({
@@ -12,9 +14,12 @@ export default function StatisticCard({
   subtitle,
   icon,
   iconSize = 50, // Default size
+  href
 }: StatisticCardProps) {
   return (
-    <div className="border rounded border-light_gray p-4 w-full bg-light_gray shadow m-0.5">
+    <Link 
+      href={href}
+      className="border rounded border-light_gray p-4 w-full bg-light_gray shadow m-0.5">
       <div className="flex space-x-3">
         {/* Icon Section */}
         <div className="my-auto">
@@ -27,6 +32,6 @@ export default function StatisticCard({
           <p className="text-gray text-sm text-left">{subtitle}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

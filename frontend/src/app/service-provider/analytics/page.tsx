@@ -4,6 +4,8 @@ import { IoAnalytics } from "react-icons/io5";
 import StatisticCard from "@/components/service-provider/statistic-card";
 import CustomDropdown from '@/components/user/custom-dropdown-menu'
 import  LineChartCard  from '@/components/service-provider/line-chart';
+import { FaWarehouse } from "react-icons/fa";
+import { PiClockFill } from "react-icons/pi";
 
 const filterOptions: string[] = [
   'This week',
@@ -44,9 +46,10 @@ export default function Analytics() {
 
   return (
     <>
-      <section className="flex flex-1 flex-col gap-4 p-0 lg:gap-6 lg:p-0">
+      <section className="flex flex-1 flex-col gap-4 ">
+
         <div className="flex justify-between">
-          <h1 className="text-lg font-semibold md:text-2xl my-auto">Analytics Dashboard</h1>
+          <h1 className="text-lg font-semibold md:text-2xl my-auto">Analytics</h1>
           <div className='flex gap-2 '>
               <div className=''>
                 <CustomDropdown
@@ -62,8 +65,7 @@ export default function Analytics() {
               </div>
           </div>
         </div>     
-        
-             
+                     
         <div className="grid sm:grid-cols-3 gap-3   ">
           {/* Statistic Card with IoAnalytics Icon */}
           <StatisticCard
@@ -71,33 +73,33 @@ export default function Analytics() {
             subtitle="Monthly Views"
             icon={<IoAnalytics />}
             iconSize={50}
+            href={"/service-provider/manage-service"}
           />
 
           <StatisticCard
             title="04"
             subtitle="Published Services"
-            icon={<IoAnalytics />}
-            iconSize={50}
+            icon={<FaWarehouse />}
+            iconSize={40}
+            href={"/service-provider/manage-service"}
           />
 
           <StatisticCard
             title="02"
             subtitle="Pending Services"
-            icon={<IoAnalytics />}
-            iconSize={50}
+            icon={<PiClockFill />}
+            iconSize={40}
+            href={"/service-provider/manage-service"}
           />
               
         </div>
 
-        <div>        
-          <div className='flex justify-between'>
-            <h3 className='block font-bold text-gray text-left'>Total Views <span className=' text-black' >{viewCount}</span> </h3>
-
-          </div>         
+        <div>                 
+            <h3 className='text-sm font-bold text-gray text-left'>Total Views <span className=' text-black' >{viewCount}</span> </h3>        
         </div>
 
         <div className="">
-          <LineChartCard data={chartData } />
+          <LineChartCard data={chartData } title={"This is views growth Line chart"} />
         </div>
 
       </section>

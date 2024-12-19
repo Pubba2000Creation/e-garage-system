@@ -5,10 +5,13 @@ import card_image_1 from '@/public/images/services-card-1.svg'
 import card_image_2 from '@/public/images/services-card-2.svg'
 import card_image_3 from '@/public/images/services-card-3.svg'
 import NewsCard from '@/components/user/news-card'
+import { useRouter } from 'next/navigation'
 
 export default function NewsSection() {
+  const router = useRouter()
   function handleClickNewsCard(id: string) {
     console.log('id: ', id)
+    router.push('/user/show-news')
   }
 
   return (

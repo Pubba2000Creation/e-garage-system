@@ -46,14 +46,7 @@ export default function ProfilePictureForm() {
           </form>
 
           {/* Buttons */}
-          <div className="flex justify-between mt-6">
-            <Link
-              href="/auth/sign-up/set-address"
-              className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-400 transition duration-300"
-            >
-              Back
-            </Link>
-
+          <div className="flex justify-end mt-6">
             <button
               type="submit"
               className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300"

@@ -134,7 +134,7 @@ export default function ServiceProviderNavbar({
           </div>
         </header>
 
-        <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
+        <div className="flex flex-1 flex-col gap-4 pt-3 px-1">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   )

@@ -6,7 +6,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/auth/sign-up', // Redirect to login page
+        destination: '/admin/dashboard', // Redirect to login page
         permanent: false, // Temporary redirect (302)
       },
     ]

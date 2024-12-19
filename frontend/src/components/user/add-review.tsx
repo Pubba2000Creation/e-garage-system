@@ -8,6 +8,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { useEffect, useState } from 'react'
 import StarRating from '@/components/ui/star-rating'
 import { Button } from '@/components/ui/button'
@@ -43,30 +52,30 @@ export default function AddReview() {
   }
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         <button
           type="button"
           className="border font-normal text-sm cursor-pointer border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none"
         >
           + Add Reviews
         </button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle></AlertDialogTitle>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle></DialogTitle>
           <div className="flex justify-end">
-            <AlertDialogCancel>
+            {/* <AlertDialogCancel>
               <span className="hover:text-error cursor-pointer">
                 <IoMdCloseCircle />
               </span>
-            </AlertDialogCancel>
+            </AlertDialogCancel> */}
           </div>
 
           <h2 className="font-semibold text-lg mb-2 text-center">
             What are you thinking?
           </h2>
-          <AlertDialogDescription>
+          <DialogDescription>
             <form
               onSubmit={handleSubmit}
               className="space-y-4 max-w-md mx-auto"
@@ -84,7 +93,7 @@ export default function AddReview() {
                     setReview(e.target.value)
                   }
                   placeholder="Write your review here..."
-                  className="w-full border border-light_gray rounded-lg focus:outline-none focus:ring-0.5 focus:ring-primary_hover"
+                  className="w-full border border-light_gray rounded-lg focus:outline-none  focus:ring-primary_hover"
                   rows={4}
                 />
               </div>
@@ -100,10 +109,10 @@ export default function AddReview() {
                 </Button>
               </div>
             </form>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
+          </DialogDescription>
+        </DialogHeader>
         <AlertDialogFooter></AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+      </DialogContent>
+    </Dialog>
   )
 }

@@ -14,9 +14,9 @@ export default function UserHomePage() {
     <>
       <HeroSectionComponent />
       <CategorySection />
+      <FeaturedServicesPromotions />
       <TopRatedServicesSection />
       <BanerSection />
-      <FeaturedServicesPromotions />
       <NewsAlertSection />
       <BottomSection />
      

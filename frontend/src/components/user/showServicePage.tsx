@@ -16,7 +16,7 @@ import carousel_3 from '@/public/images/carousel_3.jpg'
 import Tag from '@/components/user/tag'
 import Border_btn from '@/components/user/border-btn'
 import Btn from '@/components/user/btn'
-import AddReview from '@/components/user/addReview'
+import AddReview from '@/components/user/add-review'
 import CustomDropdown from '@/components/user/custom-dropdown-menu'
 import ReviewCard from '@/components/user/review-card'
 import SimilarServicesSection from '@/components/user/similar-services-section'
@@ -141,7 +141,8 @@ export default function ShowServicePage(props: ServiceProps) {
                   src={props.mapLink}
                   className="absolute top-0 left-0 w-full h-full border-0 rounded-md"
                   allowFullScreen={true}
-                  loading="lazy"
+                  //loading="lazy"
+                  title="Interactive map of location"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>

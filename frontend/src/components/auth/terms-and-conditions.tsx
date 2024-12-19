@@ -20,7 +20,7 @@ export default function TermsAndConditions() {
     setIsChecked(!isChecked)
 
     if (isChecked) {
-      router.push('/auth/sign-up/create-account')
+      router.push('')
     }
   }
 
@@ -73,14 +73,7 @@ export default function TermsAndConditions() {
             </label>
           </div>
 
-          <div className="flex justify-between">
-            <Link
-              href="/auth/sign-up/choose-account"
-              className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-400 transition duration-300"
-            >
-              Back
-            </Link>
-
+          <div className="flex justify-end">
             <button
               className={`px-6 py-3 bg-primary text-white font-semibold rounded-lg transition duration-300 ${
                 isChecked
