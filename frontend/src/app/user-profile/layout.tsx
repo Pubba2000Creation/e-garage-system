@@ -11,20 +11,22 @@ const archivo = Archivo({
 })
 
 export const metadata: Metadata = {
-  title: 'Garage',
+  title: 'Garage | Profile',
   description: 'A user-friendly garage system',
 }
 
-export default function DashbardLayout({
+export default function ProfileLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
     <html lang="en">
-      <body className={`${archivo.className} px-2 md:px-5 lg:px-5 mx-auto`}>
-        <UserProfileNavbar>{children}</UserProfileNavbar>
+      <body className={`${archivo.className}`}>        
+        <section className='px-2 md:px-5 lg:px-5 mx-auto'>
+            <UserProfileNavbar>{children}</UserProfileNavbar>
+        </section>
       </body>
-    </html>
+    </html> 
   )
 }

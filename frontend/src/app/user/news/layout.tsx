@@ -12,10 +12,10 @@ const archivo = Archivo({
 })
 
 export const metadata: Metadata = {
-  title: 'Gearge',
+  title: 'Gearge | News',
 }
 
-export default function HomeLayout({
+export default function NewsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode

@@ -1,5 +1,9 @@
 import OurTeam from '@/components/user/ourTeam'
 import React from 'react'
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+  title: 'Gearge | About',
+}
 
 export default function AboutSection() {
   return (

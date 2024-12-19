@@ -19,8 +19,10 @@ import UserProfile from '@/components/user/user-profile'
 import NotificationsDrawer from '@/components/user/notifications-drawer'
 import user_profile from '@/public/users/pic.png'
 import { NavbarProps } from '@/types/user-components'
+import { useRouter } from 'next/navigation'
 
 export default function Navbar() {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState<NavbarProps['isOpen']>(false)
   const [isloging, setIsloging] = useState<NavbarProps['isloging']>(false)
 
@@ -31,6 +33,8 @@ export default function Navbar() {
 
   function add_services() {
     console.log('click add services')
+    router.push('/auth/sign-up')
+
   }
 
   return (
@@ -55,13 +59,15 @@ export default function Navbar() {
               >
                 Home
               </Link>
-              <Link
+
+              {/* <Link
                 className="text-sm font-semibold text-black focus:text-primary"
                 href="/user/home"
                 onClick={() => setIsOpen(false)}
               >
                 Find Services
-              </Link>
+              </Link> */}
+
               {/* <Link
                 className="text-sm font-semibold text-black focus:text-primary"
                 href="/user/services"
@@ -69,6 +75,7 @@ export default function Navbar() {
               >
                 Services
               </Link> */}
+
               <Link
                 className="text-sm font-semibold text-black focus:text-primary"
                 href="/user/news"
@@ -106,12 +113,14 @@ export default function Navbar() {
         >
           Home
         </Link>
-        <Link
+
+        {/* <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
           href="/user/home"
         >
           Find Services
-        </Link>
+        </Link> */}
+
         {/* <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
           href="/user/services"

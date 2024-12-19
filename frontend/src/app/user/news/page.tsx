@@ -16,6 +16,7 @@ export default function News() {
 
   return (
     <section id="top-rated-section" className="my-5">
+
       <h2 className=" text-2xl font-bold text-left my-5 ">News</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

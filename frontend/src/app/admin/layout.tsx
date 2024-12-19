@@ -1,4 +1,4 @@
-
+import type { Metadata } from 'next'
 import '@/app/globals.css'
 import { Archivo } from 'next/font/google'
 import ServiceProviderNavbar from '@/components/admin/dashboard-navbar'
@@ -9,7 +9,10 @@ const archivo = Archivo({
   weight: ['400', '700'], // Define the font weights you plan to use
 })
 
-
+export const metadata: Metadata = {
+  title: 'Garage | Dashboard',
+  description: 'A user-friendly garage system',
+}
 export default function AdminLayout({
   children,
 }: Readonly<{

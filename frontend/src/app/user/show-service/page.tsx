@@ -1,17 +1,11 @@
-// interface servicePageProps {
-//   params: Promise<{ id: string }>;
-//   searchParams: Promise<{ foo: string }>;
-//   // Other custom props
-// }
-
-// export default async function Page({ params, searchParams }: servicePageProps) {
-//   const { id } = await params;
-//   const { foo } = await searchParams;
-//   return <div>User ID: {id}, Foo: {foo}</div>;
-// }
 
 import ShowServicePage from '@/components/user/showServicePage'
 import React from 'react'
+
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+  title: 'Gearge | Services',
+}
 
 export default function Service() {
   return (
