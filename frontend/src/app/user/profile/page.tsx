@@ -98,6 +98,7 @@ export default function Profile() {
               <div>
                 <Label className="block font-bold my-1.5" htmlFor="firstName">First Name:</Label>
                 <Input
+                  type='text'
                   id="firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
@@ -110,6 +111,7 @@ export default function Profile() {
               <div>
                 <Label className="block font-bold my-1.5" htmlFor="lastName">Last Name:</Label>
                 <Input
+                  type='text'
                   id="lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}

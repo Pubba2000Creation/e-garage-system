@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { ImageHandler } from '@/types/auth' // Import type from types file
+import { Button } from '@/components/ui/button'
 
 export default function ProfilePictureForm() {
   const [profileImage, setProfileImage] = useState<string | null>(null)
@@ -47,12 +48,12 @@ export default function ProfilePictureForm() {
 
           {/* Buttons */}
           <div className="flex justify-end mt-6">
-            <button
+            <Button
               type="submit"
               className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300"
             >
-              Finish →
-            </button>
+              Finish
+            </Button>
           </div>
         </CardContent>
       </Card>

@@ -1,5 +1,6 @@
 'use client'
 import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import {
   Card,
@@ -67,12 +68,12 @@ export default function OtpPage() {
               <div className="mb-4 text-red-500 text-center">{error}</div>
             )}
 
-            <button
+            <Button
               type="submit"
-              className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300"
+              className="w-full text-white"
             >
               Verify Email
-            </button>
+            </Button>
           </form>
           <div className="mt-4 text-center text-sm">
             <div className="mt-4 text-center">

@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { CheckboxProps } from '@/types/auth' // Import types
+import { Button } from '@/components/ui/button'
 
 export default function TermsAndConditions() {
   const [isChecked, setIsChecked] = useState<CheckboxProps['isChecked']>(false)
@@ -74,8 +75,8 @@ export default function TermsAndConditions() {
           </div>
 
           <div className="flex justify-end">
-            <button
-              className={`px-6 py-3 bg-primary text-white font-semibold rounded-lg transition duration-300 ${
+            <Button
+              className={`px-6 py-5 bg-primary text-white font-semibold rounded-lg transition duration-300 ${
                 isChecked
                   ? 'hover:bg-primary_hover'
                   : 'opacity-50 cursor-not-allowed'
@@ -84,7 +85,7 @@ export default function TermsAndConditions() {
               disabled={!isChecked}
             >
               Create Account
-            </button>
+            </Button>
           </div>
         </CardContent>
       </Card>
