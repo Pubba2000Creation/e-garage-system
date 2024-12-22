@@ -12,7 +12,7 @@ const archivo = Archivo({
 })
 
 export const metadata: Metadata = {
-  title: 'Gearge',
+  title: 'Garage',
 }
 
 export default function HomeLayout({

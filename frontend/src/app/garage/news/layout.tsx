@@ -12,7 +12,7 @@ const archivo = Archivo({
 })
 
 export const metadata: Metadata = {
-  title: 'Gearge | News',
+  title: 'Garage | News',
 }
 
 export default function NewsLayout({

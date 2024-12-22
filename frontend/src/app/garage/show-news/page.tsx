@@ -5,7 +5,7 @@ import hot_news from '@/public/images/carousel_1.jpg'
 
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'Gearge | News',
+  title: 'Garage| News',
 }
 
 

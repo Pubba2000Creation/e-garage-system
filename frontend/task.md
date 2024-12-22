@@ -1,6 +1,5 @@
-seo
-Call button, location button, what app button
-make email template
+
+make email template (welcomes , otps)
 edit about about us
 
 

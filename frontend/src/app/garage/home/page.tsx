@@ -10,7 +10,7 @@ import NewsAlertSection from '@/components/user/news-section'
 import BottomSection from '@/components/user/bottom-section'
 
 export const metadata: Metadata = {
-  title: 'Gearge | Home',
+  title: 'Garage | Home',
 }
 
 export default function UserHomePage() {
