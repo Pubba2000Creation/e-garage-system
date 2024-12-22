@@ -8,7 +8,7 @@ import { UserProfileProps, UserProfileMenuItems } from '@/types/user-components'
 const items: UserProfileMenuItems = [
   {
     key: '1',
-    label: <Link href="/user-profile/profile">Profile</Link>,
+    label: <Link href="/user/profile">Profile</Link>,
   },
   {
     key: '2',

@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   title: 'Gearge | News',
 }
 
+export async function generateMetadata({ params: { id } }: { params: { id: string } }) {
+  return {
+    title: '...',
+  }
+}
 export default function ShowNewspage() {
 
   return (

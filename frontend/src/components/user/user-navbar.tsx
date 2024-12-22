@@ -54,7 +54,7 @@ export default function Navbar() {
             <div className="flex flex-col space-y-4 mt-4">
               <Link
                 className="text-sm font-semibold text-black focus:text-primary"
-                href="/user/home"
+                href="/garage/home"
                 onClick={() => setIsOpen(false)}
               >
                 Home
@@ -78,14 +78,14 @@ export default function Navbar() {
 
               <Link
                 className="text-sm font-semibold text-black focus:text-primary"
-                href="/user/news"
+                href="/garage/news"
                 onClick={() => setIsOpen(false)}
               >
                 News
               </Link>
               <Link
                 className="text-sm font-semibold text-black focus:text-primary"
-                href="/user/aboutus"
+                href="/garage/aboutus"
                 onClick={() => setIsOpen(false)}
               >
                 About Us
@@ -109,7 +109,7 @@ export default function Navbar() {
       <div className="hidden lg:flex flex-1 justify-center items-center space-x-6">
         <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
-          href="/user/home"
+          href="/garage/home"
         >
           Home
         </Link>
@@ -130,14 +130,14 @@ export default function Navbar() {
 
         <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
-          href="/user/news"
+          href="/garage/news"
         >
           News
         </Link>
 
         <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
-          href="/user/aboutus"
+          href="/garage/aboutus"
         >
           About Us
         </Link>

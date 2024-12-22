@@ -7,6 +7,7 @@ import card_image_3 from '@/public/images/services-card-3.svg'
 import NewsCard from '@/components/user/news-card'
 import { useRouter } from 'next/navigation'
 
+
 export default function News() {
   const router = useRouter()
   function handleClickNewsCard(id: string) {
