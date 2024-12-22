@@ -47,7 +47,7 @@ export default function ShowServicePage(props: ServiceProps) {
   };
 
   const openWhatsApp = () => {
-    const url = `https://wa.me/${props.whatsappNumber.replace("+", "")}`;
+    const url = `https://wa.me/${props.whatsappNumber.replace("+94", "")}`;
     window.open(url, "_blank"); // Opens the link in a new tab
   };
 
