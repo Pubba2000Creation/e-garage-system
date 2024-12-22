@@ -76,7 +76,7 @@ export default function TermsAndConditions() {
 
           <div className="flex justify-end">
             <Button
-              className={`px-6 py-5 bg-primary text-white font-semibold rounded-lg transition duration-300 ${
+              className={`px-6 py-5 bg-primary text-white  transition duration-300 ${
                 isChecked
                   ? 'hover:bg-primary_hover'
                   : 'opacity-50 cursor-not-allowed'

@@ -50,7 +50,7 @@ export default function ProfilePictureForm() {
           <div className="flex justify-end mt-6">
             <Button
               type="submit"
-              className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300"
+              className="px-6 py-3 bg-primary text-white  hover:bg-primary_hover transition duration-300"
             >
               Finish
             </Button>
