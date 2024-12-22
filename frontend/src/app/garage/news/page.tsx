@@ -12,7 +12,7 @@ export default function News() {
   const router = useRouter()
   function handleClickNewsCard(id: string) {
     console.log('id: ', id)
-    router.push('/user/show-news')
+    router.push('/garage/show-news')
   }
 
   return (
