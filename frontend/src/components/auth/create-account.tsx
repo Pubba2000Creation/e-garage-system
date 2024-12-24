@@ -100,7 +100,7 @@ export default function CreateAccount() {
             )}
 
             <Button type="submit" className="w-full text-white">
-              Login
+              Sign up
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">

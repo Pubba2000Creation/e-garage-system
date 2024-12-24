@@ -6,6 +6,7 @@ import { Star } from 'lucide-react'
 import ImageCarousel from '@/components/user/image-carousel'
 import { CiLocationOn, CiPhone } from 'react-icons/ci'
 import { IoLogoWhatsapp } from 'react-icons/io'
+import { IoCopyOutline } from "react-icons/io5";
 
 import user from '@/public/team/1.jpg'
 
@@ -34,6 +35,26 @@ export default function ShowServicePage(props: ServiceProps) {
   const handleFilterChange = (selectedOption: string) => {
     console.log('Selected filter:', selectedOption)
   }
+
+  const copyPhoneNumber = () => {
+    navigator.clipboard.writeText(props.phoneNumber);
+    //alert("Phone number copied to clipboard!");
+  };
+
+  const copyWhatsappPhoneNumber = () => {
+    navigator.clipboard.writeText(props.whatsappNumber);
+    //alert("Phone number copied to clipboard!");
+  };
+
+  const openWhatsApp = () => {
+    const url = `https://wa.me/${props.whatsappNumber.replace("+94", "")}`;
+    window.open(url, "_blank"); // Opens the link in a new tab
+  };
+
+  const openGoogleMaps = () => {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(props.address)}`;
+    window.open(url, "_blank"); // Opens the Google Maps link in a new tab
+  };
 
   const imageSet1 = [
     carousel_1,
@@ -160,20 +181,32 @@ export default function ShowServicePage(props: ServiceProps) {
                   <CiPhone />
                 </span>{' '}
                 Phone: {props.phoneNumber}
+                <button
+                    onClick={copyPhoneNumber}
+                    className="bg-light_gray p-1 rounded-md hover:bg-slate-300"
+                  >
+                  <IoCopyOutline />                  
+                </button>
               </li>
               <li className="flex gap-2 my-2">
                 <span className="py-1 text-whatapp">
                   <IoLogoWhatsapp />
                 </span>{' '}
                 WhatsApp: {props.whatsappNumber}
+                <button
+                    onClick={copyWhatsappPhoneNumber}
+                    className="bg-light_gray p-1 rounded-md hover:bg-slate-300"
+                  >
+                  <IoCopyOutline />                  
+                </button>
               </li>
             </ul>
 
             <div className="flex justify-between mt-5">
-              <Btn name="Call Us" fun={() => console.log('Call Us')} />
+              <Btn name="Call Us" fun={openWhatsApp} />
               <Border_btn
                 name="Locate Us"
-                fun={() => console.log('Locate Us')}
+                fun={openGoogleMaps}
               />
             </div>
           </div>

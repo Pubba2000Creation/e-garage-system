@@ -10,7 +10,7 @@ const archivo = Archivo({
 })
 
 export const metadata: Metadata = {
-  title: 'Garage',
+  title: 'Garage | Dashboard',
   description: 'A user-friendly garage system',
 }
 

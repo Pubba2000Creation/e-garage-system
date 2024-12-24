@@ -1,5 +1,10 @@
 import React from 'react'
 
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+  title: 'Garage | Contact',
+}
+
 export default function ContactUs() {
   return (
     <>

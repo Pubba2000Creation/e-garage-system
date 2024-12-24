@@ -12,7 +12,7 @@ export default function TopRatedServicesSection() {
 
   function handleClickServiceCard(id: string) {   
     console.log('id: ', id)
-    router.push('/user/show-service')
+    router.push('/garage/show-service')
   }
 
   return (

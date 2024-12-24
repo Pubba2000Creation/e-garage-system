@@ -7,15 +7,17 @@ import card_image_3 from '@/public/images/services-card-3.svg'
 import NewsCard from '@/components/user/news-card'
 import { useRouter } from 'next/navigation'
 
+
 export default function News() {
   const router = useRouter()
   function handleClickNewsCard(id: string) {
     console.log('id: ', id)
-    router.push('/user/show-news')
+    router.push('/garage/show-news')
   }
 
   return (
     <section id="top-rated-section" className="my-5">
+
       <h2 className=" text-2xl font-bold text-left my-5 ">News</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

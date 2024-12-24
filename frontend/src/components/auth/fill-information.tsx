@@ -168,7 +168,7 @@ export default function FillInformation() {
                 type="submit"
                 className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary_hover transition"
               >
-                Next →
+                Next
               </Button>
             </div>
           </form>
