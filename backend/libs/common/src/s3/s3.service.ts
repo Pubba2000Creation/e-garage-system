@@ -30,7 +30,7 @@ export class S3Service {
    * @returns A promise that resolves to the URL of the uploaded file.
    * @throws InternalServerErrorException if the upload fails.
    */
-  async uploadFile(file: Express.Multer.File): Promise<string> {
+  async uploadFile(file: Express.Multer.File): Promise<{ document: string; message: string }> {
     if (!file || !file.buffer) {
       throw new Error('Invalid file provided for upload'); // Validation for missing or invalid file
     }
@@ -46,7 +46,10 @@ export class S3Service {
     try {
       // Upload the file to S3 and return the file URL
       const uploadResult = await this.s3.upload(params).promise();
-      return uploadResult.Location; // Location is the public URL of the uploaded file
+      return {
+        document: uploadResult.Location, // URL of the uploaded file
+        message: 'File uploaded successfully!',
+      };
     } catch (error) {
       // Log the error for debugging
       console.error('Error uploading file to S3:', error);

@@ -12,13 +12,15 @@ import { JwtService } from '@nestjs/jwt';
 import { authForgotPasswordDto } from './dto/forgotPassword.dto';
 import { authResetPasswordDto } from './dto/resetPassword.dto';
 import { authResetPasswordConformDto } from './dto/resetPasswordConform.dto';
+import { S3Service } from '@app/common';
 
 @Injectable()
 export class AuthService {
     
   constructor(
     private readonly userRepository: UserRepository,
-    private readonly jwtService: JwtService
+    private readonly jwtService: JwtService,
+    private readonly s3Service: S3Service
 
 
   ) {}
@@ -333,6 +335,7 @@ export class AuthService {
 
   }
 
+  //
   
 
 
