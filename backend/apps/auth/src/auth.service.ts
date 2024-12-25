@@ -335,7 +335,33 @@ export class AuthService {
 
   }
 
-  //
+  //method for add user image file and url
+  async addUserImageUrl(userEmail: string, file: Express.Multer.File) {
+    // Find if the user exists for the given email
+    const user = await this.userRepository.findOne({ userEmail });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    try {
+      // Upload the file to AWS S3
+      const result = await this.s3Service.uploadOneFile(file);
+      const imageUrl = result.document; // Ensure this value comes correctly from S3
+
+      // Update the user's profile picture using findOneAndUpdate
+      const  updatedUser  = await this.userRepository.findOneAndUpdate(
+        { _id: user.document._id },
+        { $set: { profilePicture: imageUrl } } // Update the profile picture
+      );
+
+      //console.log('Update message:', message); // Log the message if needed
+      return updatedUser
+
+    } catch (error) {
+      console.error('Error uploading file or updating user:', error.message);
+      throw new Error('Failed to upload image or update user profile');
+    }
+  }
   
 
 

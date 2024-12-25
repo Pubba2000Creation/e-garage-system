@@ -1,4 +1,4 @@
-import { Body, ConflictException, Controller, Get, HttpException, HttpStatus, Logger, NotFoundException, Param, Post, Query, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, ConflictException, Controller, Get, HttpException, HttpStatus, Logger, NotFoundException, Param, Post, Query, Req, UnauthorizedException, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiBody, ApiParam, ApiProperty, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthRegisterUserDto } from './dto/register.dto';
@@ -8,6 +8,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { authForgotPasswordDto } from './dto/forgotPassword.dto';
 import { authResetPasswordConformDto } from './dto/resetPasswordConform.dto';
 import { authResetPasswordDto } from './dto/resetPassword.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 
 
@@ -411,6 +412,68 @@ export class AuthController {
 
 
 
+  /**
+ * API to upload a user's profile picture
+ */
+  @Post('upload-profile-picture')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        userEmail: { type: 'string', example: 'user@example.com' },
+        file: {
+          type: 'string',
+          format: 'binary',
+          description: 'The image file to upload',
+        },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Profile picture uploaded successfully',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'User not found',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal server error',
+    type: CommonResponseDto,
+  })
+  @UseInterceptors(FileInterceptor('file')) // Intercepts file uploads
+  async uploadProfilePicture(
+    @Body('userEmail') userEmail: string,
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<CommonResponseDto> {
+    try {
+      if (!file) {
+        throw new BadRequestException('No file uploaded');
+      }
+
+      const updatedUser = await this.authService.addUserImageUrl(userEmail, file);
+      return new CommonResponseDto(
+        true,
+        'Profile picture uploaded successfully',
+        updatedUser.document,
+      );
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw new HttpException(
+          new CommonResponseDto(false, 'User not found', null),
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      // Handle unexpected errors
+      throw new HttpException(
+        new CommonResponseDto(false, 'Internal server error', null),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 
 
 }

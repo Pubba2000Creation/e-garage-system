@@ -30,7 +30,7 @@ export class S3Service {
    * @returns A promise that resolves to the URL of the uploaded file.
    * @throws InternalServerErrorException if the upload fails.
    */
-  async uploadFile(file: Express.Multer.File): Promise<{ document: string; message: string }> {
+  async uploadOneFile(file: Express.Multer.File): Promise<{ document: string; message: string }> {
     if (!file || !file.buffer) {
       throw new Error('Invalid file provided for upload'); // Validation for missing or invalid file
     }
@@ -58,4 +58,34 @@ export class S3Service {
       throw new InternalServerErrorException('Failed to upload file to S3. Please try again later.');
     }
   }
+
+      /**
+     * Uploads multiple files to the configured AWS S3 bucket.
+     * @param files - An array of files to be uploaded (must be of type Express.Multer.File[])
+     * @returns A promise that resolves to an array of URLs for the uploaded files.
+     * @throws InternalServerErrorException if any upload fails.
+     */
+    async uploadFiles(files: Express.Multer.File[]): Promise<{ documents: string[]; message: string }> {
+      if (!files || files.length === 0) {
+        throw new Error('No files provided for upload'); // Validation for missing files
+      }
+
+      try {
+        // Upload each file to S3 and collect their URLs
+        const uploadResults = await Promise.all(
+          files.map(file => this.uploadOneFile(file)), // Reuse the existing uploadOneFile method
+        );
+
+        // Extract URLs from the upload results
+        const documentUrls = uploadResults.map(result => result.document);
+
+        return {
+          documents: documentUrls, // Array of uploaded file URLs
+          message: 'All files uploaded successfully!',
+        };
+      } catch (error) {
+        console.error('Error uploading files to S3:', error); // Log the error for debugging
+        throw new InternalServerErrorException('Failed to upload files to S3. Please try again later.');
+      }
+    }
 }
