@@ -347,11 +347,12 @@ export class AuthService {
       // Upload the file to AWS S3
       const result = await this.s3Service.uploadOneFile(file);
       const imageUrl = result.document; // Ensure this value comes correctly from S3
+      console.log('Image URL:', imageUrl);
 
       // Update the user's profile picture using findOneAndUpdate
       const  updatedUser  = await this.userRepository.findOneAndUpdate(
         { _id: user.document._id },
-        { $set: { profilePicture: imageUrl } } // Update the profile picture
+        { $set: { ProfilePicture: imageUrl } } // Update the profile picture
       );
 
       //console.log('Update message:', message); // Log the message if needed

@@ -1,22 +1,24 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import * as AWS from 'aws-sdk';
 import { ConfigService } from '@nestjs/config';
+import { S3Client, PutObjectCommand, PutObjectCommandInput } from '@aws-sdk/client-s3';
 
 @Injectable()
 export class S3Service {
-  private readonly s3: AWS.S3; // Instance of AWS S3 SDK
+  private readonly s3Client: S3Client; // AWS S3 Client
   private readonly bucketName: string; // S3 bucket name
 
   constructor(private readonly configService: ConfigService) {
     // Initialize the S3 client with credentials and region from environment variables
-    this.s3 = new AWS.S3({
-      accessKeyId: this.configService.get<string>('AWS_ACCESS_KEY_ID'),
-      secretAccessKey: this.configService.get<string>('AWS_SECRET_ACCESS_KEY'),
+    this.s3Client = new S3Client({
       region: this.configService.get<string>('AWS_REGION'),
+      credentials: {
+        accessKeyId: this.configService.get<string>('AWS_ACCESS_KEY_ID')!,
+        secretAccessKey: this.configService.get<string>('AWS_SECRET_ACCESS_KEY')!,
+      },
     });
 
     // Retrieve the bucket name from environment variables
-    this.bucketName = this.configService.get<string>('AWS_S3_BUCKET_NAME');
+    this.bucketName = this.configService.get<string>('AWS_S3_BUCKET_NAME')!;
 
     // Validate that the bucket name is configured
     if (!this.bucketName) {
@@ -36,7 +38,7 @@ export class S3Service {
     }
 
     // Define S3 upload parameters
-    const params: AWS.S3.PutObjectRequest = {
+    const params: PutObjectCommandInput = {
       Bucket: this.bucketName, // Target bucket
       Key: `${Date.now()}-${file.originalname}`, // Unique key for the file (timestamp + original name)
       Body: file.buffer, // File content
@@ -44,48 +46,48 @@ export class S3Service {
     };
 
     try {
-      // Upload the file to S3 and return the file URL
-      const uploadResult = await this.s3.upload(params).promise();
+      // Upload the file to S3
+      await this.s3Client.send(new PutObjectCommand(params));
+
+      // Return the file's accessible URL
+      const fileUrl = `https://${this.bucketName}.s3.${this.configService.get<string>('AWS_REGION')}.amazonaws.com/${params.Key}`;
       return {
-        document: uploadResult.Location, // URL of the uploaded file
+        document: fileUrl,
         message: 'File uploaded successfully!',
       };
     } catch (error) {
-      // Log the error for debugging
-      console.error('Error uploading file to S3:', error);
-
-      // Throw a user-friendly error message
+      console.error('Error uploading file to S3:', error); // Log the error for debugging
       throw new InternalServerErrorException('Failed to upload file to S3. Please try again later.');
     }
   }
 
-      /**
-     * Uploads multiple files to the configured AWS S3 bucket.
-     * @param files - An array of files to be uploaded (must be of type Express.Multer.File[])
-     * @returns A promise that resolves to an array of URLs for the uploaded files.
-     * @throws InternalServerErrorException if any upload fails.
-     */
-    async uploadFiles(files: Express.Multer.File[]): Promise<{ documents: string[]; message: string }> {
-      if (!files || files.length === 0) {
-        throw new Error('No files provided for upload'); // Validation for missing files
-      }
-
-      try {
-        // Upload each file to S3 and collect their URLs
-        const uploadResults = await Promise.all(
-          files.map(file => this.uploadOneFile(file)), // Reuse the existing uploadOneFile method
-        );
-
-        // Extract URLs from the upload results
-        const documentUrls = uploadResults.map(result => result.document);
-
-        return {
-          documents: documentUrls, // Array of uploaded file URLs
-          message: 'All files uploaded successfully!',
-        };
-      } catch (error) {
-        console.error('Error uploading files to S3:', error); // Log the error for debugging
-        throw new InternalServerErrorException('Failed to upload files to S3. Please try again later.');
-      }
+  /**
+   * Uploads multiple files to the configured AWS S3 bucket.
+   * @param files - An array of files to be uploaded (must be of type Express.Multer.File[])
+   * @returns A promise that resolves to an array of URLs for the uploaded files.
+   * @throws InternalServerErrorException if any upload fails.
+   */
+  async uploadFiles(files: Express.Multer.File[]): Promise<{ documents: string[]; message: string }> {
+    if (!files || files.length === 0) {
+      throw new Error('No files provided for upload'); // Validation for missing files
     }
+
+    try {
+      // Upload each file to S3 and collect their URLs
+      const uploadResults = await Promise.all(
+        files.map((file) => this.uploadOneFile(file)), // Reuse the existing uploadOneFile method
+      );
+
+      // Extract URLs from the upload results
+      const documentUrls = uploadResults.map((result) => result.document);
+
+      return {
+        documents: documentUrls, // Array of uploaded file URLs
+        message: 'All files uploaded successfully!',
+      };
+    } catch (error) {
+      console.error('Error uploading files to S3:', error); // Log the error for debugging
+      throw new InternalServerErrorException('Failed to upload files to S3. Please try again later.');
+    }
+  }
 }
