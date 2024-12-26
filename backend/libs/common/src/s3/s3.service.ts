@@ -43,7 +43,7 @@ export class S3Service {
       Key: `${Date.now()}-${file.originalname}`, // Unique key for the file (timestamp + original name)
       Body: file.buffer, // File content
       ContentType: file.mimetype, // File MIME type
-      ACL: 'public-read', // Set the object to be publicly readable
+      // ACL: 'public-read', // Set the object to be publicly readable
     };
 
     try {
