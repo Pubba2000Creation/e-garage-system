@@ -76,18 +76,23 @@ export class S3Service {
     try {
       // Upload each file to S3 and collect their URLs
       const uploadResults = await Promise.all(
-        files.map((file) => this.uploadOneFile(file)), // Reuse the existing uploadOneFile method
+        
+        files.map((file) => this.uploadOneFile(file)), 
+        // Reuse the existing uploadOneFile method
       );
 
       // Extract URLs from the upload results
       const documentUrls = uploadResults.map((result) => result.document);
 
       return {
-        documents: documentUrls, // Array of uploaded file URLs
+        documents: documentUrls, 
+
+        // Array of uploaded file URLs
         message: 'All files uploaded successfully!',
       };
     } catch (error) {
-      console.error('Error uploading files to S3:', error); // Log the error for debugging
+      console.error('Error uploading files to S3:', error); 
+        // Log the error for debugging
       throw new InternalServerErrorException('Failed to upload files to S3. Please try again later.');
     }
   }
