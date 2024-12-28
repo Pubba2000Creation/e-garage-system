@@ -59,6 +59,7 @@ export class AuthController {
     }
   }
 
+
 /**
  * Verify OTP code for the user.
  * 
@@ -122,6 +123,8 @@ export class AuthController {
       );
     }
   }
+
+
   
 /**
  * Resend OTP code to the user.
@@ -175,7 +178,6 @@ export class AuthController {
    * 
    * @returns {CommonResponseDto}
    */
-
   @Post('login')
   @ApiBody({ type: authLoginDto }) // You can define a DTO for the login body
   @ApiResponse({
@@ -201,7 +203,11 @@ export class AuthController {
     }
   }
 
-
+  /**
+   * 
+   * @param refreshToken 
+   * @returns 
+   */
   @Post('refresh-token')
   @ApiResponse({ 
     status: 200, 
@@ -231,7 +237,9 @@ export class AuthController {
     return new CommonResponseDto(true, 'You are authenticated!', req.user);
   }
 
- /**
+
+
+  /**
    * API for user logout
    */
   @Post('logout')
@@ -254,6 +262,8 @@ export class AuthController {
       throw new UnauthorizedException('Logout failed');
     }
   }
+
+
 
  /**
   * api for request forgot password
@@ -290,6 +300,9 @@ export class AuthController {
      );
     }
   }
+
+
+
  /**
   * api for confirmation code of the forgot password
   * 
@@ -319,6 +332,8 @@ export class AuthController {
       );
     }
   }
+
+
   /**
    * api for reset password
    * 
@@ -357,6 +372,7 @@ export class AuthController {
 
   /**
    * api for change userrole
+   * 
    */
 
   @Post('change-userrole')
@@ -413,8 +429,9 @@ export class AuthController {
 
 
   /**
- * API to upload a user's profile picture
- */
+   * API to upload a user's profile picture
+   * 
+   */
   @Post('upload-profile-picture')
   @ApiBody({
     schema: {
