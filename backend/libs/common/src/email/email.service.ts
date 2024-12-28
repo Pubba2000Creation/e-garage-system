@@ -26,7 +26,7 @@ private loadTemplate(templateName: string, variables: Record<string, string>): s
   // Determine the base directory based on environment (development or production)
   const isProduction = process.env.NODE_ENV === 'production';
   const baseDir = isProduction
-    ? path.join(process.cwd(), 'dist/apps/garage-api/email/templates')  // Production path
+    ? path.join(process.cwd(), 'dist/libs/common/src/email/template/')  // Production path
     : path.join(process.cwd(), 'libs/common/src/email/template');  // Development path
 
   // Construct the full path to the template
