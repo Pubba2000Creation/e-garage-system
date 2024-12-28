@@ -3,6 +3,7 @@ import * as nodemailer from 'nodemailer';
 import { ConfigService } from '@nestjs/config';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as process from 'process'; // For accessing the root directory
 
 @Injectable()
 export class EmailService {
@@ -20,24 +21,31 @@ export class EmailService {
     });
   }
 
-  private loadTemplate(templateName: string, variables: Record<string, string>): string {
-    const templatePath = path.join(
-      __dirname,
-      '../../../libs/common/src/email/template',
-      `${templateName}.html`,
-    );
 
-    if (!fs.existsSync(templatePath)) {
-      throw new Error(`Template ${templateName} not found`);
-    }
+private loadTemplate(templateName: string, variables: Record<string, string>): string {
+  // Set the base directory to the template folder (relative to project root)
+  const baseDir = path.join(process.cwd(), 'libs/common/src/email/template');
 
-    let template = fs.readFileSync(templatePath, 'utf8');
-    for (const [key, value] of Object.entries(variables)) {
-      const regex = new RegExp(`{{${key}}}`, 'g');
-      template = template.replace(regex, value);
-    }
-    return template;
+  // Construct the full path to the template
+  const templatePath = path.join(baseDir, `${templateName}.html`);
+  console.log('Resolved Template Path:', templatePath); // Log for debugging
+
+  // Check if the template exists
+  if (!fs.existsSync(templatePath)) {
+    throw new Error(`Template ${templateName} not found at ${templatePath}`);
   }
+
+  // Read and process the template
+  let template = fs.readFileSync(templatePath, 'utf8');
+  for (const [key, value] of Object.entries(variables)) {
+    const regex = new RegExp(`{{${key}}}`, 'g');
+    template = template.replace(regex, value);
+  }
+  return template;
+}
+
+
+
 
   async sendEmail(to: string, subject: string, text: string, html?: string): Promise<void> {
     try {
