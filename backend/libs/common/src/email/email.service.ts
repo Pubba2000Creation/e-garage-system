@@ -54,9 +54,9 @@ export class EmailService {
     }
   }
 
-  async sendOTP(to: string, otp: string): Promise<void> {
+  async sendOTP(to: string, otp: number): Promise<void> {
     const subject = 'Your OTP Code';
-    const html = this.loadTemplate('otp', { otp });
+    const html = this.loadTemplate('otp', { otp: otp.toString() });
     await this.sendEmail(to, subject, `Your OTP is: ${otp}`, html);
   }
 
@@ -66,9 +66,21 @@ export class EmailService {
     await this.sendEmail(to, subject, 'Reset your password using the link provided.', html);
   }
 
-  async forgotPassword(to: string, resetLink: string): Promise<void> {
+  async forgotPassword(to: string, conformationcode: number): Promise<void> {
     const subject = 'Forgot Password Assistance';
-    const html = this.loadTemplate('forgot-password', { resetLink });
+    const html = this.loadTemplate('forgot-password', { conformationcode:conformationcode.toString() });
     await this.sendEmail(to, subject, 'Reset your password using the link provided.', html);
   }
+
+  // Method to send a verification email
+    async sendVerificationEmail(to: string, verificationCode: number): Promise<void> {
+        const subject = 'Welcome to Our Platform';
+        
+        // Load the 'welcome' template and replace {{verificationCode}} with the actual code
+        const html = this.loadTemplate('welcome', { verificationCode: verificationCode.toString() });
+
+        // Call the sendEmail method with the email content
+        await this.sendEmail(to, subject, 'Welcome to our platform!', html);
+    }
+
 }

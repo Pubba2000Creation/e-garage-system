@@ -12,7 +12,7 @@ import { JwtService } from '@nestjs/jwt';
 import { authForgotPasswordDto } from './dto/forgotPassword.dto';
 import { authResetPasswordDto } from './dto/resetPassword.dto';
 import { authResetPasswordConformDto } from './dto/resetPasswordConform.dto';
-import { S3Service } from '@app/common';
+import { EmailService, S3Service } from '@app/common';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,8 @@ export class AuthService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
-    private readonly s3Service: S3Service
+    private readonly s3Service: S3Service,
+    private readonly emailService: EmailService
 
 
   ) {}
@@ -59,7 +60,14 @@ export class AuthService {
 
       const userResponse = await this.userRepository.create(newUser);
       this.logger.log(`User registered with OTP: ${otp}`);
+
+      // Send verification email
+      await this.emailService.sendVerificationEmail(userEmail, otp);
+
+      //return user details
       return userResponse;
+
+      //end of the code
     } catch (error) {
       this.logger.error(`Error in register: ${error.message}`, error.stack);
       throw new ConflictException(error.message);
@@ -158,8 +166,13 @@ export class AuthService {
         },
       },
     );
+
+    //send otp email to user 
+    await this.emailService.sendOTP(userEmail, otp);
   
+    //return the update user information
     return updatedUser;
+
   }
 
     // Method to validate access token
@@ -261,8 +274,10 @@ export class AuthService {
       
     )
 
-    //send email
+    //send email to user
+    await this.emailService.forgotPassword(forgetPasswordDto.email, newconformationcode);
 
+    //return update user info 
     return updateUser
     
     
