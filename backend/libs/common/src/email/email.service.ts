@@ -23,8 +23,11 @@ export class EmailService {
 
 
 private loadTemplate(templateName: string, variables: Record<string, string>): string {
-  // Set the base directory to the template folder (relative to project root)
-  const baseDir = path.join(process.cwd(), 'libs/common/src/email/template');
+  // Determine the base directory based on environment (development or production)
+  const isProduction = process.env.NODE_ENV === 'production';
+  const baseDir = isProduction
+    ? path.join(process.cwd(), 'dist/apps/garage-api/email/templates')  // Production path
+    : path.join(process.cwd(), 'libs/common/src/email/template');  // Development path
 
   // Construct the full path to the template
   const templatePath = path.join(baseDir, `${templateName}.html`);
@@ -43,6 +46,7 @@ private loadTemplate(templateName: string, variables: Record<string, string>): s
   }
   return template;
 }
+
 
 
 
