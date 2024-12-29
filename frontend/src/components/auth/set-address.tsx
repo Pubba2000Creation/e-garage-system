@@ -18,6 +18,7 @@ import {
   DistrictHandler,
 } from '@/types/auth'
 import { Textarea } from '@/components/ui/textarea'
+import { Button } from '@/components/ui/button'
 
 export default function AddressForm() {
   const [address, setAddress] = useState<string>('')
@@ -94,20 +95,13 @@ export default function AddressForm() {
             </div>
 
             {/* Buttons */}
-            <div className="flex justify-between mt-6">
-              <Link
-                href="/auth/sing-up/fill-information"
-                className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-400 transition duration-300"
-              >
-                Back
-              </Link>
-
-              <button
+            <div className="flex justify-end mt-6">
+            <Button
                 type="submit"
-                className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300"
+                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary_hover transition"
               >
-                Next →
-              </button>
+                Next
+              </Button>
             </div>
           </form>
         </CardContent>

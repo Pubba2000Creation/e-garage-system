@@ -20,7 +20,7 @@ export default function SimilarServicesSection() {
           reviewCount={16}
           title="New Liyanage Motors"
           address="27MW+J69, Mahvila road, Yatiyanthota 71700"
-          onClick={() => handleClickServiceCard('123')}
+          fun={() => handleClickServiceCard('123')}
         />
 
         <ServicesCard
@@ -29,7 +29,7 @@ export default function SimilarServicesSection() {
           reviewCount={16}
           title="New Liyanage Motors"
           address="27MW+J69, Mahvila road, Yatiyanthota 71700"
-          onClick={() => handleClickServiceCard('123')}
+          fun={() => handleClickServiceCard('123')}
         />
 
         <ServicesCard
@@ -38,7 +38,7 @@ export default function SimilarServicesSection() {
           reviewCount={16}
           title="New Liyanage Motors"
           address="27MW+J69, Mahvila road, Yatiyanthota 71700"
-          onClick={() => handleClickServiceCard('123')}
+          fun={() => handleClickServiceCard('123')}
         />
       </div>
     </section>

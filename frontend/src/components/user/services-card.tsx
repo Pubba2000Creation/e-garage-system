@@ -1,16 +1,22 @@
 'use client'
+import useStore from '@/data/views-store/store';
 
 import Image from 'next/image'
 import { Star } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Tag from '@/components/user/tag'
 import { ServicesCardProps } from '@/types/user-components'
+import { IoEyeOutline } from "react-icons/io5";
 
 export default function ServicesCard(props: ServicesCardProps) {
+  const { count, inc } = useStore();
   return (
     <Card
       className="w-full max-w-md cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
-      onClick={props.onClick}
+      onClick={() => { props.fun(); inc(); }}
+      //onClick={props.fun}
+      //onMouseEnter={() => inc()}
+      
     >
       <CardHeader className="p-0">
         <Image
@@ -28,6 +34,10 @@ export default function ServicesCard(props: ServicesCardProps) {
           <span className="ml-1 text-sm font-medium flex">
             <span>{props.rating}</span>
             <span className="ml-1">({props.reviewCount})</span>
+{/* ----------------hide------------------------------------ */}
+            <IoEyeOutline size={15} className='my-auto mx-0.5' />
+            <span className='text-xs my-auto'>{count}</span>       
+{/* ---------------------------------------------------------- */}
           </span>
         </div>
         <CardTitle className="text-xl font-bold mb-2">{props.title}</CardTitle>

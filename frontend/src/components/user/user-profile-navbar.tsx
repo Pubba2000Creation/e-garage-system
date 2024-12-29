@@ -48,7 +48,7 @@ export default function UserProfileNavbar({
         <SidebarContent>
           <SidebarGroup>
             <SidebarMenu>
-              <Link className="flex gap-2 " href="/user-profile/profile">
+              <Link className="flex gap-2 " href="/user/profile">
                 <SidebarMenuButton className="">
                   <Image
                     className=""
@@ -61,21 +61,21 @@ export default function UserProfileNavbar({
                 </SidebarMenuButton>
               </Link>
 
-              <Link className="flex gap-2" href="/user-profile/reviews">
+              <Link className="flex gap-2" href="/user/reviews">
                 <SidebarMenuButton className="">
                   <Image src={star_icon} alt="logo" width={15} height={15} />
                   Reviews
                 </SidebarMenuButton>
               </Link>
 
-              <Link className="flex gap-2" href="/user-profile/notifications">
+              <Link className="flex gap-2" href="/user/notifications">
                 <SidebarMenuButton className="">
                   <Image src={bell_icon} alt="logo" width={15} height={15} />
                   Notifications
                 </SidebarMenuButton>
               </Link>
 
-              <Link className="flex gap-2" href="/user-profile/account">
+              <Link className="flex gap-2" href="/user/account">
                 <SidebarMenuButton className="">
                   <Image src={gear_icon} alt="logo" width={15} height={15} />
                   Account

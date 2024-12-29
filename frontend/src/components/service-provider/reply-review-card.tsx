@@ -84,6 +84,7 @@ export default function ReplyReviewCard(props: ReviewCardProps) {
               </h6>
             </div>
           </div>
+          
 
           <div>
             <p className='text-primary text-sm font-semibold'>Reply</p>
@@ -127,6 +128,8 @@ export default function ReplyReviewCard(props: ReviewCardProps) {
               </button>
             </div>
           </form>
+
+
         </div>
       </div>
     </>

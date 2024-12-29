@@ -85,7 +85,7 @@ export default function ChooseAccount() {
           {/* Continue Button */}
           <Button
             onClick={handleChooseAccount}
-            className="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary_hover transition duration-300"
+            className="w-full text-white"
           >
             Continue as {selectedAccount === 'user' ? 'User' : 'Service Owner'}
           </Button>

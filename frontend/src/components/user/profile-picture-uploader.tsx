@@ -68,7 +68,7 @@ export default function ProfilePictureUploader({
     <div className="flex flex-col items-center space-y-4">
       <Avatar className="w-28 h-28">
         <AvatarImage
-          className="border border-gray rounded-full"
+          className="border border-gray w-32 h-32 rounded-full object-cover mx-auto"
           src={selectedImage}
           alt="Profile picture"
         />
@@ -87,7 +87,6 @@ export default function ProfilePictureUploader({
           className="hidden"
           onChange={handleImageChange}
         />
-
 
         {/* Upload Button */}
         {!selectedImage && (

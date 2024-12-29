@@ -204,7 +204,7 @@ export default function AddNewService() {
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
                 maxLength={10}
-                placeholder={phoneNumber || '0762343516'}
+                placeholder={phoneNumber || '+94762343516'}
                 className="focus:ring-white"
                 required
               />         
@@ -216,7 +216,7 @@ export default function AddNewService() {
               value={whatsAppPhoneNumber}
               onChange={(e) => setWhatsAppPhoneNumber(e.target.value.replace(/\D/g, ''))}
               maxLength={10}
-              placeholder={whatsAppPhoneNumber || '0762767516'}
+              placeholder={whatsAppPhoneNumber || '+94762767516'}
               className="focus:ring-white"
               required
             />

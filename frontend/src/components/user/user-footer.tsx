@@ -29,16 +29,16 @@ export default function Footer() {
             <h3 className="font-semibold text-lg mb-4">Useful Links</h3>
             <ul className="space-y-2 text-gray text-sm">
               <li>
-                <Link href="/user/home">Home</Link>
+                <Link href="/garage/home">Home</Link>
               </li>
               <li>
-                <Link href="/user/home">Find Services</Link>
+                <Link href="/garage/home">Find Services</Link>
               </li>
               <li>
-                <Link href="/user/news">News</Link>
+                <Link href="/garage/news">News</Link>
               </li>
               <li>
-                <Link href="/user/aboutus">About Us</Link>
+                <Link href="/garage/aboutus">About Us</Link>
               </li>
               {/* <li>
                 <Link href="/user/contactus">Contact Us</Link>
@@ -69,7 +69,7 @@ export default function Footer() {
           <div className="w-full md:w-1/4">
             <h3 className="font-semibold text-lg mb-4">Download the App</h3>
             <div className="  ">
-              <Link href="#">
+              <Link href="/">
                 <Image
                   src={google_play}
                   alt="Get it on Google Play"
@@ -77,7 +77,7 @@ export default function Footer() {
                   height={53}
                 />
               </Link>
-              <Link href="#">
+              <Link href="/">
                 <Image
                   src={app_store}
                   alt="Download on the App Store"

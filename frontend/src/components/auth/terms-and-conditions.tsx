@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { CheckboxProps } from '@/types/auth' // Import types
+import { Button } from '@/components/ui/button'
 
 export default function TermsAndConditions() {
   const [isChecked, setIsChecked] = useState<CheckboxProps['isChecked']>(false)
@@ -20,7 +21,7 @@ export default function TermsAndConditions() {
     setIsChecked(!isChecked)
 
     if (isChecked) {
-      router.push('/auth/sign-up/create-account')
+      router.push('')
     }
   }
 
@@ -73,16 +74,9 @@ export default function TermsAndConditions() {
             </label>
           </div>
 
-          <div className="flex justify-between">
-            <Link
-              href="/auth/sign-up/choose-account"
-              className="px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-400 transition duration-300"
-            >
-              Back
-            </Link>
-
-            <button
-              className={`px-6 py-3 bg-primary text-white font-semibold rounded-lg transition duration-300 ${
+          <div className="flex justify-end">
+            <Button
+              className={`px-6 py-5 bg-primary text-white  transition duration-300 ${
                 isChecked
                   ? 'hover:bg-primary_hover'
                   : 'opacity-50 cursor-not-allowed'
@@ -91,7 +85,7 @@ export default function TermsAndConditions() {
               disabled={!isChecked}
             >
               Create Account
-            </button>
+            </Button>
           </div>
         </CardContent>
       </Card>

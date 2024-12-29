@@ -45,7 +45,7 @@ export default function LoginForm() {
     <div className="flex min-h-screen bg-gray-100">
       <div className="hidden lg:block lg:w-1/2 relative">
         <FromsCoverImage coverImage={cover_image} alt="login cover image" />
-        <div className="absolute top-4 left-4 text-white text-xl font-bold">
+        <div className="absolute top-10 left-5 text-white text-xl font-bold">
           <div className="flex items-center space-x-2">
             <Logo />
           </div>
@@ -79,7 +79,7 @@ export default function LoginForm() {
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
                 <Link
-                  href="/auth/forgot-password/set-email"
+                  href="/auth/forgot-password"
                   className="text-sm text-gray hover:text-primary hover:underline"
                 >
                   Forgot your password?
@@ -110,7 +110,7 @@ export default function LoginForm() {
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{' '}
             <Link
-              href="/auth/sign-up/choose-account"
+              href="/auth/sign-up"
               className="text-gray hover:text-primary hover:underline"
             >
               Sign up

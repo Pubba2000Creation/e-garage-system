@@ -79,9 +79,9 @@ export default function FillInformation() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="firstName" className="">
+                <Label htmlFor="firstName" className="">
                   First Name
-                </label>
+                </Label>
                 <Input
                   type="text"
                   name="firstName"
@@ -113,18 +113,18 @@ export default function FillInformation() {
               <div>
                 {userRole === 'user' ? (
                   <>
-                    <label htmlFor="vehicalType">Select Vehicle Type</label>
+                    <Label htmlFor="vehicalType">Select Vehicle Type</Label>
                     <VehicleTypeSelector
-                      onSelectionChange={handleVehicleSelection}
-                      selectedVehicles={[]}
+                      onSelectionChange={handleVehicleSelection} // Update vehicalType state
+                      selectedVehicles={[]} // Pass the current state
                       isOpen={false}
                     />
                   </>
                 ) : (
                   <>
-                    <label htmlFor="companyName" className="">
+                    <Label htmlFor="companyName" className="">
                       Company Name
-                    </label>
+                    </Label>
                     <Input
                       type="text"
                       name="companyName"
@@ -138,13 +138,13 @@ export default function FillInformation() {
               </div>
 
               <div className="">
-                <label htmlFor="date">Date Of Birthday</label>
+                <Label htmlFor="date">Date Of Birthday</Label>
                 <DobPicker onDateChange={handleDateChange} />
               </div>
             </div>
 
             <div>
-              <label htmlFor="phoneNumber">Phone Number</label>
+              <Label htmlFor="phoneNumber">Phone Number</Label>
               <Input
                 type="text"
                 name="phoneNumber"
@@ -163,18 +163,12 @@ export default function FillInformation() {
 
             {error && <div className="mb-2 text-sm text-red-500">{error}</div>}
 
-            <div className="flex justify-between items-center">
-              <Link
-                href="/auth/sing-up/verify-otp"
-                className="px-6 py-3 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition"
-              >
-                Back
-              </Link>
+            <div className="flex justify-end ">
               <Button
                 type="submit"
                 className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary_hover transition"
               >
-                Next →
+                Next
               </Button>
             </div>
           </form>
