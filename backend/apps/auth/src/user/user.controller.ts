@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpS
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiResponse } from '@nestjs/swagger';
 import { CommonResponseDto } from '@app/common';
+import { response } from 'express';
+import { RESPONSE_PASSTHROUGH_METADATA } from '@nestjs/common/constants';
 
 @Controller('user')
 export class UserController {
@@ -39,6 +41,13 @@ export class UserController {
       );
     }
   }
+  /**
+   * Endpoint for geting one user base on the id details
+   * returns CommonResponseDto with user details
+   * 
+   * @param id 
+   * @returns 
+   */
 
   @Get(':id')
     @ApiResponse({
@@ -71,13 +80,62 @@ export class UserController {
     }
   }
 
+  /**
+   * 
+   * @param id 
+   * @param updateUserDto 
+   * @returns 
+   */
+
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  @ApiBody({ type: UpdateUserDto })
+  @ApiResponse({
+    status: 200,
+    description: 'user details updated successfully',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request - Invalid data',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'user not found',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error - Server failure',
+  })
+  async update(
+    @Param('id') id: string, 
+    @Body() updateUserDto: UpdateUserDto
+  ) {
+    try {
+      const responseData = await this.userService.update(id, updateUserDto);
+
+      return new CommonResponseDto(
+        true,
+        "User is update successfully",
+        responseData.document
+      )
+      
+    } catch (error) {
+      console.error('Error in user controller.update:', error);
+      throw new HttpException(
+        new CommonResponseDto(false,"error updating user",null),
+        HttpStatus.INTERNAL_SERVER_ERROR
+      )
+      
+    }
   }
 
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+    return this.userService.remove(id);
   }
 }

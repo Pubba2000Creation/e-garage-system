@@ -11,15 +11,22 @@ export class UserService {
     return this.userRepository.find({});
   }
 
+
+  //funtion for getting user by id
   findOne(_id: string) {
     return this.userRepository.findOne({_id})
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+
+  //funtion for change user details and update
+  update(_id: string, updateUserDto: UpdateUserDto) {
+     return this.userRepository.findOneAndUpdate(
+      { _id: _id },
+      {$set: updateUserDto}
+     );
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} user`;
+  remove(_id: string) {
+    return `This action removes a #${_id} user`;
   }
 }
