@@ -41,12 +41,38 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+    @ApiResponse({
+    status: 200,
+    description: 'All users retrieved successfully',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error - Server failure',
+  })
+  async findOne(@Param('id') id: string) {
+    try {
+      
+      const responseData = await this.userService.findOne(id);
+
+      return new CommonResponseDto(
+        true,
+        "The user getting success",
+        responseData.document,
+      );
+
+
+    } catch (error) {
+      throw new HttpException(
+        new CommonResponseDto(false,"error getting user",null),
+        HttpStatus.INTERNAL_SERVER_ERROR
+      )
+      
+    }
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
   }
 
