@@ -12,7 +12,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 
 
 
-@ApiTags('authentication')
+@ApiTags('authentication oprations of the system')
 @Controller("auth")
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

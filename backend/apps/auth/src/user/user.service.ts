@@ -26,7 +26,9 @@ export class UserService {
      );
   }
 
+  //the funtion for delete user account 
+
   remove(_id: string) {
-    return `This action removes a #${_id} user`;
+    return this.userRepository.findOneAndDelete({ _id });
   }
 }
