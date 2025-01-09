@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { EmailModule, S3Module } from '@app/common';
 import { ServiceCentersModule } from './service-centers/service-centers.module';
+import { AnaliticsModule } from './analitics/analitics.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ServiceCentersModule } from './service-centers/service-centers.module';
       inject: [ConfigService], // Inject ConfigService here
     }),
     ServiceCentersModule,
+    AnaliticsModule,
   ],
   controllers: [AuthController],
   providers: [AuthService],
