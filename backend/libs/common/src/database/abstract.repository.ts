@@ -63,7 +63,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
   }
 
 
-  async findOneAndUpdate(
+async findOneAndUpdate(
     filterQuery: FilterQuery<TDocument>,
     update: UpdateQuery<TDocument>,
   ): Promise<{ document: TDocument; message: string }> {

@@ -9,6 +9,7 @@
       "compilerOptions": {
         "tsConfigPath": "apps/garage-api/tsconfig.app.json"
       }
+       
     },
     "auth": {
       "type": "application",
@@ -26,7 +27,10 @@
       "sourceRoot": "libs/common/src",
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
-      }
+      },
+      "assets": [
+          "libs/common/src/email/template/**/*"
+        ]
     }
   }
 }

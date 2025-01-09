@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+ constructor(private readonly userRepository: UserRepository) {}
+
+  async findAll() {
+    return this.userRepository.find({});
   }
 
-  findAll() {
-    return `This action returns all user`;
+
+  //funtion for getting user by id
+  findOne(_id: string) {
+    return this.userRepository.findOne({_id})
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+
+  //funtion for change user details and update
+  update(_id: string, updateUserDto: UpdateUserDto) {
+     return this.userRepository.findOneAndUpdate(
+      { _id: _id },
+      {$set: updateUserDto}
+     );
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
+  //the funtion for delete user account 
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(_id: string) {
+    return this.userRepository.findOneAndDelete({ _id });
   }
 }

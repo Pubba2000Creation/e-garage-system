@@ -4,6 +4,7 @@ import { UserRole } from '../enum/userRole.enum';
 import { UserType } from '../enum/userType.enum';
 import { UserStatus } from '../enum/userStatus.enum';
 
+
 @Schema({ versionKey: false, timestamps: true })
 export class UserDocument extends AbstractDocument {
   @Prop({ type: String, required: false })
@@ -63,6 +64,21 @@ export class UserDocument extends AbstractDocument {
     default: UserStatus.Active,
   })
   status?: UserStatus;
+
+  @Prop({ default: false })
+  isVerified?: boolean;
+
+  @Prop({ type: Number })
+  verificationToken?: number;
+
+  @Prop({ type: Date })
+  verificationExpiresAt: Date;
+
+  @Prop({type:String,required:false})
+  refreshToken?:string
+
+  @Prop({type:Number,required:false})
+  conformationcode?:number
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserDocument);
