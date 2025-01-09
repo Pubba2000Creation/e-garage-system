@@ -11,15 +11,24 @@ export class UserService {
     return this.userRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+
+  //funtion for getting user by id
+  findOne(_id: string) {
+    return this.userRepository.findOne({_id})
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+
+  //funtion for change user details and update
+  update(_id: string, updateUserDto: UpdateUserDto) {
+     return this.userRepository.findOneAndUpdate(
+      { _id: _id },
+      {$set: updateUserDto}
+     );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  //the funtion for delete user account 
+
+  remove(_id: string) {
+    return this.userRepository.findOneAndDelete({ _id });
   }
 }

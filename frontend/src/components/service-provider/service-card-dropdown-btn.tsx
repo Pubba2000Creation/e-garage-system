@@ -3,7 +3,6 @@ import type { MenuProps } from 'antd'
 import { Dropdown } from 'antd'
 import Link from 'next/link'
 import { BsThreeDots } from "react-icons/bs";
-// import {  Eye, Edit, Pause, Trash } from 'lucide-react'
 import { DeleteAlertBox } from '@/components/service-provider/delete-alert-box';
 
 const items: MenuProps['items'] = [
@@ -12,13 +11,13 @@ const items: MenuProps['items'] = [
     label: 
       <Link href="" className='flex'>
       {/* <Eye className="mr-2 h-4 w-4 my-auto" /> */}
-      <span className='text-xs'>Preview</span>
+      <span className='text-xs'>Active</span>
       </Link>,
   },
   {
     key: '2',
     label: 
-    <Link href="" className='flex'>
+    <Link href='/service-provider/add-new-service' className='flex'>
     {/* <Edit className="mr-2 h-4 w-4 my-auto" /> */}
     <span className='text-xs'>Edit</span>     
     </Link>,
@@ -34,7 +33,7 @@ const items: MenuProps['items'] = [
   {
     key: '4',
     danger: true,
-    label:<DeleteAlertBox/>,
+    label:<DeleteAlertBox/>, 
 
     // <Link href="/" className='flex'>
     //   <Trash className="mr-2 h-4 w-4 my-auto" />
@@ -46,7 +45,7 @@ const items: MenuProps['items'] = [
 export default function ServiceCardDropdownBtn() {
   return (
     <Dropdown menu={{ items }} >
-      <Link href=""  onClick={(e) => e.preventDefault()}>
+      <Link href="" onClick={(e) => e.preventDefault()}>
         <button  type="button"><BsThreeDots size={15} /></button>
       </Link>
     </Dropdown>

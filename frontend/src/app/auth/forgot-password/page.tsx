@@ -52,20 +52,20 @@ export default function SingUp () {
 
         <div className="m-auto w-full max-w-md ">
 
-            <div className='flex justify-center my-4'>
-                <AuthBtn name={'1'} fun={() => handelAuchtBtnClick(1)} fill={isFilled.btn1 === 'true'}/>
-                <AuthBtn name={'2'} fun={() => handelAuchtBtnClick(2)} fill={isFilled.btn2 === 'true'} />
-                <AuthBtn name={'3'} fun={() => handelAuchtBtnClick(3)} fill={isFilled.btn3 === 'true'}/>
-            </div>
-
             <div>
-
                 {pageNumber === 1 && <SetPhoneNumber/>  } 
                 {/* {pageNumber === 1 && <SetEmail/>  }  */}
                 {pageNumber === 2 && <OtpPage/>  }
                 {pageNumber === 3 && <SetNewPassword/>}
                
             </div>
+
+            <div className='flex justify-center my-4'>
+                <AuthBtn name={'1'} fun={() => handelAuchtBtnClick(1)} fill={isFilled.btn1 === 'true'}/>
+                <AuthBtn name={'2'} fun={() => handelAuchtBtnClick(2)} fill={isFilled.btn2 === 'true'} />
+                <AuthBtn name={'3'} fun={() => handelAuchtBtnClick(3)} fill={isFilled.btn3 === 'true'}/>
+            </div>
+            
         </div>
     </div>
   )
