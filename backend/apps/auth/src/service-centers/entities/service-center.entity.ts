@@ -6,7 +6,7 @@ import { ServiceCenterStatus } from "../enum/ServiceCenterStatus.enum";
 @Schema({ versionKey: false, timestamps: true})
 export class ServiceCenterDocument extends AbstractDocument {
 
-    @Prop({ type: String, required: true, unique: true })
+    @Prop({ type: String, required: true })
     userId: string;
 
     @Prop({ type: String, required: true })
