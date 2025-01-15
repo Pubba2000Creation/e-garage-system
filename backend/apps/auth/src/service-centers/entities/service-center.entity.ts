@@ -27,8 +27,17 @@ export class ServiceCenterDocument extends AbstractDocument {
     @Prop({ type: String, required: false })
     telephoneNumber?: string;
 
-    @Prop({ type: String, required: true })
-    locationURL: string;
+    @Prop({
+        type: {
+            longitude: { type: String, required: true },
+            latitude: { type: String, required: true },
+        },
+        required: true,
+    })
+    locationURL: {
+        longitude: string;
+        latitude: string;
+    };
 
     @Prop({ type: [String], required: false, default: [] })
     imageGallery?: string[];
@@ -48,7 +57,7 @@ export class ServiceCenterDocument extends AbstractDocument {
         required: true,
         default: ServiceCenterStatus.PENDING,
     })
-    status: ServiceCenterStatus;
+    status?: ServiceCenterStatus;
 
 }
 

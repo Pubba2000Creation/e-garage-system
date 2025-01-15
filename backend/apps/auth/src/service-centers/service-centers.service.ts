@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { CreateServiceCenterDto } from './dto/create-service-center.dto';
 import { UpdateServiceCenterDto } from './dto/update-service-center.dto';
+import { serviceCenterRepository } from './service-centers.repository';
 
 @Injectable()
 export class ServiceCentersService {
+
+  constructor (private readonly serviceCentersRepository: serviceCenterRepository) {}
   create(createServiceCenterDto: CreateServiceCenterDto) {
-    return 'This action adds a new serviceCenter';
+   return this.serviceCentersRepository.create(createServiceCenterDto);
   }
 
   findAll() {
