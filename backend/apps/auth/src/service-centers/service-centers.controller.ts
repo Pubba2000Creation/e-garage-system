@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpS
 import { ServiceCentersService } from './service-centers.service';
 import { CreateServiceCenterDto } from './dto/create-service-center.dto';
 import { UpdateServiceCenterDto } from './dto/update-service-center.dto';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CommonResponseDto } from '@app/common';
 
 @Controller('service-centers')
@@ -53,15 +53,89 @@ export class ServiceCentersController {
       );
     }
   }
-
+ /*
+   * Endpoint for getting all service-center data
+   *
+   * @returns CommonResponseDto containing the result of the operation
+   */
   @Get()
-  findAll() {
-    return this.serviceCentersService.findAll();
+   @ApiOperation({ summary: 'get All service centers in database' })
+   @ApiResponse({
+    status: 201,
+    description: 'Service centers getting successfully.',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request - Invalid input data.',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error - Server failure.',
+  })
+ async findAll(): Promise<CommonResponseDto>{
+   try {
+    const response = await this.serviceCentersService.findAll();
+    return new CommonResponseDto(
+      true,
+      'Service centers getting successfully.',
+      response.documents,
+    );
+   } catch (error) {
+    //error handling
+    throw new HttpException(
+      new CommonResponseDto(false, error.message, null),
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
+   }
   }
 
+  /**
+ * Endpoint to retrieve a specific user by ID.
+ *
+ * This endpoint fetches the details of a user based on the provided ID.
+ * Returns a response containing the user details if found, or an error message otherwise.
+ *
+ * @param {string} id - The ID of the user to retrieve.
+ * @returns {Promise<CommonResponseDto>} A response object containing a success flag, message, and user details.
+ */
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.serviceCentersService.findOne(+id);
+  @ApiOperation({ summary: 'Retrieve user details by ID' })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier of the user to retrieve',
+    required: true,
+    type: String,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'User details retrieved successfully.',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'service-center not found.',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error - Server failure.',
+  })
+   async findOne(@Param('id') id: string):Promise<CommonResponseDto> {
+    try {
+      const responseData = await this.serviceCentersService.findOne(id);
+      return new CommonResponseDto(
+        true,
+        responseData.message,
+        responseData.document,
+      );
+
+    } catch (error) {
+      //error handling
+      throw new HttpException(
+        new CommonResponseDto(false, error.message, null),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   @Patch(':id')

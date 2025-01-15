@@ -12,11 +12,11 @@ export class ServiceCentersService {
   }
 
   findAll() {
-    return `This action returns all serviceCenters`;
+    return this.serviceCentersRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} serviceCenter`;
+  findOne(id: String) {
+    return this.serviceCentersRepository.findOne(id);
   }
 
   update(id: number, updateServiceCenterDto: UpdateServiceCenterDto) {
