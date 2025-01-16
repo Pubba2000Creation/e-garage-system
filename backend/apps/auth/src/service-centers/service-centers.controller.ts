@@ -138,9 +138,34 @@ export class ServiceCentersController {
     }
   }
 
+  /**
+   * 
+   * @param id 
+   * @param updateServiceCenterDto 
+   * @returns 
+   */
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateServiceCenterDto: UpdateServiceCenterDto) {
-    return this.serviceCentersService.update(+id, updateServiceCenterDto);
+   async update(@Param('id') id: string, @Body() updateServiceCenterDto: UpdateServiceCenterDto):Promise<CommonResponseDto> {
+    try {
+
+      //get the results form the system
+      const responseData = await this.serviceCentersService.update(id, updateServiceCenterDto);
+
+      //retuen new response form the system
+      return new CommonResponseDto(
+        true,
+        responseData.message,
+        responseData.document,
+      );
+      
+    } catch (error) {
+      //handel error
+      throw new HttpException(
+        new CommonResponseDto(false, error.message, null),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      )
+    }
   }
 
   @Delete(':id')

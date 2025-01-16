@@ -15,12 +15,17 @@ export class ServiceCentersService {
     return this.serviceCentersRepository.find({});
   }
 
-  findOne(id: String) {
-    return this.serviceCentersRepository.findOne(id);
+  findOne(_id: String) {
+    return this.serviceCentersRepository.findOne({_id});
   }
 
-  update(id: number, updateServiceCenterDto: UpdateServiceCenterDto) {
-    return `This action updates a #${id} serviceCenter`;
+  update(_id: string, updateServiceCenterDto: UpdateServiceCenterDto) {
+   
+    //add funtions for the service-center update
+    return this.serviceCentersRepository.findOneAndUpdate(
+      { _id: _id },
+      {$set: updateServiceCenterDto},
+    );
   }
 
   remove(id: number) {
