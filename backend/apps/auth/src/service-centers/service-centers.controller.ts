@@ -139,13 +139,39 @@ export class ServiceCentersController {
   }
 
   /**
-   * 
+   * Endpoint to update a specific service-centers by ID.
+    *
+    * This endpoint update the details of a service center based on the provided ID and provided data.
+    * Returns a response containing the user details if found, or an error message otherwise.
    * @param id 
    * @param updateServiceCenterDto 
    * @returns 
    */
 
   @Patch(':id')
+  @ApiOperation({description:'update service center by id', summary:'update service center by id'})
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier of the service center to update',
+    required: true,
+    type: String,
+  })
+  @ApiBody({
+    type: UpdateServiceCenterDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Service center updated successfully.',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'service-center not found.',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error - Server failure.',
+  })
    async update(@Param('id') id: string, @Body() updateServiceCenterDto: UpdateServiceCenterDto):Promise<CommonResponseDto> {
     try {
 
