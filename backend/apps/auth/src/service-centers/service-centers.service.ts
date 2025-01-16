@@ -28,7 +28,7 @@ export class ServiceCentersService {
     );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} serviceCenter`;
+  remove(id: string) {
+    return this.serviceCentersRepository.findOneAndDelete({ _id: id });
   }
 }
