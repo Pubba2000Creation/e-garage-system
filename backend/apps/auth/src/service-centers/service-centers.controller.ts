@@ -100,16 +100,16 @@ export class ServiceCentersController {
  * @returns {Promise<CommonResponseDto>} A response object containing a success flag, message, and user details.
  */
   @Get(':id')
-  @ApiOperation({ summary: 'Retrieve user details by ID' })
+  @ApiOperation({ summary: 'Retrieve service center details by service-center ID' })
   @ApiParam({
     name: 'id',
-    description: 'The unique identifier of the user to retrieve',
+    description: 'The unique identifier of the service center to retrieve',
     required: true,
     type: String,
   })
   @ApiResponse({
     status: 200,
-    description: 'User details retrieved successfully.',
+    description: 'service-center details retrieved successfully.',
     type: CommonResponseDto,
   })
   @ApiResponse({
@@ -193,9 +193,48 @@ export class ServiceCentersController {
       )
     }
   }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.serviceCentersService.remove(id);
+/**
+ * opartion for delete service center base on the service center id
+ * funtion retuen the deleted service center deatils with commn response dto
+ * @param id 
+ * @returns 
+ */
+    @Delete(':id')
+    @ApiOperation({description:'delete service center by id', summary:'delete service center by id'})
+    @ApiParam({
+      name: 'id',
+      description: 'The unique identifier of the service center to delete',
+      required: true,
+      type: String,
+    })
+    @ApiResponse({
+      status: 200,
+      description: 'Service center deleted successfully.',
+      type: CommonResponseDto,
+    })
+    @ApiResponse({
+      status: 404,
+      description: 'service-center not found.',
+    })
+    @ApiResponse({
+      status: 500,
+      description: 'Internal Server Error - Server failure.',
+    })
+   async remove(@Param('id') id: string):Promise<CommonResponseDto>{
+    try {
+      const responseData = await this.serviceCentersService.remove(id);
+      //return the deleted service center details
+      return new CommonResponseDto(
+        true,
+        responseData.message,
+        responseData.document
+      )
+    } catch (error) {
+      //handel unexpected error
+      throw new HttpException(
+        new CommonResponseDto(false, error.message, null),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      )
+    }
   }
 }
