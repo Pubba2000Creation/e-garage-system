@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateServiceCenterDto } from './dto/create-service-center.dto';
 import { UpdateServiceCenterDto } from './dto/update-service-center.dto';
+import { serviceCenterRepository } from './service-centers.repository';
 
 @Injectable()
 export class ServiceCentersService {
+
+  constructor (private readonly serviceCentersRepository: serviceCenterRepository) {}
   create(createServiceCenterDto: CreateServiceCenterDto) {
-    return 'This action adds a new serviceCenter';
+   return this.serviceCentersRepository.create(createServiceCenterDto);
   }
 
   findAll() {
-    return `This action returns all serviceCenters`;
+    return this.serviceCentersRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} serviceCenter`;
+  findOne(_id: String) {
+    return this.serviceCentersRepository.findOne({_id});
   }
 
-  update(id: number, updateServiceCenterDto: UpdateServiceCenterDto) {
-    return `This action updates a #${id} serviceCenter`;
+  update(_id: string, updateServiceCenterDto: UpdateServiceCenterDto) {
+   
+    //add funtions for the service-center update
+    return this.serviceCentersRepository.findOneAndUpdate(
+      { _id: _id },
+      {$set: updateServiceCenterDto},
+    );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} serviceCenter`;
+  remove(id: string) {
+    return this.serviceCentersRepository.findOneAndDelete({ _id: id });
   }
 }
