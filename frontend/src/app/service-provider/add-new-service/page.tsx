@@ -11,6 +11,13 @@ import VehicleTypeSelector from '@/components/user/vehicle-type-selector'
 import ServiceCategoriesSelector from '@/components/service-provider/service-categories-selector'
 import MultiImageInput from '@/components/service-provider/multiIple-image-uploader'
 import PdfFileInput from '@/components/service-provider/pdf-file-input'
+import MapComponent from "@/components/service-provider/map-component";
+
+type LatLng = {
+  lat: number;
+  lng: number;
+};
+
 
 export default function AddNewService() {
 
@@ -23,12 +30,20 @@ export default function AddNewService() {
   const [phoneNumber, setPhoneNumber] = useState<string>('')
   const [whatsAppPhoneNumber, setWhatsAppPhoneNumber] = useState<string>('')
   const [address, setAddress] = useState<string>('')
-  const [mapLink, setMapLink] = useState<string>('')
+
+  //const [mapLink, setMapLink] = useState<string>('')
+  const [location, setLocation] = useState<LatLng | null>(null);
+
   const [ownerName, setOwnerName] = useState<string>('')
   const [nic, setNic] = useState<string>('')
   const [province, setProvince] = useState<string>('')
   const [district, setDistrict] = useState<string>('')
   const [error, setError] = useState<string>('')
+
+  const handleLocationSelect = (selectedLocation: LatLng) => {
+    setLocation(selectedLocation); // Save location to state
+    console.log("Selected Location:", location);
+  };
   
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
@@ -41,7 +56,8 @@ export default function AddNewService() {
       !phoneNumber ||
       !whatsAppPhoneNumber||
       !address ||
-      !mapLink ||
+      //!mapLink ||
+      location ||  
       !images ||
       !ownerName ||
       !nic || 
@@ -64,7 +80,8 @@ export default function AddNewService() {
       phoneNumber,
       whatsAppPhoneNumber,
       address,
-      mapLink,
+      //mapLink,
+      location,
       images,
       ownerName,
       nic, 
@@ -232,7 +249,7 @@ export default function AddNewService() {
         
         <div className="grid gap-3">
           <div>
-            <Label className="block font-bold my-1">Address:</Label>
+            <Label className="block font-bold my-1">Address</Label>
             <Textarea
               rows={2}
               value={address}
@@ -245,17 +262,49 @@ export default function AddNewService() {
 
           <div className="grid gap-3">
             <div>
-              <Label className="block font-bold my-1">Province:</Label>
+              <Label className="block font-bold my-1">Province</Label>
               <SelectProvinceCombobox value={province} onChange={setProvince} />
             </div>
-
-            <div>
-              <Label className="block font-bold my-1">District:</Label>
-              <SelectDistrictCombobox value={district} onChange={setDistrict} />
-            </div>           
           </div>
 
+
+            <div>
+              <Label className="block font-bold my-1">District</Label>
+              <SelectDistrictCombobox value={district} onChange={setDistrict} />
+            </div>
+
           <div className="">
+            <Label className="block font-bold my-1">Select Location</Label>
+            <p className="text-sm text-gray py-1">click open map button and choose your location</p>
+
+            {/* Pass callback to MyMapComponent */}
+            <MapComponent onLocationSelect={handleLocationSelect} />
+
+            {location && (
+              <div className="mt-4">                
+                <p className="text-sm text-gray ">Latitude: {location.lat}</p>
+                <p className="text-sm text-gray ">Longitude: {location.lng}</p>
+
+                {/* Form with hidden fields to pass location */}
+                <div className="mt-4">
+                  <input type="hidden" name="latitude" value={location.lat} />
+                  <input type="hidden" name="longitude" value={location.lng} />
+
+                  {/* <button
+                    type="submit"
+                    className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                  >
+                    Submit Location
+                  </button> */}
+
+                </div>
+              </div>
+            )}
+          </div> 
+
+        </div>
+
+          {/* <div className="">
             <Label className="block font-bold my-1">Google Map Integration</Label>         
             <Input
               id="mapLink"
@@ -265,9 +314,10 @@ export default function AddNewService() {
               className=" focus:ring-white"
               required
             />
-          </div>
-       </div>
+          </div> */}
+
       </div>
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">            
           <div className=''>
