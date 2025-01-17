@@ -5,7 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+const app = await NestFactory.create(AppModule);
 
   // Global Validation Pipe
   app.useGlobalPipes(new ValidationPipe());
@@ -22,6 +22,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
 
-  await app.listen(3000); // Unified app will run on port 3000
+  // Set port from environment variable or default to 3000
+  const port = process.env.PORT || 3000;
+  await app.listen(port); 
+  console.log(`Application is running on: http://localhost:${port}`);
 }
 bootstrap();
