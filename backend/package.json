@@ -9,6 +9,7 @@
     "start:dev:auth": "nest start auth --watch",
     "start:dev:garage-api": "nest start garage-api --watch",
     "start:dev:all": "node ./dist/apps/main",
+    "start": "node dist/apps/main.js",
     "build": "nest build",
     "build:auth": "nest build auth",
     "build:garage-api": "nest build garage-api",
