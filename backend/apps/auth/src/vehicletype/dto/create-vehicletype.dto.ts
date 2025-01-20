@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateVehicletypeDto {
 
@@ -27,7 +27,7 @@ export class CreateVehicletypeDto {
 
     @ApiProperty({ description: 'The status of the vehicle type' })
     @IsNotEmpty()
-    @IsString()
+    @IsBoolean()
     isActive: boolean;
 
 }
