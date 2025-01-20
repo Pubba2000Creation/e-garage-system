@@ -16,8 +16,8 @@ class LocationURL {
 }
 
 export class CreateServiceCenterDto {
-  @ApiProperty({ description: 'ID of the service center owner' })
   
+  @ApiProperty({ description: 'ID of the service center owner' })
   userId: string;
 
   @ApiProperty({ description: 'Title of the service center' })

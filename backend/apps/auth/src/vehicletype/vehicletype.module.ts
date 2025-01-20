@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { VehicletypeService } from './vehicletype.service';
 import { VehicletypeController } from './vehicletype.controller';
-import { serviceCenterRepository } from '../service-centers/service-centers.repository';
 import { DatabaseModule } from '@app/common';
 import { VehicletypeDocument, VehicletypeSchema } from './entities/vehicletype.entity';
 import { VehicletypeRepository } from './vehicletype.repository';
