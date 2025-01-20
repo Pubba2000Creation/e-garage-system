@@ -11,7 +11,7 @@ export class VehicletypeService {
   }
 
   findAll() {
-    return `This action returns all vehicletype`;
+    return this.vehicletypeRepository.find({})
   }
 
   findOne(id: number) {
