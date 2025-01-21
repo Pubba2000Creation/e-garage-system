@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { AnaliticsService } from './analitics.service';
 import { CreateAnaliticDto } from './dto/create-analitic.dto';
 import { UpdateAnaliticDto } from './dto/update-analitic.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('analitics')
+@ApiTags('analitics opration list')
 export class AnaliticsController {
   constructor(private readonly analiticsService: AnaliticsService) {}
 
