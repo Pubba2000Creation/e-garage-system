@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ServiceCategoryService } from './service-category.service';
 import { CreateServiceCategoryDto } from './dto/create-service-category.dto';
 import { UpdateServiceCategoryDto } from './dto/update-service-category.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('service-category')
+@ApiTags('service-category opration list')
 export class ServiceCategoryController {
   constructor(private readonly serviceCategoryService: ServiceCategoryService) {}
 
