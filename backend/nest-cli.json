@@ -29,8 +29,11 @@
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       },
       "assets": [
-          "libs/common/src/email/template/**/*"
-        ]
+        {
+          "include": "src/email/template/**/*",
+          "outDir": "src/email/template"
+        }
+      ]
     }
   }
 }
