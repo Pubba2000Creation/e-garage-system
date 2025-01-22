@@ -14,7 +14,7 @@
     "postbuild": "cp -R libs/common/src/email/template dist/libs/common/src/email/template/",
     "build:auth": "nest build auth",
     "build:garage-api": "nest build garage-api",
-    "format": "prettier --write \"**/*.ts\"",
+    "format": "prettier --write \"**/*.{js,ts,json,md,html,css,scss,yml}\"",
     "lint": "eslint \"**/*.ts\" --fix",
     "test": "jest"
   },
