@@ -6,6 +6,8 @@ import { VehicletypeRepository } from './vehicletype.repository';
 @Injectable()
 export class VehicletypeService {
   constructor(private readonly vehicletypeRepository: VehicletypeRepository) {}
+
+  
   create(createVehicletypeDto: CreateVehicletypeDto) {
     return this.vehicletypeRepository.create(createVehicletypeDto);
   }
