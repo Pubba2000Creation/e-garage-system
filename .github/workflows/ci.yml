@@ -2,9 +2,9 @@ name: NodeJS with Gulp
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -15,33 +15,42 @@ jobs:
         node-version: [18.x, 20.x]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install pnpm
-      run: npm install -g pnpm  # Install pnpm globally
+      - name: Install pnpm
+        run: npm install -g pnpm # Install pnpm globally
 
-    - name: Set environment variables
-      run: |
-        echo "PORT=3000" >> $GITHUB_ENV  # Set the PORT environment variable
+      - name: Set environment variables
+        run: |
+          echo "PORT=3000" >> $GITHUB_ENV  # Set the PORT environment variable
 
-    - name: Install dependencies and build
-      run: |
-        cd backend  # Navigate to the backend directory
-        pnpm install  # Install dependencies using pnpm
-        pnpm run build  # Run the build script using pnpm
+      - name: Install dependencies and build
+        run: |
+          cd backend  # Navigate to the backend directory
+          pnpm install  # Install dependencies using pnpm
+          pnpm run build  # Run the build script using pnpm
 
-    - name: Run backend service
-      run: |
-        cd backend  # Navigate to the backend directory
-        pnpm start &  # Start the backend service in the background
-        sleep 15       # Allow time for the app to start
+      - name: Run backend service
+        run: |
+          cd backend  # Navigate to the backend directory
+          pnpm start &  # Start the backend service in the background
+          echo "Waiting for backend to start..."
+          # Wait until the backend is available on the port (polling)
+          for i in {1..30}; do
+            if curl -s http://localhost:3000/user > /dev/null; then
+              echo "Backend is up and running!"
+              break
+            fi
+            echo "Waiting for backend to start..."
+            sleep 5  # Check every 5 seconds
+          done
 
-    - name: Test backend service
-      run: |
-        curl http://localhost:3000/user  # Test the backend service
-        curl http://localhost:3000/api-docs  # Check Swagger API docs
+      - name: Test backend service
+        run: |
+          curl http://localhost:3000/user  # Test the backend service
+          curl http://localhost:3000/api-docs  # Check Swagger API docs
