@@ -1,17 +1,32 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
 import { ServiceCategoryService } from './service-category.service';
 import { CreateServiceCategoryDto } from './dto/create-service-category.dto';
 import { UpdateServiceCategoryDto } from './dto/update-service-category.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { CommonResponseDto } from '@app/common';
 
-@Controller('service-category')
+@Controller('serviceCategory')
 @ApiTags('service-category opration list')
 export class ServiceCategoryController {
   constructor(private readonly serviceCategoryService: ServiceCategoryService) {}
 
   @Post()
-  create(@Body() createServiceCategoryDto: CreateServiceCategoryDto) {
-    return this.serviceCategoryService.create(createServiceCategoryDto);
+  async create(@Body() createServiceCategoryDto: CreateServiceCategoryDto): Promise<CommonResponseDto> {
+    try {
+      const responseData = await this.serviceCategoryService.create(createServiceCategoryDto);
+
+      return new CommonResponseDto(
+        true,
+        "Service category created successfully",
+        responseData.document
+      )
+    } catch (error) {
+      //handel unexpected error
+      throw new HttpException(
+        new CommonResponseDto(false, error.message, null),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      )
+    }
   }
 
   @Get()

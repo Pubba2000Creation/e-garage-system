@@ -18,7 +18,7 @@ export class ServiceCategoryService {
    * @param {CreateServiceCategoryDto} createServiceCategoryDto - Data transfer object containing details for the new service category.
    * @returns {Promise<any>} The created service category document from the database.
    */
-   create(createServiceCategoryDto: CreateServiceCategoryDto) {
+    async create(createServiceCategoryDto: CreateServiceCategoryDto) {
      return this.serviceCategoryRepository.create(createServiceCategoryDto);
     }
 
