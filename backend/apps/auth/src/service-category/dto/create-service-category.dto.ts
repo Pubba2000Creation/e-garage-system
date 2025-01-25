@@ -1,24 +1,25 @@
-import { IsString, IsNotEmpty, IsOptional, IsBoolean } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsNotEmpty, IsOptional, IsBoolean, IsEnum } from "class-validator";
+import { serviceCategoryStatus, serviceCategorycreatedBy } from "../enum/serviceCategoryStatus,enum";
 
 export class CreateServiceCategoryDto { 
-    @IsString()
-    @IsNotEmpty()
-    name: string;
 
-    @IsOptional()
-    @IsString()
-    description?: string;
+  @ApiProperty({ description: 'Name of the service category' })
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
+  @ApiProperty({ description: 'Description of the service category', required: false })
+  @IsOptional()
+  @IsString()
+  description?: string;
 
-    @IsBoolean()
-    isActive: boolean;
+  @ApiProperty({ description: 'The status of the service category', enum: serviceCategoryStatus })
+  @IsEnum(serviceCategoryStatus)
+  status: serviceCategoryStatus;
 
-    @IsString()
-    createdBy?: string;
-
-    // A utility method to ensure defaults
-    static setDefaults(dto: CreateServiceCategoryDto, role: "admin" | "service-provider"): CreateServiceCategoryDto {
-        dto.isActive = dto.isActive ?? (role === "admin");
-        return dto;
-    }
+  @ApiProperty({ description: 'Who created the service category', enum: serviceCategorycreatedBy, required: false })
+  @IsOptional()
+  @IsEnum(serviceCategorycreatedBy)
+  createdBy?: serviceCategorycreatedBy;
 }
