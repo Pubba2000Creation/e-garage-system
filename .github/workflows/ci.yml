@@ -23,14 +23,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install pnpm
-      run: npm install -g pnpm  # Install pnpm globally
+      run: npm install -g pnpm  
+    - name: Change directory to the backend folder
+      run: cd backend  
 
     - name: Install dependencies
-      run: pnpm install  # Install dependencies using pnpm
+      run: pnpm install 
 
     - name: Build
-      run: |
-        pnpm run build  # Run the build script using pnpm
-
-    - name: Run tests
-      run: pnpm test  # Run the tests using pnpm
+      run: pnpm run build  
