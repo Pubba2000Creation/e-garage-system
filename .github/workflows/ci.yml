@@ -1,4 +1,4 @@
-name: NodeJS with NestJS
+name: NodeJS with Gulp
 
 on:
   push:
@@ -22,27 +22,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Set up pnpm
-      run: |
-        curl -f https://get.pnpm.io/v6.0.js | node - add --global pnpm
+    - name: Install pnpm
+      run: npm install -g pnpm  # Install pnpm globally
 
     - name: Install dependencies
-      run: |
-        pnpm install
+      run: pnpm install  # Install dependencies using pnpm
 
-    - name: Build the backend (Garage API & Auth)
+    - name: Build
       run: |
-        pnpm run build:garage-api
-        pnpm run build:auth
+        pnpm run build  # Run the build script using pnpm
 
     - name: Run tests
-      run: |
-        pnpm run test
-
-    - name: Format code (optional, you can remove if not needed)
-      run: |
-        pnpm run format
-
-    - name: Lint code (optional, you can remove if not needed)
-      run: |
-        pnpm run lint
+      run: pnpm test  # Run the tests using pnpm
