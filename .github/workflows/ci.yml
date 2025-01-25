@@ -1,42 +1,78 @@
-name: Backend CI/CD Workflow
+name: Build and Deploy
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
+    # Step 1: Checkout code
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
-    - name: Use Node.js
-      uses: actions/setup-node@v4
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
-        node-version: 20.x
+        node-version: 18
 
-    - name: Install pnpm
-      run: npm install -g pnpm
-
+    # Step 3: Install dependencies using pnpm
     - name: Install dependencies
-      run: |
-        cd backend
-        pnpm install
+      run: pnpm install
 
-    - name: Build backend service
-      run: |
-        cd backend
-        pnpm build
+    # Step 4: Build the project
+    - name: Build the project
+      env:
+        APP_ENV: ${{ secrets.APP_ENV }}
+        PORT: ${{ secrets.PORT }}
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+        JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+        JWT_REFRESH_EXPIRES_IN: ${{ secrets.JWT_REFRESH_EXPIRES_IN }}
+        MAIL_HOST: ${{ secrets.MAIL_HOST }}
+        MAIL_PORT: ${{ secrets.MAIL_PORT }}
+        MAIL_USER: ${{ secrets.MAIL_USER }}
+        MAIL_SERVICE: ${{ secrets.MAIL_SERVICE }}
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        MAIL_FROM: ${{ secrets.MAIL_FROM }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
+      run: pnpm build
 
-    - name: Start backend service
+    # Step 5: (Optional) Debug environment
+    - name: Debug environment
       run: |
-        cd backend
-        pnpm start &  # Start the service in the background
-        sleep 10      # Wait for the service to initialize
+        echo "APP_ENV=${{ secrets.APP_ENV }}"
+        echo "PORT=${{ secrets.PORT }}"
+        echo "AWS_REGION=${{ secrets.AWS_REGION }}"
+        echo "AWS_S3_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET_NAME }}"
+      # Avoid logging sensitive secrets like passwords or access keys!
 
-    - name: Test backend service
-      run: curl http://localhost:3000/user
+    # Step 6: Run the application
+    - name: Start the application
+      env:
+        APP_ENV: ${{ secrets.APP_ENV }}
+        PORT: ${{ secrets.PORT }}
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+        JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+        JWT_REFRESH_EXPIRES_IN: ${{ secrets.JWT_REFRESH_EXPIRES_IN }}
+        MAIL_HOST: ${{ secrets.MAIL_HOST }}
+        MAIL_PORT: ${{ secrets.MAIL_PORT }}
+        MAIL_USER: ${{ secrets.MAIL_USER }}
+        MAIL_SERVICE: ${{ secrets.MAIL_SERVICE }}
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        MAIL_FROM: ${{ secrets.MAIL_FROM }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
+      run: pnpm start
