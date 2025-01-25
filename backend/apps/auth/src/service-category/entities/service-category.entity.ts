@@ -14,7 +14,7 @@ export class ServiceCategoryDocument extends AbstractDocument {
     isActive: boolean; // Only active categories are visible to users.
 
     @Prop({ type: String, default: 'admin' })
-    createdBy: string; // Tracks who added the category.
+    createdBy?: string; // Tracks who added the category.
 }
 
 export const ServiceCategorySchema = SchemaFactory.createForClass(ServiceCategoryDocument)
