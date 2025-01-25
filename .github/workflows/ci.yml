@@ -18,14 +18,20 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 18
+        node-version: 20
 
-    # Step 3: Install dependencies using pnpm
+    # Step 2.1: Install pnpm
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    # Step 3: Navigate to the backend directory and install dependencies
     - name: Install dependencies
+      working-directory: ./backend
       run: pnpm install
 
     # Step 4: Build the project
     - name: Build the project
+      working-directory: ./backend
       env:
         APP_ENV: ${{ secrets.APP_ENV }}
         PORT: ${{ secrets.PORT }}
@@ -46,17 +52,9 @@ jobs:
         AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
       run: pnpm build
 
-    # Step 5: (Optional) Debug environment
-    - name: Debug environment
-      run: |
-        echo "APP_ENV=${{ secrets.APP_ENV }}"
-        echo "PORT=${{ secrets.PORT }}"
-        echo "AWS_REGION=${{ secrets.AWS_REGION }}"
-        echo "AWS_S3_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET_NAME }}"
-      # Avoid logging sensitive secrets like passwords or access keys!
-
-    # Step 6: Run the application
+    # Step 5: Start the application
     - name: Start the application
+      working-directory: ./backend
       env:
         APP_ENV: ${{ secrets.APP_ENV }}
         PORT: ${{ secrets.PORT }}
