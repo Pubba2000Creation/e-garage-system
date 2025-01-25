@@ -1,0 +1,48 @@
+name: NodeJS with NestJS
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Set up pnpm
+      run: |
+        curl -f https://get.pnpm.io/v6.0.js | node - add --global pnpm
+
+    - name: Install dependencies
+      run: |
+        pnpm install
+
+    - name: Build the backend (Garage API & Auth)
+      run: |
+        pnpm run build:garage-api
+        pnpm run build:auth
+
+    - name: Run tests
+      run: |
+        pnpm run test
+
+    - name: Format code (optional, you can remove if not needed)
+      run: |
+        pnpm run format
+
+    - name: Lint code (optional, you can remove if not needed)
+      run: |
+        pnpm run lint
