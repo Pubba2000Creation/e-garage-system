@@ -3,6 +3,7 @@ import { ServiceCategoryService } from './service-category.service';
 import { ServiceCategoryController } from './service-category.controller';
 import { DatabaseModule, LoggerModule } from '@app/common';
 import { ServiceCategoryDocument, ServiceCategorySchema } from './entities/service-category.entity';
+import { ServiceCategoryRepository } from './service-category.repository';
 
 @Module({
   imports: [
@@ -13,6 +14,6 @@ import { ServiceCategoryDocument, ServiceCategorySchema } from './entities/servi
     LoggerModule,
   ],
   controllers: [ServiceCategoryController],
-  providers: [ServiceCategoryService],
+  providers: [ServiceCategoryService, LoggerModule,ServiceCategoryRepository],
 })
 export class ServiceCategoryModule {}

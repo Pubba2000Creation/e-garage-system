@@ -1,7 +1,8 @@
 import { AbstractDocument } from "@app/common";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { serviceCategorycreatedBy, serviceCategoryStatus } from "../enum/serviceCategoryStatus.enum"; // Corrected import
 
-@Schema({ versionKey: false, timestamps: true})
+@Schema({ versionKey: false, timestamps: true })
 export class ServiceCategoryDocument extends AbstractDocument { 
 
     @Prop({ required: true, type: String, unique: true })
@@ -10,11 +11,21 @@ export class ServiceCategoryDocument extends AbstractDocument {
     @Prop({ type: String })
     description?: string; // Optional: Brief description of the category.
 
-    @Prop({ type: Boolean, default: true })
-    isActive: boolean; // Only active categories are visible to users.
+    @Prop({
+        type: String,
+        enum: serviceCategoryStatus,
+        required: false,
+        default: serviceCategoryStatus.PENDING, // Ensure default is set
+    })
+    status?: serviceCategoryStatus;
 
-    @Prop({ type: String, default: 'admin' })
-    createdBy: string; // Tracks who added the category.
+    @Prop({
+        type: String, 
+        enum: serviceCategorycreatedBy,
+        required: false,
+        default: serviceCategorycreatedBy.admin // Ensure default is set
+    })
+    createdBy?: serviceCategorycreatedBy; // Tracks who added the category.
 }
 
-export const ServiceCategorySchema = SchemaFactory.createForClass(ServiceCategoryDocument)
+export const ServiceCategorySchema = SchemaFactory.createForClass(ServiceCategoryDocument);

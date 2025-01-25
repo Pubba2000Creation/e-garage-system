@@ -14,15 +14,18 @@ export class VehicletypeService {
     return this.vehicletypeRepository.find({})
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} vehicletype`;
+  findOne(id: string) {
+    return this.vehicletypeRepository.findOne({_id: id});
   }
 
-  update(id: number, updateVehicletypeDto: UpdateVehicletypeDto) {
-    return `This action updates a #${id} vehicletype`;
+  update(id: string, updateVehicletypeDto: UpdateVehicletypeDto) {
+    return this.vehicletypeRepository.findOneAndUpdate(
+      { _id: id },
+      { $set: updateVehicletypeDto }
+    );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} vehicletype`;
+  remove(id: string) {
+    return this.vehicletypeRepository.findOneAndDelete({ _id: id });
   }
 }
