@@ -1,4 +1,4 @@
-name: NodeJS Backend Service CI
+name: Backend CI/CD Workflow
 
 on:
   push:
@@ -7,11 +7,12 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
     - name: Use Node.js
       uses: actions/setup-node@v4
@@ -26,11 +27,16 @@ jobs:
         cd backend
         pnpm install
 
+    - name: Build backend service
+      run: |
+        cd backend
+        pnpm build
+
     - name: Start backend service
       run: |
         cd backend
-        pnpm start &  # Start service in the background
-        sleep 10      # Wait for it to initialize
+        pnpm start &  # Start the service in the background
+        sleep 10      # Wait for the service to initialize
 
     - name: Test backend service
       run: curl http://localhost:3000/user
