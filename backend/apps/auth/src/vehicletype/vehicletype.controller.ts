@@ -8,6 +8,7 @@ import {
   Delete,
   HttpException,
   HttpStatus,
+  NotFoundException,
 } from '@nestjs/common';
 import { VehicletypeService } from './vehicletype.service';
 import { CreateVehicletypeDto } from './dto/create-vehicletype.dto';
@@ -165,66 +166,74 @@ export class VehicletypeController {
       );
     }
   }
-   /*
-   **
-   * Endpoint to update an existing vehicle type.
-   *
-   * This endpoint updates the details of a specific vehicle type identified by its ID.
-   * It retrieves the record from the database, applies the updates, and saves it back.
-   * Returns a response containing the updated vehicle type details.
-   *
-   * @param {string} id - The unique identifier of the vehicle type to update.
-   * @param {UpdateVehicletypeDto} updateVehicletypeDto - The data to update the vehicle type.
-   * @returns {Promise<CommonResponseDto>} A response object containing a success flag, message, and updated details of the vehicle type.
-   */
-  @ApiOperation({ summary: 'Update a vehicle type' })
-  @ApiBody({ type: UpdateVehicletypeDto })
-  @ApiParam({
-    name: 'id',
-    description: 'The ID of the vehicle type to update',
-    required: true,
-    type: String,
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'Vehicle type updated successfully.',
-    type: CommonResponseDto,
-  })
-  @ApiResponse({
-    status: 400,
-    description: 'Bad Request - Invalid input data.',
-  })
-  @ApiResponse({
-    status: 404,
-    description: 'Not Found - Vehicle type not found.',
-  })
-  @ApiResponse({
-    status: 500,
-    description: 'Internal Server Error - Server failure.',
-  })
-  @Patch(':id')
-  async update(
-    @Param('id') id: string,
-    @Body() updateVehicletypeDto: UpdateVehicletypeDto,
-  ): Promise<CommonResponseDto> {
-    try {
-      const response = await this.vehicletypeService.update(
-        id,
-        updateVehicletypeDto,
-      );
-      return new CommonResponseDto(
-        true,
-        'Vehicle type updated successfully.',
-        response,
-      );
-    } catch (error) {
-      // Handle unexpected errors
+/**
+ * Endpoint to update an existing vehicle type.
+ *
+ * This endpoint updates the details of a specific vehicle type identified by its ID.
+ * It retrieves the record from the database, applies the updates, and saves it back.
+ * Returns a response containing the updated vehicle type details.
+ *
+ * @param {string} id - The unique identifier of the vehicle type to update.
+ * @param {UpdateVehicletypeDto} updateVehicletypeDto - The data to update the vehicle type.
+ * @returns {Promise<CommonResponseDto>} A response object containing a success flag, message, and updated details of the vehicle type.
+ */
+@ApiOperation({ summary: 'Update a vehicle type' })
+@ApiBody({ type: UpdateVehicletypeDto })
+@ApiParam({
+  name: 'id',
+  description: 'The ID of the vehicle type to update',
+  required: true,
+  type: String,
+})
+@ApiResponse({
+  status: 200,
+  description: 'Vehicle type updated successfully.',
+  type: CommonResponseDto,
+})
+@ApiResponse({
+  status: 400,
+  description: 'Bad Request - Invalid input data.',
+})
+@ApiResponse({
+  status: 404,
+  description: 'Not Found - Vehicle type not found.',
+})
+@ApiResponse({
+  status: 500,
+  description: 'Internal Server Error - Server failure.',
+})
+@Patch(':id')
+async update(
+  @Param('id') id: string,
+  @Body() updateVehicletypeDto: UpdateVehicletypeDto,
+): Promise<CommonResponseDto> {
+  try {
+    const response = await this.vehicletypeService.update(
+      id,
+      updateVehicletypeDto,
+    );
+
+    return new CommonResponseDto(
+      true,
+      'Vehicle type updated successfully.',
+      response,
+    );
+  } catch (error) {
+    // Handle "not found" errors explicitly if thrown by the service
+    if (error instanceof NotFoundException) {
       throw new HttpException(
-        new CommonResponseDto(false, error.message, null),
-        HttpStatus.INTERNAL_SERVER_ERROR,
+        new CommonResponseDto(false, 'Vehicle type not found.', null),
+        HttpStatus.NOT_FOUND,
       );
     }
+
+    // Handle unexpected errors
+    throw new HttpException(
+      new CommonResponseDto(false, error.message, null),
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
   }
+}
 
 /**
  * API endpoint for deleting a vehicle type.
