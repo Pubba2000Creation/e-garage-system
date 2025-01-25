@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsNotEmpty, IsOptional, IsBoolean, IsEnum } from "class-validator";
-import { serviceCategoryStatus, serviceCategorycreatedBy } from "../enum/serviceCategoryStatus,enum";
+import { IsString, IsNotEmpty, IsOptional, IsEnum } from "class-validator";
+import { serviceCategoryStatus, serviceCategorycreatedBy } from "../enum/serviceCategoryStatus.enum"; // Corrected import
 
 export class CreateServiceCategoryDto { 
 
@@ -16,10 +16,11 @@ export class CreateServiceCategoryDto {
 
   @ApiProperty({ description: 'The status of the service category', enum: serviceCategoryStatus })
   @IsEnum(serviceCategoryStatus)
-  status: serviceCategoryStatus;
+  status?: serviceCategoryStatus = serviceCategoryStatus.PENDING; // Default to 'PENDING'
 
   @ApiProperty({ description: 'Who created the service category', enum: serviceCategorycreatedBy, required: false })
   @IsOptional()
   @IsEnum(serviceCategorycreatedBy)
-  createdBy?: serviceCategorycreatedBy;
+  createdBy?: serviceCategorycreatedBy = serviceCategorycreatedBy.admin; // Default to 'admin'
+
 }

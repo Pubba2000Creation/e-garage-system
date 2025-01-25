@@ -17,7 +17,7 @@ export class ServiceCategoryController {
 
       return new CommonResponseDto(
         true,
-        "Service category created successfully",
+        responseData.message,
         responseData.document
       )
     } catch (error) {
