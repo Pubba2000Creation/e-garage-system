@@ -38,14 +38,14 @@ jobs:
 
     - name: Verify backend service is running
       run: |
-        curl http://localhost:3000/health  # Ensure the service is up
+        curl http://localhost:3000/user  # Ensure the service is up
 
     - name: Create GitHub Release
-      uses: gh-cli/action-release@v1
+      uses: softprops/action-gh-release@v1
       with:
-        tag: ${{ github.ref }}
-        name: "Release ${{ github.ref }}"
-        body: "This release includes the latest deployment of the backend service."
+        files: ./backend/dist/*  # Specify the files to include in the release (adjust this as needed)
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Notify Slack about deployment status
       uses: slackapi/slack-github-action@v1.16.0
