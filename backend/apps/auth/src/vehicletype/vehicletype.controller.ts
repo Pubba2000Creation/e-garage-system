@@ -152,8 +152,9 @@ export class VehicletypeController {
 
       return new CommonResponseDto(
         true,
-        'Vehicle type retrieved successfully',
-        responseData,
+        responseData.message,
+        responseData.document,
+        
       );
     } catch (error) {
       // Handle unexpected errors
