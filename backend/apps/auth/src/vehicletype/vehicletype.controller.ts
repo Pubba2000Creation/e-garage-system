@@ -215,8 +215,8 @@ async update(
 
     return new CommonResponseDto(
       true,
-      'Vehicle type updated successfully.',
-      response,
+      response.message,
+      response.document,
     );
   } catch (error) {
     // Handle "not found" errors explicitly if thrown by the service
