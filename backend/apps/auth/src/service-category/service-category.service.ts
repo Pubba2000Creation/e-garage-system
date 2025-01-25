@@ -27,10 +27,10 @@ export class ServiceCategoryService {
    * This method will be fully implemented to retrieve and return all records from the database.
    *
    * @returns {Promise<string>} A placeholder message for now.
-   */
-  findAll() {
-    return `This action returns all serviceCategory`;
-  }
+    */
+    findAll() {
+      return this.serviceCategoryRepository.find({});
+    }
 
   /**
    * Fetches a specific service category by ID.

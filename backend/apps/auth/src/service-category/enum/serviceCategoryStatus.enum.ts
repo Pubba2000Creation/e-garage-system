@@ -7,5 +7,5 @@ export enum serviceCategoryStatus {
 
 export enum serviceCategorycreatedBy {
   admin = 'admin',
-  sericeProvider = 'sericeProvider',
+  serviceProvider = 'service-provider',
 }
