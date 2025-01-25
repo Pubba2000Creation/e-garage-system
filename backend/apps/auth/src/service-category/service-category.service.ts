@@ -18,20 +18,9 @@ export class ServiceCategoryService {
    * @param {CreateServiceCategoryDto} createServiceCategoryDto - Data transfer object containing details for the new service category.
    * @returns {Promise<any>} The created service category document from the database.
    */
-  async create(createServiceCategoryDto: CreateServiceCategoryDto): Promise<any> {
-    try {
-      // Call the repository's create method to insert the service category into the database
-      const createdCategory = await this.serviceCategoryRepository.create(
-        createServiceCategoryDto, // Passing the DTO directly to the repository
-      );
-
-      // Return the created document
-      return createdCategory;
-    } catch (error) {
-      // Handle any unexpected errors
-      throw new Error(`Failed to create service category: ${error.message}`);
+   create(createServiceCategoryDto: CreateServiceCategoryDto) {
+     return this.serviceCategoryRepository.create(createServiceCategoryDto);
     }
-  }
 
   /**
    * Fetches all service categories.
