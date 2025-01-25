@@ -25,7 +25,7 @@ export class VehicletypeService {
     );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} vehicletype`;
+  remove(id: string) {
+    return this.vehicletypeRepository.findOneAndDelete({ _id: id });
   }
 }

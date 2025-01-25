@@ -165,32 +165,7 @@ export class VehicletypeController {
       );
     }
   }
-
-  @ApiOperation({ summary: 'Update a vehicle type' })
-  @ApiParam({
-    name: 'id',
-    description: 'The ID of the vehicle type to update',
-    required: true,
-    type: String,
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'Vehicle type updated successfully',
-    type: CommonResponseDto,
-  })
-  @ApiResponse({
-    status: 400,
-    description: 'Bad Request - Invalid input data.',
-  })
-  @ApiResponse({
-    status: 404,
-    description: 'Not Found - Vehicle type not found.',
-  })
-  @ApiResponse({
-    status: 500,
-    description: 'Internal Server Error - An unexpected error occurred.',
-  })
-  /*
+   /*
    **
    * Endpoint to update an existing vehicle type.
    *
@@ -202,14 +177,14 @@ export class VehicletypeController {
    * @param {UpdateVehicletypeDto} updateVehicletypeDto - The data to update the vehicle type.
    * @returns {Promise<CommonResponseDto>} A response object containing a success flag, message, and updated details of the vehicle type.
    */
-  @ApiOperation({ summary: 'Update an existing vehicle type' })
+  @ApiOperation({ summary: 'Update a vehicle type' })
+  @ApiBody({ type: UpdateVehicletypeDto })
   @ApiParam({
     name: 'id',
     description: 'The ID of the vehicle type to update',
     required: true,
     type: String,
   })
-  @ApiBody({ type: UpdateVehicletypeDto })
   @ApiResponse({
     status: 200,
     description: 'Vehicle type updated successfully.',
@@ -251,8 +226,58 @@ export class VehicletypeController {
     }
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.vehicletypeService.remove(+id);
+/**
+ * API endpoint for deleting a vehicle type.
+ * 
+ * This endpoint requires the ID of the vehicle type to be deleted. 
+ * It provides a common response indicating the success or failure of the operation.
+ *
+ * @param id - The ID of the vehicle type to be deleted.
+ * @returns {Promise<CommonResponseDto>} A response object containing a success flag, message, and optional data.
+ */
+@ApiOperation({ summary: 'Delete a vehicle type' })
+@ApiParam({
+  name: 'id',
+  description: 'The ID of the vehicle type to delete',
+  required: true,
+  type: String,
+})
+@ApiResponse({
+  status: 200,
+  description: 'Vehicle type deleted successfully.',
+  type: CommonResponseDto,
+})
+@ApiResponse({
+  status: 400,
+  description: 'Bad Request - Invalid input data.',
+})
+@ApiResponse({
+  status: 404,
+  description: 'Not Found - Vehicle type not found.',
+})
+@ApiResponse({
+  status: 500,
+  description: 'Internal Server Error - An unexpected error occurred.',
+})
+@Delete(':id')
+async remove(@Param('id') id: string): Promise<CommonResponseDto> {
+  try {
+    const response = await this.vehicletypeService.remove(id);
+
+    return new CommonResponseDto(
+      true,
+      'Vehicle type deleted successfully.',
+      response.document,
+    );
+  } catch (error) {
+    // Handle unexpected errors
+    throw new HttpException(
+      new CommonResponseDto(false, error.message, null),
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
   }
+}
+
+
+
 }
