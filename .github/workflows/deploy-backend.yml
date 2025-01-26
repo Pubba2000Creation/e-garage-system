@@ -84,8 +84,9 @@ jobs:
         run: |
           echo "Deploying to Heroku..."
           heroku git:remote -a e-garage-system
+          git config user.email "prabashanapubudu@gmail.com"
+          git config user.name "pubba2000creation"
           git push heroku main
-          
 
       # Step 9: Output the deployed URL
       - name: Output deployed URL
