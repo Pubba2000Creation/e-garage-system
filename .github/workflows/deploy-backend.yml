@@ -1,0 +1,69 @@
+name: Deploy Backend to Heroku
+
+on:
+  push:
+    branches:
+      - main
+      - backend/**  # You can specify a branch specifically for the backend if needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20  # Make sure this matches the version in your `package.json`
+
+    - name: Set up pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8  # Make sure the version is compatible with your workspace
+
+    - name: Install dependencies
+      working-directory: ./backend
+      run: pnpm install  # Install backend dependencies
+
+    - name: Build the project
+      working-directory: ./backend
+      env:
+        APP_ENV: ${{ secrets.APP_ENV }}
+        PORT: ${{ secrets.PORT }}
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+        JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+        JWT_REFRESH_EXPIRES_IN: ${{ secrets.JWT_REFRESH_EXPIRES_IN }}
+        MAIL_HOST: ${{ secrets.MAIL_HOST }}
+        MAIL_PORT: ${{ secrets.MAIL_PORT }}
+        MAIL_USER: ${{ secrets.MAIL_USER }}
+        MAIL_SERVICE: ${{ secrets.MAIL_SERVICE }}
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        MAIL_FROM: ${{ secrets.MAIL_FROM }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
+      run: heroku-postbuild
+
+    - name: Commit changes
+      run: |
+        git add .
+        git commit -m "CI/CD build and deploy"
+        git push origin main  # Push changes to GitHub, ensure you're pushing to the correct branch
+
+    - name: Deploy to Heroku
+      run: |
+        echo "Deploying to Heroku..."
+        curl https://cli-assets.heroku.com/install.sh | sh
+        heroku login --api-key ${{ secrets.HEROKU_API_KEY }}  # Login to Heroku with API key
+        git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+        git push heroku main  # Push the code to Heroku main branch for deployment
+
+    - name: Output deployed URL
+      run: |
+        echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"
