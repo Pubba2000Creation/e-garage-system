@@ -1,0 +1,77 @@
+name: CI/CD Build and Deploy
+
+on:
+  push:
+    branches:
+      - main # Trigger the workflow when pushing to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Run on the latest Ubuntu environment
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20 # Use Node.js version 20
+
+      # Step 2.1: Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # Step 3: Install dependencies in backend
+      - name: Install dependencies
+        working-directory: ./backend # Navigate to your backend folder
+        run: pnpm install
+
+      # Step 4: Run ESLint (linting)
+      - name: Run ESLint
+        working-directory: ./backend
+        run: pnpm lint . --ext .ts
+
+      # Step 5: Run Jest Tests
+      - name: Run Jest Tests
+        working-directory: ./backend
+        run: pnpm test
+
+      # Step 6: Build the project
+      - name: Build the project
+        working-directory: ./backend
+        env:
+          APP_ENV: ${{ secrets.APP_ENV }}
+          PORT: ${{ secrets.PORT }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+          JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+          JWT_REFRESH_EXPIRES_IN: ${{ secrets.JWT_REFRESH_EXPIRES_IN }}
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_PORT: ${{ secrets.MAIL_PORT }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_SERVICE: ${{ secrets.MAIL_SERVICE }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
+        run: pnpm build
+
+      # Step 7: Deploy to Heroku
+      - name: Deploy to Heroku
+        uses: akshnz/heroku-action@v1
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+      # Step 8: Output deployed URL
+      - name: Get deployed URL
+        run: |
+          echo "Deployed to: https://$HEROKU_APP_NAME.herokuapp.com/serviceCategory"
