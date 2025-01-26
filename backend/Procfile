@@ -1,2 +1,1 @@
-web: pnpm --prefix backend start
-
+web: pnpm run start:all
