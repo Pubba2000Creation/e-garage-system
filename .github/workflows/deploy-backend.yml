@@ -65,8 +65,12 @@ jobs:
       - name: Commit changes
         run: |
           git add .
+          if git diff-index --quiet HEAD --; then
+          echo "No changes to commit"
+          else
           git commit -m "CI/CD build and deploy"
-          git push origin main  # Push changes to GitHub (ensure you're pushing to the correct branch)
+          git push origin main
+          fi
 
       # Step 8: Deploy the app to Heroku
       - name: Deploy to Heroku
