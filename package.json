@@ -67,8 +67,7 @@
     "testEnvironment": "node"
   },
   "engines": {
-   "node": "16.x",
-    "npm": "8.x",
+   "node": "20.x",
     "pnpm": "9.12.1"
   }
 }
