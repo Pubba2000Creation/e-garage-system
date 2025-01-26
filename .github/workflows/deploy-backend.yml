@@ -1,4 +1,4 @@
-name: Deploy Backend to Heroku
+name: Deploy Backend 
 
 on:
   push:
@@ -71,23 +71,6 @@ jobs:
           git commit -m "CI/CD build and deploy"
           git push origin main
           fi
-
-      #install heroku cli
-      - name: Install Heroku CLI
-        run: |
-          curl https://cli-assets.heroku.com/install.sh | sh
-
-      - name: Authenticate with Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: |
-          echo "machine api.heroku.com" > ~/.netrc
-          echo "  login ${{ secrets.HEROKU_EMAIL }}" >> ~/.netrc
-          echo "  password ${{ secrets.HEROKU_API_KEY }}" >> ~/.netrc
-          echo "machine git.heroku.com" >> ~/.netrc
-          echo "  login ${{ secrets.HEROKU_EMAIL }}" >> ~/.netrc
-          echo "  password ${{ secrets.HEROKU_API_KEY }}" >> ~/.netrc
-           chmod 600 ~/.netrc
 
       - name: Unshallow the repository
         run: git fetch --all --unshallow 
