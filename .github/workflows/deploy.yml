@@ -29,7 +29,10 @@ jobs:
         working-directory: ./backend # Navigate to your backend folder
         run: pnpm install
 
+backend-setup
 
+
+main
       # Step 4: Build the project
       - name: Build the project
         working-directory: ./backend
@@ -52,15 +55,18 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: pnpm build
-
+backend-setup
       # Step 5: Deploy to Heroku
+
+      # Step 5: Deploy to Heroku using Heroku CLI
+ main
       - name: Deploy to Heroku
-        uses: akshnz/heroku-action@v1
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          echo "Deploying to Heroku..."
+          curl https://cli-assets.heroku.com/install.sh | sh
+          heroku login --api-key ${{ secrets.HEROKU_API_KEY }}
+          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+          git push heroku main
 
       # Step 6: Output deployed URL
       - name: Get deployed URL
