@@ -74,12 +74,13 @@ jobs:
 
       # Step 8: Deploy the app to Heroku
       - name: Deploy to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           echo "Deploying to Heroku..."
-          curl https://cli-assets.heroku.com/install.sh | sh  # Install Heroku CLI
-          heroku login --api-key ${{ secrets.HEROKU_API_KEY }}  # Login to Heroku using the API key
-          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git  # Add the Heroku remote
-          git push heroku main  # Push the code to Heroku for deployment
+          heroku git:remote -a e-garage-system
+          git push heroku main
+          
 
       # Step 9: Output the deployed URL
       - name: Output deployed URL
