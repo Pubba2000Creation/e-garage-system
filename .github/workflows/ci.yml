@@ -1,56 +1,77 @@
-name: NodeJS with Gulp
+name: CI/CD Build and Deploy
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-
     steps:
-      - uses: actions/checkout@v4
+    # Step 1: Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
 
-      - name: Install pnpm
-        run: npm install -g pnpm # Install pnpm globally
+    # Step 2.1: Install pnpm
+    - name: Install pnpm
+      run: npm install -g pnpm
 
-      - name: Set environment variables
-        run: |
-          echo "PORT=3000" >> $GITHUB_ENV  # Set the PORT environment variable
+    # Step 3: Install dependencies in backend
+    - name: Install dependencies
+      working-directory: ./backend
+      run: pnpm install
 
-      - name: Install dependencies and build
-        run: |
-          cd backend  # Navigate to the backend directory
-          pnpm install  # Install dependencies using pnpm
-          pnpm run build  # Run the build script using pnpm
+    # Step 4: Run ESLint (linting)
+    - name: Run ESLint
+      working-directory: ./backend
+      run: pnpm eslint . --ext .ts
 
-      - name: Run backend service
-        run: |
-          cd backend  # Navigate to the backend directory
-          pnpm start &  # Start the backend service in the background
-          echo "Waiting for backend to start..."
-          # Wait until the backend is available on the port (polling)
-          for i in {1..30}; do
-            if curl -s http://localhost:3000/user > /dev/null; then
-              echo "Backend is up and running!"
-              break
-            fi
-            echo "Waiting for backend to start..."
-            sleep 5  # Check every 5 seconds
-          done
+    # Step 5: Run Jest Tests
+    - name: Run Jest Tests
+      working-directory: ./backend
+      run: pnpm test
 
-      - name: Test backend service
-        run: |
-          curl http://localhost:3000/user  # Test the backend service
-          curl http://localhost:3000/api-docs  # Check Swagger API docs
+    # Step 6: Build the project
+    - name: Build the project
+      working-directory: ./backend
+      env:
+        APP_ENV: ${{ secrets.APP_ENV }}
+        PORT: ${{ secrets.PORT }}
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+        JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+        JWT_REFRESH_EXPIRES_IN: ${{ secrets.JWT_REFRESH_EXPIRES_IN }}
+        MAIL_HOST: ${{ secrets.MAIL_HOST }}
+        MAIL_PORT: ${{ secrets.MAIL_PORT }}
+        MAIL_USER: ${{ secrets.MAIL_USER }}
+        MAIL_SERVICE: ${{ secrets.MAIL_SERVICE }}
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        MAIL_FROM: ${{ secrets.MAIL_FROM }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
+      run: pnpm build
+
+    # Step 7: Deploy to Heroku
+    - name: Deploy to Heroku
+      uses: akshnz/heroku-action@v1
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+    # Step 8: Output deployed URL
+    - name: Get deployed URL
+      run: |
+        echo "Deployed to: https://$HEROKU_APP_NAME.herokuapp.com/serviceCategory"
