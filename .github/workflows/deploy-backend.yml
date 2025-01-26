@@ -11,23 +11,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Step 1: Checkout the code from the repository
     - name: Checkout code
       uses: actions/checkout@v2
 
+    # Step 2: Set up Node.js with the specified version
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 20  # Make sure this matches the version in your `package.json`
 
+    # Step 3: Set up pnpm with the required version
     - name: Set up pnpm
       uses: pnpm/action-setup@v2
       with:
-        version: 8  # Make sure the version is compatible with your workspace
+        version: 9.12.1  # Use the correct version of pnpm (your project requires 9.12.1)
 
+    # Step 4: Install the dependencies using pnpm
     - name: Install dependencies
       working-directory: ./backend
       run: pnpm install  # Install backend dependencies
 
+    # Step 5: Build the project (ensure environment variables are set correctly)
     - name: Build the project
       working-directory: ./backend
       env:
@@ -48,22 +53,25 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
         AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
-      run: heroku-postbuild
+      run: pnpm run heroku-postbuild  # Ensure the heroku-postbuild is executed
 
+    # Step 6: Commit any changes made during the build process
     - name: Commit changes
       run: |
         git add .
         git commit -m "CI/CD build and deploy"
-        git push origin main  # Push changes to GitHub, ensure you're pushing to the correct branch
+        git push origin main  # Push changes to GitHub (ensure you're pushing to the correct branch)
 
+    # Step 7: Deploy the app to Heroku
     - name: Deploy to Heroku
       run: |
         echo "Deploying to Heroku..."
-        curl https://cli-assets.heroku.com/install.sh | sh
-        heroku login --api-key ${{ secrets.HEROKU_API_KEY }}  # Login to Heroku with API key
-        git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-        git push heroku main  # Push the code to Heroku main branch for deployment
+        curl https://cli-assets.heroku.com/install.sh | sh  # Install Heroku CLI
+        heroku login --api-key ${{ secrets.HEROKU_API_KEY }}  # Login to Heroku using the API key
+        git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git  # Add the Heroku remote
+        git push heroku main  # Push the code to Heroku for deployment
 
+    # Step 8: Output the deployed URL
     - name: Output deployed URL
       run: |
-        echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"
+        echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"  # Update with your app’s endpoint
