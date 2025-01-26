@@ -3,7 +3,6 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "../../dist/libs/common/src",
-     "jsx": "react"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
