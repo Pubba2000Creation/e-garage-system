@@ -17,10 +17,12 @@ import Btn from '@/components/user/btn'
 import Border_btn from '@/components/user/border-btn'
 import UserProfile from '@/components/user/user-profile'
 import NotificationsDrawer from '@/components/user/notifications-drawer'
-import user_profile from '@/public/users/pic.jpg'
+import user_profile from '@/public/users/pic.png'
 import { NavbarProps } from '@/types/user-components'
+import { useRouter } from 'next/navigation'
 
 export default function Navbar() {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState<NavbarProps['isOpen']>(false)
   const [isloging, setIsloging] = useState<NavbarProps['isloging']>(false)
 
@@ -31,6 +33,8 @@ export default function Navbar() {
 
   function add_services() {
     console.log('click add services')
+    router.push('/auth/sign-up')
+
   }
 
   return (
@@ -50,18 +54,20 @@ export default function Navbar() {
             <div className="flex flex-col space-y-4 mt-4">
               <Link
                 className="text-sm font-semibold text-black focus:text-primary"
-                href="/user/home"
+                href="/garage/home"
                 onClick={() => setIsOpen(false)}
               >
                 Home
               </Link>
-              <Link
+
+              {/* <Link
                 className="text-sm font-semibold text-black focus:text-primary"
                 href="/user/home"
                 onClick={() => setIsOpen(false)}
               >
                 Find Services
-              </Link>
+              </Link> */}
+
               {/* <Link
                 className="text-sm font-semibold text-black focus:text-primary"
                 href="/user/services"
@@ -69,16 +75,17 @@ export default function Navbar() {
               >
                 Services
               </Link> */}
+
               <Link
                 className="text-sm font-semibold text-black focus:text-primary"
-                href="/user/news"
+                href="/garage/news"
                 onClick={() => setIsOpen(false)}
               >
                 News
               </Link>
               <Link
                 className="text-sm font-semibold text-black focus:text-primary"
-                href="/user/aboutus"
+                href="/garage/aboutus"
                 onClick={() => setIsOpen(false)}
               >
                 About Us
@@ -102,16 +109,18 @@ export default function Navbar() {
       <div className="hidden lg:flex flex-1 justify-center items-center space-x-6">
         <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
-          href="/user/home"
+          href="/garage/home"
         >
           Home
         </Link>
-        <Link
+
+        {/* <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
           href="/user/home"
         >
           Find Services
-        </Link>
+        </Link> */}
+
         {/* <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
           href="/user/services"
@@ -121,14 +130,14 @@ export default function Navbar() {
 
         <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
-          href="/user/news"
+          href="/garage/news"
         >
           News
         </Link>
 
         <Link
           className="text-sm  text-black font-semibold hover:scale-105 transition duration-100 focus:text-primary hover:text-primary"
-          href="/user/aboutus"
+          href="/garage/aboutus"
         >
           About Us
         </Link>

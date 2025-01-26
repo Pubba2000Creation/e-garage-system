@@ -6,8 +6,9 @@ import { Star } from 'lucide-react'
 import ImageCarousel from '@/components/user/image-carousel'
 import { CiLocationOn, CiPhone } from 'react-icons/ci'
 import { IoLogoWhatsapp } from 'react-icons/io'
+import { IoCopyOutline } from "react-icons/io5";
 
-import user from '@/public/users/pic.jpg'
+import user from '@/public/team/1.jpg'
 
 import carousel_1 from '@/public/images/carousel_1.jpg'
 import carousel_2 from '@/public/images/carousel_2.jpg'
@@ -16,7 +17,7 @@ import carousel_3 from '@/public/images/carousel_3.jpg'
 import Tag from '@/components/user/tag'
 import Border_btn from '@/components/user/border-btn'
 import Btn from '@/components/user/btn'
-import AddReview from '@/components/user/addReview'
+import AddReview from '@/components/user/add-review'
 import CustomDropdown from '@/components/user/custom-dropdown-menu'
 import ReviewCard from '@/components/user/review-card'
 import SimilarServicesSection from '@/components/user/similar-services-section'
@@ -34,6 +35,26 @@ export default function ShowServicePage(props: ServiceProps) {
   const handleFilterChange = (selectedOption: string) => {
     console.log('Selected filter:', selectedOption)
   }
+
+  const copyPhoneNumber = () => {
+    navigator.clipboard.writeText(props.phoneNumber);
+    //alert("Phone number copied to clipboard!");
+  };
+
+  const copyWhatsappPhoneNumber = () => {
+    navigator.clipboard.writeText(props.whatsappNumber);
+    //alert("Phone number copied to clipboard!");
+  };
+
+  const openWhatsApp = () => {
+    const url = `https://wa.me/${props.whatsappNumber.replace("+94", "")}`;
+    window.open(url, "_blank"); // Opens the link in a new tab
+  };
+
+  const openGoogleMaps = () => {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(props.address)}`;
+    window.open(url, "_blank"); // Opens the Google Maps link in a new tab
+  };
 
   const imageSet1 = [
     carousel_1,
@@ -106,7 +127,7 @@ export default function ShowServicePage(props: ServiceProps) {
                   Name={'John Doe'}
                   Img={user}
                   rating={5}
-                  review={'This is a great service. I highly recommend it!'}
+                  review={'This is a great  I highly recommend it!'}
                   time={'2 days'}
                 />
                 <ReviewCard
@@ -141,7 +162,8 @@ export default function ShowServicePage(props: ServiceProps) {
                   src={props.mapLink}
                   className="absolute top-0 left-0 w-full h-full border-0 rounded-md"
                   allowFullScreen={true}
-                  loading="lazy"
+                  //loading="lazy"
+                  title="Interactive map of location"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>
@@ -159,20 +181,32 @@ export default function ShowServicePage(props: ServiceProps) {
                   <CiPhone />
                 </span>{' '}
                 Phone: {props.phoneNumber}
+                <button
+                    onClick={copyPhoneNumber}
+                    className="bg-light_gray p-1 rounded-md hover:bg-slate-300"
+                  >
+                  <IoCopyOutline />                  
+                </button>
               </li>
               <li className="flex gap-2 my-2">
                 <span className="py-1 text-whatapp">
                   <IoLogoWhatsapp />
                 </span>{' '}
                 WhatsApp: {props.whatsappNumber}
+                <button
+                    onClick={copyWhatsappPhoneNumber}
+                    className="bg-light_gray p-1 rounded-md hover:bg-slate-300"
+                  >
+                  <IoCopyOutline />                  
+                </button>
               </li>
             </ul>
 
             <div className="flex justify-between mt-5">
-              <Btn name="Call Us" fun={() => console.log('Call Us')} />
+              <Btn name="Call Us" fun={openWhatsApp} />
               <Border_btn
                 name="Locate Us"
-                fun={() => console.log('Locate Us')}
+                fun={openGoogleMaps}
               />
             </div>
           </div>
