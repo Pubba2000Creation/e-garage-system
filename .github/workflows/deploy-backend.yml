@@ -4,81 +4,80 @@ on:
   push:
     branches:
       - main
-      - backend/**  # You can specify a branch specifically for the backend if needed
+      - backend/** # You can specify a branch specifically for the backend if needed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout the code from the repository
-    - name: Checkout code
-      uses: actions/checkout@v2
+      # Step 1: Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    # Step 2: Set up Node.js with the specified version
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20  # Make sure this matches the version in your `package.json`
+      # Step 2: Set up Node.js with the specified version
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20 # Make sure this matches the version in your `package.json`
 
-    # Step 3: Set up pnpm with the required version
-    - name: Set up pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: 9.12.1  # Use the correct version of pnpm (your project requires 9.12.1)
+      # Step 3: Set up pnpm with the required version
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.12.1 # Use the correct version of pnpm (your project requires 9.12.1)
 
-    # Step 4: Install the dependencies using pnpm
-    - name: Install dependencies
-      working-directory: ./backend
-      run: pnpm install  # Install backend dependencies
+      # Step 4: Install the dependencies using pnpm
+      - name: Install dependencies
+        working-directory: ./backend
+        run: pnpm install # Install backend dependencies
 
-    # Step 5: Build the project (ensure environment variables are set correctly)
-    - name: Build the project
-      working-directory: ./backend
-      env:
-        APP_ENV: ${{ secrets.APP_ENV }}
-        PORT: ${{ secrets.PORT }}
-        MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
-        JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
-        JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
-        JWT_REFRESH_EXPIRES_IN: ${{ secrets.JWT_REFRESH_EXPIRES_IN }}
-        MAIL_HOST: ${{ secrets.MAIL_HOST }}
-        MAIL_PORT: ${{ secrets.MAIL_PORT }}
-        MAIL_USER: ${{ secrets.MAIL_USER }}
-        MAIL_SERVICE: ${{ secrets.MAIL_SERVICE }}
-        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
-        MAIL_FROM: ${{ secrets.MAIL_FROM }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ secrets.AWS_REGION }}
-        AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
-      run: pnpm run heroku-postbuild  # Ensure the heroku-postbuild is executed
+      # Step 5: Build the project (ensure environment variables are set correctly)
+      - name: Build the project
+        working-directory: ./backend
+        env:
+          APP_ENV: ${{ secrets.APP_ENV }}
+          PORT: ${{ secrets.PORT }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+          JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+          JWT_REFRESH_EXPIRES_IN: ${{ secrets.JWT_REFRESH_EXPIRES_IN }}
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_PORT: ${{ secrets.MAIL_PORT }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_SERVICE: ${{ secrets.MAIL_SERVICE }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
+        run: pnpm run heroku-postbuild # Ensure the heroku-postbuild is executed
 
+      #set user 6
+      - name: Set Git user
+        run: |
+          git config --global user.email "89020751+Pubba2000Creation@users.noreply.github.com"    
+          git config --global user.name "prabod pubudu peiris"
 
-    #set user 6
-    - name: Set git user
-      run: |
-        git config --global user.email "89020751+Pubba2000Creation@users.noreply.github.com"    
-        git config --global user.name "prabod pubudu peiris"
+      # Step 7: Commit any changes made during the build process
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "CI/CD build and deploy"
+          git push origin main  # Push changes to GitHub (ensure you're pushing to the correct branch)
 
-    # Step 7: Commit any changes made during the build process
-    - name: Commit changes
-      run: |
-        git add .
-        git commit -m "CI/CD build and deploy"
-        git push origin main  # Push changes to GitHub (ensure you're pushing to the correct branch)
+      # Step 8: Deploy the app to Heroku
+      - name: Deploy to Heroku
+        run: |
+          echo "Deploying to Heroku..."
+          curl https://cli-assets.heroku.com/install.sh | sh  # Install Heroku CLI
+          heroku login --api-key ${{ secrets.HEROKU_API_KEY }}  # Login to Heroku using the API key
+          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git  # Add the Heroku remote
+          git push heroku main  # Push the code to Heroku for deployment
 
-    # Step 8: Deploy the app to Heroku
-    - name: Deploy to Heroku
-      run: |
-        echo "Deploying to Heroku..."
-        curl https://cli-assets.heroku.com/install.sh | sh  # Install Heroku CLI
-        heroku login --api-key ${{ secrets.HEROKU_API_KEY }}  # Login to Heroku using the API key
-        git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git  # Add the Heroku remote
-        git push heroku main  # Push the code to Heroku for deployment
-
-    # Step 9: Output the deployed URL
-    - name: Output deployed URL
-      run: |
-        echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"  # Update with your app’s endpoint
+      # Step 9: Output the deployed URL
+      - name: Output deployed URL
+        run: |
+          echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"  # Update with your app’s endpoint
