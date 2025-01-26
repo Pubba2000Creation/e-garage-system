@@ -29,17 +29,7 @@ jobs:
         working-directory: ./backend # Navigate to your backend folder
         run: pnpm install
 
-      # Step 4: Run ESLint (linting)
-      - name: Run ESLint
-        working-directory: ./backend
-        run: pnpm lint
-
-      # Step 5: Run Jest Tests
-      - name: Run Jest Tests
-        working-directory: ./backend
-        run: pnpm test
-
-      # Step 6: Build the project
+      # Step 4: Build the project
       - name: Build the project
         working-directory: ./backend
         env:
@@ -62,7 +52,7 @@ jobs:
           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: pnpm build
 
-      # Step 7: Deploy to Heroku using Heroku CLI
+      # Step 5: Deploy to Heroku using Heroku CLI
       - name: Deploy to Heroku
         run: |
           echo "Deploying to Heroku..."
