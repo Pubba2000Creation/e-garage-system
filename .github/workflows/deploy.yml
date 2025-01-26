@@ -62,12 +62,13 @@ jobs:
           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: pnpm build
 
-      # Step 7: Deploy to Heroku using the official Heroku action
+      # Step 7: Deploy to Heroku using heroku-deploy action
       - name: Deploy to Heroku
-        uses: heroku/actions@v0.3.0
+        uses: akshnz/heroku-deploy@v1
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          branch: main # Deploy from the main branch
 
       # Step 8: Output deployed URL
       - name: Get deployed URL
