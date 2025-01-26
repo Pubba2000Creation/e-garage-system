@@ -32,7 +32,7 @@ jobs:
       # Step 4: Run ESLint (linting)
       - name: Run ESLint
         working-directory: ./backend
-        run: pnpm lint . --ext .ts
+        run: pnpm lint
 
       # Step 5: Run Jest Tests
       - name: Run Jest Tests
