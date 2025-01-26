@@ -92,6 +92,9 @@ jobs:
       - name: Unshallow the repository
         run: git fetch --all --unshallow 
 
+      - name: Set Heroku buildpack (Node.js)
+        run: heroku buildpacks:set heroku/nodejs
+
       # Step 8: Deploy the app to Heroku
       - name: Deploy to Heroku
         run: |
