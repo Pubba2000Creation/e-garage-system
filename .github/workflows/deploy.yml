@@ -3,11 +3,11 @@ name: CI/CD Build and Deploy
 on:
   push:
     branches:
-      - main # Trigger the workflow when pushing to the main branch
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest # Run on the latest Ubuntu environment
+    runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout code
@@ -18,22 +18,34 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20 # Use Node.js version 20
+          node-version: 20
 
-      # Step 2.1: Install pnpm
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # Step 3: Set up pnpm
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-      # Step 3: Install dependencies in backend
+      # Step 4: Cache dependencies
+      - name: Cache pnpm store
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # Step 5: Install dependencies in backend
       - name: Install dependencies
-        working-directory: ./backend # Navigate to your backend folder
+        working-directory: ./backend
         run: pnpm install
 
-backend-setup
+      # Step 6: Run tests (optional but recommended)
+      - name: Run tests
+        working-directory: ./backend
+        run: pnpm test
 
-
-main
-      # Step 4: Build the project
+      # Step 7: Build the project
       - name: Build the project
         working-directory: ./backend
         env:
@@ -55,11 +67,8 @@ main
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: pnpm build
-backend-setup
-      # Step 5: Deploy to Heroku
 
-      # Step 5: Deploy to Heroku using Heroku CLI
- main
+      # Step 8: Deploy to Heroku
       - name: Deploy to Heroku
         run: |
           echo "Deploying to Heroku..."
@@ -68,7 +77,6 @@ backend-setup
           git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
           git push heroku main
 
-      # Step 6: Output deployed URL
+      # Step 9: Output deployed URL
       - name: Get deployed URL
-        run: |
-          echo "Deployed to: https://$HEROKU_APP_NAME.herokuapp.com/serviceCategory"
+        run: echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"
