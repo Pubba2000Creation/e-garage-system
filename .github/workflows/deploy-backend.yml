@@ -55,14 +55,21 @@ jobs:
         AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
       run: pnpm run heroku-postbuild  # Ensure the heroku-postbuild is executed
 
-    # Step 6: Commit any changes made during the build process
+
+    #set user 6
+    - name: Set git user
+      run: |
+        git config --global user.email "89020751+Pubba2000Creation@users.noreply.github.com"    
+        git config --global user.name "prabod pubudu peiris"
+
+    # Step 7: Commit any changes made during the build process
     - name: Commit changes
       run: |
         git add .
         git commit -m "CI/CD build and deploy"
         git push origin main  # Push changes to GitHub (ensure you're pushing to the correct branch)
 
-    # Step 7: Deploy the app to Heroku
+    # Step 8: Deploy the app to Heroku
     - name: Deploy to Heroku
       run: |
         echo "Deploying to Heroku..."
@@ -71,7 +78,7 @@ jobs:
         git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git  # Add the Heroku remote
         git push heroku main  # Push the code to Heroku for deployment
 
-    # Step 8: Output the deployed URL
+    # Step 9: Output the deployed URL
     - name: Output deployed URL
       run: |
         echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"  # Update with your app’s endpoint
