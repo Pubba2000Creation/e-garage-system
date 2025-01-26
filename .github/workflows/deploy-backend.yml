@@ -91,18 +91,3 @@ jobs:
 
       - name: Unshallow the repository
         run: git fetch --all --unshallow 
-
-      - name: Set Heroku buildpack (Node.js)
-        run: heroku buildpacks:set heroku/nodejs -a ${{ secrets.HEROKU_APP_NAME }}
-
-      # Step 8: Deploy the app to Heroku
-      - name: Deploy to Heroku
-        run: |
-          echo "Deploying to Heroku..."
-          heroku git:remote -a e-garage-system
-          git push heroku main
-
-      # Step 9: Output the deployed URL
-      - name: Output deployed URL
-        run: |
-          echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"  # Update with your app’s endpoint
