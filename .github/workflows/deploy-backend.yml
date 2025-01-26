@@ -72,6 +72,11 @@ jobs:
           git push origin main
           fi
 
+      #install heroku cli
+      - name: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh
+
       # Step 8: Deploy the app to Heroku
       - name: Deploy to Heroku
         env:
