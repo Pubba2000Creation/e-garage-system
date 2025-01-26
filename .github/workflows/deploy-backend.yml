@@ -89,6 +89,9 @@ jobs:
           echo "  password ${{ secrets.HEROKU_API_KEY }}" >> ~/.netrc
            chmod 600 ~/.netrc
 
+      - name: Unshallow the repository
+        run: git fetch --all --unshallow 
+
       # Step 8: Deploy the app to Heroku
       - name: Deploy to Heroku
         run: |
