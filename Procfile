@@ -1,2 +1,3 @@
 
-web: pnpm --filter backend start
+web: pnpm --filter e-garage-system-backend run start
+
