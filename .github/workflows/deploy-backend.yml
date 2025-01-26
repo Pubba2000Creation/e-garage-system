@@ -93,7 +93,7 @@ jobs:
         run: git fetch --all --unshallow 
 
       - name: Set Heroku buildpack (Node.js)
-        run: heroku buildpacks:set heroku/nodejs
+        run: heroku buildpacks:set heroku/nodejs -a ${{ secrets.HEROKU_APP_NAME }}
 
       # Step 8: Deploy the app to Heroku
       - name: Deploy to Heroku
