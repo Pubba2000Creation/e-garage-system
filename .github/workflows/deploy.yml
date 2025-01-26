@@ -79,4 +79,5 @@ jobs:
 
       # Step 9: Output deployed URL
       - name: Get deployed URL
-        run: echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"
+        run: |
+          echo "Deployed to: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/serviceCategory"
