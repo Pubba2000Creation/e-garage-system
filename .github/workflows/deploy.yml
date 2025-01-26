@@ -64,10 +64,10 @@ jobs:
 
       # Step 7: Deploy to Heroku
       - name: Deploy to Heroku
-        uses: heroku/heroku-action@v0.5.0
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          uses: akshnz/heroku-action@v1
+          with:
+            heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+            heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
 
       # Step 8: Output deployed URL
       - name: Get deployed URL
