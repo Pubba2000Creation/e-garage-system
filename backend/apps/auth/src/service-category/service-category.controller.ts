@@ -95,7 +95,7 @@ export class ServiceCategoryController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'get All service-category in database' })
+  @ApiOperation({ summary: 'get one service-category in database refer to id' })
   @ApiResponse({
     status: 201,
     description: 'service-category getting successfully.',
@@ -166,7 +166,7 @@ export class ServiceCategoryController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'get All service-category in database' })
+  @ApiOperation({ summary: 'Delete service-category in database' })
   @ApiResponse({
   status: 201,
   description: 'service-category getting successfully.',
