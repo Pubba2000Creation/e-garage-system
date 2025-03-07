@@ -51,8 +51,11 @@ export class ServiceCategoryService {
    * @param {UpdateServiceCategoryDto} updateServiceCategoryDto - DTO containing the updated details.
    * @returns {Promise<string>} A placeholder message for now.
    */
-  update(id: number, updateServiceCategoryDto: UpdateServiceCategoryDto) {
-    return `This action updates a #${id} serviceCategory`;
+  update(id: string, updateServiceCategoryDto: UpdateServiceCategoryDto) {
+    return this.serviceCategoryRepository.findOneAndUpdate(
+      {_id:id}, 
+      {$set: updateServiceCategoryDto}
+    );
   }
 
   /**
@@ -62,7 +65,7 @@ export class ServiceCategoryService {
    * @param {number} id - The ID of the service category to delete.
    * @returns {Promise<string>} A placeholder message for now.
    */
-  remove(id: number) {
-    return `This action removes a #${id} serviceCategory`;
+  remove(id: string) {
+    return this.serviceCategoryRepository.findOneAndDelete({_id:id});
   }
 }
