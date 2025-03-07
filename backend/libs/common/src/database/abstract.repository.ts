@@ -120,23 +120,24 @@ async findOneAndUpdate(
 
 
   //abstact funtion for serching the document
+// In Abstract Repository (this can be the base class for your repository)
 async search(
   searchKeyword: string,
+  searchableFields: string[], // Array of fields to search across
   additionalFilters: FilterQuery<TDocument> = {},
-  limit: number = 10, // Default to 10 results
-  skip: number = 0 // Offset for pagination
+  limit: number = 10,
+  skip: number = 0
 ): Promise<{ documents: TDocument[]; message: string }> {
   if (!searchKeyword || typeof searchKeyword !== "string") {
     return { documents: [], message: "Invalid search keyword" };
   }
 
+  // Dynamically build the $or condition based on the searchable fields provided
   const searchCriteria: FilterQuery<TDocument> = {
     ...additionalFilters,
-    $or: [
-      { serviceTitle: { $regex: searchKeyword, $options: "i" } },
-      { description: { $regex: searchKeyword, $options: "i" } },
-      { servicesOffered: { $regex: searchKeyword, $options: "i" } },
-    ],
+    $or: searchableFields.map(field => ({
+      [field]: { $regex: searchKeyword, $options: "i" }, // Case-insensitive regex search
+    })) as Record<string, any>[], // Type assertion to ensure this fits the FilterQuery structure
   };
 
   try {
@@ -144,7 +145,7 @@ async search(
       .find(searchCriteria)
       .skip(skip)
       .limit(limit)
-      .lean() as unknown as TDocument[]; // ✅ Fixes the type issue
+      .lean() as TDocument[];
 
     return {
       documents,
@@ -155,6 +156,8 @@ async search(
     return { documents: [], message: "An error occurred during search" };
   }
 }
+
+
 
 
 
