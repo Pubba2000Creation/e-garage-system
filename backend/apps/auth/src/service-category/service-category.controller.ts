@@ -77,7 +77,7 @@ export class ServiceCategoryController {
     status: 500,
     description: 'Internal Server Error - Server failure.',
   })
-  async findAll() {
+  async findAll(): Promise<CommonResponseDto> {
     try {
       const responseData = await this.serviceCategoryService.findAll();
       return new CommonResponseDto(
@@ -109,7 +109,7 @@ export class ServiceCategoryController {
     status: 500,
     description: 'Internal Server Error - Server failure.',
   })
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<CommonResponseDto> {
     try {
       
       const responseData = await this.serviceCategoryService.findOne(id); // get response data
@@ -130,7 +130,7 @@ export class ServiceCategoryController {
 
   @Patch(':id')
   @ApiBody({ type: UpdateServiceCategoryDto })
-  @ApiOperation({ summary: 'get All service-category in database' })
+  @ApiOperation({ summary: 'get new-updated service-category in database' })
   @ApiResponse({
   status: 201,
   description: 'service-category getting successfully.',
@@ -144,9 +144,12 @@ export class ServiceCategoryController {
   status: 500,
   description: 'Internal Server Error - Server failure.',
   })
-  async update(@Param('id') id: string, @Body() updateServiceCategoryDto: UpdateServiceCategoryDto) {
+  async update(@Param('id') id: string, @Body() updateServiceCategoryDto: UpdateServiceCategoryDto): Promise<CommonResponseDto> {
     try {
+      //getting response data
       const responseData = await this.serviceCategoryService.update(id , updateServiceCategoryDto);
+
+      // return the updated service Category center details
       return new CommonResponseDto(
         true,
         responseData.message,
@@ -177,10 +180,11 @@ export class ServiceCategoryController {
   status: 500,
   description: 'Internal Server Error - Server failure.',
   })
-  async remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string): Promise<CommonResponseDto> {
     try {
       //getting response data
       const responseData = await this.serviceCategoryService.remove(id);
+
       // return the deleted service Category center details
       return new CommonResponseDto(
         true,
@@ -188,6 +192,7 @@ export class ServiceCategoryController {
         responseData.document
       )
     } catch (error) {
+
       //handel unexpected error
       throw new HttpException(
         new CommonResponseDto(false, error.message, null),
