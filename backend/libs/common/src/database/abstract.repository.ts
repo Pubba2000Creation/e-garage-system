@@ -82,6 +82,21 @@ async findOneAndUpdate(
     }
     return { document, message: successMessage };
   }
+  async findOneAndDelete(
+    filterQuery: FilterQuery<TDocument>,
+  ): Promise<{ document: TDocument; message: string }> {
+    const document = (await this.model
+      .findOneAndDelete(filterQuery)
+      .lean(true)) as TDocument;
+    if (!document) {
+      this.logger.warn(
+        `Document not found with filter query: ${JSON.stringify(filterQuery)}`,
+      );
+      throw new NotFoundException('The document was not in the Databse');
+    }
+    const successMessage = 'Delete is successfully completed';
+    return { document, message: successMessage };
+  }
 
   async find(
     filterQuery: FilterQuery<TDocument>,
@@ -102,19 +117,46 @@ async findOneAndUpdate(
     return { documents, message: successMessage };
   }
 
-  async findOneAndDelete(
-    filterQuery: FilterQuery<TDocument>,
-  ): Promise<{ document: TDocument; message: string }> {
-    const document = (await this.model
-      .findOneAndDelete(filterQuery)
-      .lean(true)) as TDocument;
-    if (!document) {
-      this.logger.warn(
-        `Document not found with filter query: ${JSON.stringify(filterQuery)}`,
-      );
-      throw new NotFoundException('The document was not in the Databse');
-    }
-    const successMessage = 'Delete is successfully completed';
-    return { document, message: successMessage };
+
+
+  //abstact funtion for serching the document
+async search(
+  searchKeyword: string,
+  additionalFilters: FilterQuery<TDocument> = {},
+  limit: number = 10, // Default to 10 results
+  skip: number = 0 // Offset for pagination
+): Promise<{ documents: TDocument[]; message: string }> {
+  if (!searchKeyword || typeof searchKeyword !== "string") {
+    return { documents: [], message: "Invalid search keyword" };
   }
+
+  const searchCriteria: FilterQuery<TDocument> = {
+    ...additionalFilters,
+    $or: [
+      { serviceTitle: { $regex: searchKeyword, $options: "i" } },
+      { description: { $regex: searchKeyword, $options: "i" } },
+      { servicesOffered: { $regex: searchKeyword, $options: "i" } },
+    ],
+  };
+
+  try {
+    const documents = await this.model
+      .find(searchCriteria)
+      .skip(skip)
+      .limit(limit)
+      .lean() as unknown as TDocument[]; // ✅ Fixes the type issue
+
+    return {
+      documents,
+      message: documents.length > 0 ? "Successfully found in the system" : "Not found in the system",
+    };
+  } catch (error) {
+    console.error("Error executing search:", error);
+    return { documents: [], message: "An error occurred during search" };
+  }
+}
+
+
+
+
 }

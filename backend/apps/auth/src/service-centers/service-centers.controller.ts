@@ -1,14 +1,57 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus, Query } from '@nestjs/common';
 import { ServiceCentersService } from './service-centers.service';
 import { CreateServiceCenterDto } from './dto/create-service-center.dto';
 import { UpdateServiceCenterDto } from './dto/update-service-center.dto';
-import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CommonResponseDto } from '@app/common';
 
 @Controller('service-centers')
 @ApiTags('service-center oprations list')
 export class ServiceCentersController {
   constructor(private readonly serviceCentersService: ServiceCentersService) {}
+    /**
+ * Operation to search service centers based on a keyword.
+ * Function returns a list of matched service centers with a common response DTO.
+ * @param searchKeyword
+ * @returns
+ */
+  @Get('search')
+  @ApiOperation({ description: 'Search service centers by keyword', summary: 'Search service centers' })
+  @ApiQuery({
+    name: 'keyword',
+    description: 'The search keyword to filter service centers',
+    required: true,
+    type: String,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Search results retrieved successfully.',
+    type: CommonResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'No matching service centers found.',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error - Server failure.',
+  })
+  async search(@Query('keyword') keyword: string): Promise<CommonResponseDto> {
+    try {
+      const responseData = await this.serviceCentersService.search(keyword);
+      
+      return new CommonResponseDto(
+        true,
+        responseData.message,
+        responseData.documents,
+      );
+    } catch (error) {
+      throw new HttpException(
+        new CommonResponseDto(false, error.message, null),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 /*
   **
    * Endpoint to create new service-center.
@@ -237,4 +280,6 @@ export class ServiceCentersController {
       )
     }
   }
+
+
 }

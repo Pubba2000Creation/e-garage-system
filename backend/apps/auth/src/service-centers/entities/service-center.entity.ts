@@ -16,13 +16,13 @@ export class ServiceCenterDocument extends AbstractDocument {
   @Prop({ type: String,unique: false})
   userId?: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, index: "text" })
   serviceTitle: string;
 
   @Prop({ type: [String], required: true })
   serviceCategories: string[];
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, index: "text" })
   description: string;
 
   @Prop({ type: [String], default: [] })
@@ -59,3 +59,13 @@ export class ServiceCenterDocument extends AbstractDocument {
 }
 
 export const ServiceCenterSchema = SchemaFactory.createForClass(ServiceCenterDocument);
+
+
+//  Text search only on `serviceTitle` and `description`
+ServiceCenterSchema.index({
+  serviceTitle: "text",
+  description: "text",
+});
+
+//  Use a 2dsphere index for geospatial queries
+ServiceCenterSchema.index({ locationURL: "2dsphere" });

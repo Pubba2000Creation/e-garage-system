@@ -7,6 +7,11 @@ import { serviceCenterRepository } from './service-centers.repository';
 export class ServiceCentersService {
 
   constructor (private readonly serviceCentersRepository: serviceCenterRepository) {}
+
+
+  search (searchKeyword: string) {
+    return this.serviceCentersRepository.search(searchKeyword);
+  }
   create(createServiceCenterDto: CreateServiceCenterDto) {
    return this.serviceCentersRepository.create(createServiceCenterDto);
   }
