@@ -39,8 +39,8 @@ export class ServiceCategoryService {
    * @param {number} id - The ID of the service category to retrieve.
    * @returns {Promise<string>} A placeholder message for now.
    */
-  findOne(id: number) {
-    return `This action returns a #${id} serviceCategory`;
+  findOne(_id: string) {
+    return  this.serviceCategoryRepository.findOne({_id});
   }
 
   /**

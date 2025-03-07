@@ -95,8 +95,38 @@ export class ServiceCategoryController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.serviceCategoryService.findOne(+id);
+      @ApiOperation({ summary: 'get All service-category in database' })
+      @ApiResponse({
+        status: 201,
+        description: 'service-category getting successfully.',
+        type: CommonResponseDto,
+      })
+      @ApiResponse({
+        status: 400,
+        description: 'Bad Request - Invalid input data.',
+      })
+      @ApiResponse({
+        status: 500,
+        description: 'Internal Server Error - Server failure.',
+      })
+  async findOne(@Param('id') id: string) {
+    try {
+      
+      const responseData = await this.serviceCategoryService.findOne(id); // get response data
+
+      return new CommonResponseDto(
+        true,
+        responseData.message,
+        responseData.document
+      )
+    } catch (error) {
+      //error handling
+         throw new HttpException(
+        new CommonResponseDto(false, error.message, null),
+        HttpStatus.INTERNAL_SERVER_ERROR,
+         )
+    }
+   
   }
 
   @Patch(':id')
